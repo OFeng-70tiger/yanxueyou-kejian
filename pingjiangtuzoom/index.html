@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#17140f">
+<meta name="format-detection" content="telephone=no">
+<title>南宋《平江图》碑刻 · 可放大细看</title>
+<meta name="description" content="世界上现存最古老的石刻城市平面图之一。拖动平移、双指放大，细看八百年前苏州城的街巷河道与 359 座桥。">
+<meta property="og:title" content="南宋《平江图》碑刻 · 高清可放大">
+<meta property="og:description" content="拖动平移、双指放大，细看八百年前苏州城的街巷河道与 359 座桥。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://gusu-fanhua-scroll.app.workbuddy.host/pingjiangtu/">
+<meta property="og:image" content="https://gusu-fanhua-scroll.app.workbuddy.host/pingjiangtu//share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="南宋《平江图》碑刻 · 高清可放大">
+<meta name="twitter:image" content="https://gusu-fanhua-scroll.app.workbuddy.host/pingjiangtu//share.jpg">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;overflow:hidden;background:#17140f;color:#e8dfd0;
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  -webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent;overscroll-behavior:none}
+#app{display:flex;flex-direction:column;height:100%;min-width:0}
+header{flex:0 0 auto;display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;
+  padding:9px 14px 8px;background:linear-gradient(#211c15,#1a1611);border-bottom:1px solid #302819;z-index:6}
+header h1{font-size:15px;font-weight:600;letter-spacing:.6px;color:#eadcbb}
+header .sub{font-size:11px;color:#8b7f6d;letter-spacing:.2px}
+#stage{position:relative;flex:1 1 auto;min-width:0;overflow:hidden;background:#0f0d0a;
+  touch-action:none;cursor:grab}
+#stage.drag{cursor:grabbing}
+#layer{position:absolute;inset:0}
+#layer img{position:absolute;left:0;top:0;display:block;will-change:transform}
+#base{position:absolute;left:0;top:0;display:block;filter:saturate(.96)}
+.tile{opacity:0;transition:opacity .25s ease-out}
+.tile.in{opacity:1}
+#ctrl{position:absolute;right:10px;top:10px;display:flex;flex-direction:column;gap:6px;z-index:5}
+#ctrl button{width:44px;height:36px;border:1px solid #453925;border-radius:9px;
+  background:rgba(28,23,17,.82);color:#e3d4b2;font-size:13px;font-family:inherit;
+  letter-spacing:.5px;backdrop-filter:blur(6px);cursor:pointer;line-height:1}
+#ctrl button:active{background:#3a2f1f}
+#load{position:absolute;left:12px;bottom:12px;padding:5px 11px;border-radius:14px;
+  background:rgba(20,16,11,.78);border:1px solid #3b3120;color:#c9b98f;
+  font-size:11.5px;letter-spacing:.4px;z-index:5;opacity:0;transition:opacity .25s;pointer-events:none}
+#load.on{opacity:1}
+#hint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:5;
+  padding:12px 20px;border-radius:12px;background:rgba(18,14,10,.86);border:1px solid #4a3d26;
+  color:#e0d1ac;font-size:13.5px;letter-spacing:.6px;text-align:center;line-height:1.9;
+  pointer-events:none;transition:opacity .5s}
+#hint b{color:#f0dcae;font-weight:600}
+#hint.hide{opacity:0}
+#ov{position:absolute;right:10px;bottom:10px;z-index:5;padding:4px;border-radius:9px;
+  background:rgba(20,16,11,.82);border:1px solid #4a3d26;backdrop-filter:blur(6px);
+  touch-action:none;cursor:pointer}
+#ov img{display:block;width:118px;border-radius:4px;pointer-events:none;opacity:.94}
+#ovwin{position:absolute;border:1.5px solid #e0b45c;border-radius:3px;
+  background:rgba(224,180,92,.18);box-shadow:0 0 0 1px rgba(0,0,0,.5) inset;pointer-events:none}
+/* 手机端：导览小图收小，少挡主图 */
+@media (max-width:820px){
+  #ov{right:8px;bottom:8px;padding:3px;border-radius:8px}
+  #ov img{width:92px;border-radius:3px}
+  #ovwin{border-width:1.2px}
+}
+@media (max-width:430px){
+  #ov img{width:74px}
+}
+footer{flex:0 0 auto;background:linear-gradient(#1a1611,#14110d);border-top:1px solid #302819;z-index:6}
+#pos{padding:6px 12px;font-size:11px;color:#8b7f6d;letter-spacing:.4px;display:flex;flex-wrap:wrap;
+  justify-content:space-between;gap:2px 8px}
+#pos span{min-width:0}
+#pos em{font-style:normal;color:#c0a977}
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <h1>南宋《平江图》碑刻</h1>
+    <span class="sub">绍定二年（1229）李寿朋主持刻立 · 碑高 248 × 宽 146 厘米 · 现存苏州文庙 · 拖动平移，双指放大看街巷桥名</span>
+  </header>
+  <div id="stage">
+    <img id="base" src="preview.jpg" alt="">
+    <div id="layer"></div>
+    <div id="ctrl">
+      <button data-a="whole" title="看全图">全图</button>
+      <button data-a="w" title="适宽">适宽</button>
+      <button data-a="out" title="缩小">−</button>
+      <button data-a="in" title="放大">＋</button>
+    </div>
+    <div id="load">正在加载…</div>
+    <div id="hint"><b>拖动</b>平移地图<br><b>双指捏合</b>放大细看街巷桥名<br>右下角小图可快速定位</div>
+    <div id="ov"><img id="ovimg" src="minimap.jpg" alt="全图索引"><div id="ovwin"></div></div>
+  </div>
+  <footer><div id="pos"><span id="posL"></span><span id="posR">碑左下刻「丁巳秋八月郡人叶德辉朱锡梁督工深刻」＝ 1917 年深刻本</span></div></footer>
+</div>
+<script src="meta.js"></script>
+<script>
+(function(){
+  var META = window.__META__;
+  if(!META){ document.getElementById('load').textContent='meta.js 未加载'; document.getElementById('load').classList.add('on'); return; }
+  var FW = META.fullW, FH = META.fullH, TW = META.tileW, LV = META.levels;
+  var stage = document.getElementById('stage'), layer = document.getElementById('layer');
+  var base = document.getElementById('base');
+  var ov = document.getElementById('ov'), ovimg = document.getElementById('ovimg'), ovwin = document.getElementById('ovwin');
+  var loadEl = document.getElementById('load'), hint = document.getElementById('hint');
+  var posL = document.getElementById('posL');
+
+  var k = 0.5, ox = 0, oy = 0;
+  var DPR = Math.max(2, Math.min(3, window.devicePixelRatio || 1));
+  var pool = {}, raf = 0, pending = 0, hinted = false;
+  var MAXK = 1.2;
+
+  function vw(){ return stage.clientWidth; }
+  function vh(){ return stage.clientHeight; }
+  function kmin(){ return Math.min(vw()/FW, vh()/FH); }
+  function ck(v){ return Math.max(kmin(), Math.min(MAXK, v)); }
+  function clampView(){
+    var w = vw()/k, h = vh()/k;
+    ox = (w >= FW) ? (FW - w)/2 : Math.max(0, Math.min(FW - w, ox));
+    oy = (h >= FH) ? (FH - h)/2 : Math.max(0, Math.min(FH - h, oy));
+  }
+  function req(){ if(!raf) raf = requestAnimationFrame(render); }
+
+  function render(){
+    raf = 0;
+    clampView();
+    var W = vw(), H = vh(), li, i, lv, s, c0, c1, r0, r1, c, r, key, el, need = {};
+
+    base.style.width  = (FW*k) + 'px';
+    base.style.height = (FH*k) + 'px';
+    base.style.left   = (-ox*k) + 'px';
+    base.style.top    = (-oy*k) + 'px';
+
+    var target = k * DPR * FW;
+    li = LV.length - 1;
+    for(i = 0; i < LV.length; i++){ if(LV[i].w <= target){ li = i; break; } }
+    lv = LV[li]; s = FW / lv.w;
+
+    c0 = Math.max(0, Math.floor(ox/(TW*s)) - 1);
+    c1 = Math.min(lv.cols - 1, Math.floor((ox + W/k)/(TW*s)) + 1);
+    r0 = Math.max(0, Math.floor(oy/(TW*s)) - 1);
+    r1 = Math.min(lv.rows - 1, Math.floor((oy + H/k)/(TW*s)) + 1);
+    for(r = r0; r <= r1; r++){
+      for(c = c0; c <= c1; c++){
+        key = li + '_' + c + '_' + r;
+        need[key] = 1;
+        el = pool[key];
+        if(!el){
+          el = document.createElement('img');
+          el.className = 'tile';
+          el.alt = '';
+          el.src = 'tiles/' + li + '/' + c + '_' + r + '.jpg';
+          (function(node){
+            pending++;
+            loadEl.classList.add('on');
+            node.onload = function(){ node.classList.add('in'); pending--; if(pending<=0) loadEl.classList.remove('on'); };
+            node.onerror = function(){ pending--; if(pending<=0) loadEl.classList.remove('on'); };
+          })(el);
+          layer.appendChild(el);
+          pool[key] = el;
+        }
+        el.style.left   = ((c*TW*s - ox)*k) + 'px';
+        el.style.top    = ((r*TW*s - oy)*k) + 'px';
+        el.style.width  = (Math.min(TW, lv.w - c*TW)*s*k) + 'px';
+        el.style.height = (Math.min(TW, lv.h - r*TW)*s*k) + 'px';
+      }
+    }
+    for(key in pool){ if(!need[key]){ pool[key].remove(); delete pool[key]; } }
+
+    // 右下角总览小图
+    var mw = ovimg.clientWidth || 1, mh = ovimg.clientHeight || 1;
+    ovwin.style.left  = (ox/FW*mw) + 'px';
+    ovwin.style.top   = (oy/FH*mh) + 'px';
+    ovwin.style.width  = Math.max(6, (W/k)/FW*mw) + 'px';
+    ovwin.style.height = Math.max(6, (H/k)/FH*mh) + 'px';
+
+    posL.textContent = '缩放 ' + (k/kmin()).toFixed(1) + '×（全图 = 1.0）';
+    if(!hinted && pending === 0){ hinted = true; setTimeout(function(){ hint.classList.add('hide'); }, 1200); }
+  }
+
+  function fitWhole(){ k = ck(Math.min(vw()/FW, vh()/FH) * 0.97); ox = (FW - vw()/k)/2; oy = (FH - vh()/k)/2; req(); }
+  function fitWidth(){ var cy = oy + vh()/k/2; k = ck(vw()*0.98/FW); ox = (FW - vw()/k)/2; oy = cy - vh()/k/2; req(); }
+  function zoomAt(f, px, py){
+    var ix = ox + px/k, iy = oy + py/k;
+    k = ck(k*f);
+    ox = ix - px/k; oy = iy - py/k; req();
+  }
+
+  /* ---------- 手势：拖动 / 双指捏合 ---------- */
+  var pts = {}, g = null;
+  function rel(e){ var r = stage.getBoundingClientRect(); return {x: e.clientX - r.left, y: e.clientY - r.top}; }
+  function startG(){
+    var ids = Object.keys(pts);
+    if(ids.length === 1){
+      g = {t:'pan', x: pts[ids[0]].x, y: pts[ids[0]].y, ox: ox, oy: oy};
+    } else if(ids.length >= 2){
+      var a = pts[ids[0]], b = pts[ids[1]];
+      var mx = (a.x+b.x)/2, my = (a.y+b.y)/2;
+      g = {t:'pinch', d: Math.max(1, Math.hypot(a.x-b.x, a.y-b.y)), k: k,
+           ix: ox + mx/k, iy: oy + my/k};
+      hideHint();
+    } else { g = null; }
+  }
+  function hideHint(){ hint.classList.add('hide'); }
+  stage.addEventListener('pointerdown', function(e){
+    if(e.pointerType === 'mouse' && e.button !== 0) return;
+    stage.setPointerCapture(e.pointerId);
+    var p = rel(e); pts[e.pointerId] = p;
+    startG();
+    stage.classList.add('drag');
+    hideHint();
+  });
+  stage.addEventListener('pointermove', function(e){
+    if(!(e.pointerId in pts)) return;
+    var p = rel(e), ids, a, b, d, mx, my, f;
+    pts[e.pointerId] = p;
+    if(!g) return;
+    ids = Object.keys(pts);
+    if(g.t === 'pan' && ids.length === 1){
+      ox = g.ox - (p.x - g.x)/k;
+      oy = g.oy - (p.y - g.y)/k;
+      req();
+      e.preventDefault();
+    } else if(g.t === 'pinch' && ids.length >= 2){
+      a = pts[ids[0]]; b = pts[ids[1]];
+      d = Math.max(1, Math.hypot(a.x-b.x, a.y-b.y));
+      mx = (a.x+b.x)/2; my = (a.y+b.y)/2;
+      f = d / g.d;
+      k = ck(g.k * f);
+      ox = g.ix - mx/k; oy = g.iy - my/k;
+      req();
+      e.preventDefault();
+    }
+  });
+  function up(e){
+    if(!(e.pointerId in pts)) return;
+    delete pts[e.pointerId];
+    startG();
+    if(!Object.keys(pts).length) stage.classList.remove('drag');
+  }
+  stage.addEventListener('pointerup', function(e){
+    var p = rel(e), now = Date.now();
+    if(pts[e.pointerId] && g && g.t === 'pan'){
+      if(now - lastTap < 320 && Math.abs(p.x-lastP.x) < 26 && Math.abs(p.y-lastP.y) < 26){
+        zoomAt(1.9, p.x, p.y); lastTap = 0;
+      } else { lastTap = now; lastP = p; }
+    }
+    up(e);
+  });
+  stage.addEventListener('pointercancel', up);
+  var lastTap = 0, lastP = {x:0,y:0};
+  stage.addEventListener('wheel', function(e){
+    e.preventDefault();
+    var r = stage.getBoundingClientRect();
+    zoomAt(Math.exp(-e.deltaY * 0.0016), e.clientX - r.left, e.clientY - r.top);
+  }, {passive:false});
+
+  /* ---------- 总览小图：点按即跳转 ---------- */
+  function jump(cx, cy){
+    var r = ovimg.getBoundingClientRect();
+    var fx = Math.max(0, Math.min(1, (cx - r.left)/r.width));
+    var fy = Math.max(0, Math.min(1, (cy - r.top)/r.height));
+    ox = fx*FW - vw()/k/2; oy = fy*FH - vh()/k/2;
+    req();
+  }
+  ov.addEventListener('pointerdown', function(e){
+    ov.setPointerCapture(e.pointerId); jump(e.clientX, e.clientY); e.preventDefault();
+  });
+  ov.addEventListener('pointermove', function(e){
+    if(e.buttons){ jump(e.clientX, e.clientY); e.preventDefault(); }
+  });
+
+  /* ---------- 按钮 / 键盘 ---------- */
+  document.getElementById('ctrl').addEventListener('click', function(e){
+    var a = e.target.getAttribute('data-a'); if(!a) return;
+    if(a === 'whole') fitWhole();
+    else if(a === 'w') fitWidth();
+    else if(a === 'in') zoomAt(1.45, vw()/2, vh()/2);
+    else if(a === 'out') zoomAt(1/1.45, vw()/2, vh()/2);
+    hideHint();
+  });
+  window.addEventListener('keydown', function(e){
+    var step = vw()/k*0.2;
+    if(e.key === 'ArrowRight'){ ox += step; req(); }
+    else if(e.key === 'ArrowLeft'){ ox -= step; req(); }
+    else if(e.key === 'ArrowDown'){ oy += step; req(); }
+    else if(e.key === 'ArrowUp'){ oy -= step; req(); }
+    else if(e.key === '+' || e.key === '='){ zoomAt(1.3, vw()/2, vh()/2); }
+    else if(e.key === '-'){ zoomAt(1/1.3, vw()/2, vh()/2); }
+    else if(e.key === '0'){ fitWhole(); }
+    else return;
+    e.preventDefault();
+  });
+  window.addEventListener('resize', function(){ k = ck(k); req(); });
+
+  /* ---------- 起始视窗：默认看全图 ---------- */
+  function init(){
+    var q = location.search;
+    if(/x=/.test(q)){
+      var mx = /[?&]x=([\d.]+)/.exec(q), my = /[?&]y=([\d.]+)/.exec(q), mk = /[?&]k=([\d.]+)/.exec(q);
+      k = ck(mk ? parseFloat(mk[1]) : 0.5);
+      ox = (mx ? parseFloat(mx[1]) : 0.5)*FW - vw()/k/2;
+      oy = (my ? parseFloat(my[1]) : 0.5)*FH - vh()/k/2;
+      hinted = true; hint.classList.add('hide');
+    } else {
+      fitWhole();
+    }
+    req();
+    setTimeout(function(){ if(!hinted) hint.classList.add('hide'); }, 6000);
+  }
+  if(document.readyState === 'complete') init();
+  else window.addEventListener('load', init);
+  req();
+})();
+</script>
+</body>
+</html>
