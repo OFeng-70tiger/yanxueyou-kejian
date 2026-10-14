@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>吴地时光机 · 亲子研学 Citywalk 双线图志（家庭版）</title>
+<style>
+:root{
+  --bg:#fff8ec; --bg2:#fff3dd; --card:#ffffff;
+  --ink:#3d3226; --ink-soft:#6b5c48;
+  --blue:#3d9be9; --blue-deep:#1f6fb2;
+  --orange:#ff8a3d; --orange-deep:#e8641c;
+  --green:#57b26a; --green-deep:#2f8b47;
+  --yellow:#ffc53d; --yellow-deep:#e8a20a;
+  --pink:#ff7a7a;
+  --rounder:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--rounder);line-height:1.85;font-size:17px;
+  background-image:
+    radial-gradient(circle at 12% 6%, rgba(61,155,233,.10) 0 60px, transparent 61px),
+    radial-gradient(circle at 90% 4%, rgba(255,197,61,.14) 0 44px, transparent 45px),
+    radial-gradient(circle at 78% 18%, rgba(87,178,106,.08) 0 34px, transparent 35px);
+}
+.wrap{max-width:880px;margin:0 auto;padding:0 18px 90px}
+
+/* 顶部进度条 */
+#topbar{position:fixed;top:0;left:0;right:0;height:5px;background:transparent;z-index:99}
+#topbar i{display:block;height:100%;width:0;border-radius:0 3px 3px 0;
+  background:linear-gradient(90deg,var(--blue),var(--green),var(--yellow),var(--orange));}
+
+/* ===== Hero ===== */
+.hero{position:relative;min-height:520px;display:flex;align-items:center;justify-content:center;text-align:center;
+  overflow:hidden;border-bottom:4px dashed var(--yellow);
+  background:linear-gradient(180deg,#bfe3ff 0%,#d9f0ff 34%,#fff3d6 78%,var(--bg) 100%)}
+/* 卡通太阳与云朵（CSS手绘） */
+.sun{position:absolute;top:34px;right:9%;width:74px;height:74px;border-radius:50%;
+  background:radial-gradient(circle at 38% 36%,#ffe28a,var(--yellow) 70%);
+  box-shadow:0 0 0 12px rgba(255,197,61,.25),0 0 0 26px rgba(255,197,61,.12)}
+.cloud{position:absolute;background:#fff;border-radius:60px;opacity:.9}
+.cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
+.cloud.c1{top:52px;left:8%;width:120px;height:40px}
+.cloud.c1::before{width:52px;height:52px;top:-26px;left:20px}
+.cloud.c1::after{width:38px;height:38px;top:-16px;left:62px}
+.cloud.c2{top:120px;right:16%;width:92px;height:30px;opacity:.75}
+.cloud.c2::before{width:40px;height:40px;top:-20px;left:16px}
+.cloud.c2::after{width:28px;height:28px;top:-12px;left:50px}
+/* 卡通城门剪影 */
+.wall{position:absolute;bottom:0;left:0;right:0;height:64px;background:repeating-linear-gradient(90deg,#e9b98a 0 60px,#e2ac76 60px 120px);opacity:.5;
+  clip-path:polygon(0 100%,0 46%,7% 46%,7% 22%,13% 22%,13% 46%,30% 46%,30% 0,36% 0,36% 14%,44% 14%,44% 0,50% 0,50% 46%,68% 46%,68% 24%,74% 24%,74% 46%,88% 46%,88% 30%,94% 30%,94% 46%,100% 46%,100% 100%)}
+.hero-inner{position:relative;z-index:2;padding:56px 24px 84px;max-width:760px}
+.badge{display:inline-block;background:var(--orange);color:#fff;font-weight:700;font-size:.92rem;letter-spacing:.18em;
+  border-radius:40px;padding:7px 24px;margin-bottom:22px;box-shadow:0 4px 0 var(--orange-deep);transform:rotate(-2deg)}
+.brand{font-size:clamp(2rem,6.8vw,3.1rem);font-weight:900;letter-spacing:.14em;margin-bottom:6px;
+  background:linear-gradient(90deg,var(--blue-deep),var(--green-deep) 40%,var(--orange-deep) 78%,var(--pink));
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 3px 0 rgba(255,255,255,.9)) drop-shadow(0 6px 14px rgba(61,107,178,.25))}
+.brand-sub{font-size:clamp(1rem,3.4vw,1.3rem);font-weight:700;color:var(--ink);letter-spacing:.3em;margin-bottom:14px}
+.brand-emoji{font-size:2rem;letter-spacing:.4em;margin-bottom:10px}
+.hero p{color:var(--ink-soft);font-size:clamp(.95rem,2.7vw,1.05rem);max-width:600px;margin:0 auto}
+.hero-meta{margin-top:22px;font-weight:700;color:var(--blue-deep);font-size:.98rem;letter-spacing:.12em}
+.hero-meta span{margin:0 12px;color:var(--orange)}
+
+/* ===== 双线 Tab ===== */
+.tabbar{position:sticky;top:0;z-index:50;background:rgba(255,248,236,.96);backdrop-filter:blur(8px);
+  border-bottom:3px dashed var(--yellow);margin:0 -18px;padding:12px 18px;display:flex;gap:12px}
+.tab{flex:1;position:relative;text-align:center;padding:13px 6px;border-radius:18px;cursor:pointer;color:var(--ink-soft);
+  font-size:clamp(1rem,3vw,1.14rem);font-weight:700;letter-spacing:.05em;border:3px solid transparent;
+  transition:.25s;user-select:none;background:#fff}
+.tab small{display:block;font-size:.74rem;color:var(--ink-soft);margin-top:2px;font-weight:400}
+.tab.t1.on{border-color:var(--blue);color:var(--blue-deep);background:#eaf5ff;box-shadow:0 4px 0 rgba(61,155,233,.35)}
+.tab.t2.on{border-color:var(--green);color:var(--green-deep);background:#ecf9ee;box-shadow:0 4px 0 rgba(87,178,106,.35)}
+.tab .ico{font-size:1.3rem;margin-right:6px}
+
+/* ===== 区块头 ===== */
+.sec-head{margin:52px 0 6px;display:flex;align-items:center;gap:16px}
+/* 线路档期标注 */
+.routeflag{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin:34px 0 -14px}
+.routeflag .fk{display:inline-block;font-weight:900;font-size:1rem;letter-spacing:.08em;padding:7px 20px;border-radius:999px;color:#fff}
+.routeflag .fs{font-size:.86rem;color:var(--ink-soft)}
+.routeflag.hot .fk{background:linear-gradient(135deg,#c9492f,#9e2b22);box-shadow:0 4px 0 rgba(158,43,34,.30)}
+.routeflag.next .fk{background:linear-gradient(135deg,#8a97a8,#6f7d90);box-shadow:0 4px 0 rgba(111,125,144,.28)}
+.tab .mini-flag{position:absolute;top:-12px;left:50%;transform:translateX(-50%);font-size:.66rem;background:linear-gradient(135deg,#c9492f,#9e2b22);color:#fff;padding:2px 11px;border-radius:999px;font-weight:800;font-style:normal;letter-spacing:.05em;white-space:nowrap;box-shadow:0 2px 0 rgba(158,43,34,.28);z-index:2}
+.tab .mini-flag.grey{background:linear-gradient(135deg,#8a97a8,#6f7d90)}
+.sec-no{flex:none;width:56px;height:56px;border-radius:20px;display:flex;align-items:center;justify-content:center;
+  font-size:1.7rem;background:#fff;border:3px solid var(--blue);box-shadow:0 4px 0 rgba(61,155,233,.3);transform:rotate(-6deg)}
+.route2 .sec-no{border-color:var(--green);box-shadow:0 4px 0 rgba(87,178,106,.3);transform:rotate(6deg)}
+.sec-head h2{font-size:clamp(1.35rem,4.6vw,1.75rem);font-weight:900;letter-spacing:.06em}
+.sec-head .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.28em;margin-top:2px;font-weight:400}
+.sec-sub{color:var(--ink-soft);font-size:.97rem;margin:6px 0 0 72px}
+
+/* 卡片 */
+.card{background:var(--card);border:3px solid #f2e4c8;border-radius:26px;padding:26px 22px 24px;margin-top:28px;
+  position:relative;overflow:hidden;box-shadow:0 6px 0 rgba(226,172,118,.18);transition:transform .3s,box-shadow .3s}
+a.card{display:block;text-decoration:none;color:inherit}
+.card:hover{transform:translateY(-4px) rotate(.3deg);box-shadow:0 10px 0 rgba(226,172,118,.22)}
+.card.c1{border-color:#cfe8ff}
+.card.c2{border-color:#d8f0dc}
+.card .top-ico{position:absolute;top:-8px;right:14px;font-size:3.4rem;opacity:.16;transform:rotate(12deg)}
+.stopbadge{display:inline-flex;align-items:center;gap:6px;background:var(--blue);color:#fff;font-weight:900;
+  font-size:.9rem;letter-spacing:.14em;border-radius:30px;padding:4px 16px 4px 12px;margin-bottom:8px;box-shadow:0 3px 0 var(--blue-deep)}
+.route2 .stopbadge{background:var(--green);box-shadow:0 3px 0 var(--green-deep)}
+/* 名人堂徽章 */
+.pbadge{display:inline-flex;align-items:center;gap:6px;color:#fff;font-weight:900;font-size:.9rem;
+  letter-spacing:.14em;border-radius:30px;padding:4px 16px 4px 12px;margin-bottom:8px;
+  background:linear-gradient(135deg,var(--yellow-deep),#c47f08);box-shadow:0 3px 0 #a36805}
+.pbadge.up{background:linear-gradient(135deg,#7a5cc4,#5a3fa0);box-shadow:0 3px 0 #47307e}
+.pbadge.gold{background:linear-gradient(135deg,#c9492f,#9e2b22);box-shadow:0 3px 0 rgba(158,43,34,.3)}
+/* 名人堂持续补充提示 */
+.more-tip{margin-top:22px;text-align:center;color:var(--ink-soft);font-size:.92rem;
+  background:#fff;border:2px dashed var(--yellow-deep);border-radius:22px;padding:14px 18px}
+.more-tip b{color:var(--orange-deep)}
+.card h3{font-size:clamp(1.15rem,4vw,1.38rem);font-weight:900;letter-spacing:.04em;margin:2px 40px 6px 0}
+.card .tag{display:inline-block;font-size:.78rem;font-weight:700;color:var(--orange-deep);background:#fff3e4;
+  border-radius:30px;padding:2px 14px;margin:2px 6px 10px 0}
+.card p{color:var(--ink-soft);margin:8px 0;font-size:.99rem}
+.card p b{color:var(--ink)}
+.hl{color:var(--orange-deep);font-weight:700}
+/* 亲子任务卡 */
+.key{background:linear-gradient(135deg,#fff8d6,#ffedb8);border:2px dashed var(--yellow-deep);
+  padding:12px 16px;border-radius:18px;color:var(--ink-soft);font-size:.94rem;margin-top:14px;position:relative}
+.key b{color:var(--orange-deep)}
+.key::before{content:"⭐ 亲子任务卡";position:absolute;top:-14px;left:14px;background:var(--yellow);color:#5a4200;
+  font-size:.76rem;font-weight:900;border-radius:20px;padding:2px 14px;box-shadow:0 2px 0 var(--yellow-deep)}
+
+/* 图片区 */
+.media{margin:16px -4px 4px;border-radius:20px;overflow:hidden;border:3px solid #f2e4c8;position:relative;background:#fff}
+.card.c1 .media{border-color:#cfe8ff}
+.card.c2 .media{border-color:#d8f0dc}
+.media img{display:block;width:100%;height:clamp(210px,40vw,320px);object-fit:cover;transition:transform .6s}
+.card:hover .media img{transform:scale(1.02)}
+.media .cap{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 8px;font-size:.8rem;font-weight:700;color:#fff;
+  background:linear-gradient(transparent,rgba(40,30,15,.72));letter-spacing:.08em}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g2 .media,.g3 .media{margin:0}
+.g2 img,.g3 img{height:clamp(150px,26vw,210px)}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.g3 .cap,.g2 .cap{font-size:.68rem;padding-top:16px}
+.vid video{display:block;width:100%;max-height:460px;background:#000}
+.vid .cap{position:absolute;top:10px;bottom:auto;padding:4px 12px;font-size:.76rem;background:rgba(255,138,61,.9);
+  border-radius:30px;left:12px;color:#fff;font-weight:700}
+
+/* ===== 段落导航（吸顶） ===== */
+.secnav{position:sticky;top:var(--stickH,74px);z-index:60;
+  margin:10px -18px 0;padding:10px 18px;display:flex;gap:8px;align-items:center;
+  background:rgba(255,248,236,.97);backdrop-filter:blur(8px);border-bottom:3px dashed var(--yellow);
+  overflow-x:auto;scrollbar-width:none}
+.secnav::-webkit-scrollbar{display:none}
+.secnav a{flex:none;text-decoration:none;font-size:.86rem;font-weight:700;color:var(--ink-soft);
+  background:#fff;border:2px solid #f2e4c8;border-radius:30px;padding:6px 15px;letter-spacing:.04em;
+  transition:transform .2s,background .2s,color .2s;white-space:nowrap}
+.secnav a:active{transform:scale(.95)}
+.secnav a.num{min-width:36px;text-align:center;padding:6px 0;font-family:Georgia,serif;font-size:.92rem;
+  border-color:var(--orange);color:var(--orange-deep)}
+.secnav a.on{background:var(--blue);color:#fff;border-color:var(--blue);box-shadow:0 3px 0 var(--blue-deep)}
+.secnav a.num.on{background:var(--orange);color:#fff;border-color:var(--orange);box-shadow:0 3px 0 var(--orange-deep)}
+.secnav .lb{flex:none;font-size:.82rem;font-weight:700;color:var(--ink-soft);letter-spacing:.06em;white-space:nowrap}
+.secnav .stops{display:contents}
+@media(max-width:560px){
+  .secnav{flex-wrap:wrap;justify-content:center;row-gap:6px}
+  .secnav .stops{display:flex;width:100%;justify-content:center;align-items:center;gap:8px}
+}
+[data-anchor]{scroll-margin-top:180px}
+
+/* 提示条 */
+.tip{margin-top:36px;border-radius:24px;padding:22px 20px 20px;position:relative;text-align:center;
+  background:linear-gradient(135deg,#eaf5ff,#e3f8e8);border:3px solid #bfe3c9;color:var(--ink-soft);font-size:.95rem}
+.tip .tip-head{display:inline-block;font-weight:900;color:var(--blue-deep);font-size:1.02rem;letter-spacing:.08em;
+  background:#fff;border-radius:30px;padding:7px 22px;box-shadow:0 3px 0 rgba(61,155,233,.22)}
+.tip p{margin:14px 0 0;background:rgba(255,255,255,.75);border-radius:16px;padding:14px 16px;text-align:left}
+.tip .seal{position:absolute;right:16px;top:-15px;background:#fff;border:3px solid var(--orange);color:var(--orange-deep);
+  border-radius:14px;padding:2px 12px;font-weight:900;transform:rotate(-4deg)}
+
+/* ===== 报名须知 ===== */
+.notes{display:grid;gap:14px;margin-top:26px}
+.note{background:var(--card);border:3px solid #f2e4c8;border-radius:22px;padding:18px 20px 16px;
+  box-shadow:0 6px 0 rgba(226,172,118,.16)}
+.note b{display:inline-flex;align-items:center;gap:8px;font-size:1.04rem;color:var(--orange-deep);letter-spacing:.06em}
+.note p{margin-top:6px;color:var(--ink-soft);font-size:.97rem}
+.note p b{display:inline;color:var(--ink);font-size:inherit}
+
+/* ===== 带队讲师 ===== */
+.teacher{display:block;margin:26px auto 0;max-width:400px;text-align:center;text-decoration:none;
+  background:var(--card);border:3px solid #f2e4c8;border-radius:26px;padding:20px 18px 20px;
+  box-shadow:0 6px 0 rgba(226,172,118,.18);transition:transform .3s,box-shadow .3s}
+.teacher:hover{transform:translateY(-4px);box-shadow:0 10px 0 rgba(226,172,118,.24)}
+.teacher img{display:block;width:clamp(200px,52vw,300px);margin:0 auto;border-radius:16px;
+  border:3px solid var(--yellow);box-shadow:0 8px 20px rgba(226,172,118,.35)}
+.teacher .t-name{margin-top:14px;font-weight:900;font-size:1.02rem;color:var(--ink);letter-spacing:.06em}
+.teacher .t-sub{font-size:.82rem;color:var(--ink-soft);margin-top:2px}
+.teacher .t-link{display:inline-block;margin-top:10px;font-size:.9rem;font-weight:700;color:var(--orange-deep);
+  background:#fff3e4;border-radius:30px;padding:5px 20px;letter-spacing:.08em;
+  box-shadow:0 3px 0 var(--orange-deep)}
+.teacher:hover .t-link{background:var(--orange);color:#fff;box-shadow:0 3px 0 var(--orange-deep)}
+
+/* 底部 */
+footer{margin-top:70px;text-align:center;color:var(--ink-soft);font-size:.86rem}
+footer .big{font-size:1.25rem;font-weight:900;letter-spacing:.2em;
+  background:linear-gradient(90deg,var(--blue-deep),var(--orange-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* 动画 */
+@keyframes popIn{from{opacity:0;transform:translateY(20px) scale(.97)}to{opacity:1;transform:none}}
+.fade{opacity:0;animation:popIn .8s cubic-bezier(.2,.7,.2,1) forwards}
+.hero .badge{animation-delay:0s}.brand{animation-delay:.08s}.brand-sub{animation-delay:.16s}
+.brand-emoji{animation-delay:.22s}.hero p{animation-delay:.3s}.hero-meta{animation-delay:.42s}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.sun{animation:floaty 5s ease-in-out infinite}
+.cloud{animation:floaty 7s ease-in-out infinite}
+.cloud.c2{animation-delay:1.2s}
+
+.route{display:none}
+.route.on{display:block;animation:popIn .45s ease}
+
+@media(max-width:640px){
+  body{font-size:16px}
+  .card{padding:20px 16px 18px}
+  .g3{grid-template-columns:1fr 1fr}
+  .g3 img{height:150px}
+  .sec-sub{margin-left:0}
+}
+@media(min-width:641px){
+  .spots{display:grid;grid-template-columns:1fr 1fr;gap:0 22px;align-items:start;grid-auto-flow:dense}
+  .card-big{grid-column:1/-1}
+}
+</style>
+</head>
+<body>
+<div id="topbar"><i id="pb"></i></div>
+
+<!-- ================= HERO ================= -->
+<header class="hero">
+  <div class="sun"></div><div class="cloud c1"></div><div class="cloud c2"></div><div class="wall"></div>
+  <div class="hero-inner">
+    <div class="badge fade">🏠 家庭亲子版 · Family Walk</div>
+    <div class="brand fade">吴地时光机</div>
+    <div class="brand-sub fade">文史研学 CITYWALK · 亲子双线图志</div>
+    <div class="brand-emoji fade">🏯 🧭 🔍 ⭐ 🚶‍♂️‍➡️</div>
+    <p class="fade">带上爸爸妈妈，一起当一回"苏州小侦探"：一条线路去文庙寻宝藏，一条线路到胥江找古城的出生证明。双脚丈量，看见苏州两千五百年的来处！</p>
+    <div class="hero-meta fade"><span>◆</span>线路一 · 苏州文庙寻宝记<span>◆</span><br>线路二 · 胥江胥门探源记</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- ===== Tab ===== -->
+  <div class="tabbar">
+    <div class="tab t1 on" data-r="r1"><i class="mini-flag">国庆限定</i><span class="ico">🏛️</span>线路一<small>文庙 · 府学文脉</small></div>
+    <div class="tab t2" data-r="r2"><i class="mini-flag grey">预告</i><span class="ico">⛵</span>线路二<small>胥江胥门 · 古城起源</small></div>
+  </div>
+
+  <!-- ===== 段落导航（吸顶，在"小小研究员集合"上方） ===== -->
+  <nav class="secnav" id="secnav">
+    <a href="#mingren">⭐ 文庙名人堂</a>
+    <a href="#notes">📋 报名须知</a>
+    <a href="#teacher">🧑‍🏫 带队讲师</a>
+    <span class="stops">
+      <span class="lb">🚩 四站打卡</span>
+      <a href="#" class="num" data-stop="1">1</a>
+      <a href="#" class="num" data-stop="2">2</a>
+      <a href="#" class="num" data-stop="3">3</a>
+      <a href="#" class="num" data-stop="4">4</a>
+    </span>
+  </nav>
+
+  <div class="route on" id="r1">
+    <div class="routeflag hot"><span class="fk">🏮 国庆限定</span><span class="fs">2026 国庆档 · 10月5日开营 · 报满即止</span></div>
+    <div class="sec-head">
+      <div class="sec-no">🏛️</div>
+      <div><h2>苏州文庙 · 小小研究员集合！</h2><div class="en">SUZHOU CONFUCIAN TEMPLE</div></div>
+    </div>
+    <p class="sec-sub">主题：府学文脉 · 范仲淹爷爷创办苏州府学，一起读懂宋代碑刻与千年文庙。全程步行，半日可游。</p>
+
+    <div class="spots">
+
+    <div class="card card-big c1">
+      <div class="top-ico">📜</div>
+      <div class="stopbadge">🚩 第一站</div>
+      <h3>宋代四大宋碑 · 重点研读《平江图》</h3>
+      <span class="tag">🏷️ 镇馆之宝</span><span class="tag">🏷️ 中国最早城市地图</span>
+      <div class="media"><img src="images/s1_pingjiangtu.jpg" alt="平江图碑拓" loading="lazy"><div class="cap">《平江图》碑拓 —— 南宋 · 中国现存最完整的古代城市石刻地图</div></div>
+      <p>苏州文庙保存国内罕见的<b>宋代四大碑刻</b>：平江图、天文图、地理图、帝王绍运图。其中《平江图》刻于南宋，是中国现存最完整的古代城市石刻地图，完整还原宋代苏州古城的河道、街巷、桥梁、官署、寺庙布局。</p>
+      <div class="key">看懂宋代苏州"水陆并行、河街相邻"的双棋盘格局，对比今天苏州古城——很多街巷名称延续至今；再到线路二的规划展览馆看它的立体版。</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">🏯</div>
+      <div class="stopbadge">🚩 第二站</div>
+      <h3>楠木大成殿</h3>
+      <span class="tag">🏷️ 庙学合一</span>
+      <div class="media"><img src="images/s2_dachengdian.jpg" alt="大成殿与孔子像" loading="lazy"><div class="cap">楠木大成殿 —— 供奉孔子的文庙主体建筑</div></div>
+      <p>大成殿为文庙主体建筑，供奉孔子，保留珍贵<b>楠木构件</b>，体量宏大。苏州府学开"<span class="hl">庙学合一</span>"之先河——祭祀圣贤与地方教育合二为一，是江南府学的典范。</p>
+      <div class="key">数一数大成殿的大柱子，闻一闻楠木的味道；讲解宋代府学规制：前庙后学、左庙右学，读懂古人"敬教劝学"的用心。</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">🌳</div>
+      <div class="stopbadge">🚩 第三站</div>
+      <h3>四大古银杏</h3>
+      <span class="tag">🏷️ 文脉活见证</span>
+      <div class="g2">
+        <div class="media"><img src="images/s3_ginkgo1.jpg" alt="文庙古银杏金黄" loading="lazy"><div class="cap">古银杏 · 秋日满树金黄</div></div>
+        <div class="media"><img src="images/s3_ginkgo2.jpg" alt="文庙银杏庭院全景" loading="lazy"><div class="cap">庭院银杏 · 红墙金叶</div></div>
+      </div>
+      <p>文庙院内古银杏树龄数百年，是文庙<b>活着的历史见证</b>。秋冬之际满树金黄，红墙金叶，氛围极浓。</p>
+      <div class="key">捡一片银杏叶做书签吧！古人常在书院、文庙栽种银杏——果实累累如文脉绵延；古树旁全家合影，正是一堂"行走的植物课"。</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">🧑‍🏫</div>
+      <div class="stopbadge">🚩 第四站</div>
+      <h3>府学奠基人 · 范仲淹</h3>
+      <span class="tag">🏷️ 先忧后乐</span>
+      <div class="media"><img src="images/s4_fanzhongyan.jpg" alt="文庙内范仲淹塑像" loading="lazy"><div class="cap">文庙内范仲淹塑像 —— "一世之师"</div></div>
+      <p>北宋景祐二年（1035），<b>范仲淹</b>知苏州，舍宅建学，创办苏州府学，是全国最早的地方官办学校之一。此后苏州文教兴盛、状元辈出，源头便在这座府学文庙。</p>
+      <div class="key">跟爸爸妈妈一起念一句："先天下之忧而忧"——范仲淹爷爷一生三起三落不改兴学之志；苏州人对教育的看重，自此而始。</div>
+    </div>
+
+    <a class="card c1" href="https://weixin.qq.com/sph/AskDupdqly" target="_blank" rel="noopener">
+      <div class="top-ico">🎬</div>
+      <div class="stopbadge" style="background:var(--pink);box-shadow:0 3px 0 #d14b4b">🎬 视频号</div>
+      <h3>封子老师讲文庙 · 大成殿前的五棵古银杏</h3>
+      <div class="media"><img src="images/sph_wenmiao.jpg" alt="视频封面 · 文庙古银杏" loading="lazy"><div class="cap">▶ 点击观看 · 老照片里的文庙与古银杏故事</div></div>
+      <p>850岁的<b>寿杏</b>、650岁的<b>福杏</b>、雷击后又复活的<b>三元杏</b>、怀抱朴树的<b>连理杏</b>、默默站在角落的<b>灵杏</b>——大成殿前五棵古银杏，每棵都有一段传奇。</p>
+      <div class="key">看视频找答案：哪棵银杏遭过雷劈却"浴火重生"？等会儿进园子去找一找它！</div>
+    </a>
+
+    </div>
+
+    <div class="tip">
+      <span class="seal">学</span>
+      <div class="tip-head">🎈 给爸爸妈妈的小提示</div>
+      <p>本线路全程位于苏州文庙，适合半日亲子 Citywalk：优先看四大宋碑，再参观大成殿、拜范仲淹像；春秋两季银杏季景致最佳，记得带相机！</p>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- 线路二 胥江胥门（亲子版） -->
+  <!-- ============================================================ -->
+  <div class="route" id="r2">
+    <div class="routeflag next"><span class="fk">🌱 后续精彩</span><span class="fs">线路内容先睹为快 · 敬请期待正式上线</span></div>
+    <div class="sec-head">
+      <div class="sec-no">⛵</div>
+      <div><h2>胥江胥门 · 找到古城的"出生证明"</h2><div class="en">XUJIANG RIVER &amp; XUMEN GATE</div></div>
+    </div>
+    <p class="sec-sub">主题：古城起源 · 伍子胥相土尝水筑阖闾大城；胥江古运河、万年桥、胥门——苏州建城的源头。</p>
+
+    <div class="spots">
+
+    <div class="card card-big c2">
+      <div class="top-ico">🚢</div>
+      <div class="stopbadge">🚩 第一站</div>
+      <h3>苏州最早运河 · 胥江</h3>
+      <span class="tag">🏷️ 伍子胥开凿</span><span class="tag">🏷️ 实拍视频</span>
+      <div class="media vid">
+        <video controls playsinline webkit-playsinline x5-playsinline preload="metadata"
+               poster="video/xujiang_poster.jpg">
+          <source src="video/xujiang.mp4" type="video/mp4">
+        </video>
+        <div class="cap">胥江实拍 · 19″ 古水悠悠（点击播放）</div>
+      </div>
+      <p>胥江，苏州最古老运河，相传由<b>伍子胥</b>主持开凿，连接太湖与胥门，是古代苏州对外水运要道。古人言"太湖东南泄水要道"，千百年来太湖水系经胥江滋养古城。</p>
+      <div class="key">站在胥江边数一数：一分钟里经过几条船？没有胥江，就没有古苏州的水运繁荣——想象它两千五百年的水路日常。</div>
+    </div>
+
+    <div class="card c2">
+      <div class="top-ico">🗺️</div>
+      <div class="stopbadge">🚩 第二站</div>
+      <h3>苏州城市展览馆 · 立体《平江图》</h3>
+      <span class="tag">🏷️ 古城沙盘</span>
+      <div class="media"><img src="images/t2_guihua1.jpg" alt="立体平江图铜质沙盘" loading="lazy"><div class="cap">立体《平江图》沙盘 —— 宋代石刻地图的立体实景模型</div></div>
+      <div class="media" style="margin-top:10px"><img src="images/t2_guihua3.jpg" alt="城市展览馆展厅" loading="lazy"></div>
+      <p>馆内拥有苏州最大的<b>立体《平江图》沙盘</b>，把宋代石刻平江图做成立体实景模型，街巷河道一目了然。</p>
+      <div class="key">和文庙的《平江图》比一比：碑上是"图"，沙盘是"城"——在沙盘上找一找你家住在哪条街巷的"祖先"。</div>
+    </div>
+
+    <div class="card c2">
+      <div class="top-ico">🌉</div>
+      <div class="stopbadge">🚩 第三站</div>
+      <h3>万年桥的前世今生</h3>
+      <span class="tag">🏷️ 繁华图中桥</span>
+      <div class="media"><img src="images/t3_wanqiao_a.jpg" alt="胥江上的万年桥实景" loading="lazy"><div class="cap">今日万年桥 —— 横跨胥江，望向胥门</div></div>
+      <div class="media" style="margin-top:10px"><img src="images/t3_wanqiao_b.jpg" alt="万年桥桥面" loading="lazy"></div>
+      <p>万年桥，苏州城西知名古桥，横跨胥江。明代始建，历经拆毁、重建，见证胥门码头数百年繁华。</p>
+      <div class="g3" style="margin-top:10px">
+        <div class="media"><img src="images/t3_paint_a.jpg" alt="古画中的姑苏万年桥" loading="lazy"><div class="cap">古画 · 姑苏万年桥</div></div>
+        <div class="media"><img src="images/t3_paint_b.jpg" alt="繁华图卷中的万年桥" loading="lazy"><div class="cap">古画 · 万年桥市井</div></div>
+      </div>
+      <div class="key">玩"古今找不同"：古画里桥头有小摊、有人挑担——三百年前的市井和今天桥下的流水，哪里一样、哪里不一样？</div>
+    </div>
+
+    <div class="card c2">
+      <div class="top-ico">🏰</div>
+      <div class="stopbadge">🚩 第四站</div>
+      <h3>胥门 · 苏州六城门之一</h3>
+      <span class="tag">🏷️ 筑城原点</span>
+      <div class="g2">
+        <div class="media"><img src="images/t4_xumen_statue.jpg" alt="胥门外伍子胥石像" loading="lazy"><div class="cap">伍子胥石像</div></div>
+        <div class="media"><img src="images/t4_xumen_gate.jpg" alt="胥门城门实景" loading="lazy"><div class="cap">胥门城门</div></div>
+      </div>
+      <p>胥门是苏州<b>现存残存古城门之一</b>。公元前 514 年，伍子胥"相土尝水、象天法地"筑<b>阖闾大城</b>，奠定苏州古城两千五百多年的城市框架——胥门正是这场筑城伟业留下的西门。</p>
+      <div class="key">名字小侦探：胥门因何得名？民间相传为纪念伍子胥；据明代《姑苏志》考据，则因正对<b>姑胥山</b>（古称，今七子山一带）得名。传说与考据并存——你更相信哪一种？说说理由！</div>
+    </div>
+
+    </div>
+
+    <div class="tip">
+      <span class="seal">源</span>
+      <div class="tip-head">🎈 给爸爸妈妈的小提示</div>
+      <p>适合半日亲子 Citywalk，路线顺序：胥江沿岸 → 苏州城市展览馆 → 万年桥 → 胥门。点位集中、步行强度低，推婴儿车也基本无障碍。</p>
+    </div>
+  </div>
+
+  <!-- ===== 文庙名人堂 ===== -->
+  <div class="sec-head" id="mingren" data-anchor>
+    <div class="sec-no">⭐</div>
+    <div><h2>文庙名人堂 · 和文庙有关的名人</h2><div class="en">HALL OF FAME</div></div>
+  </div>
+  <p class="sec-sub">一座文庙，半部苏州读书史。这六位（组）名人，都能在文庙里找到他们的"踪迹"——进馆记得对照找一找！</p>
+
+  <div class="spots">
+
+    <div class="card card-big c1">
+      <div class="top-ico">🧑‍🏫</div>
+      <div class="pbadge gold">至圣先师</div>
+      <h3>孔子 · 万世师表</h3>
+      <span class="tag">🏷️ 大成殿供奉</span><span class="tag">🏷️ 有教无类</span>
+      <p>大成殿正中供奉的就是<b>孔子</b>。殿名"大成"出自孟子对他的赞誉——"<span class="hl">集大成者</span>"。孔子一生弟子三千、贤人七十二，提出"<b>有教无类</b>"：无论出身贵贱，人人都有受教育的权利——这在两千五百年前是了不起的观念。全国各地的文庙，都是为纪念他而建。</p>
+      <div class="key">进大成殿找一找：孔子的塑像、两旁的"四配十二哲"；抬头读一读"万世师表"匾——回家考考爸爸妈妈，"大成"二字出自哪位古人的评价？</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">🌾</div>
+      <div class="pbadge">府学奠基人</div>
+      <h3>范仲淹 · 先忧后乐</h3>
+      <span class="tag">🏷️ 舍宅建学</span><span class="tag">🏷️ 一世之师</span>
+      <p>北宋景祐二年（1035），<b>范仲淹</b>任苏州知州，把自家宅地捐出来创办<b>苏州府学</b>，又设"义庄"资助贫困子弟读书。他写下"<span class="hl">先天下之忧而忧，后天下之乐而乐</span>"。自府学而始，苏州文教大兴，明清两代状元人数居全国之冠。</p>
+      <div class="key">想一想：范仲淹为什么宁可自家不住大宅，也要先建学校？全家齐诵一句"先天下之忧而忧"。</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">🌟</div>
+      <div class="pbadge up">南方夫子</div>
+      <h3>言偃（言子）· 文开吴会</h3>
+      <span class="tag">🏷️ 孔子七十二贤</span><span class="tag">🏷️ 唯一南方人</span>
+      <p><b>言偃</b>，字子游，吴地常熟人，是孔子七十二贤弟子中<b>唯一的南方人</b>，以"文学"著称。孔子赞叹："吾门有偃，<span class="hl">吾道其南</span>"——儒家学问传到江南，正是从言偃开始。他学成后回到南方传播礼乐，后世尊称"<b>南方夫子</b>"。苏州城里原有言子祠，常熟虞山至今存言子墓。</p>
+      <div class="key">小地理课：在地图上量一量常熟到山东曲阜的距离——两千五百年前，言子是背着书简一步步走去拜师的！</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">🏆</div>
+      <div class="pbadge">六元及第</div>
+      <h3>钱棨 · 连中六元的苏州传奇</h3>
+      <span class="tag">🏷️ 历史唯一</span><span class="tag">🏷️ 三元杏之谜</span>
+      <p>清代苏州人<b>钱棨</b>，从县试、府试、院试，到乡试、会试、殿试，<b>六场考试场场第一</b>——"连中六元"，中国科举史上<b>唯一一人</b>！乾隆皇帝特赋诗表彰。传说文庙大成殿前那棵遭雷击又复活的<b>三元杏</b>，正是他传奇的见证。</p>
+      <div class="key">连一连：乡试第一叫"解元"、会试第一叫"会元"、殿试第一叫"状元"——钱棨把多少个"元"都拿遍了？去三元杏树下找找答案！</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">👑</div>
+      <div class="pbadge up">吴越国始祖</div>
+      <h3>钱镠 · 保境安民的吴越王</h3>
+      <span class="tag">🏷️ 钱塘人</span><span class="tag">🏷️ 钱氏先祖</span>
+      <p>顺着钱棨往上追，钱氏家族的"老祖宗"是五代十国的<b>吴越国王钱镠</b>，杭州钱塘人。他修海塘、治西湖、兴农桑，"保境安民"让江浙在乱世中安然富足，为江南千年繁荣打下根基——"<b>上有天堂，下有苏杭</b>"的底子，有他一份大功劳。</p>
+      <div class="key">听故事：钱王"射潮"驯服钱塘江大潮的传说流传千年——回家查一查，下次讲给全团小朋友听！</div>
+    </div>
+
+    <div class="card c1">
+      <div class="top-ico">🚀</div>
+      <div class="pbadge">一门才俊</div>
+      <h3>钱氏家族 · 群星闪耀</h3>
+      <span class="tag">🏷️ 一部家训传千年</span><span class="tag">🏷️ 苏州中学的校友</span>
+      <p>一部《钱氏家训》，让钱家人才代代辈出：科学界"<b>三钱</b>"——钱学森（中国航天之父）、钱三强（中国原子弹之父）、钱伟长（中国近代力学之父）；还有国学大师<b>钱穆</b>、大学者<b>钱钟书</b>……别忘了：钱穆、钱伟长叔侄都曾执教、就读于咱们的打卡点——<span class="hl">苏州中学</span>（府学文庙旧址旁）！</p>
+      <div class="key">数一数：钱家走出了多少位"大师"？你最佩服哪一位？说说你的理由。</div>
+    </div>
+
+  </div>
+
+  <div class="more-tip">✨ 名人堂<b>持续补充中</b>——文庙两千年，来过、留下故事的人还有很多，敬请期待下一批"重量级嘉宾"！</div>
+
+  <!-- ===== 报名须知 ===== -->
+  <div class="sec-head" id="notes" data-anchor>
+    <div class="sec-no">📋</div>
+    <div><h2>报名须知</h2><div class="en">BOOKING NOTES</div></div>
+  </div>
+  <div class="notes">
+    <div class="note">
+      <b>👨‍👩‍👦 人数配比</b>
+      <p>每组家庭限 <b>一大一小</b>（1名家长＋1名儿童）；如需 <b>两大一小</b>，请提前报备确认。</p>
+    </div>
+    <div class="note">
+      <b>🎒 成团规模</b>
+      <p>每团上限 <b>20 组</b>家庭，报满即截止。</p>
+    </div>
+    <div class="note">
+      <b>🎯 适合年龄</b>
+      <p>适合 <b>小学二年级及以上</b>（建议 8 岁以上）儿童参加。</p>
+    </div>
+    <div class="note">
+      <b>🎁 有奖闯关</b>
+      <p>全程设有 <b>多个有奖竞猜答题关卡</b>，更有<b>彩蛋大奖</b>等着你来夺取！</p>
+    </div>
+  </div>
+
+  <!-- ===== 带队讲师 ===== -->
+  <div class="sec-head" id="teacher" data-anchor>
+    <div class="sec-no">🧑‍🏫</div>
+    <div><h2>带队讲师</h2><div class="en">YOUR GUIDE</div></div>
+  </div>
+  <a class="teacher" href="https://ofeng-70tiger.github.io/shiguangji/Teacher%20introduce/" target="_blank" rel="noopener">
+    <img src="images/s5_teacher.jpg" alt="封子老师古风形象照" loading="lazy">
+    <p class="t-name">封子老师</p>
+    <p class="t-sub">姑苏区老年大学特聘文史讲师 · 苏州本土文旅内容创作者</p>
+    <p class="t-link">教师风采，请点这里 →</p>
+  </a>
+
+  <footer>
+    <div style="margin-bottom:14px;font-size:1.4rem">🏯 ⭐ ⛵</div>
+    <p class="big">吴地时光机 · 文史研学系列</p>
+    <p style="margin-top:8px">家庭亲子版 ｜ 图文素材 · 实景拍摄｜本页共二线八站，可微信转发</p>
+  </footer>
+</div>
+
+<script>
+var pb=document.getElementById('pb');
+addEventListener('scroll',function(){
+  var h=document.documentElement.scrollHeight-innerHeight;
+  pb.style.width=(h>0?(scrollY/h*100):0)+'%';
+},{passive:true});
+
+var tabs=[].slice.call(document.querySelectorAll('.tab'));
+var routes=[].slice.call(document.querySelectorAll('.route'));
+tabs.forEach(function(t){
+  t.addEventListener('click',function(){
+    tabs.forEach(function(x){x.classList.remove('on')});
+    t.classList.add('on');
+    var id=t.dataset.r;
+    routes.forEach(function(r){
+      r.classList.toggle('on',r.id===id);
+      if(r.id===id){var y=document.querySelector('.tabbar').getBoundingClientRect().top+scrollY-20;
+        if(scrollY>y)scrollTo({top:Math.max(0,y),behavior:'smooth'});}
+    });
+  });
+});
+var v=document.querySelector('video');
+if(v){v.addEventListener('play',function(){v.setAttribute('controls','')});}
+
+/* ===== 段落导航：吸顶偏移 + 跳转 + 高亮 ===== */
+(function(){
+  var tabbar=document.querySelector('.tabbar'), nav=document.getElementById('secnav');
+  function syncStick(){
+    document.documentElement.style.setProperty('--stickH', Math.round(tabbar.offsetHeight)+'px');
+  }
+  syncStick(); addEventListener('resize',syncStick); addEventListener('orientationchange',syncStick);
+
+  // 给两条线路的站点卡编号 1-4
+  [].slice.call(document.querySelectorAll('.route')).forEach(function(r){
+    [].slice.call(r.querySelectorAll('.spots > .card')).slice(0,4).forEach(function(c,i){
+      c.dataset.stop=String(i+1); c.setAttribute('data-anchor','');
+    });
+  });
+
+  function curStops(){
+    var r=document.querySelector('.route.on');
+    return r? [].slice.call(r.querySelectorAll('.spots > .card')).slice(0,4) : [];
+  }
+  function navH(){ return tabbar.offsetHeight + nav.offsetHeight + 12; }
+  function goTo(el){
+    if(!el) return;
+    var y=el.getBoundingClientRect().top + scrollY - navH();
+    scrollTo({top:Math.max(0,y),behavior:'smooth'});
+  }
+
+  [].slice.call(nav.querySelectorAll('a')).forEach(function(a){
+    a.addEventListener('click',function(e){
+      e.preventDefault();
+      if(a.dataset.stop){ goTo(curStops()[+a.dataset.stop-1]); }
+      else { goTo(document.querySelector(a.getAttribute('href'))); }
+    });
+  });
+
+  // 滚动时高亮当前站点
+  var obs=new IntersectionObserver(function(es){
+    es.forEach(function(en){
+      if(!en.isIntersecting || !en.target.dataset.stop) return;
+      [].slice.call(nav.querySelectorAll('a.num')).forEach(function(x){
+        x.classList.toggle('on', x.dataset.stop===en.target.dataset.stop);
+      });
+    });
+  },{rootMargin:'-38% 0px -52% 0px'});
+  addEventListener('load',function(){
+    [].slice.call(document.querySelectorAll('.route .spots > .card')).forEach(function(c){obs.observe(c);});
+  });
+  // tab 切换后同步吸顶高度
+  [].slice.call(document.querySelectorAll('.tab')).forEach(function(t){ t.addEventListener('click',function(){ setTimeout(syncStick,50); }); });
+})();
+</script>
+</body>
+</html>

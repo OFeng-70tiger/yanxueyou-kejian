@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>胥门 · 苏州城市漫游研学｜解说手册 · 讲师备课版｜吴地时光机</title>
+<style>
+:root{--bg:#f8f4ec;--card:#fffdf8;--ink:#33302a;--ink-soft:#6e675c;--line:#e2d9c8;
+  --red:#a4423a;--red-deep:#7d2f28;--gold:#b8860b;--teal:#3d7a78;--blue:#2f5d8a;
+  --serif:'Noto Serif SC','STSong',serif;--sans:'Microsoft YaHei',sans-serif}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15.5px;line-height:1.75;padding:0 16px}
+header{max-width:960px;margin:28px auto 0;text-align:center;padding:26px 20px 20px;border-bottom:3px double var(--red)}
+header h1{font-family:var(--serif);font-size:1.9rem;color:var(--red-deep);letter-spacing:.12em}
+header .sub{color:var(--ink-soft);font-size:.95rem;margin-top:8px}
+header .sub b{color:var(--red)}
+.seal{display:inline-block;margin-top:10px;border:1.5px solid var(--red);color:var(--red);border-radius:6px;
+  padding:2px 12px;font-size:.8rem;letter-spacing:.2em;font-family:var(--serif)}
+.cross-link{margin-top:12px;font-size:.88rem}
+.cross-link a{color:var(--blue);text-decoration:none;border-bottom:1px dashed var(--blue)}
+/* ===== 导航（顶栏 + 下拉） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.96);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:0 -16px;padding:10px 20px}
+nav.toc{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+nav.toc a,nav.toc .drop-btn{display:inline-flex;align-items:center;text-decoration:none;color:var(--ink-soft);
+  font-size:.86rem;font-weight:700;background:var(--card);border:1px solid var(--line);border-radius:30px;
+  padding:5px 15px;white-space:nowrap;transition:background .2s,color .2s;font-family:var(--sans);
+  cursor:pointer;line-height:1.5;appearance:none}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.drop-wrap{display:inline-flex;position:relative}
+.drop-btn .caret{font-size:.68em;margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%);z-index:60;
+  background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:190px}
+.drop-panel.open{display:flex}
+.drop-panel .d-head{font-size:.72rem;color:var(--ink-soft);letter-spacing:.3em;text-align:center;padding:2px 0 6px;border-bottom:1px dashed var(--line);margin-bottom:6px}
+.drop-panel a{text-decoration:none;color:var(--ink);font-size:.86rem;padding:7px 14px;border-radius:8px;white-space:nowrap}
+.drop-panel a:hover{background:#f3ecdf}
+.drop-panel a.active{background:var(--red);color:#fff}
+/* ===== 侧边栏 ===== */
+.side-tab{position:fixed;right:0;top:42%;z-index:70;background:var(--red);color:#fff;border:none;cursor:pointer;
+  writing-mode:vertical-rl;letter-spacing:.35em;padding:14px 8px;border-radius:10px 0 0 10px;font-size:.9rem;font-weight:700;box-shadow:-2px 2px 8px rgba(0,0,0,.15)}
+.side-mask{display:none;position:fixed;inset:0;background:rgba(40,35,28,.4);z-index:80}
+.side-mask.show{display:block}
+.sidebar{position:fixed;top:0;right:-300px;width:280px;height:100%;background:var(--card);z-index:90;
+  transition:right .25s ease;box-shadow:-4px 0 18px rgba(0,0,0,.15);overflow-y:auto;padding:18px}
+.sidebar.open{right:0}
+.sidebar .side-head{display:flex;justify-content:space-between;align-items:center;border-bottom:2px solid var(--red);padding-bottom:10px;margin-bottom:12px}
+.sidebar .side-head b{font-family:var(--serif);color:var(--red-deep);letter-spacing:.15em}
+.sidebar .side-head button{background:none;border:1px solid var(--line);border-radius:6px;cursor:pointer;color:var(--ink-soft);padding:2px 8px}
+.side-nav a{display:block;text-decoration:none;color:var(--ink);font-size:.88rem;padding:6px 8px;border-radius:8px;border-left:3px solid transparent}
+.side-nav a:hover{background:#f3ecdf}
+.side-nav a.active{border-left-color:var(--red);background:#f8efe6;color:var(--red-deep);font-weight:700}
+.side-nav .lv2{padding-left:22px;font-size:.84rem;color:var(--ink-soft)}
+.side-nav .cross{margin-top:10px;border-top:1px dashed var(--line);padding-top:10px}
+.side-nav .cross a{color:var(--blue);font-weight:700}
+.side-opt{margin-top:12px;font-size:.8rem;color:var(--ink-soft)}
+/* ===== 正文 ===== */
+main{max-width:960px;margin:0 auto;padding:10px 0 40px}
+section.part{margin-top:38px}
+.part-tag{display:inline-block;background:var(--red);color:#fff;font-size:.8rem;letter-spacing:.25em;
+  padding:3px 14px;border-radius:4px;margin-bottom:10px}
+h2.part-title{font-family:var(--serif);font-size:1.45rem;color:var(--ink);border-left:5px solid var(--red);padding-left:12px;margin-bottom:6px}
+.lead{color:var(--ink-soft);font-size:.92rem;margin-bottom:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:14px 0;box-shadow:0 2px 8px rgba(51,48,42,.05)}
+.card h3{font-family:var(--serif);color:var(--red-deep);font-size:1.12rem;margin-bottom:8px}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#f3ecdf;font-family:var(--serif);color:var(--red-deep);white-space:nowrap}
+.tip{background:#fdf6e8;border-left:4px solid var(--gold);padding:10px 14px;border-radius:0 10px 10px 0;margin:12px 0;font-size:.92rem}
+.tip b{color:var(--red)}
+.quote{background:#f6efe2;border-radius:12px;padding:12px 16px;margin:12px 0;font-family:var(--serif);color:var(--red-deep);font-size:1rem}
+.quote small{display:block;color:var(--ink-soft);font-family:var(--sans);font-size:.82rem;margin-top:4px}
+.src{font-size:.78rem;color:var(--ink-soft);border-top:1px dashed var(--line);margin-top:14px;padding-top:8px;line-height:1.7}
+.src b{color:var(--gold)}
+/* 名人关联胶囊 */
+.spot-row{margin:12px 0 2px;font-size:.86rem}
+.spot-row .lab{color:var(--ink-soft);margin-right:6px}
+.spot-link{display:inline-block;text-decoration:none;font-size:.8rem;font-weight:700;border-radius:20px;
+  padding:2px 12px;margin:2px 4px 2px 0;border:1px solid var(--blue);color:var(--blue);background:#eef3f8}
+.spot-link.hl{border-color:var(--red);color:var(--red);background:#f9ece9}
+.spot-link:hover{opacity:.8}
+.person-link{display:inline-block;text-decoration:none;font-size:.8rem;font-weight:700;border-radius:20px;
+  padding:2px 12px;margin:2px 4px 2px 0;border:1px solid var(--teal);color:var(--teal);background:#eef6f5}
+.person-link:hover{opacity:.8}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0}
+.step h4{font-family:var(--serif);color:var(--red-deep);margin-bottom:6px}
+.step h4 .no{display:inline-block;background:var(--red);color:#fff;border-radius:50%;width:24px;height:24px;
+  text-align:center;line-height:24px;font-size:.85rem;margin-right:8px;font-family:var(--sans)}
+.route-svg{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:14px 0;overflow-x:auto}
+.route-svg svg{min-width:640px;width:100%;height:auto;display:block}
+.legend{font-size:.8rem;color:var(--ink-soft);margin-top:8px;text-align:center}
+.legend .l-main{color:var(--red);font-weight:700}
+.legend .l-alt{color:var(--teal);font-weight:700}
+.qa{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:8px 0}
+.qa .q{font-weight:700;color:var(--red-deep)}
+.qa .a{color:var(--ink-soft);font-size:.92rem;margin-top:4px}
+.alt-card{border:1.5px dashed var(--teal);border-radius:14px;background:#f4f9f8;padding:16px 18px;margin:12px 0}
+.alt-card h3{color:var(--teal)}
+.alt-card .badge{display:inline-block;background:var(--teal);color:#fff;font-size:.72rem;border-radius:4px;padding:2px 10px;letter-spacing:.2em;margin-bottom:6px}
+@media print{.toc-wrap,.side-tab,.side-mask,.sidebar{display:none!important}body{background:none;padding:0}}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>胥门 · 苏州城市漫游研学</h1>
+  <div class="sub">打卡点现场解说手册 ｜ 胥江 · 规划展示馆 ｜ <b>一座门 · 一座桥 · 一张图</b>，走完苏州城的一生</div>
+  <div class="sub" style="margin-top:4px">吴地时光机 · 单元一「城与河」走读线 ｜ 全程约 2 小时 ｜ 三站步行总程约 15 分钟</div>
+  <div class="seal">讲师备课 · 宁多勿缺</div>
+  <div class="cross-link">⟵ <a href="index.html">研学总目录（全系列入口）</a> ｜ 配套人物备课册：⟶ <a href="xumen_mingren.html#overview">《胥门线 · 名人篇教学大纲》</a>（伍子胥等人物深度资料，点开互查）</div>
+</header>
+
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">课程总览</a>
+    <a href="#route">动线图</a>
+    <a href="#s1">第一站·规划展示馆</a>
+    <a href="#s2">第二站·万年桥</a>
+    <a href="#s3">第三站·胥门</a>
+    <a href="#s9">备选与延伸</a>
+    <a href="#info">实用信息</a>
+  </nav>
+</div>
+
+<button class="side-tab" id="sideTab">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="side-head"><b>解说手册 · 目录</b><button id="sideClose">✕</button></div>
+  <nav class="side-nav">
+    <a href="#overview">课程总览 · 三站三问</a>
+    <a href="#route">研学动线图</a>
+    <div class="divider" style="border-top:1px dashed var(--line);margin:8px 0"></div>
+    <a href="#s1">第一站 · 规划展示馆（平江图模型）</a>
+    <a href="#s2">第二站 · 万年桥 · 狮子山</a>
+    <a href="#s3">第三站 · 胥门（得名 · 收尾）</a>
+    <div class="divider" style="border-top:1px dashed var(--line);margin:8px 0"></div>
+    <a href="#b1">备选A · 深一层：为什么是他</a>
+    <a href="#b2">备选B · 胥江口与胥口延伸线</a>
+    <a href="#s9">三则故事 × 三个点位 收尾讲法</a>
+    <a href="#info">实用信息</a>
+    <div class="cross">
+      <a href="index.html">⟶ 研学总目录 · 一站式入口 ↗</a>
+      <a href="xumen_mingren.html#overview">⟶ 名人篇教学大纲 ↗</a>
+      <a href="wenmiao_shouce.html#overview">⟶ 文庙打卡点手册 ↗（平江图原碑在文庙）</a>
+    </div>
+  </nav>
+  <div class="side-opt"><label><input type="checkbox" id="topbarSwitch" checked> 顶部导航</label></div>
+</aside>
+
+<main>
+
+<!-- ================= 总览 ================= -->
+<section class="part" id="overview">
+  <span class="part-tag">总 览</span>
+  <h2 class="part-title">三站三问：由图到桥，由桥到门，层层收拢</h2>
+  <p class="lead">现场顺序：进馆看图（城的一生）→ 再看桥（山与风水）→ 最后到门（人）——由城到桥到门、层层收拢，一路延续不走回头路。</p>
+  <div class="card">
+    <h3>开场第一句（展示馆广场集合后）</h3>
+    <div class="quote">"伍子胥这个人——刺客是他荐的，城是他修的，剑是吴王赐的。今天我们走三站：先看一张八百年前的地图，再看一座桥，最后站到他修的城门跟前。走完您就明白，苏州为什么是今天这个样子。"</div>
+    <table>
+      <tr><th>站点</th><th>问的问题</th><th>核心一句话</th><th>时长</th></tr>
+      <tr><td><b>① 规划展示馆</b>（馆内）</td><td>图问"来路"</td><td>图纸上的城，就是脚下的城</td><td>30–40 分钟</td></tr>
+      <tr><td><b>② 万年桥</b>（桥上）</td><td>桥问"方位"</td><td>一座桥跟一座山较了两百年劲</td><td>约 15 分钟</td></tr>
+      <tr><td><b>③ 胥门</b>（城门下）</td><td>门问"名字"</td><td>门因为人有了名字，人因为城有了千年</td><td>约 10 分钟收尾</td></tr>
+    </table>
+    <div class="tip"><b>集合与节奏：</b>上午 9:00 展示馆广场集合 → 馆内看模型 30–40 分钟（开馆人少，看得从容）→ 万年桥约 15 分钟 → 胥门城下约 10 分钟收尾；全程约 2 小时。三站都在步行范围内，走累了随时可以在城墙边、桥头坐下听。<b>故事的高潮留在最后——胥门城下收尾。</b></div>
+    <div class="spot-row"><span class="lab">本线人物备课：</span>
+      <a class="person-link" href="xumen_mingren.html#u1">伍子胥（单元一·主线）</a>
+      <a class="person-link" href="xumen_mingren.html#u2">阖闾与鱼肠剑</a>
+      <a class="person-link" href="xumen_mingren.html#u3">名人群像</a>
+      <a class="person-link" href="xumen_mingren.html#u4">夫差与勾践</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 动线图 ================= -->
+<section class="part" id="route">
+  <span class="part-tag">动 线 图</span>
+  <h2 class="part-title">一条线走完三站</h2>
+  <p class="lead">护城河 · 胥江水系一路串联：馆（图）→ 桥（山）→ 门（人），全程无回头路。</p>
+  <div class="route-svg">
+  <svg viewBox="0 0 680 320" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="胥门线研学动线图">
+    <defs>
+      <marker id="ar" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#a4423a"/>
+      </marker>
+      <marker id="arb" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+        <path d="M0,0 L10,5 L0,10 z" fill="#3d7a78"/>
+      </marker>
+    </defs>
+    <!-- 水系装饰 -->
+    <path d="M40,300 C180,285 320,300 640,282" stroke="#9db8c9" stroke-width="14" fill="none" opacity=".35" stroke-linecap="round"/>
+    <text x="648" y="286" font-size="11" fill="#7d98a8" font-family="'Microsoft YaHei',sans-serif">护城河·胥江</text>
+    <!-- 主线箭头 -->
+    <g stroke="#a4423a" stroke-width="2.5" marker-end="url(#ar)" fill="none">
+      <line x1="340" y1="96"  x2="340" y2="122"/>
+      <line x1="340" y1="176" x2="340" y2="202"/>
+    </g>
+    <!-- 主线站点：统一 300×52 -->
+    <g font-family="'Microsoft YaHei',sans-serif">
+      <rect x="190" y="44" width="300" height="52" rx="12" fill="#fff" stroke="#a4423a" stroke-width="1.8"/>
+      <text x="340" y="66" text-anchor="middle" fill="#33302a" font-size="15" font-weight="bold">① 苏州规划展示馆（馆内）</text>
+      <text x="340" y="86" text-anchor="middle" fill="#6e675c" font-size="10.5">平江图 3D 模型 · 图问"来路" · 30–40′</text>
+
+      <rect x="190" y="122" width="300" height="52" rx="12" fill="#fff" stroke="#a4423a" stroke-width="1.8"/>
+      <text x="340" y="144" text-anchor="middle" fill="#33302a" font-size="15" font-weight="bold">② 万年桥（桥上）</text>
+      <text x="340" y="164" text-anchor="middle" fill="#6e675c" font-size="10.5">望狮子山方向 · 桥问"方位" · 15′</text>
+
+      <rect x="190" y="202" width="300" height="52" rx="12" fill="#7d2f28"/>
+      <text x="340" y="224" text-anchor="middle" fill="#fff" font-size="15" font-weight="bold">③ 胥门（城门下）★ 收尾</text>
+      <text x="340" y="244" text-anchor="middle" fill="#f3d9d5" font-size="10.5">门问"名字" · 石像悬念回收 · 10′＋深一层 3–5′</text>
+    </g>
+    <!-- 备选点（虚线） -->
+    <g font-family="'Microsoft YaHei',sans-serif">
+      <rect x="10" y="44" width="160" height="52" rx="10" fill="#f4f9f8" stroke="#3d7a78" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="90" y="65" text-anchor="middle" fill="#3d7a78" font-size="12.5" font-weight="bold">备选A · 深一层</text>
+      <text x="90" y="82" text-anchor="middle" fill="#6e675c" font-size="10">胥门下加讲 · 为什么是他</text>
+      <path d="M170,70 C180,80 180,200 188,220" fill="none" stroke="#3d7a78" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arb)"/>
+
+      <rect x="510" y="122" width="160" height="52" rx="10" fill="#f4f9f8" stroke="#3d7a78" stroke-width="1.5" stroke-dasharray="5 4"/>
+      <text x="590" y="143" text-anchor="middle" fill="#3d7a78" font-size="12.5" font-weight="bold">备选B · 胥江口</text>
+      <text x="590" y="160" text-anchor="middle" fill="#6e675c" font-size="10">沿胥江西望 · 延伸预告</text>
+      <path d="M510,148 C494,148 492,148 492,148" fill="none" stroke="#3d7a78" stroke-width="1.6" stroke-dasharray="5 4" marker-end="url(#arb)"/>
+    </g>
+    <text x="340" y="290" text-anchor="middle" font-size="11" fill="#6e675c" font-family="'Microsoft YaHei',sans-serif">方位关系：胥门（城西）→ 万年桥斜对城门 → 胥江水从太湖来，一路向东</text>
+  </svg>
+  <div class="legend"><span class="l-main">红实线</span>＝主线三站（必讲，一路延续）　<span class="l-alt">绿虚线</span>＝备选讲解点（机动插入，不单独占动线）</div>
+  </div>
+</section>
+
+<!-- ================= 第一站 ================= -->
+<section class="part" id="s1">
+  <span class="part-tag">第 ① 站 · 馆 内</span>
+  <h2 class="part-title">规划展示馆：平江图 3D 模型——一张 800 年前的城市图纸，立起来了</h2>
+  <p class="lead">一句话核心：图纸上的城，就是脚下的城。</p>
+  <div class="card">
+    <h3>看点速览</h3>
+    <table>
+      <tr><th>看点</th><td>苏州最大的室内平江图 3D 模型（馆方说法）——南宋绍定二年（1229）刻成的石碑城市地图立体铺在眼前</td></tr>
+      <tr><th>地位</th><td>《平江图》是中国现存最早、最完整的大型石刻城市平面图之一，<b>原碑就存放在苏州文庙（碑刻博物馆）</b>——与本机构文庙线直接联动</td></tr>
+      <tr><th>为什么在规划馆</th><td>这座馆讲的就是"苏州城的过去、现在、将来"；800 年城市格局基本没变，全世界罕见——这正是它成为 <b>2004 年第 28 届世界遗产大会主会场</b>的原因</td></tr>
+      <tr><th>讲解时长</th><td>30–40 分钟（含互动任务）</td></tr>
+    </table>
+  </div>
+  <div class="step">
+    <h4><span class="no">1</span>平江图是什么——先把"图"立起来</h4>
+    <p>南宋绍定二年（1229），苏州人把整座城刻上了一块石碑——中国现存最早、最完整的大型石刻城市平面图之一。<b>原碑今天就在苏州文庙的四大宋碑里</b>（我们另一条文庙线的重头戏），这里是把它"立起来"的 3D 模型。宋代《平江图》与当代卫星影像叠合，河道走向吻合度约 87%——这座城两千五百年城址未变、格局未改。</p>
+    <div class="quote">"伍子胥当年相土尝水、象天法地画的那张图，八百年后有人把它刻成了碑，今天又把它立成了模型——城还是那座城。"</div>
+  </div>
+  <div class="step">
+    <h4><span class="no">2</span>模型看什么——双棋盘格局一眼看懂</h4>
+    <p>河道棋盘、双棋盘格局（水路一套、陆路一套）一眼看懂；河街相邻、水陆并行的骨架，就是伍子胥"陆门八以象天八风，水门八以法地八聪"的延续。<b>承上文庙线：</b>在文庙看的是"碑上的平江图"，在这里看的是"立起来的平江图"——一横一纵，正好凑齐。</p>
+  </div>
+  <div class="step">
+    <h4><span class="no">3</span>现场找一找（互动任务）</h4>
+    <p>在模型上找三个地方：①<b>胥门</b>（今天的第三站）；②当年吴国宫城的位置；③自己家所在的方位。找齐三处，领"小规划师"称号。</p>
+    <div class="spot-row"><span class="lab">名人关联：</span>
+      <a class="person-link" href="xumen_mingren.html#u1">伍子胥——相土尝水、象天法地（单元一）</a>
+      <a class="spot-link hl" href="wenmiao_shouce.html#s4">跨线联动 · 平江图原碑在文庙四大宋碑站</a>
+    </div>
+    <div class="src"><b>信源</b>：平江图刻碑年代（南宋绍定二年 1229）与"现存最早最完整石刻城市平面图之一"为学界通行口径；87% 叠合度为研究估算口径，现场说"八九不离十"即可；"苏州最大室内平江图 3D 模型""2004 年第 28 届世界遗产大会主会场"为馆方说法——胥门素材《胥门_三大亮点_全文.md》（源：Desktop/临时/yanxueliangdian3.html，原文件保留未动）。</div>
+  </div>
+</section>
+
+<!-- ================= 第二站 ================= -->
+<section class="part" id="s2">
+  <span class="part-tag">第 ② 站 · 桥 上</span>
+  <h2 class="part-title">万年桥 · 狮子山：一座桥跟一座山较了两百年劲</h2>
+  <p class="lead">现场要解的谜："苏州八座城门，七座门外有桥有水门，偏偏胥门两百年没桥——过河靠摆渡。为什么？跟西边一座山有关。"</p>
+  <div class="card">
+    <h3>看点速览</h3>
+    <table>
+      <tr><th>看点</th><td>桥<b>斜对</b>胥门、不在正对面——答案是一座狮子山（古称岞崿山）</td></tr>
+      <tr><th>往哪看</th><td>往西看是狮子山方向（古人说的"煞气从那来"），往桥下看是胥江水（从太湖来）——一比划就懂</td></tr>
+      <tr><th>桥有多体面</th><td>三孔石墩木梁、两坡石阶各 53 级，西堍石牌坊题<b>"三吴第一桥"</b></td></tr>
+      <tr><th>讲解时长</th><td>约 15 分钟</td></tr>
+    </table>
+  </div>
+  <div class="step">
+    <h4><span class="no">1</span>风水这段，四步听完</h4>
+    <p>①胥门直线正对西边的狮子山（古称岞崿山）；②形家（风水先生）说：山如狮子、煞气狰狞，造桥等于把煞气引进城；③于是近两百年胥门外护城河上不许建桥——明嘉靖有人建，倭寇一来被拆；清康熙有人打桩，南濠街一场大火，风水先生一封信，桥又黄了；④过河全靠"三摆渡"，江宽水急，风大就翻船。</p>
+  </div>
+  <div class="step">
+    <h4><span class="no">2</span>反转（点睛）——不信邪的巡抚</h4>
+    <p>乾隆五年（1740），巡抚徐士林、知府汪德馨不信邪，力排风水说建桥——但桥址选在三摆渡处、横跨胥江，<b>不在城门正对面</b>。这就是今天万年桥斜对胥门的由来。</p>
+    <div class="quote">徐士林《万年桥记》驳风水说原话："究其说，则以岞崿山势狰狞，多煞气……嘻！亦惑矣。"<small>大意：说什么狮子山煞气——哼，迷信！</small></div>
+  </div>
+  <div class="step">
+    <h4><span class="no">3</span>彩蛋：一张年画卖到了日本</h4>
+    <p>建成当天，年画铺连夜刻出<b>《姑苏万年桥》年画</b>，卖到日本——神户市立博物馆至今藏有原版。一座桥的名气，当年是"出口商品"级别的。</p>
+    <div class="quote">"一座桥跟一座山较了两百年劲，最后赢的不是风水，是老百姓的脚底板——桥名万年，万年就是天天有人走。"</div>
+    <div class="tip"><b>互动提问：</b>"为什么桥不敢建在城门正对面，要斜着建？"（先让学员猜"施工难""产权问题"，再揭晓：不是工程问题，是狮子山的"煞气"——科学与传说的边界，正好复用名人篇"考据 vs 传说"的方法论钥匙。）</div>
+    <div class="spot-row"><span class="lab">名人关联：</span>
+      <a class="person-link" href="xumen_mingren.html#u2">阖闾与鱼肠剑——太平年代的桥，比乱世里任何一把剑都珍贵（单元二）</a>
+    </div>
+    <div class="src"><b>信源</b>：狮子山（古称岞崿山）正对胥门、故无水门不宜建桥——袁宏道《岞崿》与徐士林《万年桥记》均有记载（苏州档案信息网）；桥址选在三摆渡处、横跨胥江为志书坐标事实，"煞气"因果是古人自己的解释；万年桥形制与"三吴第一桥"坊题、《姑苏万年桥》年画藏神户市立博物馆——胥门素材《胥门_三大亮点_全文.md》；另有"严嵩拆紫石巨桥运回江西分宜"一说，真伪存争，当个包袱听听。</div>
+  </div>
+</section>
+
+<!-- ================= 第三站 ================= -->
+<section class="part" id="s3">
+  <span class="part-tag">第 ③ 站 · 城 门 下 ★</span>
+  <h2 class="part-title">胥门得名：门因为人有了名字，人因为城有了千年</h2>
+  <p class="lead">现场要解的谜："八座城门，盘门因水盘绕、阊门通阊阖天门，各有来历。胥门的'胥'，是哪两个字？"——开场石像悬念也在这里回收。</p>
+  <div class="card">
+    <h3>看点速览</h3>
+    <table>
+      <tr><th>看点</th><td>城门下石像（老人、佩剑、望向西方）；"胥"字地名链：胥门—胥江—胥口—胥山—胥王庙</td></tr>
+      <tr><th>方法钥匙</th><td>"考据 vs 传说"两说并存——这是本线贯穿全程的方法论，在此收官</td></tr>
+      <tr><th>讲解时长</th><td>约 10 分钟收尾 ＋ 深一层 3–5 分钟（备选A）</td></tr>
+    </table>
+  </div>
+  <div class="step">
+    <h4><span class="no">1</span>主流说法：胥＝伍子胥——苏州城的总设计师</h4>
+    <p>城是他筑的，门外的胥江相传也是他主持开凿——宋代《吴中水利书》已引前人记载"<b>吴王阖闾用伍子胥之谋，始创此河以为漕运</b>"，此说至晚宋代已流传。吴国大军正是从这条水路出太湖、溯江而上伐楚报仇；百姓感念他，把这座西南的门叫作胥门。</p>
+  </div>
+  <div class="step">
+    <h4><span class="no">2</span>故事的结尾就在这扇门上</h4>
+    <p>伍子胥死后，《史记》记他遗言"抉吾眼县吴东门之上，以观越寇之入灭吴也"；民间把它与胥门相连——传说夫差把他的眼睛悬在胥门城头，要他"看越军入吴"。<b>那把赐死的属镂剑，最后落点就是这座城门。</b>（史实提示：遗言所悬为"吴东门"，民间附会到胥门属情感性附会，点明即可，不必强辩。）</p>
+  </div>
+  <div class="step">
+    <h4><span class="no">3</span>再听一层（爱较真的可以问）</h4>
+    <p>苏州地方志办还有一说："胥"早于伍子胥——上古佐禹治水的贤臣封于吴地，其地称"故胥"，"姑胥"转音就是"姑苏"；胥门之名见于《越绝书》所记九曲路，可登姑胥之台望太湖。《左传》已有胥门，那时伍子胥还在楚国。</p>
+    <div class="quote">"门可能因'胥地'得名，又因'伍子胥'而不朽——两千五百年过去，苏州人提起这扇门，想起的都是同一个人。"</div>
+  </div>
+  <div class="step">
+    <h4><span class="no">4</span>悬念回收 ＋ 收尾</h4>
+    <p>回扣开场两问：他是哪里人？苏州为什么纪念他？引导学员用"考据 vs 传说"作答：<b>门名有古源，情感归子胥。</b>他来自楚国，一辈子没能叶落归根；苏州人把他留在城门口——胥门是他的门、胥江是他的河、胥口是他的归宿，端午的龙舟为他竞渡（在苏州民间记忆中，端午最早纪念的是伍子胥，比屈原早约两百年，两说并存）。</p>
+    <div class="tip"><b>互动提问：</b>"您身边还有哪些带'胥'字的地方？"——学员报名，拼出一幅"伍子胥的苏州地图"。</div>
+    <div class="spot-row"><span class="lab">名人关联：</span>
+      <a class="person-link" href="xumen_mingren.html#u1">伍子胥——出奔·筑城·属镂剑（单元一）</a>
+      <a class="person-link" href="xumen_mingren.html#u4">夫差与勾践——预言应验（单元四）</a>
+    </div>
+    <div class="src"><b>信源</b>："胥江为子胥所凿"至少宋代已流传——《吴中水利书》引前人记载；门名考据（《左传》已见胥门、故胥—姑苏转音、《越绝书》九曲路）——苏州市地方志办口径（胥门素材《胥门_三大亮点_全文.md》《胥门_现场讲解大纲_全文.md》）；遗言原文——《史记·伍子胥列传》；端午纪念伍子胥为苏州民间记忆口径，与屈原说并存。</div>
+  </div>
+</section>
+
+<!-- ================= 备选与延伸 ================= -->
+<section class="part" id="s9">
+  <span class="part-tag">备选 与 延伸</span>
+  <h2 class="part-title">备选讲解点与收尾讲法</h2>
+  <p class="lead">备选点不占主线，机动插入；延伸部分把三则故事与三个点位串成收尾。</p>
+
+  <div class="alt-card" id="b1">
+    <span class="badge">备选 A</span>
+    <h3>深一层：为什么筑城的是伍子胥？（胥门下加讲 3–5 分钟）</h3>
+    <p>现场要解的谜："春秋时期会筑城的能人不止一个，凭什么这座千古名城交到了一个逃亡者手里？"——四层答案：</p>
+    <table>
+      <tr><th>家世底气</th><td>楚国"三世忠臣"门阀：曾祖伍参、祖父伍举、父伍奢（太子太傅）；"少好于文，长习于武"——文武两手都是家学</td></tr>
+      <tr><th>本行经验</th><td>出逃前在楚国樊城当过城守——守城实战、水文地理、城防体系摸了整整几年，原封不动"反哺"给吴国</td></tr>
+      <tr><th>技术代差</th><td>吴国太伯旧城不过"周三里二百步"；楚国郢都方圆约 16 平方公里，是春秋南方第一大都会——筑城这门功课吴国没系统学过，伍子胥把郢都一带积累的整套经验打包带来</td></tr>
+      <tr><th>系统工程</th><td>"相土尝水，象天法地"科学选址＋三道防线＋筑城、治水、练兵、屯粮四事同步——从筑城到柏举破楚只用八年</td></tr>
+    </table>
+    <div class="quote">"公子光赏识伍子胥，不是怜悯一个落难贵族，而是看中了他肚子里那套治国本事；伍子胥报答知遇，也不是空谈忠心，而是交出了一座两千五百年没挪过窝的城——这才叫互相成全。"</div>
+    <div class="src"><b>信源</b>：官职两说——《史记》记"行人"，清华简《系年》记"伍员为吴太宰"，学界认为太宰是核心职务；"欲强国霸王，何由而可""周三里二百步"等出自《吴越春秋·阖闾内传》；纪南城约 16 平方公里为考古通行口径——胥门素材《胥门_三大亮点_全文.md》。</div>
+  </div>
+
+  <div class="alt-card" id="b2">
+    <span class="badge">备选 B</span>
+    <h3>胥江口与胥口延伸线（预告式带过）</h3>
+    <p>站在万年桥或胥门城下向西一指：胥江是"太湖东南第一泄水要道"，既是泄洪水道又是运粮漕路，是吴国"以水兴国"的命脉。沿江西去入太湖处即<b>胥口</b>——民间记忆里伍子胥墓与胥王庙所在，江边立祠、其山名胥山。可作为后续"太湖线"的预告："今天我们把门讲完了，他的归宿在西边湖口——下一回，我们送他回家。"</p>
+    <div class="spot-row"><span class="lab">名人关联：</span>
+      <a class="person-link" href="xumen_mingren.html#u1">伍子胥——鸱夷革盛尸、胥山立祠（单元一·尾声）</a>
+    </div>
+    <div class="src"><b>信源</b>："太湖东南第一泄水要道"——地方志口径（胥门素材《胥门_现场讲解大纲_全文.md》）；伍子胥墓·胥王庙在胥口为民间记忆与祠庙现状，传说成分与史实分寸按"考据 vs 传说"口径处理。</div>
+  </div>
+
+  <div class="card">
+    <h3>收尾讲法：三个伍子胥的故事，在这条路上连成一条线</h3>
+    <table>
+      <tr><th>故事</th><th>落在哪个点位</th><th>一句收束</th></tr>
+      <tr><td>出奔吴国</td><td>胥门与胥江</td><td>他逃出楚国为报仇；后来筑的这座城，今天叫苏州</td></tr>
+      <tr><td>专诸刺王僚</td><td>万年桥</td><td>那场血雨腥风过去近两百年，才有三摆渡口上的万年桥——太平年代的桥，比乱世里任何一把剑都珍贵</td></tr>
+      <tr><td>伍子胥之死</td><td>胥门城下收尾</td><td>刺客、城、剑，三件事最后都汇到这座门上</td></tr>
+    </table>
+    <p><b>全课金句（齐诵收尾）：</b>"一个敌国的流亡者，成了苏州城的设计师——苏州两千五百年的故事，从'不拘一格用人才'开始。"</p>
+    <div class="spot-row"><span class="lab">三则故事逐字稿：</span>
+      <a class="person-link" href="xumen_mingren.html#p2">名人篇 · 第二部分（逐幕讲解）</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 实用信息 ================= -->
+<section class="part" id="info">
+  <span class="part-tag">实 用 信 息</span>
+  <h2 class="part-title">集合、交通与馆情</h2>
+  <div class="card">
+    <table>
+      <tr><th>展示馆地址</th><td>姑苏区阊胥路 32 号（泰让桥北堍）——东接万年桥 · 南濒胥江 · 东临护城河</td></tr>
+      <tr><th>入场</th><td>免费入场 · 无需预约</td></tr>
+      <tr><th>开放时间</th><td>9:00–16:00 · 周一闭馆（走读排期务必避开周一）</td></tr>
+      <tr><th>馆情背书</th><td>2004 年第 28 届世界遗产大会主会场</td></tr>
+      <tr><th>公交</th><td>"胥门"站：7 / 51 / 70 / 300 / 522 / 921 路</td></tr>
+      <tr><th>当天怎么走</th><td>9:00 展示馆广场集合 → 馆内 30–40′ → 万年桥 15′ → 胥门 10′＋深一层收尾；全程约 2 小时</td></tr>
+      <tr><th>物料清单</th><td>八门方位图打印件（人手一份）；胥门、万年桥、胥江口照片；板书三色笔；馆内互动任务卡</td></tr>
+    </table>
+  </div>
+</section>
+
+</main>
+
+<footer style="max-width:960px;margin:0 auto 30px;text-align:center;color:var(--ink-soft);font-size:.82rem;border-top:1px solid var(--line);padding-top:14px">
+  <p>胥门线 · 打卡点现场解说手册 ｜ 讲师备课手册 · 内部资料</p>
+  <p style="margin-top:4px">资料版本 2026-09 v1 ｜ 素材承自 Desktop/临时 原胥门三件套（原文件未改动）｜ 配套：<a href="xumen_mingren.html" style="color:var(--blue)">名人篇教学大纲</a> · <a href="wenmiao_shouce.html" style="color:var(--blue)">文庙打卡点手册</a>（平江图原碑）· <a href="index.html" style="color:var(--blue)">研学总目录</a></p>
+</footer>
+
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSb();});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  // 顶栏显隐开关（记忆偏好）
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('xumen-toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('xumen-toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 滚动高亮当前位置
+  var ids=['overview','route','s1','s2','s3','b1','b2','s9','info'];
+  var allLinks=document.querySelectorAll('nav.toc a, .side-nav a');
+  function setActive(id){
+    allLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+    });
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ids.forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)io.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>

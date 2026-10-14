@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文庙名人篇 · 苏州城市漫游研学｜教学大纲（讲师备课版）</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:640px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+
+/* ===== 课程信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 导航（顶栏） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 15px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer}
+nav.toc .drop-btn{-webkit-appearance:none;appearance:none;margin:0}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+nav.toc a.home{color:var(--blue);border-color:var(--blue);font-weight:700}
+/* 人物单元下拉子菜单（面板挂在吸顶容器上，避开滚动容器裁切） */
+.drop-wrap{flex:none}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 6px);left:20px;z-index:60;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:210px;max-height:calc(100dvh - 130px);overflow-y:auto}
+.drop-panel.open{display:flex}
+.drop-panel a{border:none;border-radius:9px;background:none;font-weight:400 !important;color:var(--ink-soft) !important;padding:8px 14px !important}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--red) !important}
+.drop-panel a.active{background:var(--gold-bg) !important;color:var(--red) !important;font-weight:700 !important}
+.drop-panel .d-head{font-size:.72rem;color:var(--gold);letter-spacing:.2em;padding:4px 14px 6px;font-weight:700}
+.toc-hint{display:none}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav a{padding:10px 20px;color:var(--ink-soft);text-decoration:none;font-size:.94rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a.sub{padding-left:38px;font-weight:400;font-size:.89rem}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节头 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+/* ===== 人物单元 ===== */
+.unit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;margin-top:34px;position:relative;overflow:hidden}
+.unit .tag-side{position:absolute;top:0;right:0;font-family:var(--serif);writing-mode:vertical-rl;letter-spacing:.3em;
+  background:var(--red);color:#fff;font-size:.8rem;padding:14px 8px;border-radius:0 0 0 12px;opacity:.92}
+.unit.teal .tag-side{background:var(--teal)}
+.unit.blue .tag-side{background:var(--blue)}
+.unit.gold .tag-side{background:var(--gold)}
+.unit h3{font-family:var(--serif);font-size:clamp(1.25rem,4.4vw,1.55rem);font-weight:900;letter-spacing:.06em;margin-bottom:2px}
+.unit .role{font-family:var(--serif);color:var(--gold);font-size:.95rem;letter-spacing:.2em;margin-bottom:12px}
+.unit h4{font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:22px 0 6px;display:flex;align-items:center;gap:8px}
+.unit h4::before{content:"§";color:var(--gold);font-size:.9rem}
+.unit.teal h4{color:var(--teal)} .unit.blue h4{color:var(--blue)} .unit.gold h4{color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px;letter-spacing:.05em}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.field{background:var(--teal-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.field b.t{color:var(--teal)}
+
+.qa{border:2px dashed var(--gold);border-radius:14px;padding:12px 18px;margin:10px 0}
+.qa b.t{color:var(--gold)}
+.qa p{margin:5px 0}
+.qa .q{color:var(--ink);font-weight:700}
+.qa .a{color:var(--ink-soft)}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+/* ===== 反向导航：去现场（跨页到打卡点手册 v2） ===== */
+.spot-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;align-items:center}
+.spot-row .lbl{font-size:.8rem;color:var(--ink-soft);font-weight:700;letter-spacing:.1em}
+.spot-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  color:var(--blue);background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:30px;padding:6px 14px;
+  transition:transform .15s,box-shadow .15s}
+.spot-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(58,110,165,.25)}
+.spot-link.hl{color:var(--red);background:#fdf1ef;border-color:var(--red)}
+
+/* ===== 信源标注 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 打卡点 ===== */
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-top:24px}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.25rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+
+.matrix td:first-child,.matrix th:first-child{white-space:nowrap}
+.matrix td{font-size:.88rem}
+
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{nav.toc,.side-tab,.sidebar,.side-mask{display:none}body{background:none}}
+@media(max-width:640px){
+  .unit{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+  .unit .tag-side{display:none}
+}
+[data-anchor]{scroll-margin-top:70px}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+
+/* ===== 分享版 ===== */
+.share-banner{background:var(--red,#a4423a);color:#fff;text-align:center;font-weight:700;
+  padding:10px 16px;font-size:.95rem;letter-spacing:.1em}
+.share-dead{color:#9a9284;border-bottom:1px dashed #9a9284;cursor:not-allowed}
+.share-dead small{font-size:.72em;color:#b5ac9c}
+</style>
+</head>
+<body>
+<div class="share-banner">精选分享版 · 仅含部分章节，完整内容请向作者索取</div>
+
+<div class="wrap">
+
+
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学</div>
+  <h1>文庙名人篇 · 苏州城市漫游研学</h1>
+  <div class="sub">讲 师 备 课 手 册 ｜ 内 部 资 料</div>
+  <p class="desc">一座文庙，半部苏州读书史。本大纲打破"按景点罗列"的旧结构，改为<b>以人为主线</b>的大纲式设计：孔子 → 言子 → 范仲淹 → 钱棨 → 钱镠与钱氏家族。每个单元自成一体，可独立讲述，也可串成一条"千年文脉"的完整叙事。所有人物最终都落到<b>现场打卡点</b>上——看到的是碑、殿、树、石，讲出的是人、故事与精神。</p>
+  <div class="src" style="margin-top:18px;border-top:none;padding-top:0"><b>信源体例</b>：凡可查证的内容均在相关段落下以小字注明来源——古籍注明<b>原典书名与篇目</b>（如《论语·阳货》），考据结论注明<b>史料</b>（如《清史列传》《吴县志》），近现代人物注明<b>权威机构或媒体</b>（如清华大学校史馆、央视网），内部整理资料标注 <code>DS-export</code> = DeepSeek 历史研究档案导出文件（见工作区 deepseek_data/export/）。传说类内容本大纲已点明"传说"，不另注信源。</div>
+  <div class="seal">备课备用 · 宁多勿缺</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>课程名称</b><span>吴地时光机 · 文庙名人篇（文脉研学之旅）</span></div>
+  <div class="m"><b>授课对象</b><span>亲子家庭（小学二年级以上）/ 成人研学团</span></div>
+  <div class="m"><b>行程主线</b><span>三元坊 → 江苏巡抚衙门 → 沧浪亭 → 苏州文庙（重头戏）</span></div>
+  <div class="m"><b>建议时长</b><span>半日（9:00 集合，12:10 午餐苏式面）</span></div>
+  <div class="m"><b>集合地点</b><span>地铁 4 号线三元坊站 3 号出口</span></div>
+  <div class="m"><b>资料版本</b><span>2026-09 v2（新增钱氏三杰与信源标注）· 名人堂持续补充中</span></div>
+</div>
+
+
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <div class="drop-wrap" id="dropWrap">
+      <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false">一·人物单元<span class="caret">▾</span></button>
+    </div>
+    
+    
+    
+    <span class="share-dead" title="完整版中可点击">☰ 研学总目录<small>（见完整版）</small></span>
+  </nav>
+  <div class="drop-panel" id="dropPanel">
+    <div class="d-head">五 组 人 物</div>
+    
+    
+    <a href="#u3">单元三 · 范仲淹</a>
+    
+    
+  </div>
+</div>
+
+
+<button class="side-tab" id="sideTab" aria-label="打开课程目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏课程目录">
+  <div class="side-head">
+    <span class="side-title">课程目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 课程总览与教学目标</a>
+    <div class="divider"></div>
+    
+    
+    
+    <a class="sub" href="#u3">单元三 · 范仲淹</a>
+    
+    
+    <div class="divider"></div>
+    
+    
+    
+    <div class="divider"></div>
+    <span class="share-dead" title="完整版中可点击">⟵ 研学总目录（全系列入口）<small>（见完整版）</small></span>
+  <span class="share-dead" title="完整版中可点击">⟶ 打卡点 · 现场解说手册 v2 ↗<small>（见完整版）</small></span>
+  </nav>
+</aside>
+
+
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>课程总览与教学目标</h2></div>
+  <p class="part-sub">本课程回答一个核心问题：<b>苏州为什么能成为"状元之乡""院士之乡"？</b>答案藏在一座文庙和五组人物的故事里。</p>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red);margin-bottom:10px">◆ 一条主线 · 五组人物 · 三层讲述</h4>
+    <p><b>主线叙事：</b>孔子立"教"（有教无类，人人可学）→ 言子把"教"带回江南（吾道其南）→ 范仲淹在苏州为"教"安了一个千年之家（捐宅建府学，庙学合一）→ 钱棨是这所学堂走出的"学霸天花板"（连中六元）→ 追钱棨的家谱往上走，是钱镠和绵延千年的钱氏家族（家训传家，群星闪耀）。<span class="hl">从一位圣人，到一座学堂，到一个家族，再到一座城市——这就是苏州文脉的"一条龙"。</span></p>
+    <div class="layer"><div class="ln">1</div><p><b>表象层（孩子都能看见）：</b>碑、殿、树、石、坊——先引导观察："你看到了什么？"小而浅，没关系，这是入口。</p></div>
+    <div class="layer"><div class="ln">2</div><p><b>故事层（背后的人）：</b>每一块碑、每一棵树、每一块石头背后，都站着具体的人——黄裳、李寿朋、范仲淹、陆绩、钱棨。讲人的抉择与命运。</p></div>
+    <div class="layer"><div class="ln">3</div><p><b>精神层（带得走的东西）：</b>有教无类的公平、先忧后乐的担当、屡败屡战的坚韧、利在天下必谋之的格局——这些是孩子带回家的"种子"。</p></div>
+  </div>
+
+  <table>
+    <tr><th style="width:130px">教学目标</th><td>① 认识与文庙相关的五位（组）历史人物及其事迹；② 理解"庙学合一"与苏州崇文重教传统的由来；③ 学会"由物见人、由人见精神"的观察方法。</td></tr>
+    <tr><th>情感目标</th><td>对家乡文脉产生亲近感与自豪感；从范仲淹的格局、钱棨的坚韧中受到具体的人格感染。</td></tr>
+    <tr><th>讲解原则</th><td>现场看到的都是"浅"的小东西，备课却要"深"——<b>讲不一定都讲，备必须备足</b>。按现场时间、孩子反应灵活取舍。</td></tr>
+  </table>
+</section>
+
+
+<section class="part" id="p1" data-anchor>
+  <div class="part-head"><span class="no">第一部分</span><h2>人物单元（五组）</h2></div>
+  <p class="part-sub">每个单元包含：档案速览 → 核心故事 → 金句 → 与文庙/苏州的关联 → 现场讲述要点 → 互动问答 → 储备冷知识。</p>
+
+  
+  
+
+  
+  
+
+  
+  <div class="unit blue" id="u3" data-anchor>
+    <div class="tag-side">单元三</div>
+    <h3>范仲淹</h3>
+    <div class="role">苏州府学文庙创始人 · 先忧后乐 · 一世之师</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>生卒</th><td>989—1052，苏州吴县人，谥号"<b>文正</b>"（古代文臣最高谥号），世称范文正公</td></tr>
+      <tr><th>身世</th><td>两岁丧父，母谢氏携其改嫁朱氏，改名"朱说"；得知身世后辞母苦读，二十七岁（大中祥符八年，1015）中进士，迎母归养，恢复范姓</td></tr>
+      <tr><th>仕途标签</th><td>泰州修捍海堰（"范公堤"）→ 应天府执教授徒 → 西北戍边御西夏 → 庆历新政（十事改革）→ 知邠州、邓州、杭州 → 知苏州兴学</td></tr>
+      <tr><th>与苏州</th><td>景祐二年（1035）任苏州知州：治水患、捐宅地、创办苏州府学（州学），开"左庙右学、庙学合一"之典范</td></tr>
+      <tr><th>慈善首创</th><td>皇祐元年（1049）于苏州置良田千亩设"<b>范氏义庄</b>"，赡养族人，运营八百余年——中国历史上最早的家族慈善基金会之一</td></tr>
+      <tr><th>名篇</th><td>《岳阳楼记》（1046年作于邓州）、《渔家傲·秋思》</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平主线——《宋史·范仲淹传》（卷三百一十四）；谥号与身世——《宋史》本传及富弼《范文正公墓志铭》；创办府学与"左庙右学"——范成大《吴郡志》（卷四"学校"："天下郡学莫盛于宋，然其始兴于吴郡"即出此）；范氏义庄——《范文正公集·义庄规矩》；51位状元统计——DS-export/043_苏州状元统计.md（明清苏州状元名录核校）。</div>
+
+    <h4>核心故事一：一块"风水宝地"的选择</h4>
+    <div class="story"><span class="t">▲ 故事文本（现场必讲）：</span>
+    <p>范仲淹祖籍苏州，但他回苏州做官时，在城里竟没有一处自己的住宅。他出资在城南（今人民路一带，旧称卧龙街）买下一块地准备建宅。风水先生看后大惊：这是"龙头"宝地，在此建宅，范家<b>子孙必将世代出公卿、光宗耀祖</b>！范仲淹却笑了：一家独贵，有什么意思？他大手一挥，把这块宝地捐了出来——在上面建文庙祭祀孔子、办府学让全苏州的孩子读书。</p></div>
+    <div class="quote">"吾家有其贵，孰若天下之士咸教育于此，贵将无已焉。"<small>—— 与其我范家一家富贵，不如让天下的读书人都在这里受教育，这样的富贵才没有穷尽。（另有一精炼版本："吾家当出公卿，此宅必兴学宫！"）</small>
+    <div class="src" style="border:none;padding-top:2px"><b>信源</b>：此语见于南宋楼钥《攻媿集》所记及《吴郡志》转引，为苏州府学始建的传统叙事；通俗版"风水宝地"故事是后世方志与民间讲述的铺陈。讲述建议：文言原句作"文眼"，白话故事作"肉"，虚实分明。</div></div>
+    <p>结果历史给出了最精彩的回答：府学兴，则苏州文运兴。此后苏州共走出<b>51位文武状元（文46、武5）</b>，仅清代就有26位，占全国同期状元的22.8%——苏州从此稳坐"状元之乡"头把交椅。可以说，<span class="hl">范仲淹这一捐，为苏州捐出了一条千年文脉。</span></p>
+
+    <h4>核心故事二：先天下之忧而忧——他不是说说而已</h4>
+    <div class="story"><span class="t">▲ 事迹串讲（备多讲少）：</span>
+    <p>① <b>划粥断齑</b>：应天书院苦读，煮一锅粥凝了划成四块，早晚各两块就咸菜下肚，五年未解衣就枕——"寒门贵子"的样本。② <b>宁鸣而死，不默而生</b>：任司理参军时抱着卷宗和上司据理力争，"宁可丢官，不可枉杀"；一生三起三落，三次被贬，三次被同僚送行时称作"极光"（此行极光荣）。③ <b>军中有一范，西贼闻之惊破胆</b>：52岁以文臣身份挂帅西北御西夏，爱兵如子、推诚抚羌。④ <b>以工代赈</b>：晚年知杭州遇饥荒，他反而大兴龙舟赛、鼓励寺庙修葺——让富人花钱游乐、穷人靠干活吃饭，饥年无灾。⑤ <b>临终无余财</b>：去世时家无新衣，儿孙轮穿一套官服上朝；《遗表》千字，只字不提家事。</p></div>
+
+    <div class="src"><b>信源</b>：划粥断齑——《湘山野录》（宋·文莹）；三次被贬"此行极光"——《宋史》本传及宋人笔记（三光故事见《能改斋漫录》引）；军中有一范——《续资治通鉴长编》（宋·李焘）载边谚；以工代赈——沈括《梦溪笔谈·官政》；临终家无余财——《宋史》本传"身无以为敛，子无以为丧"；DS-export/448_范仲淹评书.md、DS-export/312_范仲淹范成大.md。</div>
+
+    <h4>核心知识点：庙学合一（左庙右学）</h4>
+    <p>"庙学合一"并非范仲淹首创（唐贞观四年已诏令州县学皆立孔子庙），但<b>苏州府学是宋代地方官学的典范与模板</b>：东轴线为文庙（祭祀），西轴线为府学（教学），祭祀与教育一体——"晨读经书，暮习礼乐"。元人郑元祐评价："天下郡学莫盛于宋，然其始兴于吴郡。"范仲淹还延请大教育家<b>胡瑗</b>主持府学，以"明体达用"为宗旨，既教经义又教时务——这所学校的"校长"也是一代宗师。</p>
+    <table>
+      <tr><th>时期</th><th>府学规模</th><th>备注</th></tr>
+      <tr><td>北宋初创（1035）</td><td>约20亩（≈13200㎡）</td><td>全国最早、规模最大的地方官办学校，"天下之有学自吴郡始"</td></tr>
+      <tr><td>明清鼎盛</td><td>150余亩（≈10万㎡）</td><td>约14个标准足球场，东南第一学府</td></tr>
+      <tr><td>今天（苏州文庙·碑刻博物馆）</td><td>约1.5万㎡</td><td>仅为鼎盛期的约1/6</td></tr>
+    </table>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 明伦堂 · 范仲淹塑像（文庙内）</b>
+    <p>府学的"讲堂"，今供范公彩塑。堂前可齐诵"先天下之忧而忧，后天下之乐而乐"；堂内楹联"居庙堂之高则忧其民，处江湖之远则忧其君"正是《岳阳楼记》名句。讲完"捐地"故事，就地拜谒——<b>故事在哪里发生，就在哪里讲</b>。</p></div>
+    <div class="field"><b class="t">◆ 动线联动（文庙之外）</b>
+    <p>① <b>沧浪亭</b>：范仲淹的政治盟友苏舜钦被贬后所建——"进奏院事件"牵连庆历新政失败，两位失意人在苏州各自留下传世遗产（一个建园林，一个办学校），"达则兼济天下，穷则独善其身"的双重注脚。② <b>江苏巡抚衙门旧址</b>：文脉主线上"庙堂"一端，历代名巡抚（海瑞、林则徐、康熙赞"清廉为天下第一"的宋荦）在此办公。③ <b>苏州火车站南广场</b>：八尊名人铜像范仲淹居中——苏州给他的历史定位。④ <b>苏州中学</b>：府学文脉的直接继承者，校史馆藏乾隆《三元诗》碑（见单元四）。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：风水先生说这块地能让范家世代出大官，范仲淹为什么反而把它捐了？</p>
+      <p class="a">A：他说"吾家有其贵，孰若天下之士咸教育于此"——一家富贵，不如全城孩子都能读书。结果苏州从此出了51位状元。</p>
+      <p class="q">Q2："先天下之忧而忧"的下一句？</p>
+      <p class="a">A："后天下之乐而乐。"（《岳阳楼记》，1046年写于邓州，比他创办苏州府学晚了11年）</p>
+      <p class="q">Q3：范仲淹创办的"义庄"是做什么的？</p>
+      <p class="a">A：用一千亩良田的租金资助族中贫困子弟读书生活，像一张"千年保险单"，运转了八百多年。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 范仲淹戍边时提拔了狄青、种世衡等寒门将领——他一生都在做"有教无类"的朝廷版。② 谥号"文正"是文臣的最高荣誉，司马光说"文正是谥之极美，无以复加"；一生获此谥者屈指可数。③ 评书化素材（可作暖场）：幼年"父子共用一套官服"的传说、"范公堤"百姓泣谢等，均为后世演绎，讲解时注意区分史实与传说——这本身就是给孩子的一课"史料辨析"。④ 与王安石变法对比：范仲淹"节流"整吏治、王安石"开源"改经济，一温和一激进——成人团好话题。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <span class="share-dead" title="完整版中可点击">明伦堂 · 范公像前齐诵 ↗<small>（见完整版）</small></span>
+      <span class="share-dead" title="完整版中可点击">文庙前牌坊 · "谁建了这所学校"的悬念 ↗<small>（见完整版）</small></span>
+      <span class="share-dead" title="完整版中可点击">延伸联动 · 沧浪亭 / 巡抚衙门 ↗<small>（见完整版）</small></span>
+    </div>
+  </div>
+
+  
+  
+
+  
+  
+</section>
+
+
+
+
+
+
+
+
+
+
+<footer>
+  <div class="big">吴地时光机 · 文史研学系列</div>
+  <p>讲师备课手册 · 内部资料 ｜ 资料来源：DeepSeek 历史研究档案（687条对话精选60条）+ 公开史料核校 ｜ 近现代人物信源：清华大学校史馆、央视网、澎湃新闻、腾讯新闻、广东政协网、同济大学关工委</p>
+  <p style="margin-top:4px">面向家长与学员的宣传页另见《citywalk_kids.html》 ｜ 名人堂持续补充中</p>
+  <p style="margin-top:4px"><span class="share-dead" title="完整版中可点击">⟶ 配套手册：《文庙打卡点 · 现场解说手册 v2》（逐点解说词与人物关联，点开互查；v1 存档版见 文庙打卡点_解说手册.html）<small>（见完整版）</small></span></p>
+</footer>
+
+</div>
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSb();closeDrop();}});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  // 两种目录模式切换：勾选框控制顶部导航显隐
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 人物单元下拉子菜单（面板挂在吸顶容器 .toc-wrap 下，定位对齐按钮）
+  var dropWrap=document.getElementById('dropWrap'),dropBtn=document.getElementById('dropBtn'),
+      dropPanel=document.getElementById('dropPanel');
+  function closeDrop(){
+    dropWrap.classList.remove('open');dropPanel.classList.remove('open');
+    dropBtn.setAttribute('aria-expanded','false');
+  }
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var opening=!dropPanel.classList.contains('open');
+    if(opening){
+      dropPanel.classList.add('open');               // 先显示才能量宽
+      var br=dropBtn.getBoundingClientRect(),
+          wr=topbar.getBoundingClientRect(),
+          pw=dropPanel.offsetWidth||220;
+      var left=br.left-wr.left;                      // 相对吸顶容器对齐按钮
+      left=Math.min(Math.max(12,left),Math.max(12,wr.width-pw-12));
+      dropPanel.style.left=left+'px';
+      dropWrap.classList.add('open');
+      dropBtn.setAttribute('aria-expanded','true');
+    }else{closeDrop();}
+  });
+  document.addEventListener('click',function(e){
+    if(!dropWrap.contains(e.target)&&!dropPanel.contains(e.target))closeDrop();
+  });
+  dropPanel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrop);});
+  // 滚动高亮当前位置（顶栏胶囊、下拉面板、侧边栏三处联动）
+  var unitIds=['u1','u2','u3','u4','u5'];
+  var allLinks=document.querySelectorAll('nav.toc a, .drop-panel a, .side-nav a');
+  var dropBtnEl=document.querySelector('.drop-btn');
+  function setActive(id){
+    allLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+    });
+    dropBtnEl.classList.toggle('active',unitIds.indexOf(id)>=0||id==='p1');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ['overview','p1','u1','u2','u3','u4','u5','p2','p3','p4'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)io.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山塘街 · 苏州千年老街研学｜动线打卡点解说手册 · 讲师备课版｜吴地时光机</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:660px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+.sister-link:hover{background:var(--blue-bg)}
+
+/* ===== 信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 顶栏导航（含下拉） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 14px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer;appearance:none;-webkit-appearance:none}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.drop-wrap{flex:none;position:static}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:fixed;z-index:80;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:230px}
+.drop-panel.open{display:flex}
+.drop-panel .d-head{font-family:var(--serif);font-size:.8rem;color:var(--gold);letter-spacing:.3em;
+  padding:2px 10px 6px;border-bottom:1px dashed var(--line);margin-bottom:4px;text-align:center}
+.drop-panel a{display:block;text-decoration:none;color:var(--ink-soft);font-size:.9rem;font-weight:700;
+  padding:8px 12px;border-radius:9px;white-space:nowrap}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--ink)}
+.drop-panel a.active{background:#fdf1ef;color:var(--red)}
+.drop-panel a small{font-weight:400;color:var(--ink-soft)}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav .group{font-size:.74rem;color:var(--gold);letter-spacing:.2em;padding:8px 20px 2px}
+.side-nav a{padding:8px 20px 8px 30px;color:var(--ink-soft);text-decoration:none;font-size:.92rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节与点位卡 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 22px 20px;margin-top:28px;position:relative}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.3rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+.spot h4{font-family:var(--serif);font-size:1.02rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:18px 0 6px;display:flex;align-items:center;gap:8px}
+.spot h4::before{content:"§";color:var(--gold);font-size:.9rem}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+table.tl td:first-child{white-space:nowrap;color:var(--ink);font-weight:700}
+tr.grp td{background:#fbf1ef;color:var(--red-deep);font-weight:700;letter-spacing:.02em;font-size:.9rem}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+
+.egg{background:#fdf6e8;border:1px dashed var(--gold);border-radius:14px;padding:12px 16px;margin:10px 0;font-size:.92rem}
+.egg b.t{color:var(--gold);font-family:var(--serif);letter-spacing:.1em}
+
+/* ===== 讲师口语稿 / 争议卡 ===== */
+.say{background:#f7f4ec;border:1px dashed var(--gold);border-radius:14px;padding:14px 18px;margin:12px 0;
+  font-family:var(--serif);color:var(--ink);font-size:1rem;line-height:2}
+.say .role{display:block;font-family:var(--sans);font-size:.76rem;color:var(--gold);letter-spacing:.2em;margin-bottom:8px}
+.say b{color:var(--red)}
+.say p{color:var(--ink);margin:6px 0}
+.debate{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
+.debate .d{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.debate .d b{display:block;color:var(--teal);font-size:.9rem;margin-bottom:4px}
+.debate .d p{font-size:.88rem;margin:0}
+.debate .d.primary{border-color:var(--teal);background:var(--teal-bg)}
+
+/* ===== 名人关联 ===== */
+.person-row{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.person-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  border-radius:30px;padding:6px 16px;border:1px solid var(--teal);color:var(--teal);background:var(--teal-bg);
+  transition:transform .15s,box-shadow .15s}
+.person-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(61,122,120,.25)}
+.person-link small{font-weight:400;color:var(--ink-soft)}
+.person-link.primary{border-color:var(--red);color:var(--red);background:#fdf1ef}
+.relation-note{font-size:.9rem;color:var(--ink-soft);margin:6px 0 0}
+.relation-note b{color:var(--teal)}
+
+/* ===== 动线图 ===== */
+.route-box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 12px;margin-top:20px;text-align:center}
+.route-flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:6px;margin:10px 0}
+.rf-b{display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:.92rem;border-radius:10px;padding:8px 14px;min-width:96px;text-align:center;flex:0 1 auto}
+.rf-b small{font-family:var(--sans);font-weight:400;font-size:.72rem;opacity:.85;margin-top:2px}
+.rf-b.main{background:var(--red);color:#fff}
+.rf-b.outline{background:var(--card);color:var(--red);border:2px solid var(--red)}
+.rf-b.gold{background:var(--gold);color:#fff}
+.rf-a{align-self:center;color:var(--ink-soft);font-weight:700}
+
+.route-box svg{max-width:none;min-width:900px}
+.route-box .rb-title{font-family:var(--serif);font-weight:900;letter-spacing:.15em;color:var(--ink);margin-bottom:6px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;font-size:.85rem;color:var(--ink-soft);margin-top:8px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:5px;vertical-align:-2px}
+
+/* ===== 信源 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 心法与题库 ===== */
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:8px 0}
+.q summary{cursor:pointer;font-weight:700;color:var(--ink);font-size:.95rem}
+.q summary .qn{color:var(--gold);font-family:var(--serif);margin-right:6px}
+.q .ans{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);color:var(--ink-soft);font-size:.9rem}
+.q .ans b{color:var(--red)}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{.toc-wrap,.side-tab,.sidebar,.side-mask,.drop-panel{display:none}body{background:none}}
+@media(max-width:640px){
+  .spot{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+}
+[data-anchor]{scroll-margin-top:70px}
+</style>
+<style>
+/* —— 卡片折叠（山塘街页定制）：超过约10行截断＋渐隐＋展开按钮 —— */
+.debate .d.foldable{position:relative}
+.debate .d .d-body{overflow:hidden}
+.debate .d.foldable.clamped .d-body{max-height:256px}
+.debate .d.foldable.clamped::after{content:'';position:absolute;left:1px;right:1px;bottom:1px;height:64px;
+  background:linear-gradient(rgba(255,253,248,0),var(--card) 78%);border-radius:0 0 12px 12px;pointer-events:none}
+.debate .d .fold-btn{display:none;margin:6px auto 0;font-size:.78rem;font-weight:700;color:var(--red);
+  background:var(--card);border:1px solid var(--line);border-radius:20px;padding:3px 14px;cursor:pointer;
+  position:relative;z-index:1;letter-spacing:.05em}
+.debate .d .fold-btn:hover{border-color:var(--red)}
+.debate .d.foldable.clamped .fold-btn{display:block}
+
+/* —— .layer 多段自动包装（装配器后处理）：一层多题时纵向堆叠 —— */
+.layer > .l-body{flex:1 1 0;min-width:0}
+.l-body p{margin:5px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= 封面 ================= -->
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学 · 户外篇</div>
+  <h1>山塘街 · 千年老街</h1>
+  <div class="sub">动 线 打 卡 点 解 说 手 册 ｜ 讲 师 备 课 版</div>
+  <p class="desc">从<b>阊门</b>到<b>星桥</b>的一条讲师向解说手册：一座桥一座桥地讲过去——<b>十五座古桥"横七竖八"</b>、<b>七只石狸</b>、<b>乾隆的御碑亭</b>、<b>《姑苏繁华图》里唯一被完整描绘的一条街</b>、<b>会馆云集与岭南会馆</b>（今绣娘丝绸·江南织造府）、<b>通贵桥与下塘地名</b>、<b>新民桥的桥洞长卷《山塘胜景图》</b>，一路讲到景区段与烟火段的冷暖之别。逐站给讲解词、现场看点、考据争议与纠错彩蛋，并按实走顺序自动编号。</p>
+  <a class="sister-link" href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a class="sister-link" href="https://gusu-fanhua-scroll.app.workbuddy.host/xinggong/" style="margin-left:8px">⟶ 现场扫码：《南巡苏州虎丘行宫图》全卷 ↗</a>
+  <div class="seal">七里山塘 · 从头讲到尾</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>手册定位</b><span>一条动线 · 十三站逐点解说词（讲师备课）</span></div>
+  <div class="m"><b>动线节奏</b><span>阊门出发 → 新民桥收队约 2 小时｜走得到星桥约 2.5 小时</span></div>
+  <div class="m"><b>讲解主线</b><span>繁华的来路（水运）＋ 繁华的见证（桥·狸·会馆·长卷）＋ 繁华的今天（冷热两段）</span></div>
+  <div class="m"><b>资料版本</b><span>2026-10-01 v5.3 · 依用户口述动线编次（第四站后由流程自动编号）· 含第一至六轮讲师纠错 · 长卡片自动折叠（超约10行截断，点击展开）</span></div>
+</div>
+
+<!-- ================= 顶栏导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <a href="#history">沿革长卷</a>
+    <a href="#route">动线图</a>
+    <div class="drop-wrap" id="dw1">
+      <button class="drop-btn" id="db1" aria-haspopup="true" aria-expanded="false">山塘街线<span class="caret">▾</span></button>
+    </div>
+    <a href="#matrix">素材矩阵</a>
+    <a href="#method">讲述心法</a>
+    <a href="#quiz">研学题库</a>
+    <a href="#faq">纠正与答疑</a>
+  </nav>
+  <div class="drop-panel" id="dp1">
+    <div class="d-head">山 塘 街 线 · 十 三 站</div>
+    <a href="#st1">① 阊门 · 山塘之龙头</a>
+    <a href="#st2">② 阊门吊桥 · 跨出红尘</a>
+    <a href="#st3">③ 白居易纪念馆 · 山塘始祖</a>
+    <a href="#st4">④ 山塘桥头 · 十五桥·首狸·御碑亭</a>
+    <a href="#st5">⑤ 步入山塘街 · 唯一的整条街</a>
+    <a href="#st6">⑥ 会馆云集 · 岭南会馆与织造</a>
+    <a href="#st7">⑦ 通贵桥 · 摸狸·对拍·下塘</a>
+    <a href="#st8">⑧ 过街楼 · 水乡河房</a>
+    <a href="#st9">⑨ 新民桥 · 最佳机位·冷暖分界</a>
+    <a href="#st10">⑩ 桥洞长卷《山塘胜景图》</a>
+    <a href="#st11">⑪ 七狸传奇 · 张士诚与刘伯温</a>
+    <a href="#st12">⑫ 烟火段 · 一路向西</a>
+    <a href="#st13">⑬ 星桥收队 · 新桥即星桥</a>
+  </div>
+</div>
+
+<!-- ================= 侧边栏目录 ================= -->
+<button class="side-tab" id="sideTab" aria-label="打开目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏目录">
+  <div class="side-head">
+    <span class="side-title">点位目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 定位与口诀</a>
+    <a href="#history">沿革长卷 · 1200年一表通</a>
+    <a href="#route">动线图</a>
+    <div class="divider"></div>
+    <div class="group">山 塘 街 线</div>
+    <a href="#st1">① 阊门 · 山塘之龙头</a>
+    <a href="#st2">② 阊门吊桥</a>
+    <a href="#st3">③ 白居易纪念馆</a>
+    <a href="#st4">④ 山塘桥头（十五桥·首狸·御碑亭）</a>
+    <a href="#st5">⑤ 步入山塘街 · 繁华图的唯一整条街</a>
+    <a href="#st6">⑥ 会馆云集 · 岭南会馆 · 江南三织造</a>
+    <a href="#st7">⑦ 通贵桥 · 摸狸 · 对拍 · 下塘</a>
+    <a href="#st8">⑧ 过街楼 · 水乡河房</a>
+    <a href="#st9">⑨ 新民桥 · 景区段与烟火段</a>
+    <a href="#st10">⑩ 桥洞长卷《山塘胜景图》</a>
+    <a href="#st11">⑪ 七狸传奇 · 张士诚与刘伯温</a>
+    <a href="#st12">⑫ 烟火段 · 一路向西</a>
+    <a href="#st13">⑬ 星桥收队 · 二次深度游预留</a>
+    <div class="divider"></div>
+    <a href="#matrix">讲点 × 素材矩阵</a>
+    <a href="#method">讲述心法</a>
+    <a href="#quiz">研学题库（22题）</a>
+    <a href="#faq">纠正与答疑 · 讲师必背</a>
+    <div class="divider"></div>
+    <a href="index.html" style="color:var(--red)">⟶ 苏州研学游 · 总目录 ↗</a>
+    <a href="https://gusu-fanhua-scroll.app.workbuddy.host/xinggong/" style="color:var(--red)">⟶ 行宫图全卷 · 可放大网页 ↗</a>
+  </nav>
+</aside>
+
+<!-- ================= 总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>这条线怎么讲、怎么收</h2></div>
+  <div class="quote">「山塘街一头连接苏州的繁华商业区阊门，一头连着花农聚集的虎丘镇和名胜虎丘山。」<small>—— 一条街，两头都是苏州的招牌</small></div>
+
+  <div class="method">
+    <div class="layer"><div class="ln">口诀</div>
+      <div class="l-body"><p>一句话立住全篇：<b>「桥是骨架、狸是趣味、会馆是繁华的实证、长卷是缩影、冷暖对比是今天的落点。」</b></p>
+      <p>游客眼里山塘街是"拍照的一条老街"；我们要给他的是：<b>它为什么繁华（水运）、繁华到什么程度（会馆·长卷）、繁华之后怎么了（1860 与今天的冷热两段）。</b></p></div>
+    </div>
+    <div class="layer"><div class="ln">节奏</div>
+      <div class="l-body"><p><b>阊门 → 新民桥：约 2 小时</b>（用户定：讲到这里内容已经够两节课的量了）；<b>续行至星桥：约 2.5 小时</b>。全程平地、无台阶负担，唯桥上石级略滑。</p>
+      <p><b>两档收队：</b>A 档（体力一般／含老人小孩）＝<b>新民桥收队</b>；B 档（走得动）＝<b>续行至星桥（新桥）收队</b>，结束后可就近找苏州茶馆坐一坐。</p></div>
+    </div>
+    <div class="layer"><div class="ln">与阊门线的关系</div>
+      <p>用户已定：<b>与阊门线重叠不碍事</b>——经典讲点、名胜古迹多讲几遍无妨，每次侧重不同即可。此处阊门只作"龙头"引出，城门、瓮城、五龙汇阊的细节交给阊门线。</p>
+    </div>
+    <div class="layer"><div class="ln">现场三件套</div>
+      <p><b>手机</b>（扫全卷网页、《姑苏繁华图》细节）、<b>毛巾／纸巾</b>（摸狸前擦一擦）、<b>一句提醒</b>（节假日景区段单循环、限流，新民桥东侧排队长）。</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 沿革长卷 ================= -->
+<section class="part" id="history" data-anchor>
+  <div class="part-head"><span class="no">沿革</span><h2>山塘街 1200 年 · 一表通</h2></div>
+  <div class="story">
+    <b class="t">这条街是被"挖出来的"</b>
+    <p>唐宝历元年（825），白居易从杭州调任苏州刺史。他到虎丘去，见附近河道淤塞、水路不通，回衙即商定开河筑路：东起<b>阊门渡僧桥附近</b>，西至<b>虎丘望山桥</b>，凿河一道、筑堤一条。河是<b>山塘河</b>，堤就是<b>山塘街</b>——百姓感念他，称之<b>白公堤</b>，并在他离任后建<b>白公祠</b>纪念。</p>
+    <p>自此，山塘街兼具<b>交通与游览</b>两重功能，横亘在城与山之间，成了"红尘中一二等富贵风流之地"（《红楼梦》开篇语）。</p>
+  </div>
+
+  <div class="method">
+    <div class="layer"><div class="ln">唐</div><p>825 白居易开凿山塘河、筑白公堤。<b>开河的本意是"治水＋通路"，不是"造市场"</b>：其时阊门外河道淤塞、两岸本是低洼稻田，梅雨即淹、十年九灾；去虎丘的陆路又不畅。河成之后"根治水患、便利灌溉和交通"，并打通了运河进入苏州的梗阻段——<b>为日后商贸繁荣备好了水路条件</b>。他自己的《武丘寺路》"自开山寺路，水陆往来频。银勒牵骄马，花船载丽人"，写的是<b>舟车游赏、水陆往来之盛</b>，不是货物集散。<b>白公桥</b>相传为其率人所建（旧称"莲香桥"，山塘河上最古老的桥）；<b>星桥</b>（旧名新桥）相传亦始于此。白居易在苏仅约一年余，826 年以眼疾离任。</p></div>
+    <div class="layer"><div class="ln">宋</div><p>山塘街的<b>第一次大发展在宋代</b>：商业与文化日渐繁荣，沿河建寺修桥——寿圣禅寺（半塘寺）、渡僧桥（北宋至道年间）、桐桥（北宋治平元年）、西山庙（北宋崇宁二年）、小普陀（南宋嘉泰二年），由此带起民居、店铺、茶园、酒肆。宋天禧四年（1020）建<b>彩云桥</b>（以在半塘，故又名半塘桥，1111 年改石板桥）；南宋建炎四年（1130）金兵陷苏州，街市受创。</p></div>
+    <div class="layer"><div class="ln">元</div><p>元末<b>张士诚</b>割据苏州，山塘稍获恢复；覆亡前夕在虎丘一带筑土城与明军决战，山塘街又遭重创。</p></div>
+    <div class="layer"><div class="ln">明</div><p>成化二十年（1484）重建<b>星桥</b>、筹建<b>普济桥</b>；弘治初（约1488）<b>吴一鹏</b>捐建<b>通贵桥</b>；万历二年（1574）建<b>绿水桥</b>；万历十三年（1585）斟酌桥改石桥。<b>岭南会馆</b>等会馆同期相继设立——山塘整修后元气恢复。<b>明万历年间漕运大兴，山塘街连着"阊门万人码头"，经济活跃程度"堪称江南之冠"</b>：货栈、仓储沿河而起——<b>至此时，山塘街才真正成为苏州城西的商品集散地。</b></p></div>
+    <div class="layer"><div class="ln">清</div><p>乾隆年间为极盛：<b>乾隆二十七年（1762），乾隆第三次南巡</b>至山塘，御笔"<b>山塘寻胜</b>"——此时<b>《姑苏繁华图》已画完三年</b>（乾隆二十四年／1759）：画先记下了这条街的盛况，皇帝三年后才亲身走到街上。他诗中直接提到山塘的有<b>九首</b>；回京后按七里山塘模样仿建<b>苏州街</b>。会馆云集，光绪年间山塘街大小祠堂达 <b>65 座</b>。</p></div>
+    <div class="layer"><div class="ln">1860</div><p><b>咸丰十年（1860），清军在退出苏州之前放火，把山塘街烧成焦土。</b>此后交通格局变化、商业中心转移，山塘街再未回到旧日极盛——这是理解"今天的山塘"的钥匙。</p></div>
+    <div class="layer"><div class="ln">今</div><p>1956、1981、1985、1992、1996–97 多次整修路面；<b>2002 年 6 月 18 日启动保护性修复工程</b>；2004 年新民桥至山塘桥的七里山塘景区对外开放；<b>2010 年入选"中国历史文化名街"</b>；2024 年启动《苏州市山塘历史文化街区保护规划》。</p></div>
+  </div>
+
+  <div class="tip"><b>⚠️ 口径提醒 · 别说"自唐以来就是商品集散地"：</b>这是流传很广但<b>不严谨</b>的说法。唐代开河的本意是<b>治水患、通水陆</b>（诗证写的是游赏往来之盛）；山塘街的商贸是<b>一步一步长出来的</b>——<b>宋代第一次大发展 → 元末明初起两头渐成姑苏城西的商品集散地 → 明万历年间漕运兴盛、活跃程度"堪称江南之冠" → 清乾隆臻于极盛</b>。讲成"唐通水路、宋初盛、明清大盛"，比"自唐以来即是集散地"稳得多。<small>（权威口径：人民日报《山塘底色》——"自元末明初起，这条老街的两头一直是姑苏城西的商品集散地……到了明万历年间，漕运兴盛……经济活跃程度堪称江南之冠"；另，新华日报引苏州文史专家徐刚毅："白居易开凿山塘河的首要目的是解决古城的水旱灾害和水路交通问题"。）</small></div>
+  <div class="tip"><b>讲师一句话串线：</b>白居易挖出这条街 → 明清的会馆把它做成"贸易走廊" → 乾隆把它抄进京城 → 1860 一把火烧断了它的命脉 → 2002 年的修复又把它救回来。<b>一条街的兴衰，就是半部苏州商贸史。</b></div>
+</section>
+
+<!-- ================= 动线图 ================= -->
+<section class="part" id="route" data-anchor>
+  <div class="part-head"><span class="no">动线</span><h2>动线一览 · 十三站</h2></div>
+  <div class="route-box">
+    <div class="rb-title">山 塘 街 线 · 自 东 向 西</div>
+    <div class="route-flow">
+      <span class="rf-b main">① 阊门<small>龙头</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">② 阊门吊桥<small>虹桥·钓桥·繁华图</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">③ 白居易纪念馆<small>山塘始祖</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">④ 山塘桥头<small>十五桥·首狸·御碑亭</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑤ 步入山塘街<small>繁华图唯一的街</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑥ 会馆云集<small>岭南会馆·织造</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑦ 通贵桥<small>摸狸·对拍·下塘</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑧ 过街楼<small>水乡河房</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑨ 新民桥<small>最佳机位·分界</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑩ 桥洞长卷<small>《山塘胜景图》</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑪ 七狸传奇<small>张士诚·刘伯温</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑫ 烟火段<small>一路向西</small></span><span class="rf-a">→</span>
+      <span class="rf-b gold">⑬ 星桥收队<small>新桥即星桥·五元茶馆</small></span>
+    </div>
+    <div class="legend"><span><i style="background:#a4423a"></i>起点</span><span><i style="background:#b58a2c"></i>收队点（可弹性）</span></div>
+  </div>
+  <p><b>实走动线：</b>阊门 → 阊门吊桥 → 白居易纪念馆 → 山塘桥头（十五桥总说 + 首狸 + 御碑亭）→ 入山塘街（沿革 + 繁华图）→ 水码头·岭南会馆 → 通贵桥 → 过街楼 → 新民桥（拍照 + 冷暖分界）→ 穿新民桥桥洞看长卷 → 七狸传奇收束 → 烟火段 → 星桥（收队）。</p>
+  <div class="tip"><b>两档收队方案：</b>① <b>新民桥收队</b>（约 2 小时，讲到这里内容已足）；② <b>星桥收队</b>（约 2.5 小时，走得动就往西再走一段，感受烟火气）——<b>星桥头北侧的"山塘有座"茶馆（原星桥坊老菜场改造，5 元一杯无限续杯、每日三场评弹、小吃走廊）是最自然的收队点</b>，坐下喝完一杯，当天就圆满了。<b>星桥以西＝二次深度游</b>：彩云桥、普济桥、望山桥、西山庙桥、五人墓·义风园、南社纪念馆、普福禅寺（葫芦庙）、怡贤亲王祠（"王宫"）、半塘野芳浜等，留着下一趟专门讲。</div>
+</section>
+
+<!-- ================= 山塘街线 · 逐站 ================= -->
+<section class="part" id="line-st" data-anchor>
+  <div class="part-head"><span class="no">本线</span><h2>十三站逐点讲解</h2></div>
+  <p class="part-sub">编号即实走顺序。每站给：<b>现场怎么讲</b>（口语稿）· <b>考据支撑</b>（讲师底料）· <b>互动与彩蛋</b>。</p>
+
+  <!-- ① -->
+  <div class="spot" id="st1">
+    <span class="s-tag">第 ① 站</span>
+    <h3>阊门 · 山塘之龙头</h3>
+    <span class="en">St.1 · Changmen</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">开场</span>
+      <p>"我们今天这条线，从苏州最有名的一座城门出发。曹雪芹在《红楼梦》第一回里写：<b>'有城曰阊门者，最是红尘中一二等富贵风流之地'</b>——他写苏州，只点了阊门一个地名。我们脚下这条山塘街，就是从这扇门里长出来的。"</p>
+      <p>"山塘是一整条龙：<b>阊门是龙头，虎丘是龙尾</b>。今天我们从龙头走到龙腰。"</p>
+    </div>
+    <div class="say"><span class="role">加餐 · 白居易与阊门</span>
+      <p>"白居易也站在这座城楼上望过。他有一首诗，就叫《登阊门闲望》——是在苏州刺史任上写的。"</p>
+    </div>
+    <div class="quote">"阊门四望郁苍苍，始觉州雄土俗强。十万夫家供课税，五千子弟守封疆。阖闾城碧铺秋草，乌鹊桥红带夕阳。<b>处处楼前飘管吹，家家门外泊舟航。</b>云埋虎寺山藏色，月耀娃宫水放光。曾赏钱唐嫌茂苑，今来未敢苦夸张。"<small>—— 白居易《登阊门闲望》（宝历元年 825 年任苏州刺史时作，收《全唐诗》卷四四七）</small></div>
+    <p>"'处处楼前飘管吹，家家门外泊舟航'——一千二百年前，他站在阊门上一眼望出去，看到的就是这样的苏州：<b>门前就是河，河上就是船，船就是这座城市的车。</b>这句话，我们今天这条线要用到。"</p>
+    <h4>考据支撑</h4>
+    <p>阊门为春秋阖闾大城八门之一，是苏州通往西北的水陆要冲；<b>山塘河在此与运河相接</b>，是京杭大运河进入苏州的门户地段。城门、瓮城、五龙汇阊（多条水道汇于阊门一带）等细节由<b>阊门线</b>细讲，此处只作引子，不重复。</p>
+    <div class="tip"><b>讲师口径 · 同一个地方，为什么值得来第二趟？</b>每一个历史古迹，<b>每一次来都有新东西可讲</b>，不妨碍它成为多次研学的打卡点——讲法不同，侧重就不同：<br>· 走<b>阊门线</b>：重点是<b>城门城楼的知识</b>＋<b>阊门向东的西中市</b>，原则上<b>不提白居易</b>；<br>· 走<b>山塘街线</b>：阊门的身份换成<b>"白居易筑山塘的起点"</b>——讲他如何在这里望远、如何从阊门动工开河筑堤，并把这首《登阊门闲望》拿出来。<br><b>同一座城门，两副面孔，正是"多次研学、各有侧重"。</b>另：阊门一带近年持续修缮、推进文化体系建设，面貌确有变化，本身就是"值得再来讲一次"的理由。</div>
+    <div class="egg"><b class="t">彩蛋 · 为什么偏偏是这里繁华？</b>
+      <p>留一个悬念给第 ⑤ 站："过了桥、进了山塘街，我再告诉你这条街凭什么能繁华一千年——答案不在街上，在河里。"</p>
+    </div>
+  </div>
+
+  <!-- ② -->
+  <div class="spot" id="st2">
+    <span class="s-tag">第 ② 站</span>
+    <h3>阊门吊桥 · 一座桥，半部苏州交通史</h3>
+    <span class="en">St.2 · The Drawbridge</span>
+    <p class="part-sub">本站两层：<b>先讲名字</b>（为什么叫这么"难听"的名字，又为什么今年有了新铭牌），<b>再讲繁华</b>（《姑苏繁华图》里那座过桥要"流出真金白银"的桥）。</p>
+    <h4>其一 · 名字的来历：城门外的桥，都叫吊桥</h4>
+    <div class="say"><span class="role">破题</span>
+      <p>"先说说这座桥的名字——<b>吊桥</b>。上吊的吊，听起来不太雅，外地朋友路过这座漂亮的廊桥，常常不知道它叫什么，只有老苏州才随口一句'吊桥'。但这个名字，<b>起得实实在在，一点没错</b>。"</p>
+      <p>"因为过去<b>城门外这一座桥，有个共同的名字就叫吊桥</b>。你看名字就知道它的出身——<b>它一开始是有防卫属性的</b>：城门外第一道关，桥面能升能降，白天放下通行，夜里或战时吊起来，敌人就过不来。后来天下太平了，防卫属性下降，能起落的吊桥就拆掉了，换成木桥、石桥——<b>但'吊桥'这个名字百姓约定俗成，一直没改，就这么叫下来了。</b>"</p>
+      <p>"还有一种写法，写成'钓鱼'的<b>钓</b>。这个字不是随便写的错别字——古书里'钓''吊'本来互通，都指<b>把东西提起来</b>，北宋兵书《武经总要》里就有'钓桥'的记载。<b>所以'钓桥'反而是更古的写法</b>，不能说人家写错了。"</p>
+      <p>"它还有一个很好听的名字呢——宋代的《平江图》上，这座桥标的就是<b>虹桥</b>。宋人写苏州地方志（明王鏊《姑苏志》）也叫它虹桥。那时候护城河外这一带的桥，<b>几乎都爱叫虹桥，名字漂亮</b>——你想想张择端《清明上河图》里那座最出名的桥，也叫虹桥。同一时代的审美。"</p>
+    </div>
+    <div class="method">
+      <div class="layer"><div class="ln">历代名字</div><p><b>虹桥</b>（宋《平江图》、明《姑苏志》）→ 俗称<b>钓桥／吊桥</b>（古文"钓""吊"同义，皆指吊起）→ 明成化六年（1470）一度改名<b>永济桥</b> → 清末《巡警全图》正式定名<b>吊桥</b>。</p></div>
+      <div class="layer"><div class="ln">历代重修</div><p>始建于阖闾筑城之时；初为木桥，屡毁屡建。元泰定元年（1324）郡人<b>邓文贵</b>捐资重建石桥，<b>耗资十五万贯</b>；明洪武初改建石墩木梁；正德七年、万历十八年、崇祯十一年、清顺治二年、康熙三年屡毁屡建；嘉庆二十二年（1817）重修。清同治《苏州府志》引虞集《记略》：<b>"虹桥在阊门西，跨官河，通驿道，为咽喉要处。"</b></p></div>
+      <div class="layer"><div class="ln">近代至今</div><p>1934 年翻建钢筋水泥桥面（东、西石排柱桥台仍为明清原构）；20 世纪 70 年代拓宽；<b>21 世纪初重新改建为廊桥</b>——红柱黛瓦、古朴典雅，也就是你今天看到的这座。2023 年入选<b>江苏省省级地名文化遗产</b>（古桥梁类）。</p></div>
+    </div>
+    <div class="tip"><b>讲点（今年刚发生的新闻）：</b>2026 年 4 月 27 日起，姑苏区对这座桥做过一次专项维护——更换护栏 125 米、廊桥涂装 934 平方米、修补屋面瓦片 375 平方米，7 月竣工。<b>维修的同时换上了新的桥名牌，按官方地名公告，正式启用的名字是"钓桥"（恢复古称），不写"吊桥"。</b><br>"以前修好多少年都没给块牌子，外地人路过，这么漂亮一座廊桥都不知道叫什么。今年终于有了自己的名牌——<b>而且用的还是那个更古、更雅的'钓'字。</b>"</div>
+    <h4>其二 · 一座桥的排场：《姑苏繁华图》上的吊桥</h4>
+    <div class="say"><span class="role">对照看画</span>
+      <p>"这座桥到底有多繁华？请看《姑苏繁华图》——<b>请大家把手机拿出来，扫一下全卷</b>，翻到阊门这一段。"</p>
+      <p>"看这座桥：<b>桥的两岸，满满当当摆着整齐带顶棚的商铺和摊位</b>，桥上人来人往、车马喧闹。<b>一座桥，能热闹成这样，能'具备商业气息'成这样，说明什么？说明它的江湖地位在这儿。</b>"</p>
+      <p>"为什么？因为进出苏州城的大宗货物——<b>从江西来的瓷器、从山东来的药材、从江南运出去的丝绸</b>——都要从这座桥上过。<b>走过去的是人，流过去的是真金白银。</b>"</p>
+      <p>"最后说句实在话：<b>论桥的跨度，它还不如胥门的万年桥</b>。但山塘街这条线，就是得从它开始讲——<b>老大就是老大，跟大小没关系。</b>"</p>
+    </div>
+    <div class="tip"><b>配图提示（现场发图）：</b>此处配<b>《姑苏繁华图》中阊门吊桥段局部特写</b>——让学员在手机上把画里那座桥和眼前这座桥对起来。<b>这是全卷最"商业"的一座桥，也是本线第一张有'古今对话'的图。</b></div>
+    <div class="tip"><b>拍照点：</b>桥面向西拍——<b>桥、河、街、粉墙黛瓦一路延伸</b>，是整条线的第一张"定场照"，也正好对应《山塘胜景图》的起笔位置（从阊门画起）。</div>
+  </div>
+
+  <!-- ③ -->
+  <div class="spot" id="st3">
+    <span class="s-tag">第 ③ 站</span>
+    <h3>白居易纪念馆 · 山塘始祖</h3>
+    <span class="en">St.3 · Bai Juyi Memorial</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">人物</span>
+      <p>"这条街是谁修的？一位诗人。<b>白居易</b>——唐朝的苏州市长，我们叫他'山塘始祖'。"</p>
+      <p>"公元 825 年，他从杭州调到苏州当刺史。有一天坐轿子去虎丘，发现这一路水路不通、交通不便，回来就拍了板：<b>开河、筑堤</b>。河就是山塘河，堤就是山塘街——全长七里，所以叫'七里山塘'。"</p>
+      <p>"他修的不是一条路，是一条<b>兼顾灌溉、交通和游览的水上高速</b>。老百姓念他的好，把这条堤叫<b>白公堤</b>，他走后还给他立了祠堂。"</p>
+      <p>"白居易在苏州只干了一年多，然后就以眼疾辞职了。<b>一年多，一条街，一千年。</b>"</p>
+    </div>
+    <h4>逸闻轶事 · 多数人不知道的白居易</h4>
+    <div class="say"><span class="role">段子一 · "长安米贵，居大不易"</span>
+      <p>"先调侃一下他的名字。白居易年轻时初到长安，拿着诗稿去拜访当时长安城里最有名的大文人——<b>顾况</b>。这位顾况，正好也是<b>苏州人</b>，跟苏州有缘。"</p>
+      <p>"顾况一看这小伙子递上来的名字：<b>白居易</b>。他就笑了，拿名字开玩笑说：<b>'长安米贵，居大不易'</b>——长安物价这么高，你想在这儿<b>白</b>白地<b>居</b>住，可没那么容易啊。"</p>
+      <p>"可等他翻开诗稿，读到第一首——"</p>
+    </div>
+    <div class="quote">"离离原上草，一岁一枯荣。野火烧不尽，春风吹又生。"<small>—— 白居易《赋得古原草送别》（节）</small></div>
+    <div class="say"><span class="role">继续</span>
+      <p>"顾况当场就改口了：<b>'有句如此，居亦何难！'</b>——有这样的文采，在长安住下来有什么难的？<b>你这个名字不白起，才华能给你带来富贵。</b>这是《唐才子传》《幽闲鼓吹》里记的故事。而顾况当时绝不会想到——<b>这个被他调侃的年轻人，后来也当上了苏州刺史，走的是他家乡的路。</b>"</p>
+    </div>
+    <div class="say"><span class="role">段子二 · 写诗最多的秘诀：活得久</span>
+      <p>"另一个有趣的角度：<b>白居易是唐代写诗最多的人</b>——存诗近三千首，有人说近四千首。而《全唐诗》一共收了四万八千九百多首。什么概念？<b>他一个人，就占了全唐诗歌的十七分之一左右</b>，是唐代诗人之冠。<b>而且水平还特别高</b>，脍炙人口的代表作信口拈来——'离离原上草，一岁一枯荣'，小学生都朗朗上口。"</p>
+      <p>"那他是怎么写出这么多的？诀窍很简单——<b>活得久。</b>白居易活了 <b>75 岁</b>，在唐代已经算是高寿。你看同样是才华横溢却英年早逝的：<b>诗鬼李贺，27 岁就走了</b>——不是他能力不行，是命太短，来不及写。"</p>
+      <p>"再看宋代写诗产量最高的——<b>陆游，存诗九千三百多首，宋代第一，他活了 85 岁</b>。<b>把两个人的年岁和产量摆在一起，规律一目了然。</b>"</p>
+      <p>"最后再拿另一位'写诗劳模'开个玩笑——<b>乾隆皇帝，一生写了四万一千多首</b>（一说四万三千余首）：一是他确实是个文艺青年，没事就爱题诗；二是<b>他也确实活得久，89 岁</b>。你要让他十几岁就没了，就算每天写十首，也写不出这个数。"</p>
+    </div>
+    <div class="method">
+      <div class="layer"><div class="ln">产量对照</div><p><b>白居易</b>　存诗近 3000 首　｜　享年 75 岁<br><b>陆游</b>（宋）　存诗 9300 余首（宋代第一）　｜　享年 85 岁<br><b>乾隆</b>（清）　存诗 41000 余首　｜　享年 89 岁<br><b>李贺</b>（唐·诗鬼）　存诗仅 200 余首　｜　年仅 27 岁</p></div>
+      <div class="layer"><div class="ln">口径</div><p>《全唐诗》共收诗约 <b>48900 余首</b>，白居易约占 <b>1/17</b>（时人常说的"接近十分之一"是概说，讲时宜用"约十七分之一""唐代存诗最多"）。乾隆诗量各家统计略有出入（41000～43000 余首），讲"四万余首"最稳。</p></div>
+    </div>
+    <h4>考据支撑</h4>
+    <p>唐宝历元年（825）白居易任苏州刺史，开凿山塘河（东起阊门渡僧桥附近、西至虎丘望山桥）；826 年以眼疾罢任离苏。他在苏州自称<b>"姑苏白使君"</b>，离任时百姓"十里随舟行"（刘禹锡《白太守行》"苏州十万户，尽作婴儿啼"）。今馆位于<b>渡僧桥附近</b>、<b>2006 年建成</b>，又作"唐少傅白公祠"（白居易纪念苑），院内以石雕连环画表现其在苏州的生活场景，厅内有大型磨漆插屏<b>《白居易为民修山塘》</b>。</p>
+    <h4>必背两首</h4>
+    <div class="quote">"自开山寺路，水陆往来频。银勒牵骄马，花船载丽人。芰荷生欲遍，桃李种仍新。好住湖堤上，长留一道春。"<small>—— 白居易《武丘寺路》（唐人避讳，改"虎丘"为"武丘"；"去年重开寺路，桃李莲荷约种数千株"）</small></div>
+    <div class="quote">"黄鹂巷口莺欲语，乌鹊河头冰欲销。<b>绿浪东西南北水，红栏三百九十桥。</b>鸳鸯荡漾双双翅，杨柳交加万万条。"<small>—— 白居易《正月三日闲行》（在苏州第二年正月初三闲游穿巷过桥而作）</small></div>
+    <div class="egg"><b class="t">彩蛋 · "诗仙"原先是白居易的，而且是皇上亲封的</b>
+      <p>"课本里说'诗仙'是李白，对吧？<b>但在唐代，'诗仙'这个名号其实是白居易的。</b>"</p>
+      <p>"白居易自己在《与元九书》里写：<b>'知我者以为诗仙，不知我者以为诗魔。'</b>——懂我的人说我是诗仙，不懂我的人说我是诗魔。"</p>
+      <p>"更硬的是——<b>皇上亲口封的。</b>白居易去世以后，唐宣宗李忱写诗悼念他：<b>'缀玉联珠六十年，谁教冥路作诗仙。'</b>这是<b>官方认证、盖过章的'诗仙'</b>。"</p>
+      <p>"那李白呢？李白在世的时候，贺知章一见他就惊呼'<b>谪仙人</b>'——天上贬下来的仙人。可<b>整个唐代，没有一个人把李白叫'诗仙'</b>；最早正式这么称呼李白的，是<b>北宋的徐积</b>（'至于开元间，忽生李诗仙'），南宋杨万里反复喊，明清以后才彻底约定俗成。"</p>
+      <p>"所以数数白居易的名号：<b>诗仙</b>（皇上封的）＋<b>诗魔</b>（他自嘲——'唯有诗魔降未得，每逢风月一闲吟'）＋<b>诗王</b>（后世流传）。<b>别人一个'诗仙''诗圣'就到底了，他一个人仨——唐代诗人里，这个排面头一份。</b>"</p>
+    </div>
+    <div class="tip"><b>严谨起见 · 多说半句（讲师内部）：</b>① 唐代的"诗仙"其实是<b>泛称</b>——牛僧孺《奉呈梦得乐天》还写"<b>诗仙有刘、白</b>"，把刘禹锡和白居易一起称诗仙。② <b>"诗王"更早的原主是杜甫</b>：晚唐《云仙散录》"诗王本在陈芳国"说的是杜甫（陈才智研究员考）；白居易的"诗王"属后世泛称。<b>所以现场讲"诗仙是皇上封的、诗魔是他自嘲的"最有底气</b>，"诗王"说"后世又称他为诗王"。③ 顺带纠一句：<b>"红栏三百九十桥"的"三百九十"是诗家概数／夸饰</b>，别当成唐代苏州真有 390 座桥——补一句，学员更信服。</div>
+  </div>
+
+  <!-- ④ -->
+  <div class="spot" id="st4">
+    <span class="s-tag">第 ④ 站</span>
+    <h3>山塘桥头 · 十五座古桥 · 第一只石狸 · 御碑亭</h3>
+    <span class="en">St.4 · Shantang Bridge</span>
+    <p class="part-sub">三件事一站讲完，是全线信息量最大的一站，建议现场<b>先总说、再逐件指认</b>。</p>
+
+    <h4>其一 · 十五座古桥"横七竖八"</h4>
+    <div class="say"><span class="role">总说</span>
+      <p>"山塘街的桥，老话叫<b>'横七竖八'</b>——一共十五座。<b>横跨山塘河的七座</b>：山塘桥、通贵桥、星桥、彩云桥、普济桥、望山桥、西山庙桥；<b>纵贯街北支流的八座</b>：白姆桥、毛家桥、桐桥、白公桥、青山桥、绿水桥、斟酌桥、万点桥。"</p>
+      <p>"这些桥还成双成对：<b>夫妻桥</b>——白公桥和白姆桥（一个纪念白居易，一个纪念白夫人）；<b>父子桥</b>——大普济桥和小普济桥；<b>姐妹桥</b>——青山桥和绿水桥；<b>兄弟桥</b>——同善桥和引善桥。<b>大普济桥、小普济桥加白公桥，合称'山塘三桥'</b>，可与周庄的双桥媲美。"</p>
+    </div>
+    <div class="tip"><b>讲师提示 · 别被"半塘桥"绕进去：</b>"<b>半塘桥</b>"不是第十六座桥——它是<b>彩云桥的别名</b>（桥在半塘，故又名半塘桥），已经算在横跨的七座里，<b>不要重复计数</b>。<br><b>讲师底料：</b>山塘河是京杭大运河进入苏州城区的主航道之一，曾被称作<b>"放生官河"</b>——普济桥桥洞至今刻着这四个字，是清代官府保护水源、禁止捕鱼的环保举措。</div>
+
+    <h4>其二 · 山塘桥：桥名最老，身子最新</h4>
+    <div class="debate">
+      <div class="d primary"><b>要点</b><p>山塘桥<b>始建于唐</b>，宋、明重修，<b>清嘉庆二十三年（1818）重建</b>、光绪六年（1880）修，<b>1963 年改建为单孔钢筋混凝土梁板桥</b>（跨度 8 米、宽 5.3 米、长 10.2 米）。2023 年入选江苏省省级地名文化遗产。</p></div>
+      <div class="d"><b>讲师提醒</b><p>所以它"是第一座桥"，但<b>已经不是古迹</b>——真正的古桥在前面，一会儿我们到<b>通贵桥</b>再看。</p></div>
+    </div>
+
+    <h4>其三 · 一个谜：为什么山塘桥几乎没有老照片？</h4>
+    <div class="say"><span class="role">抛悬念</span>
+      <p>"大家留意一个怪事：<b>通贵桥、新民桥都有老照片，而且不止一张——偏偏山塘桥，几乎找不到。</b>这是为什么？"</p>
+      <p>"<b>不是它不受待见，是没地方拍它。</b>"</p>
+      <p>"你看，通贵桥和新民桥是<b>遥相对望</b>的，中间只隔一百多米，站在一座桥上就能把另一座收进画面——<b>你拍我、我拍你，大家都是好兄弟，照片自然就多。</b>可要拍山塘桥，得跑到西边更远的地方去，<b>距离和角度都不够，取景不好看</b>。"</p>
+      <p>"河对岸倒是有位置能拍到它（聚龙桥那一带望过来），可那儿偏、取景也一般——<b>何况那年头胶片金贵，镜头都对着更宏伟的阊门城楼，谁会为一座'不起眼的小石桥'专门绕过去？</b>苏州这样的桥，实在太多了。"</p>
+    </div>
+    <div class="tip"><b>讲师口径（可原话讲给学员听，活跃气氛）：</b>"<b>老照片是会挑地方的——离得近的桥你拍我、我拍你，离得远的桥就没人理。</b>"由此带出一个方法论：<b>看老照片要连带看摄影条件，不能只凭"有没有照片"论历史地位。</b>（"聚龙桥"为讲师口述桥名，现场可再核对。）</div>
+
+    <h4>其四 · 第一只石狸（美仁狸）· 七只狸各有寓意</h4>
+    <div class="say"><span class="role">趣味</span>
+      <p>"桥边蹲着的那只小狸猫，是老山塘的'吉祥物'。民间说：<b>'摸摸狸猫头，一年好到头。'</b>它是七只里的第一只，叫<b>美仁狸</b>。"</p>
+      <p>"而且别小看这七只猫——<b>每一只都有自己的名字，也都有自己的寓意</b>，从东到西，一个不重样。这是全街独一无二的一套'吉祥七件套'。我们在这儿一次说全，大家往后走到哪只，都能叫得出名字。"</p>
+    </div>
+    <div class="method">
+      <div class="layer"><div class="ln">七狸名录与寓意</div>
+        <p><b>① 山塘桥 · 美仁狸 —— 优雅</b>（我们眼前这只，进街第一只）<br>
+        <b>② 通贵桥 · 通贵狸 —— 富贵</b>（包浆最亮，一会儿要摸的）<br>
+        <b>③ 星桥 · 文星狸 —— 学识</b>（今天收队那座桥）<br>
+        <b>④ 彩云桥 · 彩云狸 —— 幸福</b><br>
+        <b>⑤ 普济桥 · 白公狸 —— 健康</b><br>
+        <b>⑥ 望山桥 · 海涌狸 —— 缘分</b>（在虎丘正门口）<br>
+        <b>⑦ 西山庙桥 · 分水狸 —— 机遇</b>（最西端，山塘的尾）</p></div>
+      <div class="layer"><div class="ln">口径</div><p>这套寓意是近年山塘街做"七狸"改造提升时，结合每只狸的形制与传说定下、并在狸猫旁<b>立铭牌（俗称七狸的"身份证"）</b>公布的，扫铭牌上的码可看典故——<b>属官方口径，现场可直接用。</b></p></div>
+    </div>
+    <div class="tip"><b>现场互动：</b>"祝福都是好话——<b>一进门先求个优雅（美仁狸），走一段求个富贵（通贵狸），到星桥再求个学识（文星狸）</b>。今天这条线，正好把这三只走齐。"（七狸的真相、复刻情况与旧像之谜，见第 ⑪ 站。）</div>
+
+    <h4>其五 · 御碑亭：乾隆，苏州的头号铁粉</h4>
+    <div class="say"><span class="role">人物</span>
+      <p>"亭子里这块碑，正面四个字：<b>山塘寻胜</b>。这是乾隆的手笔。他从这句诗里各取两个字拼出来的——<b>'阊门西转历山塘，寻胜云岩春载阳'</b>："山塘"加"寻胜"。"</p>
+      <p>"写这首诗是哪一年？<b>乾隆二十七年、公元 1762 年——他六下江南里的第三次。</b>那年仲春，他出阊门、经山塘，一路走到虎丘云岩寺。顺带记住一个年份：<b>《姑苏繁华图》是乾隆二十四年、1759 年画成的，比他这一趟还早三年</b>——画先记下了山塘，皇帝三年之后才亲自来。"</p>
+      <p>"乾隆一辈子六下江南，写苏州、写山塘的诗有九首。他喜欢到什么程度？<b>回北京以后，照着七里山塘的样子，在皇家园林里仿建了一条'苏州街'</b>——颐和园里那条苏州街，就是山塘街的翻版。"</p>
+    </div>
+    <div class="tip"><b>考据（讲师内部）：</b>碑上四字取自乾隆<b>《题虎邱云岩寺》</b>首联"阊门西转历山塘，寻胜云岩春载阳"，诗作于<b>乾隆二十七年（1762）仲春</b>，收《御制诗三集》卷二十一。此年即<b>乾隆六下江南中的第三次</b>（六次年份：1751／1757／1762／1765／1780／1784）——<b>⚠️ 网上不少文章（含个别旅行号）把它写成"第二次南巡"，是错的，别跟着说。</b><br>山塘街这座亭系<b>2003 年修复山塘街时新建</b>，立于山塘街东入口、山塘桥堍；碑字从<b>虎丘塔院御碑</b>拓来、印章拓自皇亭街御碑，<b>"字是真迹，亭是新造"</b>。诗碑真身在<b>虎丘御碑亭</b>（宋称御书房，清康熙二十八年改御诗亭，光绪十三年重建；现存御碑五方，康熙、乾隆各两方，另刻乾隆诗六首）。诗本咏虎丘，但首联写的是"出阊门—经山塘—到云岩寺"的全程，立在山塘街口<b>题旨也说得通</b>；另有意见认为属旅游移花接木——<b>点到即可，不必下断语</b>。<br>乾隆另有《山塘策马》"山塘策马揽山归，澹荡韶春鞭漫挥"。民间有"此碑为乾隆为其母七十大寿贺礼"之说——<b>多见网络、未见官志，宜用"有一种说法"</b>。仿建苏州街确有两处：1761 年前后北京万寿寺一带、1792 年清漪园（今颐和园）万寿山北，1986 年颐和园重建。</div>
+  </div>
+
+  <!-- ⑤ -->
+  <div class="spot" id="st5">
+    <span class="s-tag">第 ⑤ 站</span>
+    <h3>步入山塘街 · 《姑苏繁华图》里唯一被完整描绘的一条街</h3>
+    <span class="en">St.5 · The Only Street in the Scroll</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">主线</span>
+      <p>"现在正式进街。先解决一个问题：这条街凭什么繁华一千年？答案在河里。"</p>
+      <p>"古代没有公路铁路，<b>水运就是高速公路</b>：大运河是国家级高速，护城河是城市快速路，城里的河道就是主干道。山塘河，正是<b>大运河进苏州城的主航道之一</b>——江西的瓷器、广东的糖、山东的药材、江南的丝绸，都要从这条河上过。"</p>
+      <p>"所以山塘街不是一条'住人的街'，它是一条<b>'做生意做出来的街'</b>——货在河里走，人在岸上交易，街因此而旺，会馆因此而来。"</p>
+    </div>
+    <div class="say"><span class="role">高潮</span>
+      <p>"乾隆二十四年，宫廷画家徐扬画了一幅长卷《盛世滋生图》，也就是《姑苏繁华图》。全卷画了'<b>一村、一镇、一城、一街</b>'——山前村、木渎镇、苏州城，还有<b>一条街</b>。"</p>
+      <p>"<b>这条街，就是山塘街。整幅十二米长卷里，唯一被完整描绘的一条街，就是我们脚下这一条。</b>画上：居货山积、行云流水、列肆招牌、灿若云锦——锡器铺、银器铺、馒头铺、油酒铺、饭馆、花店、盆景店，一路排到虎丘。"</p>
+    </div>
+    <div class="tip"><b>口径把控（讲师内部）：</b>别讲成"白居易为了做生意才开河"。<b>开河本意是治水患、通水陆</b>（当时两岸低洼稻田十年九灾，去虎丘陆路不畅），"做生意的街"是<b>后来几百年长出来的</b>：宋代初盛，元末明初两头渐成集散地，明万历年间漕运兴盛"堪称江南之冠"，清乾隆极盛。<b>一句话：先有水利，后有商街。</b></div>
+    <div class="tip"><b>现场动作：</b>发二维码／口播链接，让学员<b>当场扫开《姑苏繁华图》全卷</b>（gusu-fanhua-scroll.app.workbuddy.host），双指放大到山塘街那一段，找到<b>山塘桥、半塘桥、普济桥</b>——"两百多年前，就有人在同一个位置画下了你站的这块地方。<b>这就是山塘街是'盛世繁华的集中体现和杰出代表'的证据。</b>"</div>
+    <div class="src"><b>口径：</b>徐扬，乾隆二十四年（1759）；绢本设色，纵 36.5 × 横 1241 厘米，辽宁省博物馆藏。</div>
+  </div>
+
+  <!-- ⑥ -->
+  <div class="spot" id="st6">
+    <span class="s-tag">第 ⑥ 站</span>
+    <h3>会馆云集 · 岭南会馆 · 苏州的织造与"江南三织造"</h3>
+    <span class="en">St.6 · Guild Halls</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">主线</span>
+      <p>"走到水码头和这片老房子，我们讲山塘街最重要的一个身份：<b>会馆一条街</b>。"</p>
+      <p>"出门做生意，人生地不熟。同乡人要有个落脚的地方——<b>议事、祭祀、存货、住宿、调解纠纷、甚至义葬</b>，这就是会馆。明清时候，山塘街上各地会馆云集：汀州会馆、岭南会馆、冈州会馆（扇子会馆）、宝安会馆、山东会馆、陕西会馆……<b>一条街上有十几处会馆，光绪年间大小祠堂多达 65 座。</b>"</p>
+      <p>"<b>会馆的多寡，就是繁华程度的温度计。</b>全国商帮都来这条街设点，说明这里是真正的贸易枢纽。"</p>
+    </div>
+    <h4>岭南会馆（今绣娘丝绸 · 江南织造府）</h4>
+    <p><b>现场指认：</b>山塘街 <b>136 号</b>，抬头就是烫金大字的门头。进门一台巨大的老织机，绣娘现场演示苏绣。</p>
+    <div class="method">
+      <div class="layer"><div class="ln">出身</div><p><b>明万历年间</b>由广东（岭南）商人集资创建，是苏州<b>最早的会馆之一</b>；初称岭南会馆，民间也泛称"广东会馆"。清代重建、民国重修，现存三间清代头门，为苏州市控制保护建筑。</p></div>
+      <div class="layer"><div class="ln">建筑</div><p>五山屏风墙硬山顶，<b>砖雕含岭南蕉叶纹样</b>，梁架跨度达 6.8 米；《岭南会馆重修记》碑今存苏州碑刻博物馆。</p></div>
+      <div class="layer"><div class="ln">转身</div><p>民国后曾为<b>惠群小学（后山塘中心小学）</b>校址；上世纪 80 年代小学迁走，一度成为危房。2012 年，苏州市政府招投标引入社会资本，<b>苏州绣娘丝绸工艺有限公司</b>中标，历时两年，把它改造成丝绸文化文旅综合体——今天看到的<b>"江南织造府"</b>。</p></div>
+    </div>
+    <h4>馆里的镇店之宝</h4>
+    <div class="say"><span class="role">进馆引导</span>
+      <p>"请大家看这幅绣品——<b>《康熙南巡图》刺绣版</b>，绣的是<b>苏州织造署那一段</b>。你看针脚：平针平光细滑、滚针勾勒清晰、虚实针出远近层次……<b>一幅画，把康熙南巡、驻跸苏州的排场，用针绣了出来。</b>"</p>
+      <p>"这里有个很少人知道的事：<b>《康熙南巡图》原作共十二卷，如今已不全了。</b>北京故宫存五卷（第一、九、十、十一、十二），法国巴黎吉美博物馆藏两卷（第二、第四），美国纽约大都会艺术博物馆藏一卷（第三），另有三卷下落不明。<b>而画我们苏州这一段的第七卷——从无锡经浒墅关到苏州阊门，虎丘塔、阊门码头、苏州织造署全在里面——不在国内，在加拿大的阿尔伯塔大学博物馆。</b>"</p>
+      <p>"换句话说：<b>我们眼前这幅绣品所绣的那段苏州，原画远在万里之外的加拿大。</b>想看看康熙当年怎么在阊门登岸、苏州织造署当年什么样子，今天只能隔着一卷画、或者一幅绣品了。"</p>
+    </div>
+    <div class="tip"><b>考据（讲师内部，可背书）：</b>《康熙南巡图》由<b>王翚</b>领衔主绘，冷枚、王云、杨晋等参与，康熙二十九年（1690）前后始绘、历时六年完成，绢本设色，各卷高约 67.8 厘米、长 1300～2600 厘米不等。<b>第七卷《无锡至苏州》</b>今藏<b>加拿大阿尔伯塔大学博物馆（Mactaggart 麦克塔格特藏品）</b>——卷中自无锡起，经浒墅关抵苏州，可见<b>虎丘云岩寺塔、阊门（康熙在此舍舟登岸，白马拉于一侧）、装扮一新的苏州街市</b>，卷末即<b>苏州织造署</b>。<b>注意：个别旧文（含故宫一条藏品说明）将第三、第七卷并归"纽约大都会"，系旧说／误记；现学界与馆方口径为：第三卷在大都会，第七卷在阿尔伯塔大学。</b>此节若被学员追问，按此答。</div>
+    <div class="tip"><b>现场口径（待核）：</b>店员介绍此幅由<b>六位绣娘历时两年</b>绣成、估值约 200 万——公开文献未见，<b>讲时用"据说""店家介绍"</b>，以现场展签为准。</div>
+
+    <h4>顺手讲透 · 苏州织造与"江南三织造"</h4>
+    <div class="debate">
+      <div class="d primary"><b>先纠正</b><p>历史上<b>并没有"江南织造局"这样一个衙门</b>——"江南织造府"是今天这个展馆的品牌名。</p></div>
+      <div class="d"><b>真的有</b><p>赫赫有名的是<b>江南三织造</b>：<b>江宁织造（南京）、苏州织造、杭州织造</b>，直属内务府，为皇家督造采办丝绸、锦缎、绣品、服饰。</p></div>
+    </div>
+    <div class="method">
+      <div class="layer"><div class="ln">苏州织造署</div><p>在<b>葑门带城桥下塘 18 号</b>（今苏州第十中学内）。清顺治三年（1646）工部侍郎陈有明奉旨总管苏州织造，选明外戚<b>周奎旧宅</b>兴建织造局，占地五十亩、机房四百余间；康熙十三年（1674）划南半部为"织造署"；<b>康熙四十三年（1704）划西部建行宫</b>，仿北京故宫格局，有大殿、寝宫、御膳房、佛堂、戏台与花园。</p></div>
+      <div class="layer"><div class="ln">两位关键人物</div><p><b>曹寅</b>（曹雪芹的祖父）与<b>李煦</b>（曹雪芹舅祖）先后主政苏州织造署。红学家认为曹雪芹可能出生或生活于此，视之为《红楼梦》"大观园"的重要原型之一——<b>织造署与《红楼梦》、与山塘街（书中的"十里街"）三者可串成一条线讲。</b></p></div>
+      <div class="layer"><div class="ln">为什么重要</div><p>康熙、乾隆南巡到苏州，<b>都驻跸织造署行宫</b>。织造官不只是"管工厂"，还兼作皇帝的耳目（可密折奏事）。织造署旧址现存头门、仪门、多祉轩等，是<b>"江南三织造"中留存遗迹最多的一处</b>；院内<b>瑞云峰</b>为北宋"花石纲"遗石，与上海豫园玉玲珑、杭州西湖绉云峰并称<b>江南三大名石</b>。</p></div>
+    </div>
+    <div class="egg"><b class="t">讲点落板 · 苏州制造业有多强？</b>
+      <p>"清代最顶级的三家'皇家丝绸工厂'，苏州占一家；皇家穿的龙袍凤裳，很多出自苏州绣娘之手。<b>今天你在这条街上看到的苏绣，不是'旅游纪念品'，是一条从明代接到今天的产业链。</b>"</p>
+    </div>
+  </div>
+
+  <!-- ⑦ -->
+  <div class="spot" id="st7">
+    <span class="s-tag">第 ⑦ 站</span>
+    <h3>通贵桥 · 摸通贵狸 · 南北对拍 · 下塘的来历</h3>
+    <span class="en">St.7 · Tonggui Bridge</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">主线</span>
+      <p>"这座才是山塘街<b>横跨山塘河的第一座真正的古桥</b>——通贵桥。<b>山塘桥是现代水泥桥，通贵桥是古迹。</b>"</p>
+      <p>"明弘治初年，本地人<b>吴一鹏</b>捐建。他为什么要修？《丹午笔记》记了个很有意思的理由：他和菩提庵前一位郭姓朋友交好，早晚来往，<b>为了方便串门，就造了一座桥</b>。"</p>
+      <p>"'通贵'两个字，取的是<b>'往来通达、贵人相通'</b>的好意头。还有一个名字更美：相传桥上曾现<b>五彩祥云</b>，所以又叫<b>'瑞云桥'</b>。"</p>
+    </div>
+    <div class="say"><span class="role">互动</span>
+      <p>"桥堍这只狸猫，是七只里的第二只，叫<b>通贵狸</b>。你看它脑门——<b>被摸得发亮，包浆最厚</b>，是全街人气最高的一只。来，排好队，每人都摸一下：<b>'摸摸狸猫头，一年好到头。'</b>"</p>
+    </div>
+    <div class="say"><span class="role">对拍</span>
+      <p>"站上桥面，两个方向各拍一张：<b>往南看是静谧</b>——枕河人家、水波不兴；<b>往北看是热闹繁华</b>——两岸商铺、人来船往。<b>一张桥照，拍下苏州的两副面孔。</b>"</p>
+    </div>
+    <h4>顺势讲 · 为什么对岸叫"下塘"？</h4>
+    <div class="method">
+      <div class="layer"><div class="ln">塘是什么</div><p>吴语里<b>"塘"本义是堤岸</b>，所以"某某塘"就是<b>沿河的路</b>。苏州河多，街巷依河而生，于是有了上塘、下塘。</p></div>
+      <div class="layer"><div class="ln">怎么分</div><p><b>不以方位分，也不以高低分，而以功能和主次分</b>：<b>人流密集、商贸繁盛的主街一侧＝上塘</b>（多半另有自己的专名，如阊门上塘街）；<b>河对岸、以民居为主、相对冷清的一侧＝下塘</b>。</p></div>
+      <div class="layer"><div class="ln">证据</div><p>《苏州市志》收录的 20 世纪 80 年代地名里，苏州<b>下塘多达 28 处，上塘极少</b>——因为"上塘"是主街、有大名，不必叫上塘；"下塘"常无专名，只统称下塘，后来地名规范化才加上定语：任蒋桥下塘、白塔下塘、新造桥下塘、<b>渡僧桥下塘</b>（名医叶天士就住那里）。</p></div>
+      <div class="layer"><div class="ln">落到眼前</div><p><b>山塘街的南岸，就是下塘</b>；平江路、临顿路的河西岸统称下塘。再说一个例子——<b>带城桥下塘</b>：它在东西向十全河的北岸，对岸正是主街十全街，所以它叫"下塘"。<b>而刚才我们讲的苏州织造署，就在带城桥下塘 18 号。</b>——你看，"下塘"这名字、织造署、还有馆里那幅《康熙南巡图》绣品，就这么串起来了。</p></div>
+    </div>
+    <div class="tip"><b>考据底料：</b>通贵桥长 19 米、宽 2.3 米、跨径 7.2 米，南堍 13 级、北堍 16 级踏步；崇祯十三年（1640）修，乾隆五十三年（1788）里人吴三复捐资重建，光绪六年（1880）虎丘昌善局、清节堂募资重修。桥边有诗："倚楼人悄小帘垂，通贵桥头暂泊时。酿出山塘好风景，满堤稚柳细如丝。"</div>
+  </div>
+
+  <!-- ⑧ -->
+  <div class="spot" id="st8">
+    <span class="s-tag">第 ⑧ 站</span>
+    <h3>过街楼 · 江南水乡的河边建筑</h3>
+    <span class="en">St.8 · Arcade Over the Lane</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">指认</span>
+      <p>"抬头看——这段房子有意思：<b>底下留出一条通道走人，上面还是住家</b>，这叫<b>过街楼</b>（骑楼）。下雨不用打伞就能走一整段，太阳晒不着、雨淋不着。"</p>
+      <p>"配上一路的<b>廊棚</b>，你就明白山塘街的房子是什么逻辑：<b>前门沿街开店，后门临河上船</b>。货从后门进、客从前门来。河就是他们的'高速'。"</p>
+      <p>"更妙的是生活：河上常有小船卖米、卖柴、卖点心酱醋，<b>楼上的人不用下楼，拿根绳子把篮子吊下去，吆喝一声、装满再提上来</b>——<b>这才是真的'送货上门'。</b>"</p>
+    </div>
+    <div class="tip"><b>延伸一句：</b>过街楼、廊棚不是山塘独有，周庄、同里、西塘都有——因为大家都靠河吃饭，气候一样、做法一样。<b>看到它，你就能认出"这是江南水乡"。</b></div>
+  </div>
+
+  <!-- ⑨ -->
+  <div class="spot" id="st9">
+    <span class="s-tag">第 ⑨ 站</span>
+    <h3>新民桥 · 最佳拍照点 · 景区段与烟火段的分界</h3>
+    <span class="en">St.9 · Xinmin Bridge</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">机位</span>
+      <p>"到山塘街<b>最佳拍照点</b>了——新民桥。站上去往东看：<b>山塘河、古戏台、通贵桥一线，就是明信片上那张山塘。</b>"</p>
+      <p>"夜里更美：<b>亮灯以后，河面一片灯火倒影</b>，这就是著名的'山塘亮灯仪式'；桥上人挤人，都要抢这一刻。"</p>
+    </div>
+    <h4>一座桥，劈出两种山塘</h4>
+    <div class="debate">
+      <div class="d primary"><b>桥东 · 景区段</b><p>就是"山塘老街"，<b>短短 360 米</b>，却集中了通贵桥、玉涵堂、古戏台、苏州商会博物馆、各大老字号等最典型的看点，商业业态相对规范。<b>每逢节假日这里要限流、单循环排队</b>——因为它太密、太短、太挤。</p></div>
+      <div class="d"><b>桥西 · 烟火段</b><p>过了新民桥，游客一下少了。这里的店多半是<b>山塘街居民自己开的</b>——卖包子馒头的、卖南北货咸菜酱菜的，加上<b>新民桥菜场、阿坤熟菜、荣阳楼（油汆团子）</b>，一口苏州话、一股饭香，<b>像一个菜市场</b>，很像苏州的葑门横街。</p></div>
+    </div>
+    <div class="say"><span class="role">落板</span>
+      <p>"所以我们说'一条山塘街，两种活法'：<b>东边给游客看，西边给自己过。</b>但请记住一件事——<b>乾隆年间的山塘街，是从头到尾一路繁华，没有今天这种'一段热、一段冷'的分别。</b>为什么变成这样？1860 年那场大火之后，街的命运就断了；今天我们看到的冷清段，恰恰是它最真实的一段年轮。"</p>
+    </div>
+    <h4>顺手多讲一段 · 这座桥比你想的老</h4>
+    <div class="say"><span class="role">过渡</span>
+      <p>"大家脚下这座新民桥，看着新——它是 2002 年山塘修复时重造的。可它的身世有<b>一百多年</b>：<b>1906 年沪宁铁路上海到无锡段通车</b>，配套修了一条大马路，从城东南的洋关经盘门，一直通到阊门、再到火车站——<b>这条马路跨过山塘河架的那座桥，就是新民桥的前身。</b>"</p>
+      <p>"那时候它还不叫这个名。老百姓叫它'<b>洋桥</b>'——跟着洋马路来的，就叫洋桥（那年头新马路上新造的桥，都叫洋桥，连广济桥也叫过）。<b>1927 年拓建，才定下名字：新民桥。</b>为什么叫'新民'？<b>'革除旧满清，建立新民国'</b>——一座桥的名字里，藏着那个年代的人心。"</p>
+      <p>"更有意思的是它的身子：<b>三个孔——中间大孔走船，两边小孔走人走车。</b>也就是说，<b>一百年前苏州人就在这座桥上"立体通行"了</b>：桥面跑车、桥洞走人、河中行船。所以人家说，它是<b>苏州最早的"立交桥"</b>。"</p>
+    </div>
+    <div class="tip"><b>顺手指一把：</b>桥洞壁间镌着新桥联（联家<b>俞涌</b>撰）："<b>远山拥翠，此去舟行烟水里；新月横波，方知人在画图中</b>""青云信步，阖阖千秋多胜迹；绿水泛舟，风光七里属诗人"。站在桥头照着眼前景念一遍，味道就出来了。</div>
+    <div class="tip"><b>考据底料 · 新民桥小史（讲师内部）：</b>
+      <p>① <b>始建</b>：清光绪末年。1906 年 9 月 4 日<b>沪宁铁路上海至无锡段通车</b>，配套马路自城东南洋关经盘门延伸至阊门、火车站，跨山塘河新建此桥（据〈老照片〉）。</p>
+      <p>② <b>初无正名</b>：1914 年民国地图上此桥尚未标名，民间俗称"<b>洋桥</b>"（当年新马路上新造之桥多称洋桥，广济桥亦曾叫洋桥）；1915 年苏州中英文地图上已见音译"<b>Hsin-min-chia</b>"——"新民"之名在民国初年已通行。</p>
+      <p>③ <b>1927 年（民国十六年）拓建</b>（一说重建），三孔水泥桥：中孔跨 8 米通行山塘河，两侧旱孔各 3.5 米，山塘街与下塘街分别从旱孔穿行——<b>"桥上走车、洞下人走、河中行舟"</b>，是<b>苏州最早的"立交桥"</b>（姑苏发布系列作"最早的立交桥之一"）。</p>
+      <p>④ <b>桥名含义</b>：蕴含"<b>革除旧满清，建立新民国</b>"之意——与孙中山先生"创立民国"的革命纲领同一语脉（现场可带一句，标"有一种说法"即可，未见方志明文）。</p>
+      <p>⑤ <b>1966 年重修</b>：钢筋混凝土平桥，铁栏杆，宽 11 米、长 19.5 米。</p>
+      <p>⑥ <b>2002 年</b>山塘街区保护工程启动，此桥拆建重修：今貌跨河部分为单孔拱形、花岗石栏杆，桥面宽约 16 米，两侧人行道各约 1.8 米，左右旱桥踏步 21／22 级；东侧别附人行拱桥，故"在下塘看新民桥，疑为两桥，实际是一桥"。</p>
+      <p>⑦ 桥洞东侧壁间嵌<b>三块大理石诗碑</b>：白居易《武丘寺路》、范成大《半塘》、唐寅《虎丘泛舟》（此条口径来自百科，<b>现场核一眼再讲</b>）。</p>
+      <p>⑧ <b>老照片机位</b>：从南边的<b>通贵桥</b>拍新民桥——两桥百年互为对景，1930 年代老照片与今天几乎完全重叠。</p>
+    </div>
+  </div>
+
+  <!-- ⑩ -->
+  <div class="spot" id="st10">
+    <span class="s-tag">第 ⑩ 站</span>
+    <h3>穿桥洞 · 青石浮雕长卷《山塘胜景图》</h3>
+    <span class="en">St.10 · The Long Scroll Carved in Stone</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">指认</span>
+      <p>"请大家走进桥洞，往两边墙上看看——<b>一整卷浮雕，长 27 米</b>，题名《山塘胜景图》。"</p>
+      <p>"雕的是<b>从阊门一路到虎丘西山庙桥</b>的七里山塘：河街相邻、粉墙黛瓦、横跨两岸的古桥、还有市井生活的烟火气。"</p>
+    </div>
+    <h4>怎么读这卷图（关键：头与尾）</h4>
+    <div class="method">
+      <div class="layer"><div class="ln">构图</div><p><b>从右往左读</b>：右端是<b>阊门</b>，一路向西——渡僧桥、御碑亭、山塘桥、通贵桥、新民桥、星桥、桐桥、彩云桥（半塘）、普济桥、五人墓、斟酌桥、望山桥，左端收在<b>虎丘西山庙桥</b>与虎丘塔。</p></div>
+      <div class="layer"><div class="ln">头尾</div><p>这就是"七里山塘"的<b>头与尾</b>：<b>头在阊门（渡僧桥一带），尾在虎丘（西山庙桥）</b>。全长约七里，所以叫七里山塘。<b>看清楚这幅图，'七里山塘'的范围就再也不会讲错。</b></p></div>
+      <div class="layer"><div class="ln">对照</div><p>桥洞里另嵌有<b>咏山塘的古诗词碑七方</b>，其中包括我们第 ③ 站背的白居易《武丘寺路》，还有范成大写半塘的"柳暗阊门逗晓开，半塘塘下越溪回"。</p></div>
+    </div>
+    <div class="egg"><b class="t">考据彩蛋 · 同名两件，别混了</b>
+      <p>《山塘胜景图》有<b>两件作品同名</b>：<br>
+      ① <b>国画长卷</b>——苏州画家<b>劳思</b>创作（2010 年），横 1177 厘米、纵 38 厘米，画尽修复后的七里山塘全部节点，人物两千余众，分"盛世繁华区、市井风貌区、历史风情区、传奇文化区、名贤古迹区、风景名胜区"六大段；2010 年上海世博会苏州馆镇馆之宝，被誉<b>"当代的《姑苏繁华图》"</b>，后与《姑苏繁华图》合印"一盒双轴"；其<b>线雕石刻版镶于五人墓碑廊内</b>。<br>
+      ② <b>眼前这卷青石浮雕</b>——新民桥北侧旱洞壁间，<b>雕刻大师蒋卫男</b>创作，<b>2021 年 1 月 25 日竣工</b>，长 27 米。</p>
+    </div>
+    <div class="tip"><b>顺带一提：</b>穿过桥洞继续往西约三百米就是<b>星桥</b>——它旧名就叫<b>"新桥"</b>。老地图上"新""星"两种写法并存，过去人写地名常拿同音字顶替（苏州"星造桥"后来也被俗称"新造桥"），所以你听到"新桥"别以为是另一座桥。</div>
+  </div>
+
+  <!-- ⑪ -->
+  <div class="spot" id="st11">
+    <span class="s-tag">第 ⑪ 站</span>
+    <h3>七狸传奇 · 张士诚与刘伯温</h3>
+    <span class="en">St.11 · Seven Civet Cats</span>
+    <p class="part-sub">这一段是"回望式"讲点：神话讲得越热闹，越好记。<b>可在此收束，也可在第 ④ 站（首狸）先埋伏笔。</b></p>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">讲故事</span>
+      <p>"最后讲个故事。苏州人管山塘街还叫<b>'七狸山塘'</b>——七只狸猫的山塘。"</p>
+      <p>"明朝刚建立的时候，朱元璋最不放心的，就是曾经被张士诚占过的苏州。他派<b>刘伯温</b>来看风水。刘伯温走到山塘街，一看：<b>这条山塘河横贯在白堤旁边，形状像一条卧龙！</b>他怕这儿将来要出真龙天子，跟朱家争江山，就施法在山塘桥到西山庙桥的沿途，<b>七座桥边各设一只青石狸猫头</b>，用来锁住龙身——'七狸有千斤巨锁之功'。</p>
+      <p>"七只狸各有名字：<b>山塘桥美仁狸、通贵桥通贵狸、星桥文星狸、彩云桥彩云狸、普济桥白公狸、望山桥海涌狸、西山庙桥分水狸。</b>最妙的是，传说每只狸爱吃的豆腐，桥堍都有一家豆腐店——所以这条街上豆腐店特别多。</p>
+      <p>"还有另一说：<b>老虎要斗狮子，请七只狸猫帮忙把狮子赶到了狮子山</b>，老虎怕狮子回来，就把狸猫留在山塘河边守着。所以山塘的狸猫，是<b>镇水的守卫</b>。"</p>
+    </div>
+    <h4>史实锚点 · 张士诚</h4>
+    <p>元末<b>张士诚</b>割据苏州十二年，苏州人对他有感情（至今有"讲张"的俗语）。明军来时，他在虎丘一带筑土城决战，兵败被俘自尽；山塘街也在那场战事中重创。<b>刘伯温设狸镇龙，正是"朱元璋不放心苏州"这个心理的投射。</b></p>
+    <h4>旧像之谜 · 原来的石狸什么样？</h4>
+    <div class="say"><span class="role">打预防针</span>
+      <p>"先说清楚：<b>今天你摸到的这七只，都是复刻版，不是原物。</b>那原物长什么样？<b>老实说，今天没有任何文献和照片留下来——谁也说不准。</b>"</p>
+      <p>"为什么没有照片？<b>还是那个道理：胶卷金贵的年代，没人会去拍这么个灰不溜秋、丑不拉几的小东西。</b>它当年不起眼，所以没人在意。"</p>
+      <p>"但老山塘的居民是有印象的——<b>他们说这些石狸猫都很矮，你抬脚一屁股就能坐在它头上。</b>再看看今天这几只，<b>一米二到一米四高</b>——你坐上去试试？<b>这高度，估计只有姚明能坐。</b>方志里也留了一句旁证：过去立在桥堍的仿制石狸，<b>'高度比原状增一倍'</b>。"</p>
+      <p>"那原来的去哪了？<b>据老山塘居民说，是五十年代大炼钢铁的时候被砸了、烧石灰去了</b>——非常可惜。而且长相也和现在不一样：<b>今天这几只的蓝本，是东山（洞庭东山）的明清镇墓兽——也就是守墓兽</b>，走的是另一种路数。"</p>
+    </div>
+    <div class="tip"><b>讲师实证 · 原型在洞庭东山（实地考证，有实拍物证）：</b><br>今山塘七狸的<b>造型蓝本，是东山（洞庭东山）雨花台一带的明清镇墓兽（守墓兽）石刻</b>——那是<b>真正的明清旧刻、货真价实的古代石刻</b>。讲师本人曾到东山雨花台现场比对并拍摄留档，形制特征（蹲坐昂首、须鬃、体量比例）与今山塘七狸一望即合。<br><b>年代逻辑（最硬的一条，现场可讲死）：</b>东山这些石兽是<b>明清旧物</b>，山塘七狸是 <b>2006 年新设</b>——<b>前后差着三百多年，只可能是后人摹前代（今摹古），绝不可能明清的石刻倒过来抄今天的。</b><br><b>讲法建议：</b>说"原型是东山的明清镇墓兽，那边的实物还在，你们有兴趣去看一眼就明白"最自然。<b>公开文献里查不到这条关联（属讲课人实地考证，未成文发表），所以这是本手册的独家干货——现场讲出来很有分量。</b></div>
+    <div class="tip"><b>讲师必背 · 七狸的真相（防坑，四条）：</b><br>① <b>今像非旧物</b>——街上这七只是 2006 年新设的现代石雕；<br>② <b>原状很矮</b>——老山塘居民记忆里"抬脚就能坐上去"，方志口径"仿制者高度比原状增一倍"，故今像明显高于旧像；<br>③ <b>旧像无照片留存</b>——目前未见任何旧石狸的照片或图像资料，故严格讲："<b>原来的样子，我们已经不知道了</b>"（讲时用"据老山塘居民说"，别当定论）；<br>④ <b>旧石兽未必是"狸猫"</b>——老山塘徐文高考证：早年桥堍确有青石神兽，是辟邪用石兽（民间忌"门对桥、门对路"），个数远不止七、造型也不止狸；近人回忆，二十世纪六十年代街上尚存一只，在<b>桐桥堍对面一家烟纸杂货店门前</b>，后亦无存。<b>至于刘伯温设狸镇龙，正史无载，属民间传说——传说照讲，但务必补一句"这是传说"。</b></div>
+    <div class="egg"><b class="t">两条身世线索（讲师备注）：</b>① <b>造型蓝本＝洞庭东山雨花台明清镇墓兽</b>——<b>讲师实地考证＋实拍物证，可讲落实</b>（年代逻辑见上：明清旧刻早于 2006 年新像三百余年，只可能今摹古）；<b>唯公开文献未见此关联的记载</b>，故属"实物比对型实证"，讲时用"去东山看一眼就明白"最稳。② <b>"五十年代大炼钢铁时被砸碎烧石灰"——老山塘居民口述，未见文献佐证</b>，讲时用"据老山塘居民说"。<b>两条合起来说明：这七只小石兽的身世，一条已由实物钉死，一条仍是口述</b>——分寸拿稳，听众服气。</div>
+    <div class="egg"><b class="t">现场玩法：</b>"集狸大作战"——从山塘桥到西山庙桥找齐七只狸，是这几年最火的山塘玩法。今天我们先摸两只（美仁狸、通贵狸），剩下五只留给你们自己来集。<b>（七只各自的寓意，第 ④ 站已一次说全，走到哪只都能点名。）</b></div>
+    <div class="src"><b>口径来源：</b>七狸名录与寓意＝山塘街七狸改造铭牌（姑苏发布）；旧像形制与"高度比原状增一倍"＝苏州市地方志办《令人神往的山塘古桥》；"六十年代尚存一只在桐桥堍"、辟邪石兽说＝同上；<b>"原型为洞庭东山雨花台明清镇墓兽"＝讲师实地考证（有实拍物证，公开文献暂无此说）</b>；"大炼钢铁砸碎烧石灰"＝老山塘口述，待核。</div>
+  </div>
+
+  <!-- ⑫ -->
+  <div class="spot" id="st12">
+    <span class="s-tag">第 ⑫ 站</span>
+    <h3>烟火段 · 一路向西</h3>
+    <span class="en">St.12 · The Everyday Stretch</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">放松</span>
+      <p>"过了新民桥，请把手机收一收，用鼻子和耳朵感受这条街：<b>包子笼屉的蒸汽、咸菜酱菜的酱香、阿婆讲的苏州话、菜场里讨价还价的声音。</b>"</p>
+      <p>"这就是<b>老苏州的山塘</b>。老话说得直白：<b>'老苏州在新民桥以北到星桥一带活动，很少逛南边的店。'</b>东边是给客人看的，西边是自己过日子。"</p>
+    </div>
+    <div class="tip"><b>顺路点名（可各买一口尝）：</b>新民桥菜场 · 阿坤熟菜（猪头肉、猪门腔）· <b>荣阳楼</b>（油汆团子，苏州经典）· <b>朱新年</b>（汤团）· 乾生元（枣泥麻饼，创于清乾隆四十六年）· 马栋佩烧卖。走累了就在菜场附近歇脚。</div>
+  </div>
+
+  <!-- ⑬ -->
+  <div class="spot" id="st13">
+    <span class="s-tag">第 ⑬ 站</span>
+    <h3>星桥收队 · "新桥"就是星桥</h3>
+    <span class="en">St.13 · The Finish</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">收尾</span>
+      <p>"走到这座桥，我们今天就走完了<b>山塘街的东半程</b>。它叫<b>星桥</b>——<b>星星的星</b>。不过你翻老地图，会发现它也写作<b>"新桥"（新旧的新）</b>：这座桥唐代始建，白居易筑白堤时所建，因为是一座<b>新造的桥</b>，村里人就叫它新桥；苏州话里"新""星"音近，慢慢就成了星桥。也有人说是夜里河上<b>桅灯点点、倒映如星</b>，所以叫星桥——两种说法，都很美。"</p>
+      <p>"毛孝先《山塘竹枝词》写的就是这一段：<b>'水绕阊门接虎丘，清波七里径通幽。新桥过去桐桥路，隐隐垂杨罨画楼。'</b>"</p>
+      <p>"所以，<b>别把'新桥'当成另一座桥——它就是星桥。</b>过去人写地名，同音字随手就替了，这在老地图上非常常见。"</p>
+    </div>
+    <div class="say"><span class="role">结课</span>
+      <p>"回头看看我们走过的路：<b>一条街，走了 1200 年</b>——白居易挖出它，明清的商帮把它做成贸易走廊，乾隆把它抄回北京，1860 年一把火烧断了它的命脉，2002 年我们又把它救回来。"</p>
+      <p>"今天的山塘，一半是给游客的，一半是给自己的。你刚才两边都看了——<b>这才是完整的山塘街。</b>"</p>
+    </div>
+    <div class="say"><span class="role">收队奖励 · 五块钱一杯茶</span>
+      <p>"走得动的，我们多走一站——到星桥收队。为什么一定要走到星桥？<b>因为星桥头有一家茶馆，五块钱一杯茶。</b>"</p>
+      <p>"就在这里，星桥北边，原来是个菜场——<b>1953 年就建起来的新桥菜场，陪着这一带的老苏州过了七十几年。</b>后来菜场老旧了，修旧如旧改造成了茶馆，叫<b>'山塘有座'</b>，一开张就火爆出圈。"</p>
+      <p>"<b>炒青、碧螺春、生普，五块钱一杯，还能无限续杯。</b>早上六点就开门，晚上八点才关。老苏州一杯茶坐一下午，竹椅、八仙桌、老式竹壳热水瓶、复刻的老虎灶——进门就有老苏州的味道。"</p>
+      <p>"<b>中午到傍晚还有三场评弹</b>，弦索叮咚、吴语婉转，运气好能碰上评弹演员现场唱。边上一条小吃走廊：鹅汤馄饨、白玉方糕、砂锅面、赤豆圆子、炸大排……<b>点一杯茶、叫两样小吃、边上再嗑点瓜子，这就是最苏式的收尾。</b>"</p>
+      <p>"它的意思在哪？<b>茶馆不图你多花钱——它是这一带老人的'会客厅'。</b>我们今天是游客，坐进去，就成了别人的街坊邻居。<b>一条街最好的样子，不是有多少游客，是本地人还愿意在这里喝茶。</b>"</p>
+    </div>
+    <div class="tip"><b>茶馆情报（2026 年更新）：</b>"<b>山塘有座</b>"茶馆，位于<b>星桥头北侧</b>（原星桥坊老菜场／新桥菜场旧址），<b>绿茶 5 元一杯、无限续杯</b>；营业 6:00–20:00；每日午间至傍晚<b>三场评弹</b>；小吃走廊有陈小鹅鹅汤馄饨、陆巷白玉方糕等本地品牌，日客流常超 500 人次。旁边还有新开的仿古饭店<b>六宜楼</b>。茶馆二楼有露台，可俯瞰山塘街旧瓦连绵——<b>收队的合影，在露台上拍最好看。</b></div>
+    <div class="tip"><b>收队安排：</b>体力一般的团，<b>在新民桥收队</b>（约 2 小时，正好）；走得动的，<b>到星桥收队</b>（约 2.5 小时），正好去茶馆喝一杯茶再散。<b>星桥往西＝二次深度游</b>：彩云桥（半塘桥）、普济桥（山塘街跨度最大的古桥，桥洞刻"放生官河"）、望山桥、西山庙桥，以及五人墓·义风园（张溥《五人墓碑记》）、中国南社纪念馆、普福禅寺（即《红楼梦》里的"葫芦庙"）、吴中贝氏纪念馆、山东会馆·陕西会馆、怡贤亲王祠（俗称"王宫"）、半塘野芳浜……<b>留着下一趟，专门讲"山塘的龙尾"。</b></div>
+    <div class="src"><b>可留作业：</b>请学员回家后找一首咏山塘或咏苏州的古诗词，下次课上分享；或扫《南巡苏州虎丘行宫图》全卷（gusu-fanhua-scroll.app.workbuddy.host/xinggong/），找到今天走过的任意一座桥。</div>
+  </div>
+</section>
+
+<!-- ================= 素材矩阵 ================= -->
+<section class="part" id="matrix" data-anchor>
+  <div class="part-head"><span class="no">矩阵</span><h2>讲点 × 素材 · 现场与课后怎么配</h2></div>
+  <div class="method">
+    <div class="layer"><div class="ln">原则</div><p>沿用全线铁律：<b>现场能看到实物的（桥·狸·亭·门头），现场指认即可，不配当代实拍图</b>；<b>老照片只挑有前后对比的</b>（残破→修好、位置变了）；<b>纯文字图谱类不发</b>，只作课后回顾；现场发图限一两句陈述。</p></div>
+  </div>
+  <div class="method">
+    <div class="layer"><div class="ln">已成素材</div><p><b>共享盘 ◐苏州老照片\14山塘街\ 26 张</b>（山塘河景 5 张＋街景多张＋<b>通贵桥专题 6 张含 1980 版</b>，可做古今同机位对比）；根目录散张有<b>上塘街</b>、虎阜大桥 1983、西山庙桥 1988、<b>普济桥 1900／1910／1969 年拆除</b>。</p></div>
+    <div class="layer"><div class="ln">数字资源</div><p><b>《姑苏繁华图》全卷</b>（扫码展卷，第 ⑤ 站寻桥用）｜<b>《南巡苏州虎丘行宫图》全卷</b>（康熙南巡图第十一卷，自阊门至虎丘整条山塘入画，第 ⑩ 站读图可对照）｜两卷同站：<code>gusu-fanhua-scroll.app.workbuddy.host</code>（行宫图在 <code>/xinggong/</code>）。</p></div>
+    <div class="layer"><div class="ln">本线配图重点（已定）</div><p>① <b>阊门吊桥 · 《姑苏繁华图》局部特写</b>——第 ② 站专用，"一座桥走过去都是真金白银"的证据；② <b>《姑苏繁华图》山塘街段</b>——第 ⑤ 站扫码放大，找山塘桥、半塘桥、普济桥；③ <b>《南巡苏州虎丘行宫图》全卷</b>——第 ⑩ 站读图对照（自阊门至虎丘，整条山塘入画）。</p></div>
+    <div class="layer"><div class="ln">待补</div><p>山塘线图包尚未制作：建议优先补 <b>通贵桥 1980 前后对比组</b>（现有 1980 年老照片，可做古今同机位）、<b>七狸名录图</b>（可自绘，带七色寓意）、<b>东山明清镇墓兽实拍 × 山塘今狸对比图组</b>（王牌：原型不在眼前、明清旧刻 vs 2006 新像，正合"对比组"配图原则；照片由讲师自备／留档）、<b>十五桥横七竖八示意</b>（方位须先核准）、<b>绣娘丝绸《康熙南巡图》绣品现场照</b>（需店家许可）、<b>星桥坊茶馆照</b>（收队氛围）。<b>山塘桥老照片经查确实稀缺——若终不可得，这个"没有"本身就可以当第 ④ 站的讲点。</b></p></div>
+  </div>
+</section>
+
+<!-- ================= 讲述心法 ================= -->
+<section class="part" id="method" data-anchor>
+  <div class="part-head"><span class="no">心法</span><h2>讲述心法 · 讲师加餐</h2></div>
+  <div class="method">
+    <div class="layer"><div class="ln">一</div><p><b>用一个"为什么"贯穿全程。</b>开场问："这条街凭什么繁华一千年？"——第 ⑤ 站用"水运＝高速公路"回答，第 ⑥ 站用会馆回答，第 ⑨ 站用冷暖对照回答。<b>游客记住的是问题，不是知识点。</b></p></div>
+    <div class="layer"><div class="ln">二</div><p><b>把桥讲成"人"。</b>通贵桥是吴一鹏为串门造的（朋友之情）；白公桥对白姆桥是夫妻；大普济桥对小普济桥是父子。<b>桥有了人情，就不会忘。</b></p></div>
+    <div class="layer"><div class="ln">三</div><p><b>传说与史实分开说。</b>刘伯温设狸、乾隆为贺寿题碑，都是传说——<b>讲完补一句"这是传说，正史里没有"</b>，学员会更信任你其余的讲解。</p></div>
+    <div class="layer"><div class="ln">四</div><p><b>让学员动手。</b>摸狸头、桥上南北对拍、数桥、在浮雕长卷上找自己走过的桥——<b>身体参与过的信息，留存率最高。</b></p></div>
+    <div class="layer"><div class="ln">五</div><p><b>落点要落在"人"。</b>末尾不总结"知识点"，而说：<b>一半给游客、一半给自己；这就是山塘街。生活还在，街就还活着。</b></p></div>
+  </div>
+</section>
+
+<!-- ================= 题库 ================= -->
+<section class="part" id="quiz" data-anchor>
+  <div class="part-head"><span class="no">题库</span><h2>研学题库 · 22 题（讲师用／可作互动）</h2></div>
+  <div class="method">
+    <div class="layer"><div class="ln">基础</div>
+      <div class="l-body"><p><b>1.</b> 山塘街是谁修的？哪一年？——白居易，唐宝历元年（825）。</p>
+      <p><b>2.</b> 山塘街又叫什么？——白公堤；"七里山塘"。</p>
+      <p><b>3.</b> "七里山塘"的"头"和"尾"分别在哪里？——头：阊门（渡僧桥一带）；尾：虎丘（西山庙桥）。</p>
+      <p><b>4.</b> "横七竖八"指的是什么？——山塘街的十五座古桥：横跨山塘河 7 座，纵贯街北支流 8 座。</p>
+      <p><b>5.</b> 请说出横跨山塘河的七座桥。——山塘桥、通贵桥、星桥、彩云桥、普济桥、望山桥、西山庙桥。</p></div>
+    </div>
+    <div class="layer"><div class="ln">进阶</div>
+      <div class="l-body"><p><b>6.</b> 山塘街上的第一座桥是山塘桥，它是古迹吗？——不是。现桥为 1963 年改建的单孔水泥桥；横跨山塘河的第一座<b>真正的古桥</b>是通贵桥。</p>
+      <p><b>7.</b> 通贵桥是谁修的？为什么叫"通贵"？——明弘治初里人吴一鹏捐建；取"往来通达、贵人相通"之意（另有桥上现五彩祥云、又名"瑞云桥"之说）。</p>
+      <p><b>8.</b> 御碑亭在哪？碑上四个字是什么？——山塘街东入口山塘桥堍（2003 年新建）；正面"山塘寻胜"，取自乾隆诗"阊门西转历山塘，寻胜云岩春载阳"。</p>
+      <p><b>9.</b> 七只石狸分别叫什么？——美仁狸（山塘桥）、通贵狸（通贵桥）、文星狸（星桥）、彩云狸（彩云桥）、白公狸（普济桥）、海涌狸（望山桥）、分水狸（西山庙桥）。</p>
+      <p><b>10.</b> 现在的七只狸猫像是旧物吗？——不是，2006 年设置；旧时的青石神兽是辟邪石兽，最后一座 1966 年拆除。</p></div>
+    </div>
+    <div class="layer"><div class="ln">拓展</div>
+      <div class="l-body"><p><b>11.</b> 为什么说山塘街是《姑苏繁华图》里特别的一条街？——全卷画"一村、一镇、一城、一街"，那条"街"就是山塘街，是画中唯一被完整描绘的一条街。</p>
+      <p><b>12.</b> 会馆是干什么用的？——同乡商帮议事、祭祀、存货、住宿、调解纠纷、义葬的综合场所；山塘街曾有十几处会馆，是繁华程度的温度计。</p>
+      <p><b>13.</b> "江南三织造"是哪三家？——江宁织造（南京）、苏州织造、杭州织造。历史上<b>没有</b>"江南织造局"这一衙门。</p>
+      <p><b>14.</b> 苏州织造署在哪里？跟《红楼梦》有什么关系？——葑门带城桥下塘 18 号（今苏州第十中学）；曹寅（曹雪芹祖父）、李煦（舅祖）先后主政，被视为"大观园"原型之一。</p>
+      <p><b>15.</b> 苏州的"上塘／下塘"怎么分？——不以方位，而以主次功能分：商贸繁盛的主街一侧为"上塘"（多另有专名），河对岸以民居为主者为"下塘"。</p>
+      <p><b>16.</b> 阊门吊桥在宋代《平江图》上叫什么？它还有过哪些名字？——<b>虹桥</b>；明成化六年一度改名<b>永济桥</b>；2026 年 7 月维护竣工后铭牌正式启用<b>"钓桥"</b>（古文"钓""吊"同义，皆指吊起，非错字）。</p>
+      <p><b>17.</b> 七只石狸各自的寓意是什么？——美仁狸·<b>优雅</b>，通贵狸·<b>富贵</b>，文星狸·<b>学识</b>，彩云狸·<b>幸福</b>，白公狸·<b>健康</b>，海涌狸·<b>缘分</b>，分水狸·<b>机遇</b>。</p>
+      <p><b>18.</b> 《康熙南巡图》今天还完整吗？画苏州的是哪一卷、藏在哪里？——不完整：十二卷今存九卷、三卷下落不明；画无锡至苏州的是<b>第七卷</b>，藏<b>加拿大阿尔伯塔大学博物馆</b>。</p>
+      <p><b>19.</b> 白居易一生写了多少诗？——存诗近 3000 首，是<b>唐代存诗最多</b>的诗人（约占《全唐诗》1/17）。高产的一个原因是<b>他活得久（75 岁）</b>——可对照陆游（85 岁，9300 余首）、乾隆（89 岁，41000 余首）、李贺（27 岁，仅 200 余首）。</p>
+      <p><b>20.</b> 乾隆在御碑上题"山塘寻胜"，是哪一年、他第几次下江南？——<b>乾隆二十七年（1762），第三次南巡</b>（六次：1751／1757／1762／1765／1780／1784）。这一年比《姑苏繁华图》成画（乾隆二十四年／1759）<b>晚三年</b>——画先记下山塘，皇帝三年后才亲自来。</p>
+      <p><b>21.</b> "诗仙"最早是谁？——<b>不是李白，是白居易，而且是唐宣宗亲封的</b>（《吊白居易》"谁教冥路作诗仙"）。李白在世时被称为"谪仙人"（贺知章语），"诗仙"正式移用于李白要晚到<b>北宋徐积</b>。白居易一人三名号：<b>诗仙、诗魔、诗王</b>。</p>
+      <p><b>22.</b> 新民桥为什么被称作苏州最早的"立交桥"？它建于什么时候？——因为它是<b>三孔分层通行：中孔行船、两侧旱孔走人走车</b>。始建于<b>清末</b>（1906 年沪宁铁路通车、配套马路建成时，初名"洋桥"），<b>1927 年拓建</b>并定名"新民"（"革除旧满清，建立新民国"之意）；1966 年重修，2002 年重建为今貌。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 纠正与答疑 ================= -->
+<section class="part" id="faq" data-anchor>
+  <div class="part-head"><span class="no">纠正</span><h2>纠正与答疑 · 讲师必背</h2></div>
+  <div class="debate">
+    <div class="d primary"><b>① 山塘桥 ≠ 古桥</b><p>常被讲错。它始建于唐，但现桥是 1963 年改建的水泥桥。<b>要说"双桥"里的真古桥，指通贵桥。</b></p></div>
+    <div class="d"><b>② "新桥"就是星桥</b><p>老地图上"星桥／新桥"并存，是同音替代。不要当成两座桥；也别把星桥和<b>新民桥</b>混为一谈（新民桥在星桥以东，是 1927 年建的公路桥）。</p></div>
+    <div class="d"><b>③ "诗仙"最早是白居易，不是李白——别说反了</b><p>唐代<b>没有一个人</b>称李白"诗仙"：李白在世时是贺知章喊的<b>"谪仙人"</b>，"诗仙"正式落到李白头上要晚到<b>北宋徐积</b>（南宋杨万里推广，明清后定型）。而白居易：<b>自己写"知我者以为诗仙"</b>，身后<b>唐宣宗《吊白居易》"谁教冥路作诗仙"</b>——<b>皇上亲封的诗仙</b>。白居易一人三名号：<b>诗仙、诗魔、诗王</b>。<b>切记：不是"白居易不是诗仙"，而是"诗仙原来就是白居易"。</b></p></div>
+    <div class="d"><b>④ "江南织造局"不存在</b><p>应讲"江南三织造"；"江南织造府"是今日岭南会馆内展馆的品牌名。</p></div>
+    <div class="d"><b>⑤ 岭南会馆 ≠ 另有一个"广东会馆"</b><p>主流说法：岭南会馆即民间泛称的"广东会馆"（广东古称岭南）。若老地图上见相邻两处标注，多因别名标注或与邻近的<b>冈州会馆</b>（新会商人所建，俗称扇子会馆）相混——<b>讲时用"一般认为"，留有余地。</b></p></div>
+    <div class="d"><b>⑥ 《山塘胜景图》同名两件</b><p>① 劳思国画长卷（2010，世博苏州馆镇馆之宝，线雕石刻版在五人墓碑廊）；② 新民桥桥洞青石浮雕（蒋卫男，2021，长 27 米）。<b>现场讲的是第 ② 件。</b></p></div>
+    <div class="d"><b>⑦ "七狸"是传说</b><p>正史无载；今像为 2006 年新设。传说照讲，务必补一句"这是传说"。</p></div>
+    <div class="d"><b>⑧ 1860 年那把火</b><p>系清军退出苏州前放火，山塘街几乎烧成焦土；此后商业中心转移，街区再未回到乾隆年间的极盛。<b>不要把原因简单归于"战乱"二字，要点出年份与主角。</b></p></div>
+    <div class="d"><b>⑨ 阊门吊桥：铭牌上写的是"钓桥"</b><p>宋《平江图》作<b>虹桥</b>，明成化六年一度改称永济桥，清末定名吊桥。<b>"钓"是本字而非错字</b>——古文"钓""吊"同义，皆指把桥面吊起，北宋《武经总要》已见"钓桥"。2026 年 7 月专项维护竣工后，桥铭牌<b>正式启用"钓桥"</b>。<b>口头讲"吊桥"没问题，但要知道牌子上的正式写法。</b></p></div>
+    <div class="d"><b>⑩ 《康熙南巡图》苏州段不在国内</b><p>原作十二卷，今存九卷：故宫五卷（一、九、十、十一、十二）、巴黎吉美两卷（二、四）、纽约大都会一卷（三），另三卷下落不明。<b>画无锡至苏州的第七卷，藏加拿大阿尔伯塔大学博物馆</b>（王翚等绘，卷末即苏州织造署）——绣娘丝绸那幅绣品的原作就是它。<b>个别旧文把第七卷记在大都会，系误。</b></p></div>
+    <div class="d"><b>⑪ 白居易的诗量别说成"十分之一"</b><p>存诗近 3000 首，《全唐诗》约 48900 首，约占 <b>1/17</b>；"接近十分之一"只是概说。稳妥讲法：<b>"唐代存诗最多的诗人"</b>。</p></div>
+    <div class="d"><b>⑫ 山塘桥为什么几乎没有老照片</b><p>不是地位低，是<b>没有拍摄角度</b>——能取到它的位置太远、取景不佳，而近邻的通贵桥、新民桥可以互拍，故老照片不缺。<b>结论：别用"有没有老照片"判断一处古迹的历史地位。</b></p></div>
+    <div class="d"><b>⑬ "半塘桥"不是第十六座桥</b><p>它是<b>彩云桥的别名</b>（桥在半塘），已计入"横七"。<b>"横七竖八"＝横跨山塘河 7 座 ＋ 纵贯堤上 8 座。</b>（另有把渡僧桥、新民桥一并计入的"山塘河 15 座桥"口径——两种数法都能凑成 15，讲时选定一种说清即可，不必纠缠。）</p></div>
+    <div class="d"><b>⑭ 现在的七只石狸是复刻品；原型在东山</b><p>今像为 2006 年新设；<b>旧像什么模样，今天已无照片可考</b>；老山塘记忆里"很矮，抬脚能坐上去"，方志口径"仿制者高度比原状增一倍"。<b>造型蓝本＝洞庭东山雨花台的明清镇墓兽（讲师实地考证·有实拍物证）</b>——明清旧刻早于 2006 年新像三百余年，<b>只能今摹古，不可能明清石刻倒抄今像</b>。<b>唯"大炼钢铁砸碎烧石灰"一说系老山塘口述，讲时用"据说"。</b></p></div>
+    <div class="d"><b>⑮ 1762 年是乾隆第三次南巡，不是第二次</b><p>"山塘寻胜"题于乾隆二十七年（1762），是六下江南中的<b>第三次</b>。<b>六次年份：1751／1757／1762／1765／1780／1784。</b>另记牢一条时间线：<b>《姑苏繁华图》成于乾隆二十四年（1759）</b>，比乾隆这趟早三年；而<b>乾隆南巡图</b>（徐扬）画的是<b>乾隆十六年（1751）第一次南巡</b>——三件事别混。</p></div>
+    <div class="d"><b>⑯ "自唐以来即是商品集散地"讲过了头</b><p>这是流行说法，但<b>不严谨</b>。① 唐代开山塘河的<b>本意是治水患、通水陆</b>（两岸低洼稻田十年九灾、去虎丘陆路不畅），白居易《武丘寺路》写的是"水陆往来频""花船载丽人"——<b>游赏与交通</b>，不是货栈牙行；② 商贸是<b>逐步生长</b>的：<b>宋代第一次大发展 → 元末明初两头渐成姑苏城西集散地 → 明万历漕运兴盛"堪称江南之冠" → 清乾隆极盛</b>。<b>稳妥讲法："唐代通了水路、宋代初盛、明清大盛。"</b></p></div>
+    <div class="d"><b>⑰ "新民桥"不是 1927 年才有的桥</b><p>它<b>始建于清末（光绪末年，1906 年沪宁铁路通车、配套马路建成时）</b>，当时无正名，民间唤作"<b>洋桥</b>"；<b>1927 年（民国十六年）拓建</b>并定名"新民"——取"革除旧满清，建立新民国"之意。不少二手资料（含百科条目）直接写"始建于 1927 年"，宜按<b>"清末始建、1927 拓建"</b>讲。另两点别讲错：<b>①它至今约一百二十年</b>，不是"二三十年"的新桥；<b>②"苏州最早的立交桥"</b>指它三孔分层——中孔行船、两侧旱孔行人车（亦作"最早的立交桥之一"）。</p></div>
+  </div>
+  <div class="tip"><b>学员常问三答：</b>「能坐船吗？」——有，山塘河水上游线，古戏台码头可到虎丘（约 30 分钟）。「什么时候最美？」——夜里亮灯后，新民桥往东看。<b>「值不值得走到虎丘？」</b>——值得，但今天不走完，<b>星桥以西我们留给下一次。</b></div>
+</section>
+
+<footer style="text-align:center;padding:36px 0 10px;color:var(--ink-soft);font-size:.85rem">
+  <div style="font-family:var(--serif);letter-spacing:.2em;color:var(--gold);margin-bottom:8px">吴 地 时 光 机 · 山 塘 街 线</div>
+  <div>本手册为讲师备课用，含提问话术与教学指令，<b>不直接发给学员</b>；学员材料另见现场发图（干净版）与课后图包。</div>
+  <div style="margin-top:8px">2026-10-01 v5.3 · 依讲师口述动线编次 · 考据来源：苏州市关工委《追寻山塘故事》、苏州档案信息网《关于白居易的那些苏州吟咏》、苏州市地方志办《苏州老桥记》《令人神往的山塘古桥》、人民日报《山塘底色》（山塘商贸分期）、新华日报《白居易开"七里山塘"是为了游山玩水吗》（徐刚毅访谈）、中国经济网《苏州市山塘街》专题、江苏省民政厅／姑苏区《阊门钓桥修缮竣工》公告、央视新闻（大运河·七里山塘）、光明日报《乾隆的"旅行手册"》、人民网《六下江南》年份表、乾隆《御制诗三集》卷二十一《题虎邱云岩寺》、University of Alberta Museums（Mactaggart Art Collection）藏品档案、故宫博物院藏品说明、苏富比《从西方角度看康熙南巡》、苏州新闻网／紫牛新闻《"山塘有座"茶馆开张》、姑苏发布"山塘七狸"改造报道、老百晓集桥《苏州市新民桥》（1906 年沪宁铁路通车、洋桥、1927 拓建、1966/2002 重修、桥联）、搜狐《苏城之桥》（"革除旧满清，建立新民国"）、〈老照片〉、1930 年代山塘老照片、唐宣宗李忱《吊白居易》、白居易《与元九书》、葛景春《李白"诗仙"、杜甫"诗圣"之称的出处与来源考辨》（《中州学刊》2020 年第 10 期）、陈才智《"江山代有诗王出"》访谈等</div>
+</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var topbar=document.getElementById('topbar');
+  var sideTab=document.getElementById('sideTab');
+  var sidebar=document.getElementById('sidebar');
+  var sideMask=document.getElementById('sideMask');
+  var sideClose=document.getElementById('sideClose');
+  var sw=document.getElementById('topbarSwitch');
+
+  /* ---- 顶栏显隐偏好 ---- */
+  try{
+    var pref=localStorage.getItem('walk_toc_mode');
+    if(pref==='side'&&sw){sw.checked=false;topbar.style.display='none';}
+  }catch(e){}
+  if(sw){sw.addEventListener('change',function(){
+    topbar.style.display=sw.checked?'':'none';
+    try{localStorage.setItem('walk_toc_mode',sw.checked?'top':'side');}catch(e){}
+  });}
+
+  /* ---- 侧栏 ---- */
+  function openSide(){sidebar.classList.add('open');sideMask.classList.add('show');}
+  function closeSide(){sidebar.classList.remove('open');sideMask.classList.remove('show');}
+  sideTab.addEventListener('click',openSide);
+  sideClose.addEventListener('click',closeSide);
+  sideMask.addEventListener('click',closeSide);
+  sidebar.addEventListener('click',function(e){if(e.target.closest('a'))closeSide();});
+
+  /* ---- 下拉面板 ---- */
+  var drops=[
+    {btn:document.getElementById('db1'),panel:document.getElementById('dp1')}
+  ];
+  function closeDrops(except){
+    drops.forEach(function(d){
+      if(d.panel&&d.panel!==except){d.panel.classList.remove('open');if(d.btn){d.btn.setAttribute('aria-expanded','false');}}
+    });
+  }
+  drops.forEach(function(d){
+    if(!d.btn||!d.panel)return;
+    document.body.appendChild(d.panel);   /* 挂到body下：顶栏的backdrop-filter/overflow不再影响面板定位基准，彻底修掉错位与"看不到" */
+    d.btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var willOpen=!d.panel.classList.contains('open');
+      closeDrops(willOpen?d.panel:null);
+      d.panel.classList.toggle('open',willOpen);
+      d.btn.setAttribute('aria-expanded',willOpen?'true':'false');
+      if(willOpen){
+        var r=d.btn.getBoundingClientRect();
+        d.panel.style.visibility='hidden';d.panel.classList.add('open');
+        var pw=d.panel.offsetWidth;
+        var left=r.left;
+        if(left+pw>window.innerWidth-10)left=window.innerWidth-pw-10;
+        d.panel.style.left=left+'px';
+        d.panel.style.top=(r.bottom+6)+'px';
+        d.panel.style.position='fixed';   /* fixed 逃出 nav.toc 的 overflow 裁剪——这就是下拉"打不开"的根因 */
+        d.panel.style.visibility='';
+      }
+    });
+    d.panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){closeDrops(null);}
+      e.stopPropagation();
+    });
+  });
+  window.addEventListener('scroll',function(){
+    drops.forEach(function(d){
+      if(d.panel&&d.panel.classList.contains('open')){
+        var r=d.btn.getBoundingClientRect();
+        var pw2=d.panel.offsetWidth;
+        var left2=r.left;
+        if(left2+pw2>window.innerWidth-10)left2=window.innerWidth-pw2-10;
+        d.panel.style.left=left2+'px';
+        d.panel.style.top=(r.bottom+6)+'px';
+      }
+    });
+  },{passive:true});
+  document.addEventListener('click',function(){closeDrops(null);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrops(null);closeSide();}});
+
+  /* ---- 滚动高亮 ---- */
+  var sections=[];
+  document.querySelectorAll('[data-anchor]').forEach(function(s){sections.push(s);});
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('nav.toc > a'));
+  var dropLinks=Array.prototype.slice.call(document.querySelectorAll('.drop-panel a'));
+  var sideLinks=Array.prototype.slice.call(document.querySelectorAll('.side-nav a[href^="#"]'));
+  var btnFor={};
+  drops.forEach(function(d){
+    if(!d.btn||!d.panel)return;
+    d.panel.querySelectorAll('a').forEach(function(a){
+      var href=a.getAttribute('href');
+      if(href&&href.charAt(0)==='#'){btnFor[href.slice(1)]=d.btn;}
+    });
+  });
+  function setActive(id){
+    navLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    dropLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    sideLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    drops.forEach(function(d){if(d.btn)d.btn.classList.remove('active');});
+    if(btnFor[id])btnFor[id].classList.add('active');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){setActive(en.target.id);}
+      });
+    },{rootMargin:'-70px 0px -65% 0px',threshold:0});
+    sections.forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+<script>
+/* —— 卡片折叠：内容高于阈值即折叠，点击展开/收起 —— */
+(function(){
+  var MAXH = 256;
+  document.querySelectorAll('.debate .d').forEach(function(d){
+    var body = document.createElement('div'); body.className = 'd-body';
+    while (d.firstChild) body.appendChild(d.firstChild);
+    d.appendChild(body);
+    if (body.scrollHeight > MAXH) {
+      d.classList.add('foldable','clamped');
+      var btn = document.createElement('button'); btn.className='fold-btn'; btn.type='button';
+      btn.textContent = '展开全部 ▾';
+      d.appendChild(btn);
+      btn.addEventListener('click', function(){
+        var c = d.classList.toggle('clamped');
+        btn.textContent = c ? '展开全部 ▾' : '收起 ▴';
+      });
+    }
+  });
+})();
+</script>
+</body>
+</html>

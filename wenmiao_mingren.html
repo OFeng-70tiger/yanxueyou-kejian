@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文庙名人篇 · 苏州城市漫游研学｜教学大纲（讲师备课版）</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:640px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+
+/* ===== 课程信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 导航（顶栏） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 15px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer}
+nav.toc .drop-btn{-webkit-appearance:none;appearance:none;margin:0}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+/* 人物单元下拉子菜单（面板挂在吸顶容器上，避开滚动容器裁切） */
+.drop-wrap{flex:none}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 6px);left:20px;z-index:60;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:210px;max-height:calc(100dvh - 130px);overflow-y:auto}
+.drop-panel.open{display:flex}
+.drop-panel a{border:none;border-radius:9px;background:none;font-weight:400 !important;color:var(--ink-soft) !important;padding:8px 14px !important}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--red) !important}
+.drop-panel a.active{background:var(--gold-bg) !important;color:var(--red) !important;font-weight:700 !important}
+.drop-panel .d-head{font-size:.72rem;color:var(--gold);letter-spacing:.2em;padding:4px 14px 6px;font-weight:700}
+.toc-hint{display:none}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav a{padding:10px 20px;color:var(--ink-soft);text-decoration:none;font-size:.94rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a.sub{padding-left:38px;font-weight:400;font-size:.89rem}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节头 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+/* ===== 人物单元 ===== */
+.unit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;margin-top:34px;position:relative;overflow:hidden}
+.unit .tag-side{position:absolute;top:0;right:0;font-family:var(--serif);writing-mode:vertical-rl;letter-spacing:.3em;
+  background:var(--red);color:#fff;font-size:.8rem;padding:14px 8px;border-radius:0 0 0 12px;opacity:.92}
+.unit.teal .tag-side{background:var(--teal)}
+.unit.blue .tag-side{background:var(--blue)}
+.unit.gold .tag-side{background:var(--gold)}
+.unit h3{font-family:var(--serif);font-size:clamp(1.25rem,4.4vw,1.55rem);font-weight:900;letter-spacing:.06em;margin-bottom:2px}
+.unit .role{font-family:var(--serif);color:var(--gold);font-size:.95rem;letter-spacing:.2em;margin-bottom:12px}
+.unit h4{font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:22px 0 6px;display:flex;align-items:center;gap:8px}
+.unit h4::before{content:"§";color:var(--gold);font-size:.9rem}
+.unit.teal h4{color:var(--teal)} .unit.blue h4{color:var(--blue)} .unit.gold h4{color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px;letter-spacing:.05em}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.field{background:var(--teal-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.field b.t{color:var(--teal)}
+
+.qa{border:2px dashed var(--gold);border-radius:14px;padding:12px 18px;margin:10px 0}
+.qa b.t{color:var(--gold)}
+.qa p{margin:5px 0}
+.qa .q{color:var(--ink);font-weight:700}
+.qa .a{color:var(--ink-soft)}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+/* ===== 反向导航：去现场（跨页到打卡点手册 v2） ===== */
+.spot-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;align-items:center}
+.spot-row .lbl{font-size:.8rem;color:var(--ink-soft);font-weight:700;letter-spacing:.1em}
+.spot-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  color:var(--blue);background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:30px;padding:6px 14px;
+  transition:transform .15s,box-shadow .15s}
+.spot-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(58,110,165,.25)}
+.spot-link.hl{color:var(--red);background:#fdf1ef;border-color:var(--red)}
+
+/* ===== 信源标注 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 打卡点 ===== */
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-top:24px}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.25rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+
+.matrix td:first-child,.matrix th:first-child{white-space:nowrap}
+.matrix td{font-size:.88rem}
+
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{nav.toc,.side-tab,.sidebar,.side-mask{display:none}body{background:none}}
+@media(max-width:640px){
+  .unit{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+  .unit .tag-side{display:none}
+}
+[data-anchor]{scroll-margin-top:70px}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= 封面 ================= -->
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学</div>
+  <h1>文庙名人篇 · 苏州城市漫游研学</h1>
+  <div class="sub">讲 师 备 课 手 册 ｜ 内 部 资 料</div>
+  <p class="desc">一座文庙，半部苏州读书史。本大纲打破"按景点罗列"的旧结构，改为<b>以人为主线</b>的大纲式设计：孔子 → 言子 → 范仲淹 → 钱棨 → 钱镠与钱氏家族。每个单元自成一体，可独立讲述，也可串成一条"千年文脉"的完整叙事。所有人物最终都落到<b>现场打卡点</b>上——看到的是碑、殿、树、石，讲出的是人、故事与精神。</p>
+  <div class="src" style="margin-top:18px;border-top:none;padding-top:0"><b>信源体例</b>：凡可查证的内容均在相关段落下以小字注明来源——古籍注明<b>原典书名与篇目</b>（如《论语·阳货》），考据结论注明<b>史料</b>（如《清史列传》《吴县志》），近现代人物注明<b>权威机构或媒体</b>（如清华大学校史馆、央视网），内部整理资料标注 <code>DS-export</code> = DeepSeek 历史研究档案导出文件（见工作区 deepseek_data/export/）。传说类内容本大纲已点明"传说"，不另注信源。</div>
+  <a class="sister-link" href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a class="sister-link" href="wenmiao_shouce.html" style="margin-left:8px">⟶ 配套：《文庙打卡点 · 现场解说手册 v2》（逐点解说）</a>
+  <div class="seal">备课备用 · 宁多勿缺</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>课程名称</b><span>吴地时光机 · 文庙名人篇（文脉研学之旅）</span></div>
+  <div class="m"><b>授课对象</b><span>亲子家庭（小学二年级以上）/ 成人研学团</span></div>
+  <div class="m"><b>行程主线</b><span>三元坊 → 江苏巡抚衙门 → 沧浪亭 → 苏州文庙（重头戏）</span></div>
+  <div class="m"><b>建议时长</b><span>半日（9:00 集合，12:10 午餐苏式面）</span></div>
+  <div class="m"><b>集合地点</b><span>地铁 4 号线三元坊站 3 号出口</span></div>
+  <div class="m"><b>资料版本</b><span>2026-09 v2（新增钱氏三杰与信源标注）· 名人堂持续补充中</span></div>
+</div>
+
+<!-- ================= 导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <div class="drop-wrap" id="dropWrap">
+      <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false">一·人物单元<span class="caret">▾</span></button>
+    </div>
+    <a href="#p2">二·打卡点手册</a>
+    <a href="#p3">三·点位矩阵</a>
+    <a href="#p4">四·方法题库</a>
+  </nav>
+  <div class="drop-panel" id="dropPanel">
+    <div class="d-head">五 组 人 物</div>
+    <a href="#u1">单元一 · 孔子</a>
+    <a href="#u2">单元二 · 言偃（言子）</a>
+    <a href="#u3">单元三 · 范仲淹</a>
+    <a href="#u4">单元四 · 钱棨</a>
+    <a href="#u5">单元五 · 钱镠与钱氏家族</a>
+  </div>
+</div>
+
+<!-- ================= 侧边栏目录 ================= -->
+<button class="side-tab" id="sideTab" aria-label="打开课程目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏课程目录">
+  <div class="side-head">
+    <span class="side-title">课程目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 课程总览与教学目标</a>
+    <div class="divider"></div>
+    <a href="#p1">第一部分 · 人物单元（五组）</a>
+    <a class="sub" href="#u1">单元一 · 孔子</a>
+    <a class="sub" href="#u2">单元二 · 言偃（言子）</a>
+    <a class="sub" href="#u3">单元三 · 范仲淹</a>
+    <a class="sub" href="#u4">单元四 · 钱棨</a>
+    <a class="sub" href="#u5">单元五 · 钱镠与钱氏家族</a>
+    <div class="divider"></div>
+    <a href="#p2">第二部分 · 打卡点手册</a>
+    <a href="#p3">第三部分 · 人物×点位矩阵</a>
+    <a href="#p4">第四部分 · 讲述方法与题库</a>
+    <div class="divider"></div>
+    <a href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a href="wenmiao_shouce.html" style="color:var(--blue)">⟶ 打卡点 · 现场解说手册 v2 ↗</a>
+  </nav>
+</aside>
+
+<!-- ================= 课程总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>课程总览与教学目标</h2></div>
+  <p class="part-sub">本课程回答一个核心问题：<b>苏州为什么能成为"状元之乡""院士之乡"？</b>答案藏在一座文庙和五组人物的故事里。</p>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red);margin-bottom:10px">◆ 一条主线 · 五组人物 · 三层讲述</h4>
+    <p><b>主线叙事：</b>孔子立"教"（有教无类，人人可学）→ 言子把"教"带回江南（吾道其南）→ 范仲淹在苏州为"教"安了一个千年之家（捐宅建府学，庙学合一）→ 钱棨是这所学堂走出的"学霸天花板"（连中六元）→ 追钱棨的家谱往上走，是钱镠和绵延千年的钱氏家族（家训传家，群星闪耀）。<span class="hl">从一位圣人，到一座学堂，到一个家族，再到一座城市——这就是苏州文脉的"一条龙"。</span></p>
+    <div class="layer"><div class="ln">1</div><p><b>表象层（孩子都能看见）：</b>碑、殿、树、石、坊——先引导观察："你看到了什么？"小而浅，没关系，这是入口。</p></div>
+    <div class="layer"><div class="ln">2</div><p><b>故事层（背后的人）：</b>每一块碑、每一棵树、每一块石头背后，都站着具体的人——黄裳、李寿朋、范仲淹、陆绩、钱棨。讲人的抉择与命运。</p></div>
+    <div class="layer"><div class="ln">3</div><p><b>精神层（带得走的东西）：</b>有教无类的公平、先忧后乐的担当、屡败屡战的坚韧、利在天下必谋之的格局——这些是孩子带回家的"种子"。</p></div>
+  </div>
+
+  <table>
+    <tr><th style="width:130px">教学目标</th><td>① 认识与文庙相关的五位（组）历史人物及其事迹；② 理解"庙学合一"与苏州崇文重教传统的由来；③ 学会"由物见人、由人见精神"的观察方法。</td></tr>
+    <tr><th>情感目标</th><td>对家乡文脉产生亲近感与自豪感；从范仲淹的格局、钱棨的坚韧中受到具体的人格感染。</td></tr>
+    <tr><th>讲解原则</th><td>现场看到的都是"浅"的小东西，备课却要"深"——<b>讲不一定都讲，备必须备足</b>。按现场时间、孩子反应灵活取舍。</td></tr>
+  </table>
+</section>
+
+<!-- ================= 第一部分 人物单元 ================= -->
+<section class="part" id="p1" data-anchor>
+  <div class="part-head"><span class="no">第一部分</span><h2>人物单元（五组）</h2></div>
+  <p class="part-sub">每个单元包含：档案速览 → 核心故事 → 金句 → 与文庙/苏州的关联 → 现场讲述要点 → 互动问答 → 储备冷知识。</p>
+
+  <!-- ========= 孔子 ========= -->
+  <div class="unit" id="u1" data-anchor>
+    <div class="tag-side">单元一</div>
+    <h3>孔子</h3>
+    <div class="role">至圣先师 · 万世师表</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>孔丘，字仲尼（前551—前479），鲁国陬邑（今山东曲阜）人</td></tr>
+      <tr><th>身份</th><td>思想家、教育家，儒家学派创始人；被尊为"至圣先师""万世师表"</td></tr>
+      <tr><th>教育成就</th><td>首创私学，"弟子三千，贤人七十二"；主张<b>有教无类</b>、因材施教、诲人不倦</td></tr>
+      <tr><th>与文庙关系</th><td>天下文庙皆为纪念孔子而设；苏州文庙大成殿正中供奉孔子</td></tr>
+      <tr><th>苏州渊源</th><td>泰山"望吴圣迹"典故中遥望的正是苏州阊门——"登泰山而小天下"的文化意象</td></tr>
+    </table>
+
+    <h4>核心知识点：有教无类</h4>
+    <p>孔子之前，"学在官府"——教育被贵族垄断，平民没有受教育的权利。孔子以"自行束脩以上"（十条干肉的象征性薄礼）的极低门槛收徒，把教育的门第一次向平民敞开：弟子里有箪食瓢饮的颜回、出身"鄙人"的子路、甚至曾坐过牢的公冶长。他提出"<b>性相近也，习相远也</b>"——人与人的差别是后天教育造成的，这为"人人可学"提供了哲学依据，比西方近代教育公平观念早了两千多年。私学的兴起，直接为战国的"百家争鸣"铺了路。</p>
+    <div class="src"><b>信源</b>：有教无类——《论语·卫灵公》；束脩——《论语·述而》；性相近——《论语·阳货》；颜回箪食瓢饮——《论语·雍也》；公冶长——"可妻也，虽在缧绁之中"《论语·公冶长》；弟子三千贤人七十二——《史记·孔子世家》。</div>
+    <p><b>课堂讲法（对孩子）：</b>"两千五百年前，上学是贵族的特权。是孔子爷爷第一个说：不管你家是穷是富，只要你想学，我就教你。这一句话，改变了中国。"</p>
+
+    <h4>核心故事：登泰山，望吴门</h4>
+    <div class="story"><span class="t">▲ 传说文本：</span>
+    <p>孔子与弟子颜渊同登泰山，向东南方眺望千里之外的吴国阊门（苏州西门）。孔子指给颜渊看："吴门外拴着一匹白马。"颜渊眯眼看了半天说："老师，那好像是一匹白绸子。"孔子抚摸着他的眼睛，不让他再看——传说颜渊下山后发白齿落，不久病逝，是"目力耗尽精气"所致。</p>
+    <p><b>出处：</b>《韩诗外传》（《太平御览》引）、《论衡·书虚》（东汉·王充）、《续博物志》。</p>
+    <div class="src"><b>信源</b>：同上框内出处，均为传世原典；"目力耗尽"细节见《论衡·书虚》"颜渊发白齿落"条——王充原文本意为<b>证伪</b>此传说（"殆虚言也"），讲解时正可反用。</div></div>
+    <div class="tip"><b>怎么讲：</b>① 这是<b>寓言不是史实</b>——王充在《论衡》里就批驳"殆虚言也"；孔子"望见千里之外"，比喻的是圣人洞察天下的远见。② 有趣的科学延伸：从泰山望吴圣迹坊（海拔约1470米）按地平线公式 d≈112.88×√h 计算，理论视野约<b>137公里</b>，而泰山到苏州阊门直线约<b>636公里</b>——古人用夸张讲境界，我们用数学证传奇，一虚一实，正好是一堂跨学科小课。③ 泰山岱顶至今有<b>望吴峰、孔子崖、望吴圣迹坊</b>，那里还有全国<b>海拔最高（约1485米）的孔庙</b>——"四大孔庙"里的高度担当，望的"吴"就是苏州。这是文庙讲解里最好的"冷知识钩子"之一。</div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 大成殿（文庙内）</b>
+    <p>殿名"大成"出自孟子对孔子的评价——"孔子之谓<b>集大成</b>者"（集古圣先贤学问之大成）。殿内正中为孔子塑像，两侧依次是"四配""十二哲"；抬头可寻清代御匾。让孩子在十二哲里<b>找言子</b>（见单元二）——把两个人物串起来。</p>
+    <div class="src"><b>信源</b>："孔子之谓集大成"——《孟子·万章下》；四配十二哲体系——清乾隆四年（1739）定式，见《清史稿·礼志》与历代文庙祀典；DS-export/444_儒家配享制度.md。</div></div>
+    <div class="field"><b class="t">◆ 四配十二哲体系（储备）</b>
+    <p>四配：复圣颜回、宗圣曾子、述圣子思、亚圣孟子——构成儒家道统"孔子→颜回/曾子→子思→孟子"的核心链条。十二哲中十位出自"孔门十哲"（德行、言语、政事、文学四科），另两位为宋代理学集大成者朱熹与孔子弟子有若。荀子虽为大师，因性恶论与法家弟子之故，仅列两庑"先贤"，不配享于殿内——可作成人团的知识点。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："大成殿"的"大成"是什么意思？出自谁对孔子的评价？</p>
+      <p class="a">A：孟子说孔子是"集大成者"——把古代圣贤的学问集成于一身。</p>
+      <p class="q">Q2：孔子的学生里有没有穷人、有没有"坏孩子"？</p>
+      <p class="a">A：有——颜回穷到住陋巷喝凉水；公冶长坐过牢，孔子照样把女儿嫁给他。这就是"有教无类"。</p>
+      <p class="q">Q3：传说孔子在泰山顶上望见了苏州的哪座城门？</p>
+      <p class="a">A：阊门。所以泰山上有"望吴圣迹"坊——望的"吴"就是苏州。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 全国文庙=孔庙=夫子庙，同一名词系统（曲阜孔庙、南京夫子庙、泰山孔庙、苏州文庙并称"最值得看的四大文庙"，苏州位列其中）。② 曲阜孔庙建于孔子故宅之上（前478年，孔子逝世次年），是与故宫、承德避暑山庄并称的三大古建筑群之一。③ 孔子并非"愚忠愚孝"的符号——《论语》中他讲"君使臣以礼，臣事君以忠"，忠是有条件的对应关系，成人团可展开。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="wenmiao_shouce.html#s6">大成殿 · 集大成与御匾 ↗</a>
+      <a class="spot-link hl" href="wenmiao_shouce.html#s3">棂星门 · 尊孔如尊天 ↗</a>
+      <a class="spot-link" href="wenmiao_shouce.html#s4">四大宋碑 · 帝王的教科书 ↗</a>
+    </div>
+  </div>
+
+  <!-- ========= 言子 ========= -->
+  <div class="unit teal" id="u2" data-anchor>
+    <div class="tag-side">单元二</div>
+    <h3>言偃（言子）</h3>
+    <div class="role">南方夫子 · 文开吴会 · 道启东南</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>言偃（前506—前443），字子游，又称叔氏，吴地常熟人</td></tr>
+      <tr><th>身份</th><td>孔门七十二贤中<b>唯一的南方弟子</b>；"孔门十哲"之一，列<b>文学科</b>；曾任鲁国武城宰（县令）</td></tr>
+      <tr><th>历史地位</th><td>孔子赞"吾门有偃，吾道其南"——儒家学说传到江南，自言偃始，后世尊为"南方夫子"</td></tr>
+      <tr><th>身后荣典</th><td>唐开元八年入孔庙配享（十哲第九）；历代追封丹阳公、吴国公；明嘉靖称"先贤言子"；清康熙设五经博士由其后裔<b>世袭</b>；康熙、乾隆南巡均派大臣致祭言子墓</td></tr>
+      <tr><th>遗迹</th><td>常熟虞山东麓言子墓、学前街言子专祠、言子故宅、言子故里亭；苏州火车站南广场铜像（西侧）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生卒与生平——《史记·仲尼弟子列传》（"吴人，字子游，少孔子四十五岁"）、言氏宗谱；配享与追封——历代文庙祀典（唐开元八年〔720〕十哲从祀、明嘉靖九年改称先贤、康熙五十一年设五经博士世袭）；奉贤得名——《奉贤县志》（清雍正四年析奉贤盐场地置县，取"敬奉贤人"义）；DS-export/300_濂溪坊言子.md、DS-export/513_火车站名人铜像.md。</div>
+
+    <h4>核心故事一：弦歌之治——"割鸡焉用牛刀？"</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>言偃26岁出任鲁国武城宰——一座依山面水的边防小城。他不修武备-first，而是办学校、教礼乐，公余亲自登堂讲学，全城处处可闻弦歌之声。孔子来武城视察，听见满城琴瑟书声，笑着打趣："割鸡焉用牛刀？——治理这么个小地方，用得着礼乐教化吗？"言偃恭敬回答："老师教过我们：做官的学习了就会有仁爱之心，老百姓学习了就容易和睦听教——教育总是有用的啊！"孔子对众弟子说："偃之言是也，前言戏之耳"——<b>言偃是对的，我刚才是开玩笑</b>。一个小县令，让圣人当众收回玩笑，这是孔门绝无仅有的荣耀。</p>
+    <div class="src"><b>信源</b>：《论语·阳货》原文——"子之武城，闻弦歌之声。夫子莞尔而笑曰：割鸡焉用牛刀。……二三子！偃之言是也，前言戏之耳。"对话细节与年代推算（26岁任武城宰）据《史记·仲尼弟子列传》与言氏家乘，DS-export/300_濂溪坊言子.md。</div></div>
+
+    <h4>核心故事二：北上拜师与暮年归乡</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>22岁那年，言偃背着书简，从江南水乡一步步走向山东曲阜——两千五百年前，这是一段跨越千里的"求学长征"。学成后随孔子周游列国；他还在陪孔子参加腊祭时，听孔子亲口描绘"谋闭而不兴，盗窃乱贼而不作，故外户而不闭"的<b>大同社会</b>理想（《礼记·礼运》名段，正因言偃提问而流传）。暮年，他不顾年老体弱，回到家乡开馆讲学，63岁那年还渡江赴青溪（今上海奉贤）讲学，使"海滨文墨之区"从荒凉走向开化——<b>上海"奉贤"这个地名，就是"敬奉贤人、见贤思齐"的意思，纪念的正是言偃。</b></p></div>
+    <div class="src"><b>信源</b>：大同篇问答——《礼记·礼运》开篇即"言偃在侧"而孔子"喟然而叹"，全文正以孔子答言偃问的形式展开；北上求学与暮年归乡讲学——《史记·仲尼弟子列传》及常熟地方志乘；奉贤得名——《奉贤县志》；DS-export/300_濂溪坊言子.md、DS-export/416_常熟燕园.md。</div>
+
+    <div class="quote">"吾门有偃，吾道其南。"<small>—— 孔子：我门下有了言偃，我的学说才得以传到南方。</small></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 大成殿十二哲（文庙内）</b>
+    <p>言偃在文庙体系中位列"十二哲"，是<b>文学科第一人</b>。带孩子在大成殿里"寻宝"：找一找哪一位是三千年前从苏州附近走出来的"学长"。他证明了一件事：江南的孩子，两千五百年前就有资格站在圣人身边。</p></div>
+    <div class="field"><b class="t">◆ 延伸打卡（研学动线）</b>
+    <p>① 苏州火车站南广场八尊名人铜像中，言偃立于西侧（与泰伯、白居易、顾炎武同列，范仲淹居C位）——许多孩子坐火车都"见过"他，只是不认识。② 常熟虞山言子墓、言子专祠——可作为常熟线路的延伸点。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：孔门七十二贤里唯一的南方人是谁？</p>
+      <p class="a">A：言偃（言子），苏州常熟人，"南方夫子"。</p>
+      <p class="q">Q2：上海市的哪个区，名字是为了纪念言偃？</p>
+      <p class="a">A：奉贤——"敬奉贤人、见贤思齐"。</p>
+      <p class="q">Q3："割鸡焉用牛刀"是什么意思？孔子为什么收回这句话？</p>
+      <p class="a">A：孔子原以为小地方不必大搞礼乐教育，但看到武城弦歌满城、百姓安乐，承认自己错了——教育没有"大材小用"。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 儒家道统里"孔—曾—思—孟"一系人人皆知，但江南儒学的"总开关"其实是言偃——没有言偃，就没有后来江南的崇文之风，也就未必有苏州的状元之乡。② 清康熙五十一年（1712）朝廷在言偃后裔中设五经博士，世代承袭——一个家族因一位先祖的学问领了二百多年"朝廷编制"。③ 干将路旧有言子巷、言子祠遗迹，与濂溪坊（纪念周敦颐）同属苏州的"理学地名群"。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link" href="wenmiao_shouce.html#b1">备选A · 言子铜像（照壁南小公园）↗</a>
+      <a class="spot-link hl" href="wenmiao_shouce.html#s6">大成殿 · 十二哲寻宝 ↗</a>
+    </div>
+  </div>
+
+  <!-- ========= 范仲淹 ========= -->
+  <div class="unit blue" id="u3" data-anchor>
+    <div class="tag-side">单元三</div>
+    <h3>范仲淹</h3>
+    <div class="role">苏州府学文庙创始人 · 先忧后乐 · 一世之师</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>生卒</th><td>989—1052，苏州吴县人，谥号"<b>文正</b>"（古代文臣最高谥号），世称范文正公</td></tr>
+      <tr><th>身世</th><td>两岁丧父，母谢氏携其改嫁朱氏，改名"朱说"；得知身世后辞母苦读，二十七岁（大中祥符八年，1015）中进士，迎母归养，恢复范姓</td></tr>
+      <tr><th>仕途标签</th><td>泰州修捍海堰（"范公堤"）→ 应天府执教授徒 → 西北戍边御西夏 → 庆历新政（十事改革）→ 知邠州、邓州、杭州 → 知苏州兴学</td></tr>
+      <tr><th>与苏州</th><td>景祐二年（1035）任苏州知州：治水患、捐宅地、创办苏州府学（州学），开"左庙右学、庙学合一"之典范</td></tr>
+      <tr><th>慈善首创</th><td>皇祐元年（1049）于苏州置良田千亩设"<b>范氏义庄</b>"，赡养族人，运营八百余年——中国历史上最早的家族慈善基金会之一</td></tr>
+      <tr><th>名篇</th><td>《岳阳楼记》（1046年作于邓州）、《渔家傲·秋思》</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平主线——《宋史·范仲淹传》（卷三百一十四）；谥号与身世——《宋史》本传及富弼《范文正公墓志铭》；创办府学与"左庙右学"——范成大《吴郡志》（卷四"学校"："天下郡学莫盛于宋，然其始兴于吴郡"即出此）；范氏义庄——《范文正公集·义庄规矩》；51位状元统计——DS-export/043_苏州状元统计.md（明清苏州状元名录核校）。</div>
+
+    <h4>核心故事一：一块"风水宝地"的选择</h4>
+    <div class="story"><span class="t">▲ 故事文本（现场必讲）：</span>
+    <p>范仲淹祖籍苏州，但他回苏州做官时，在城里竟没有一处自己的住宅。他出资在城南（今人民路一带，旧称卧龙街）买下一块地准备建宅。风水先生看后大惊：这是"龙头"宝地，在此建宅，范家<b>子孙必将世代出公卿、光宗耀祖</b>！范仲淹却笑了：一家独贵，有什么意思？他大手一挥，把这块宝地捐了出来——在上面建文庙祭祀孔子、办府学让全苏州的孩子读书。</p></div>
+    <div class="quote">"吾家有其贵，孰若天下之士咸教育于此，贵将无已焉。"<small>—— 与其我范家一家富贵，不如让天下的读书人都在这里受教育，这样的富贵才没有穷尽。（另有一精炼版本："吾家当出公卿，此宅必兴学宫！"）</small>
+    <div class="src" style="border:none;padding-top:2px"><b>信源</b>：此语见于南宋楼钥《攻媿集》所记及《吴郡志》转引，为苏州府学始建的传统叙事；通俗版"风水宝地"故事是后世方志与民间讲述的铺陈。讲述建议：文言原句作"文眼"，白话故事作"肉"，虚实分明。</div></div>
+    <p>结果历史给出了最精彩的回答：府学兴，则苏州文运兴。此后苏州共走出<b>51位文武状元（文46、武5）</b>，仅清代就有26位，占全国同期状元的22.8%——苏州从此稳坐"状元之乡"头把交椅。可以说，<span class="hl">范仲淹这一捐，为苏州捐出了一条千年文脉。</span></p>
+
+    <h4>核心故事二：先天下之忧而忧——他不是说说而已</h4>
+    <div class="story"><span class="t">▲ 事迹串讲（备多讲少）：</span>
+    <p>① <b>划粥断齑</b>：应天书院苦读，煮一锅粥凝了划成四块，早晚各两块就咸菜下肚，五年未解衣就枕——"寒门贵子"的样本。② <b>宁鸣而死，不默而生</b>：任司理参军时抱着卷宗和上司据理力争，"宁可丢官，不可枉杀"；一生三起三落，三次被贬，三次被同僚送行时称作"极光"（此行极光荣）。③ <b>军中有一范，西贼闻之惊破胆</b>：52岁以文臣身份挂帅西北御西夏，爱兵如子、推诚抚羌。④ <b>以工代赈</b>：晚年知杭州遇饥荒，他反而大兴龙舟赛、鼓励寺庙修葺——让富人花钱游乐、穷人靠干活吃饭，饥年无灾。⑤ <b>临终无余财</b>：去世时家无新衣，儿孙轮穿一套官服上朝；《遗表》千字，只字不提家事。</p></div>
+
+    <div class="src"><b>信源</b>：划粥断齑——《湘山野录》（宋·文莹）；三次被贬"此行极光"——《宋史》本传及宋人笔记（三光故事见《能改斋漫录》引）；军中有一范——《续资治通鉴长编》（宋·李焘）载边谚；以工代赈——沈括《梦溪笔谈·官政》；临终家无余财——《宋史》本传"身无以为敛，子无以为丧"；DS-export/448_范仲淹评书.md、DS-export/312_范仲淹范成大.md。</div>
+
+    <h4>核心知识点：庙学合一（左庙右学）</h4>
+    <p>"庙学合一"并非范仲淹首创（唐贞观四年已诏令州县学皆立孔子庙），但<b>苏州府学是宋代地方官学的典范与模板</b>：东轴线为文庙（祭祀），西轴线为府学（教学），祭祀与教育一体——"晨读经书，暮习礼乐"。元人郑元祐评价："天下郡学莫盛于宋，然其始兴于吴郡。"范仲淹还延请大教育家<b>胡瑗</b>主持府学，以"明体达用"为宗旨，既教经义又教时务——这所学校的"校长"也是一代宗师。</p>
+    <table>
+      <tr><th>时期</th><th>府学规模</th><th>备注</th></tr>
+      <tr><td>北宋初创（1035）</td><td>约20亩（≈13200㎡）</td><td>全国最早、规模最大的地方官办学校，"天下之有学自吴郡始"</td></tr>
+      <tr><td>明清鼎盛</td><td>150余亩（≈10万㎡）</td><td>约14个标准足球场，东南第一学府</td></tr>
+      <tr><td>今天（苏州文庙·碑刻博物馆）</td><td>约1.5万㎡</td><td>仅为鼎盛期的约1/6</td></tr>
+    </table>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 明伦堂 · 范仲淹塑像（文庙内）</b>
+    <p>府学的"讲堂"，今供范公彩塑。堂前可齐诵"先天下之忧而忧，后天下之乐而乐"；堂内楹联"居庙堂之高则忧其民，处江湖之远则忧其君"正是《岳阳楼记》名句。讲完"捐地"故事，就地拜谒——<b>故事在哪里发生，就在哪里讲</b>。</p></div>
+    <div class="field"><b class="t">◆ 动线联动（文庙之外）</b>
+    <p>① <b>沧浪亭</b>：范仲淹的政治盟友苏舜钦被贬后所建——"进奏院事件"牵连庆历新政失败，两位失意人在苏州各自留下传世遗产（一个建园林，一个办学校），"达则兼济天下，穷则独善其身"的双重注脚。② <b>江苏巡抚衙门旧址</b>：文脉主线上"庙堂"一端，历代名巡抚（海瑞、林则徐、康熙赞"清廉为天下第一"的宋荦）在此办公。③ <b>苏州火车站南广场</b>：八尊名人铜像范仲淹居中——苏州给他的历史定位。④ <b>苏州中学</b>：府学文脉的直接继承者，校史馆藏乾隆《三元诗》碑（见单元四）。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：风水先生说这块地能让范家世代出大官，范仲淹为什么反而把它捐了？</p>
+      <p class="a">A：他说"吾家有其贵，孰若天下之士咸教育于此"——一家富贵，不如全城孩子都能读书。结果苏州从此出了51位状元。</p>
+      <p class="q">Q2："先天下之忧而忧"的下一句？</p>
+      <p class="a">A："后天下之乐而乐。"（《岳阳楼记》，1046年写于邓州，比他创办苏州府学晚了11年）</p>
+      <p class="q">Q3：范仲淹创办的"义庄"是做什么的？</p>
+      <p class="a">A：用一千亩良田的租金资助族中贫困子弟读书生活，像一张"千年保险单"，运转了八百多年。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 范仲淹戍边时提拔了狄青、种世衡等寒门将领——他一生都在做"有教无类"的朝廷版。② 谥号"文正"是文臣的最高荣誉，司马光说"文正是谥之极美，无以复加"；一生获此谥者屈指可数。③ 评书化素材（可作暖场）：幼年"父子共用一套官服"的传说、"范公堤"百姓泣谢等，均为后世演绎，讲解时注意区分史实与传说——这本身就是给孩子的一课"史料辨析"。④ 与王安石变法对比：范仲淹"节流"整吏治、王安石"开源"改经济，一温和一激进——成人团好话题。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="wenmiao_shouce.html#s7">明伦堂 · 范公像前齐诵 ↗</a>
+      <a class="spot-link" href="wenmiao_shouce.html#s1">文庙前牌坊 · "谁建了这所学校"的悬念 ↗</a>
+      <a class="spot-link" href="wenmiao_shouce.html#s9">延伸联动 · 沧浪亭 / 巡抚衙门 ↗</a>
+    </div>
+  </div>
+
+  <!-- ========= 钱棨 ========= -->
+  <div class="unit gold" id="u4" data-anchor>
+    <div class="tag-side">单元四</div>
+    <h3>钱棨</h3>
+    <div class="role">连中六元 · 中国科举史上的"唯一"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>生卒</th><td>1734（雍正十二年）—1799（嘉庆四年），苏州长洲人，字振威，号湘舲</td></tr>
+      <tr><th>成就</th><td>县试、府试、院试、乡试、会试、殿试<b>六场考试场场第一</b>——"六元及第"</td></tr>
+      <tr><th>历史地位</th><td>明清两代500余年，"连中六元"仅2人：明·黄观（被永乐帝除名，万历年间方平反）与清·钱棨——<b>钱棨是唯一获官方全程认证的"六元状元"</b></td></tr>
+      <tr><th>身后</th><td>乾隆御制《三元诗》庆贺并刻碑（今存苏州中学校史馆）；苏州为其立"三元坊"（1951年拓宽人民路时拆除，地名/地铁站沿用至今）</td></tr>
+      <tr><th>家族</th><td>吴越王钱镠后人（见单元五）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生卒与科举履历——《清史列传》《吴县志》（乾隆长洲县志资料）、钱棨《湘舲试帖》自序；六次乡试落榜——同治《苏州府志》引《元和唯亭志》"六试棘围不售"；殿试乾隆擢升与《三元诗》——清宫档案及《清朝野史大观》所记御制诗事；三元坊沿革——民国《吴县志》及苏州城建档案（1951年拓宽人民路拆除）；DS-export/043_苏州状元统计.md、DS-export/080_钱棨与吴越钱氏.md。</div>
+
+    <h4>核心故事：36年磨一剑的"学霸天花板"</h4>
+    <div class="story"><span class="t">▲ 科举时间线（按虚岁）：</span>
+    <table style="margin:8px 0 0">
+      <tr><th>年龄</th><th>年份</th><th>事件</th></tr>
+      <tr><td>33岁</td><td>1766（乾隆三十一年）</td><td>同一年连夺<b>县试、府试、院试</b>三个案首，中秀才——"小三元"</td></tr>
+      <tr><td>33→45岁</td><td>1768—1778</td><td><b>六次乡试全部落榜</b>（含1770太后八旬恩科、1778乾隆南巡恩科）——屡败屡战12年</td></tr>
+      <tr><td>46岁</td><td>1779（己亥恩科）</td><td>第七次乡试，高中<b>解元</b></td></tr>
+      <tr><td>48岁</td><td>1781（辛丑年）</td><td>进京会试夺<b>会元</b>、殿试被乾隆钦点<b>状元</b>——"六元及第"达成</td></tr>
+    </table></div>
+    <p>讲给孩子时抓两个反差：<b>①</b> "连中六元"听着像天才神话，实际是<b>12年落榜6次</b>的大器晚成——三次常规乡试之外，他靠"恩科"（皇帝庆典加试）多得了机会，但机会只眷顾一直没放弃的人。<b>②</b> 48岁中状元，和电视剧里"少年状元"完全不同——备考36年，考到白头，这才是真实的传奇。他做官后因<b>拒绝依附和珅</b>遭排挤打压，晚年病逝于云南学政任上——学问硬，骨头更硬。</p>
+    <div class="tip"><b>考据提示（防讲错）：</b>钱棨生年1734与1743两说曾致年龄混乱，现依《清史列传》《吴县志》定为<b>1734年生</b>；"24岁/28岁中秀才"为误传（或混淆县试案首年龄），正确为<b>33虚岁中秀才、46虚岁中解元、48虚岁中状元</b>。另注意：钱棨与陈继昌的三元均非"一榜连中"——钱棨中解元后次年曾落第，故有"六元"而非仅"三元"的完整履历。</div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 三元坊公园 / 三元坊地铁站（集合点，行程第一站）</b>
+    <p>牌坊原址在人民路新市路口至书院巷口段（文庙东侧、苏州中学一带），1781年苏州官员为钱棨立坊，1951年拓宽马路时拆除——"坊"没了，"名"留下了：公交站、地铁站都叫三元坊。开营第一讲就在这里：<b>用一块已经消失的牌坊，讲一个不该被忘记的人。</b>近年原地恢复了钱棨塑像与文化标识，可合影"沾学霸之气"。</p></div>
+    <div class="field"><b class="t">◆ 文庙 · 三元杏（大成殿前）</b>
+    <p>五棵古银杏中传说有一棵"三元杏"——曾遭雷击、被烧去半边，却又奇迹般复活枝繁叶茂。民间说它见证的就是钱棨的传奇：屡遭打击、愈挫愈勇，恰似这棵雷击复生之树。<b>去树下找它、摸一摸树瘤，就是最好的"打卡任务"。</b></p></div>
+    <div class="field"><b class="t">◆ 苏州中学校史馆（延伸）</b>
+    <p>乾隆《三元诗》御碑藏于此。苏州中学正是苏州府学文脉的直接继承者——钱棨读书的地方，就是范仲淹创办的那所学校。三个人物在同一个点位"会师"。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：乡试第一、会试第一、殿试第一分别叫什么？</p>
+      <p class="a">A：解元、会元、状元——合称"连中三元"。钱棨连"小三元"（县、府、院试案首）也拿遍了，史称"六元及第"，五百年只有他和明朝黄观两人做到。</p>
+      <p class="q">Q2：钱棨中状元时多少岁？他一共落榜了几次？</p>
+      <p class="a">A：48岁（虚岁）。乡试落榜6次，第7次才中举——比"聪明"更了不起的是坚持。</p>
+      <p class="q">Q3：三元坊的牌坊还在吗？</p>
+      <p class="a">A：1951年拓宽人民路时拆掉了，但地名留了下来——我们集合的地铁站就叫三元坊站。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 清代乡试三年一次（子午卯酉年），乾隆朝因在位60年庆典多，共开12次恩科，为历代之最——钱棨的"逆袭"有制度背景。② 《儒林外史》范进54岁中秀才同年后中举，是虚构人物；钱棨33岁中秀才、46岁中举是真实版的"范进"，但结局天壤之别。③ 苏州状元家族现象：唐代归氏36年间出5位状元；清代彭氏祖孙状元、潘氏"四朝元老"潘世恩（今状元博物馆即其故居）。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="wenmiao_shouce.html#s2">泮池 · 入泮礼与下马碑 ↗</a>
+      <a class="spot-link" href="wenmiao_shouce.html#s5">古银杏 · 三元杏传说 ↗</a>
+      <a class="spot-link" href="wenmiao_shouce.html#s9">三元坊公园 · 开营集合点 ↗</a>
+    </div>
+  </div>
+
+  <!-- ========= 钱镠与钱氏 ========= -->
+  <div class="unit" id="u5" data-anchor>
+    <div class="tag-side">单元五</div>
+    <h3>钱镠与钱氏家族</h3>
+    <div class="role">吴越国始祖 · 保境安民 · 一部家训传千年</div>
+
+    <h4>档案速览：钱镠（852—932）</h4>
+    <table>
+      <tr><th>出身</th><td>杭州临安人，少年习武、曾贩私盐——地道草根，后应募乡兵从军</td></tr>
+      <tr><th>发迹</th><td>879年临安设伏以二十骑退黄巢军前锋（成名战）→ 886年破刘汉宏取杭州刺史 → 896年生擒称帝的老上司董昌，兼并两浙</td></tr>
+      <tr><th>封王</th><td>902年越王 → 904年吴王 → 907年后梁封<b>吴越王</b> → 923年后唐册封<b>吴越国王</b>，正式立国</td></tr>
+      <tr><th>治国</th><td>"<b>保境安民</b>"：修捍海石塘（"钱王射潮"传说即源于筑塘）、设撩湖军疏浚西湖、扩筑杭州城、兴农桑、通海外贸易——"上有天堂，下有苏杭"的底子由此奠定</td></tr>
+      <tr><th>遗训</th><td>"善事中国（中原王朝），勿以易姓废事大之礼"——子孙据此<b>纳土归宋</b>，兵不血刃完成和平统一，江浙免于战火</td></tr>
+      <tr><th>身后</th><td>81岁卒，谥武肃王；两浙百姓感念至今，西湖畔钱王祠香火不绝</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平主线——《旧五代史·世袭传》《新五代史·吴越世家》《吴越备史》（钱氏家史，宋·范坰林禹）；讨董昌、射潮筑塘——《吴越备史》及《十国春秋》（清·吴任臣）；遗训"善事中国"——《吴越备史》载武肃王遗命；谥号——后唐长兴三年赐谥武肃。</div>
+
+    <h4>核心故事一：钱王射潮</h4>
+    <div class="story"><span class="t">▲ 传说文本：</span>
+    <p>钱塘江潮水凶猛，海塘屡筑屡毁。钱镠大怒，命万名弓弩手在江边一字排开，潮水来时万箭齐发——传说潮水竟被射退，海塘得以筑成，从此杭州再无大潮患。今天"钱王射潮"的雕塑仍立在钱塘江边。讲给孩子：<b>射退大潮的当然不是箭，是"跟天斗、跟地斗、绝不放弃"的那股劲。</b>（真实的功绩：他主持修筑的捍海石塘是中国古代海塘工程的里程碑。）</p></div>
+
+    <h4>核心故事二：一部《钱氏家训》，养出一个"人才爆炸"的家族</h4>
+    <div class="quote">"利在一身勿谋也，利在天下者必谋之；利在一隅勿谋也，利在万世者必谋之。"<small>—— 《钱氏家训》</small></div>
+    <div class="quote">"子孙虽愚，诗书须读。"<small>—— 《钱氏家训》</small></div>
+    <p>钱镠临终留下家训，要求子孙读书明理、心系天下。此后一千年，吴越钱氏成为"千年名门望族，两浙第一世家"：<b>古代</b>有纳土归宋的钱俶、西昆体诗人钱惟演、乾嘉学派"一代儒宗"钱大昕；<b>近现代</b>更是群星闪耀——家族历代走出院士<b>逾百人</b>，其中最响亮的名片，就是"三钱"。</p>
+    <div class="src"><b>信源</b>：《钱氏家训》——一般认为定型于清道光年间钱福炯所辑、1920年代钱文选编《钱氏家乘》刊布，核心义理上承武肃王遗训（"利在一身勿谋也"句见《家训》国家篇）；钱氏分支与人物谱系——DS-export/079_苏州大学校友.md（钱学森属杭州分支、钱三强属湖州分支、钱棨属长洲分支，均为钱镠后裔）。</div>
+
+    <h4>核心故事三：钱氏三杰——一部家训的现代回响</h4>
+    <table>
+      <tr><th style="width:90px">人物</th><th>身份与成就</th><th>与苏州的关系</th></tr>
+      <tr><td><b>钱学森</b><br>（1911—2009）</td><td>"中国航天之父""导弹之父"，两弹一星元勋；吴越钱氏<b>杭州分支</b>，钱镠第三十二世孙</td><td>无直接渊源（铺垫人物）</td></tr>
+      <tr><td><b>钱三强</b><br>（1913—1992）</td><td>"中国原子弹之父"，两弹一星元勋，组织建成第一个重水型反应堆与第一台回旋加速器；吴越钱氏<b>湖州分支</b>，新文化运动主将钱玄同之子</td><td><b>苏州的女婿</b>——娶苏州才女何泽慧（"中国的居里夫人"），岳家就是苏州名门王家（振华女校家族）</td></tr>
+      <tr><td><b>钱伟长</b><br>（1912—2010）</td><td>"中国近代力学之父"，中国近代力学与应用数学奠基人之一；吴越钱氏<b>无锡分支</b>，国学大师钱穆之侄</td><td><b>苏州中学的毕业生</b>——本课程打卡点的"隐藏彩蛋"（详见下节）</td></tr>
+    </table>
+    <p><b>"三钱"的名号来历：</b>1956 年国家制定《十二年科学技术发展远景规划》，钱学森、钱伟长、钱三强分任力学、自动化、原子能诸方面的规划主持者，周恩来在会上称赞他们是"三钱"——这个称呼从此流传。三人并非近亲，却同出吴越钱氏，同受《钱氏家训》"利在天下者必谋之"的浸润，同在1945—1955年间做出了归国报效的共同选择。</p>
+    <div class="src"><b>信源</b>："三钱"称号——周恩来1956年科学规划会议谈话，广见于官方文献与三人传记（如《钱学森传》）；分支出处——DS-export/079_苏州大学校友.md；"两弹一星元勋"——1999年中共中央、国务院、中央军委表彰23位功勋人员名单（钱学森、钱三强在列，钱伟长不在此列——<b>注意防讲错</b>）。</div>
+
+    <h4>焦点人物一：钱三强——苏州的女婿，何泽慧——中国的居里夫人</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>钱三强的夫人何泽慧，1914年生于苏州一个开明书香之家——今天游客如织的<b>网师园，当年就是何家的私宅</b>。她的外祖母王谢长达是苏州振华女校的创办人，母亲王季山出身著名的科学望族。何泽慧 6 岁进振华女校，在这所学校整整读了 12 年，1932 年从外祖母创办的女校高中毕业，考进清华大学物理系，是当年唯一的"女状元"。1936 年毕业后赴德国留学，出于抗日热忱，她放弃艺术专长，选了和军工相关的"实验弹道学"专业——<b>"为中国学造大炮"</b>。</p>
+    <p>另一边，钱三强 1937 年赴法国，进入巴黎大学居里实验室——居里夫人的女儿伊莱娜·约里奥-居里亲自带他做研究。二战期间，何泽慧为与国内家人取得联系，写信求助巴黎的老同学钱三强，两年通信点燃爱情。1945 年钱三强发出求婚信："我将等你一同回国。"何泽慧回信只有一句："感谢你的爱情，我将对你永远忠诚。"1946 年春，两人在巴黎结婚，约里奥-居里夫妇亲自见证，同进居里实验室工作。夫妻二人在核裂变研究中首先发现<b>铀核三分裂</b>（第一发现人是何泽慧，以第一作者发表于《法国科学院周刊》）、继而捕捉到<b>四分裂</b>径迹——西方媒体从此称他们为"<b>中国的居里夫妇</b>"，何泽慧本人被称为"<b>中国的居里夫人</b>"。</p>
+    <p>1948 年夏，夫妇二人放弃法国的优渥条件，抱着半岁的女儿回国，参与组建北平研究院原子学研究所。此后：钱三强成为"两弹一星"元勋、中国原子能事业的组织者；何泽慧成为<b>中国科学院第一位女学部委员（院士）</b>。一对苏州、湖州两个书香门第联姻的科学伉俪，撑起了中国核物理的半边天。</p></div>
+    <p><b>现场结合：</b>何泽慧题写的"仁慈明敏"四字至今刻在振华女校（今苏州十中）校园的西花园石上，物理楼即名"<b>泽慧楼</b>"——如家长团提到振华、十中，这是最好的联动；她身上"书香门第+家训家风"的基因，正是本单元"一部家训传千年"的女性版证明。</p>
+    <div class="src"><b>信源</b>：何泽慧生平——腾讯新闻《纪念何泽慧先生诞辰110周年》（2024，中科院高能物理研究所系统文章）、澎湃新闻《中国的居里夫人——何泽慧》、《何泽慧传》（山西教育出版社，2015）；三分裂第一作者与"中国的居里夫人"称谓——同上诸源一致；网师园曾是何澄（何泽慧之父）私宅——苏州园林志及上引诸文；振华女校"仁慈明敏"石刻与泽慧楼——DS-export/210_振华女中.md；钱三强家世（父钱玄同）——DS-export/079_苏州大学校友.md；求婚信原文——澎湃新闻引公开史料。</div>
+
+    <h4>焦点人物二：钱伟长——从"文史满分"到"力学之父"的苏州少年</h4>
+    <table>
+      <tr><th>生卒</th><td>1912年10月9日—2010年7月30日，江苏无锡七房桥人，吴越钱氏无锡分支</td></tr>
+      <tr><th>家世</th><td>祖父与父亲（钱挚，字声一）都是清贫的乡村教师；国学大师钱穆是他的<b>四叔</b>。无锡钱氏同样靠家族<b>义庄</b>制度维持读书人家的生计——与范仲淹在苏州首创的范氏义庄恰成呼应</td></tr>
+      <tr><th>头衔</th><td>中科院院士（学部委员）；中国近代力学与应用数学奠基人之一，与钱学森并称中国力学事业的开创者；"中国近代力学之父"之一</td></tr>
+      <tr><th>名言</th><td>"我没有专业，国家的需要就是我的专业。"</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平与生卒——清华大学校史馆《我是忠于我的祖国的——钱伟长的科学人生》、央视网《钱伟长轶事：为国而学》（2010）；名言——广东政协网《钱伟长："国家的需要就是我的专业"》（2022）；无锡钱氏义庄背景——央视网上引文。</div>
+
+    <h4>钱伟长核心故事：一块"5分"的传奇（重点储备，亲子团最好用）</h4>
+    <div class="story"><span class="t">▲ 故事文本（分四幕）：</span>
+    <p><b>第一幕 · 文史神童：</b>少年钱伟长战乱中真正上学的时间加起来不到 5 年，但家学深厚——四叔钱穆亲自教他文学。15 岁他考入<b>苏州中学</b>读高中，16 岁父亲病逝，从此随四叔在苏州求学。苏州中学的师资是"神仙阵容"：数学老师严晓帆、中国史老师<b>吕叔湘</b>（后来的语言学大家）、西洋史老师杨人缏，<b>文学课就由钱穆亲自讲授</b>。三年苦读后，他的文史出类拔萃，数理化却还是弱项——文科少年一枚。</p>
+    <p><b>第二幕 · 5分少年进清华：</b>1931 年，19 岁的钱伟长靠上海实业家吴蕴初的"清寒奖学金"，一个月内连考清华、中央、浙江、唐山交大、厦门五所大学，全部录取！他选了清华。入学考成绩单堪称奇观：<b>中文 100 分、历史 100 分</b>（作文《梦游清华园记》，没去过清华园的他凭想象写了一篇 450 字的赋，得了满分），而数学、物理、化学、英文四门<b>加起来只有 25 分——物理只考了 5 分，英文 0 分</b>（从没学过）。中文系、历史系抢着要他：陈寅恪想收他去历史系，闻一多、朱自清劝他进中文系。</p>
+    <p><b>第三幕 · 九一八，弃文从理：</b>1931 年 9 月 18 日——他进清华历史系的<b>第二天</b>，九一八事变爆发。收音机里传来东北沦陷的消息，钱伟长"火了"：我们没有飞机大炮，就自己造！他决意弃文从理，学造飞机大炮。物理系主任吴有训一看成绩单：物理 5 分？连连摆手。钱伟长软磨硬泡<b>一个星期</b>，吴有训终于松口：给你一年试读期——普通化学、普通物理、高等数学三门，<b>每门都必须考到 70 分</b>，一门不到就转回文学院。</p>
+    <p><b>第四幕 · 用勤奋补天分：</b>这个"偏科生"开始像背古文一样啃物理典籍，闻鸡起舞、夜夜苦读，最终三门课全部过关，四年后成为<b>物理系成绩最好的学生之一</b>。清华六年，他还从全班最瘦弱的男生练成了校田径队、足球队队员。此后他留学加拿大多伦多大学、美国加州理工学院喷气推进实验室（师从世界力学权威冯·卡门），在薄板薄壳大挠度理论领域提出享誉国际的"<b>钱伟长方程</b>"；1946 年回国效力，晚年长期担任上海工业大学、上海大学校长，倡导"拆掉四堵墙"的开放式教育，90 岁高龄仍在研究中文信息处理。</p></div>
+    <div class="tip"><b>怎么讲（三条现场钩子）：</b>① <b>"物理5分"是全场记忆点</b>——问孩子"一个人物理考 5 分，后来成了'力学之父'，靠什么？"答案：国家需要 + 死磕的勤奋。② <b>他就在我们脚边</b>——苏州中学就是范仲淹创办的府学旧址，钱穆在此教书、钱伟长在此读书：孔子的学堂、范仲淹的学校、钱家的叔侄，三个时代在同一个校园叠加。③ <b>对照钱棨</b>——钱棨 12 年落榜 6 次不放弃，钱伟长从 5 分补到满分，"坚韧"这门课，苏州读书人代代相传。</div>
+    <div class="src"><b>信源</b>：第一至四幕全部情节——清华大学校史馆《我是忠于我的祖国的——钱伟长的科学人生》（清华入学分数、九一八当日抉择、吴有训"三门70分"约定、田径足球队）、央视网《钱伟长轶事：为国而学》（苏州中学师从名单：严晓帆、吕叔湘、杨人缏，钱穆亲授文学）、广东政协网（五校同录、清寒奖学金、陈寅恪/闻一多/朱自清争抢）、同济大学关工委《从偏科生到科学巨擘》（"钱伟长方程"背景、《八十自述》）；生卒与上海大学经历——公开讣闻及上海大学校史；苏州中学渊源——DS-export/079_苏州大学校友.md。<br><b>防错提示</b>：① 钱伟长<b>不是</b>"两弹一星功勋奖章"获得者（1999年23人名单中只有钱学森、钱三强）——他的主要贡献在力学学科建设与教育；② "中国近代力学之父"通常与钱学森并称使用（也有称"中国力学之父"），表述建议为"中国近代力学与应用数学的奠基人之一"最稳妥；③ "16岁父逝随叔父迁苏州"与"15岁考入苏州中学"两说并存于不同信源，讲"少年时代随钱穆在苏州求学"即可，不必坐实先后。</div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 三元坊（集合点）——顺藤摸瓜的讲法</b>
+    <p>站在三元坊讲钱棨，然后"往上翻家谱"：钱棨是吴越王钱镠的后人——一位盐贩出身的国王，凭一部家训，让家族在一千年里持续"量产"国家栋梁。再落回眼前：<b>苏州中学的钱穆、钱伟长叔侄</b>，就生活在这条文脉上。人物链完整闭合：孔子→言子→范仲淹（办学）→钱棨（此校学霸）→钱镠（钱棨祖先）→三钱（钱氏后人）。</p></div>
+    <div class="field"><b class="t">◆ 苏州中学（延伸）</b>
+    <p>府学旧址上长出的现代名校；钱穆曾任教、钱伟长曾就读——"一部家训+一所府学"，两家文化基因在这里叠加。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："三钱"是哪三位？他们都是谁的后人？</p>
+      <p class="a">A：钱学森、钱三强、钱伟长——都是吴越王钱镠的后人。</p>
+      <p class="q">Q2：钱镠没当过皇帝，为什么说他了不起？</p>
+      <p class="a">A：他"保境安民"，让江浙在乱世里安享太平，还修海塘、治西湖——"上有天堂，下有苏杭"有他一大半功劳；他的遗训让吴越国和平归宋，百姓免遭战火。</p>
+      <p class="q">Q3：《钱氏家训》里哪句话最有名？</p>
+      <p class="a">A："利在一身勿谋也，利在天下者必谋之"——不为自己谋利，要为天下人谋利。</p>
+      <p class="q">Q4：钱伟长考清华时物理考了多少分？后来他成了什么"之父"？</p>
+      <p class="a">A：只考了5分！中文历史双满分、物理5分的他，因九一八事变弃文从理，苦读四年成为物理系最好的学生之一，后来成为中国近代力学与应用数学的奠基人之一。</p>
+      <p class="q">Q5："三钱"里哪两位和苏州有直接关系？</p>
+      <p class="a">A：钱伟长毕业于苏州中学（四叔钱穆当时就在该校教书）；钱三强是"苏州女婿"——夫人何泽慧是苏州振华女校走出的"中国的居里夫人"。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 钱镠是极少数出身"私盐贩"的君主，与汉末刘备织席贩履同属草根逆袭范本。② 吴越国历五主共72年，始终奉中原正朔、不称帝——乱世里罕见的"低姿态、高发展"政权。③ 家族长盛的密码：家训（价值观）+义庄/族产（经济保障）+重教传统（行动）三位一体，可与范氏义庄对照讲——两家都在苏州，互为镜像。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="wenmiao_shouce.html#b3">备选C · 苏州中学（钱穆执教 / 钱伟长就读）↗</a>
+      <a class="spot-link" href="wenmiao_shouce.html#s9">延伸联动 · 三元坊 / 火车站铜像 ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第二部分 打卡点手册 ================= -->
+<section class="part" id="p2" data-anchor>
+  <div class="part-head"><span class="no">第二部分</span><h2>打卡点手册（按动线顺序）</h2></div>
+  <p class="part-sub">文庙记忆口诀（出自直播讲解体系）：<span class="hl"><b>"一座大成殿，两块无价石，四块国宝碑，五棵古银杏。"</b></span>——两块无价石即<b>廉石</b>与<b>下马碑</b>类礼仪石刻（现场以实物为准），四碑即"天、地、人、城"四大宋碑。</p>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">9:05–9:20 · 行程①</span>
+    <h3>三元坊公园</h3>
+    <div class="en">SANYUAN MEMORIAL ARCHWAY</div>
+    <table>
+      <tr><th>看点</th><td>钱棨塑像与三元坊文化标识；地铁三元坊站3号出口即达</td></tr>
+      <tr><th>历史三层</th><td>表象：一座现代复建的纪念性小公园 → 故事：1781年为此地立坊庆祝钱棨"连中三元"，1951年拓宽人民路时牌坊拆除 → 精神：功名会消失，地名与精神不灭</td></tr>
+      <tr><th>人物挂钩</th><td>钱棨（六元及第）→ 钱镠与钱氏家族（往上翻家谱）→ 范仲淹（身后就是他创办的府学）</td></tr>
+      <tr><th>任务设计</th><td>开营合影"沾学霸之气"；发问："一座拆掉的牌坊，凭什么让全苏州记了250年？"</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">9:30–10:00 · 行程②（需提前预约，收集姓名+身份证号+手机号）</span>
+    <h3>江苏巡抚衙门旧址</h3>
+    <div class="en">JIANGSU GOVERNOR'S OFFICE SITE</div>
+    <table>
+      <tr><th>看点</th><td>明清江苏省最高权力机关旧址——苏州曾是江苏省会；近年才首次对外开放</td></tr>
+      <tr><th>人物挂钩</th><td>明代海瑞、清代林则徐；康熙赞"清廉为天下第一"的巡抚<b>宋荦</b>——下一站沧浪亭的重建者（动线上埋好伏笔：记住这个名字，10分钟后在沧浪亭再见到他）</td></tr>
+      <tr><th>任务设计</th><td>"衙门口朝哪开？"观察建筑规制；埋伏笔："刚才衙门里认识的宋荦，一会儿会'再出现'一次。"</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">10:10–10:30 · 行程③（含水景拍照10分钟）</span>
+    <h3>沧浪亭水景</h3>
+    <div class="en">CANGLANG PAVILION</div>
+    <table>
+      <tr><th>看点</th><td>苏州最以水景著称的园林，<b>园外之水胜园内</b>——复廊花窗借水成景</td></tr>
+      <tr><th>历史三层</th><td>表象：一道水、一条复廊 → 故事：北宋诗人<b>苏舜钦</b>遭政敌"进奏院案"诬陷罢官，流寓苏州，四万钱购地建亭，取《楚辞》"沧浪之水"自名；现亭为<b>宋荦</b>重建，当年还兼作"廉政教育基地" → 精神："达则兼济天下，穷则独善其身"的士人进退之道</td></tr>
+      <tr><th>人物挂钩</th><td>苏舜钦（范仲淹改革阵营核心成员、被同一事件牵连贬官）——范仲淹单元的最佳"配角"；宋荦（上一站的回收）</td></tr>
+      <tr><th>任务设计</th><td>水景拍照打卡；讲"四万钱买一块荒地，换来一座千年名园"的亏本买卖与超值人生</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red-deep)">10:40–12:00 · 行程④（重头戏 · 免费免预约 · 周一闭馆）</span>
+    <h3>苏州文庙（苏州碑刻博物馆）</h3>
+    <div class="en">SUZHOU CONFUCIAN TEMPLE</div>
+    <p>以下七个点位按入庙动线排序：</p>
+    <table class="matrix">
+      <tr><th>点位</th><th>讲解要点</th><th>人物挂钩</th></tr>
+      <tr><td><b>黉门旧址</b><br>（新市路一带）</td><td>"黉门"是文庙/学宫的雅称（黉=古代学校），原大门已不存；文庙旁旧有黉学巷</td><td>府学规模想象：从这里到棂星门，鼎盛期150余亩</td></tr>
+      <tr><td><b>棂星门</b></td><td>文庙第一道礼仪牌坊；"棂星"即天上文星/文曲星，寓意尊孔如尊天、天下文人汇聚于此。元至治二年（1322）始建，明洪武六年南移，1980年前后构件移建现址（戟门北、大成殿前）——门会搬家，文脉不搬家</td><td>可延伸：下马碑制度"文武官员军民人等至此下马"——皇帝来了也要下马步行</td></tr>
+      <tr><td><b>泮池</b></td><td>半圆形水池，新科举子行"入泮礼"之地；注意"洗马池"之"洗马"（xiǎn mǎ）是古代官职"太子洗马"，不是洗马的水池——文庙最好的纠错题</td><td>科举体系衔接：从泮池到三元坊，一条"升学期末考试"的完整链条</td></tr>
+      <tr><td><b>四大宋碑</b><br>（天·地·人·城）</td><td><b>1961年第一批全国重点文物保护单位</b>，与故宫、长城同一批"国保身份证"。其中《天文图》《地理图》《帝王绍运图》三碑同源：南宋帝师<b>黄裳</b>（1146—1194，"绍熙八图"作者，非金庸笔下那位）为教未来皇帝宋宁宗所绘，1247年由王致远带回苏州摹刻上石，八图仅刻四块、毁一块存三块——《天文图》刻恒星1434颗，是世界现存最古老的实测全天石刻星图；《帝王绍运图》名言"治不能十一，而乱常八九"。<b>《平江图》</b>（1229，知府李寿朋主持）为金兵焚城后重建苏州的"城市档案"，刻河道20条、桥梁359座，与今天古城高度吻合，"水陆并行、河街相邻"双棋盘格局沿用至今；1917年民国间曾深刻重摹</td><td>黄裳（帝师）、李寿朋（与《吴郡志》同年刊刻的范成大方志"双璧"）——碑是死的人是活的</td></tr>
+      <tr><td><b>大成殿</b></td><td>面阔七间、进深十三檩，<b>50根金丝楠木巨柱</b>——全国文庙唯一楠木大成殿，江南现存最大单体古建筑之一；明成化十年（1474）重建，重檐庑殿顶。进殿引导：闻楠木幽香、数柱子、找孔子像与"四配十二哲"、读御匾"万世师表"</td><td>孔子（殿名出自孟子"集大成"）；<b>言偃藏身十二哲</b>——文学科第一的"南方学长"</td></tr>
+      <tr><td><b>五棵古银杏</b></td><td>苏州城内最古老的银杏群（四棵600岁以上）：寿杏（约850岁）、福杏、连理杏（怀抱朴树）、灵杏，以及传说中的<b>三元杏</b>——遭雷击焚身又复活的"树坚强"。秋冬满树金黄与红墙相映，最佳拍摄季</td><td>钱棨（三元杏）；范仲淹（府学"活文物"，看过900年读书人）</td></tr>
+      <tr><td><b>廉石 & 明伦堂</b></td><td><b>廉石</b>：三国郁林太守陆绩为官清廉，卸任返乡时行李太少压不住船，搬一块大石压舱，运回苏州置于宅前（临顿里，今拙政园一带）；明弘治九年（1496）御史樊祉移置城中题名"廉石"，清康熙四十八年（1709）知府陈鹏年移入文庙明伦堂前至今。2010年成为全国首例廉政文化注册商标。<b>明伦堂</b>：府学讲堂，供范仲淹彩塑，楹联即《岳阳楼记》名句</td><td>陆绩（一块石头的廉洁证明）；范仲淹（在此拜谒、齐诵"先忧后乐"收尾）</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--gold)">延伸点位（机动/预告）</span>
+    <h3>动线延伸</h3>
+    <table>
+      <tr><th>苏州中学</th><td>府学文脉直接继承者；校史馆藏乾隆《三元诗》碑；钱穆执教、钱伟长就读（钱穆当时在此教授文学课）；三个人物在此会师（校内参观需另行安排）</td></tr>
+      <tr><th>苏州火车站南广场</th><td>八尊名人铜像（吴为山作）：范仲淹居C位，东侧伍子胥、孙武、祖冲之，西侧泰伯、<b>言偃</b>、白居易、顾炎武——"下次坐火车，记得去认人"</td></tr>
+      <tr><th>网师园 / 振华女校（今苏州十中）</th><td>网师园曾是何泽慧家私宅；振华西花园有她1932年毕业篆刻的"仁慈明敏"石，物理楼名"泽慧楼"——"中国的居里夫人"是苏州本地出品的最好证明（可作机动讲解点）</td></tr>
+      <tr><th>常熟虞山</th><td>言子墓、言子专祠——"南方夫子"线路的延伸预告</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 第三部分 矩阵 ================= -->
+<section class="part" id="p3" data-anchor>
+  <div class="part-head"><span class="no">第三部分</span><h2>人物 × 打卡点 结合矩阵</h2></div>
+  <p class="part-sub">备课时反向使用：每个点位至少锚定一位人物；每个人物至少落在一个现场点位。★=现场必讲。</p>
+  <table class="matrix">
+    <tr><th>人物 \ 点位</th><th>三元坊</th><th>巡抚衙门</th><th>沧浪亭</th><th>棂星门/泮池</th><th>四大宋碑</th><th>大成殿</th><th>古银杏</th><th>廉石/明伦堂</th><th>延伸点</th></tr>
+    <tr><td><b>孔子</b></td><td>—</td><td>—</td><td>—</td><td>尊孔如尊天</td><td>—</td><td>★ 大成殿本殿</td><td>—</td><td>—</td><td>泰山望吴圣迹坊（冷知识）</td></tr>
+    <tr><td><b>言偃</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>★ 十二哲寻宝</td><td>—</td><td>—</td><td>火车站铜像 / 常熟言子墓</td></tr>
+    <tr><td><b>范仲淹</b></td><td>府学在此</td><td>庙堂一端</td><td>△ 苏舜钦挚友</td><td>—</td><td>—</td><td>—</td><td>府学活见证</td><td>★ 明伦堂拜谒齐诵</td><td>火车站C位铜像 / 苏州中学</td></tr>
+    <tr><td><b>钱棨</b></td><td>★ 牌坊故地</td><td>—</td><td>—</td><td>入泮礼科举链</td><td>—</td><td>—</td><td>★ 三元杏传说</td><td>—</td><td>苏州中学藏《三元诗》碑</td></tr>
+    <tr><td><b>钱镠与钱氏</b></td><td>★ 顺藤翻家谱</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>苏州中学（钱穆/钱伟长）· 网师园/振华（钱三强×何泽慧）</td></tr>
+    <tr><td><b>陆绩（廉石）</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>★ 压舱石故事</td><td>拙政园临顿里旧宅 / 树山纪念石</td></tr>
+    <tr><td><b>苏舜钦（配角）</b></td><td>—</td><td>—</td><td>★ 建园者</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>黄裳/李寿朋</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>★ 帝王教科书</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+  </table>
+  <p>补充说明：陆绩、苏舜钦、黄裳、李寿朋、宋荦为<b>次级人物池</b>——不单设单元，作为现场故事"配角"储备。名人堂后续将陆续补充更多人物（如朱熹、文天祥等与文庙配享/府学相关者）。</p>
+</section>
+
+<!-- ================= 第四部分 讲述方法 ================= -->
+<section class="part" id="p4" data-anchor>
+  <div class="part-head"><span class="no">第四部分</span><h2>讲述方法与有奖题库</h2></div>
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 三条讲解心法</h4>
+    <p><b>一、由小见大：</b>现场看到的都是"小东西"（一块石头、一棵树、一口池），小东西背后一定是"人"和"故事"。先问"你看到了什么"，再讲"它背后站着谁"，最后落"他给我们留下了什么"。</p>
+    <p><b>二、人带人：</b>用关系链条讲故事，比单讲一个人更抓人：钱棨→祖上钱镠；苏舜钦→挚友范仲淹；言偃→老师孔子；宋荦→从衙门"走"到沧浪亭。每介绍一个新人物，都先接上上一个已认识的人。</p>
+    <p><b>三、虚实分明：</b>传说（射潮、望吴、三元杏）照讲，但点一句"这是传说"；考证结论（钱棨生年、平江图刻制年份）讲准确。给孩子示范"怎么区分故事与史实"，这本身就是研学的一部分。</p>
+  </div>
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 有奖竞猜题库（20题 + 附加2题）</h4>
+    <div class="qa">
+      <p class="a">1. 苏州历史上共出过多少位文武状元？（51位：文46、武5）</p>
+      <p class="a">2. 苏州文庙四大宋碑叫什么名字？（天文图、地理图、帝王绍运图、平江图）</p>
+      <p class="a">3. 《天文图》上刻了多少颗星星？（1434颗，世界现存最古老实测全天石刻星图）</p>
+      <p class="a">4. 大成殿有多少根楠木柱子？（50根）</p>
+      <p class="a">5. "廉石"是谁搬回来的？为什么？（陆绩；行李太轻压不住船）</p>
+      <p class="a">6. 泮池的"洗马"读音和意思？（xiǎn mǎ，太子洗马，官职名）</p>
+      <p class="a">7. 孔门七十二贤中唯一的南方人是谁？（言偃）</p>
+      <p class="a">8. 上海哪个区的名字与言偃有关？（奉贤——敬奉贤人）</p>
+      <p class="a">9. "吾门有偃，吾道其南"是谁说的？（孔子）</p>
+      <p class="a">10. 中国科举史上唯一官方认证的"六元状元"是谁？（钱棨）</p>
+      <p class="a">11. 乡试/会试/殿试第一名分别叫什么？（解元/会元/状元）</p>
+      <p class="a">12. 钱棨考了几次乡试才中举？（7次，前6次全部落榜）</p>
+      <p class="a">13. "三元坊"的牌坊哪一年被拆除？（1951年，因拓宽人民路）</p>
+      <p class="a">14. 乾隆为钱棨写的《三元诗》碑现在藏在哪里？（苏州中学校史馆）</p>
+      <p class="a">15. 吴越王钱镠去世后留下的关键遗训是什么？（善事中原、纳土归宋，保境安民）</p>
+      <p class="a">16. "三钱"指哪三位科学家？（钱学森、钱三强、钱伟长）</p>
+      <p class="a">17. 哪位钱氏大家族成员曾在苏州中学执教/就读？（钱穆执教、钱伟长就读）</p>
+      <p class="a">18. 范仲淹把风水宝地捐出来做了什么？（建文庙、办府学）</p>
+      <p class="a">19. "先天下之忧而忧"出自哪篇文章？写于哪一年？（《岳阳楼记》，1046年）</p>
+      <p class="a">20. 苏州文庙哪一年起免费开放？每周几闭馆？（2004年；周一）</p>
+      <p class="a">21.（附加）钱伟长考清华时物理几分？他后来被称为什么？（5分；中国近代力学与应用数学奠基人之一/"力学之父"）</p>
+      <p class="a">22.（附加）"中国的居里夫人"是谁？她毕业于苏州哪所学校？（何泽慧；振华女校——今苏州十中）</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="big">吴地时光机 · 文史研学系列</div>
+  <p>讲师备课手册 · 内部资料 ｜ 资料来源：DeepSeek 历史研究档案（687条对话精选60条）+ 公开史料核校 ｜ 近现代人物信源：清华大学校史馆、央视网、澎湃新闻、腾讯新闻、广东政协网、同济大学关工委</p>
+  <p style="margin-top:4px">面向家长与学员的宣传页另见《citywalk_kids.html》 ｜ 名人堂持续补充中</p>
+  <p style="margin-top:4px">总目录：<a href="index.html">苏州城市漫游研学 · 总目录</a> ｜ 配套现场解说：<a href="wenmiao_shouce.html" style="color:var(--blue)">文庙打卡点 · 现场解说手册 v2</a>（v1 存档版见 文庙打卡点_解说手册.html）</p>
+</footer>
+
+</div>
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSb();closeDrop();}});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  // 两种目录模式切换：勾选框控制顶部导航显隐
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 人物单元下拉子菜单（面板挂在吸顶容器 .toc-wrap 下，定位对齐按钮）
+  var dropWrap=document.getElementById('dropWrap'),dropBtn=document.getElementById('dropBtn'),
+      dropPanel=document.getElementById('dropPanel');
+  function closeDrop(){
+    dropWrap.classList.remove('open');dropPanel.classList.remove('open');
+    dropBtn.setAttribute('aria-expanded','false');
+  }
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var opening=!dropPanel.classList.contains('open');
+    if(opening){
+      dropPanel.classList.add('open');               // 先显示才能量宽
+      var br=dropBtn.getBoundingClientRect(),
+          wr=topbar.getBoundingClientRect(),
+          pw=dropPanel.offsetWidth||220;
+      var left=br.left-wr.left;                      // 相对吸顶容器对齐按钮
+      left=Math.min(Math.max(12,left),Math.max(12,wr.width-pw-12));
+      dropPanel.style.left=left+'px';
+      dropWrap.classList.add('open');
+      dropBtn.setAttribute('aria-expanded','true');
+    }else{closeDrop();}
+  });
+  document.addEventListener('click',function(e){
+    if(!dropWrap.contains(e.target)&&!dropPanel.contains(e.target))closeDrop();
+  });
+  dropPanel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrop);});
+  // 滚动高亮当前位置（顶栏胶囊、下拉面板、侧边栏三处联动）
+  var unitIds=['u1','u2','u3','u4','u5'];
+  var allLinks=document.querySelectorAll('nav.toc a, .drop-panel a, .side-nav a');
+  var dropBtnEl=document.querySelector('.drop-btn');
+  function setActive(id){
+    allLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+    });
+    dropBtnEl.classList.toggle('active',unitIds.indexOf(id)>=0||id==='p1');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ['overview','p1','u1','u2','u3','u4','u5','p2','p3','p4'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)io.observe(el);
+    });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>胥门名人篇 · 苏州城市漫游研学｜教学大纲（讲师备课版）</title>
+<style>
+:root{
+  --bg:#faf6ee; --card:#fffdf8; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b08a3e; --gold-bg:#f7f0dd;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9; --serif:'Microsoft YaHei','PingFang SC',serif; --sans:'Microsoft YaHei',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.85;font-size:16px;padding:0 20px}
+.wrap{max-width:980px;margin:0 auto}
+header.hero{text-align:center;padding:46px 0 26px;border-bottom:3px double var(--line)}
+header.hero .kicker{font-size:.8rem;letter-spacing:.5em;color:var(--gold);font-weight:700}
+header.hero h1{font-family:var(--serif);font-size:2.15rem;font-weight:900;letter-spacing:.12em;margin:12px 0 6px}
+header.hero .sub{color:var(--ink-soft);font-size:.95rem}
+header.hero .cross-line{margin-top:10px;font-size:.88rem}
+header.hero .cross-line a{color:var(--blue);text-decoration:none;border-bottom:1px dashed var(--blue)}
+.legend{display:inline-block;margin-top:14px;font-size:.76rem;color:var(--ink-soft);background:var(--card);
+  border:1px dashed var(--line);border-radius:10px;padding:8px 14px;text-align:left}
+.legend b{color:var(--red)}
+/* ===== 导航（顶栏） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:18px -20px 0;padding:10px 20px 12px}
+nav.toc{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;position:relative;align-items:center}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;text-decoration:none;color:var(--ink-soft);
+  font-size:.86rem;font-weight:700;background:var(--card);border:1px solid var(--line);border-radius:30px;
+  padding:5px 15px;white-space:nowrap;transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer;
+  line-height:1.5;-webkit-appearance:none;appearance:none}
+nav.toc a:hover,nav.toc .drop-btn:hover{background:var(--gold-bg);color:var(--red)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 8px);left:20px;z-index:60;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:210px}
+.drop-panel.open{display:flex}
+.drop-panel a{border:none;border-radius:9px;background:none;font-weight:400 !important;color:var(--ink-soft) !important;padding:8px 14px !important}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--red) !important}
+.drop-panel a.active{background:var(--gold-bg) !important;color:var(--red) !important;font-weight:700 !important}
+.drop-panel .d-head{font-size:.72rem;color:var(--gold);letter-spacing:.2em;padding:4px 14px 6px;font-weight:700}
+/* ===== 侧边栏 ===== */
+.side-tab{position:fixed;right:0;top:42%;z-index:55;writing-mode:vertical-rl;letter-spacing:.35em;
+  background:var(--red);color:#fff;border:none;border-radius:10px 0 0 10px;padding:16px 9px;font-size:.92rem;
+  font-weight:700;cursor:pointer;box-shadow:-3px 3px 10px rgba(125,47,40,.3)}
+.side-tab:hover{background:var(--red-deep)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:56;opacity:0;pointer-events:none;transition:opacity .25s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.sidebar{position:fixed;top:0;right:-320px;width:300px;height:100%;background:var(--card);z-index:57;
+  box-shadow:-6px 0 24px rgba(51,48,42,.18);transition:right .28s;display:flex;flex-direction:column}
+.sidebar.open{right:0}
+.side-head{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line)}
+.side-title{font-family:var(--serif);font-weight:900;letter-spacing:.2em;font-size:1.02rem}
+.side-close{background:none;border:none;font-size:1.5rem;color:var(--ink-soft);cursor:pointer;line-height:1}
+.mode-switch{font-size:.78rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer}
+.side-nav{display:flex;flex-direction:column;overflow-y:auto;padding:8px 0 24px}
+.side-nav a{padding:10px 20px;color:var(--ink-soft);text-decoration:none;font-size:.94rem;font-weight:700;border-left:3px solid transparent}
+.side-nav a.sub{padding-left:38px;font-weight:400;font-size:.89rem}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+/* ===== 正文 ===== */
+section.part{margin-top:52px}
+.part-head{display:flex;align-items:center;gap:14px;margin-bottom:8px}
+.part-head .no{background:var(--red);color:#fff;font-weight:900;border-radius:8px;padding:4px 12px;font-size:.9rem;letter-spacing:.15em}
+.part-head h2{font-family:var(--serif);font-size:1.5rem;font-weight:900;letter-spacing:.06em}
+.part-intro{color:var(--ink-soft);font-size:.94rem;margin-bottom:14px}
+.unit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 28px;margin:22px 0;position:relative}
+.unit h3{font-family:var(--serif);font-size:1.32rem;font-weight:900;margin-bottom:4px}
+.unit h3 small{font-weight:400;color:var(--ink-soft);font-size:.82rem;margin-left:8px}
+.unit.teal h3{color:var(--teal)} .unit.blue h3{color:var(--blue)} .unit.gold h3{color:var(--gold)}
+.unit h4{font-family:var(--serif);font-size:1.06rem;font-weight:900;color:var(--red-deep);margin:20px 0 8px;letter-spacing:.04em}
+.unit.teal h4{color:var(--teal)} .unit.blue h4{color:var(--blue)} .unit.gold h4{color:#8a6a2c}
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem;background:#fff;border-radius:10px;overflow:hidden}
+th,td{border:1px solid var(--line);padding:7px 12px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;white-space:nowrap}
+.quote{background:var(--gold-bg);border-left:4px solid var(--gold);border-radius:0 12px 12px 0;
+  padding:12px 16px;margin:12px 0;font-family:var(--serif);font-size:.98rem}
+.quote small{display:block;color:var(--ink-soft);font-family:var(--sans);font-size:.82rem;margin-top:6px}
+.tip{background:var(--teal-bg);border-radius:12px;padding:12px 16px;margin:12px 0;font-size:.92rem}
+.tip b{color:var(--red)}
+.story{border-top:1px dashed var(--line);margin-top:14px;padding-top:6px}
+.story .t{display:block;font-weight:900;color:var(--red-deep);font-size:.95rem;margin:10px 0 6px;letter-spacing:.05em}
+.src{font-size:.76rem;color:var(--ink-soft);border-top:1px dashed var(--line);margin-top:12px;padding-top:8px;line-height:1.7}
+.src b{color:var(--gold);letter-spacing:.2em;margin-right:4px}
+.qa{background:#fdfaf3;border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:10px 0}
+.qa .q{font-weight:700;margin:6px 0 2px}
+.qa .a{color:var(--ink-soft);font-size:.92rem;margin-bottom:10px}
+.layer{display:flex;gap:12px;margin:8px 0;align-items:flex-start}
+.ln{flex:none;width:26px;height:26px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-weight:900;font-size:.85rem;margin-top:4px}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.field{background:var(--teal-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.field b.t{color:var(--teal)}
+/* ===== 反向导航：去现场（跨页到打卡点手册） ===== */
+.spot-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;align-items:center}
+.spot-row .lbl{font-size:.8rem;color:var(--ink-soft);font-weight:700;letter-spacing:.1em}
+.spot-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  color:var(--blue);background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:30px;padding:6px 14px;
+  transition:transform .15s,box-shadow .15s}
+.spot-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(58,110,165,.25)}
+.spot-link.hl{color:var(--red);background:#fdf1ef;border-color:var(--red)}
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+@media print{.side-tab,.sidebar,.side-mask,nav.toc,.toc-wrap{display:none}body{background:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">吴 地 时 光 机 · 讲 师 备 课 手 册</div>
+  <h1>胥门名人篇 · 苏州城市漫游研学</h1>
+  <p class="sub">伍子胥与春秋吴国 ｜ 名员 · 阖闾 · 夫差 · 勾践 与一串名字 ｜ 前五二七—前四七三</p>
+  <p class="cross-line">配套手册：⟶ <a href="xumen_shouce.html#overview">《胥门 · 打卡点现场解说手册》</a>（三站三问逐点解说，点开互查） ｜ ｜ 总入口：⟶ <a href="index.html">研学总目录</a>（全部线路一站式）</p>
+  <div class="legend"><b>信源体例：</b>凡可查证处，段落下方以小字注明出处；古籍注原典篇目，内部整理资料标「原始课件」指 Desktop/临时 下的三份胥门页（本册不改原文件，仅整理迁移）。</div>
+</header>
+
+<!-- ================= 导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <div class="drop-wrap" id="dropWrap">
+      <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false">一·人物单元<span class="caret">▾</span></button>
+    </div>
+    <a href="#p2">二·打卡点手册</a>
+    <a href="#p3">三·点位矩阵</a>
+    <a href="#p4">四·方法题库</a>
+  </nav>
+  <div class="drop-panel" id="dropPanel">
+    <div class="d-head">四 组 人 物</div>
+    <a href="#u1">单元一 · 伍子胥（核心）</a>
+    <a href="#u2">单元二 · 阖闾</a>
+    <a href="#u3">单元三 · 名人群像</a>
+    <a href="#u4">单元四 · 夫差与勾践</a>
+  </div>
+</div>
+
+<!-- ================= 侧边栏目录 ================= -->
+<button class="side-tab" id="sideTab" aria-label="打开课程目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏课程目录">
+  <div class="side-head">
+    <span class="side-title">课程目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 课程主线与方法论</a>
+    <div class="divider"></div>
+    <a href="#p1">第一部分 · 人物单元（四组）</a>
+    <a class="sub" href="#u1">单元一 · 伍子胥（核心）</a>
+    <a class="sub" href="#u2">单元二 · 阖闾</a>
+    <a class="sub" href="#u3">单元三 · 名人群像</a>
+    <a class="sub" href="#u4">单元四 · 夫差与勾践</a>
+    <div class="divider"></div>
+    <a href="#p2">第二部分 · 打卡点手册</a>
+    <a href="#p3">第三部分 · 人物×点位矩阵</a>
+    <a href="#p4">第四部分 · 讲述方法与题库</a>
+    <div class="divider"></div>
+    <a href="xumen_shouce.html" style="color:var(--blue)">⟶ 打卡点 · 现场解说手册 ↗</a>
+    <a href="index.html" style="color:var(--blue)">⟶ 研学总目录 · 一站式入口 ↗</a>
+  </nav>
+</aside>
+
+<!-- ================= 课程总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>课程主线与教学方法</h2></div>
+  <div class="unit">
+    <h4>一条主线</h4>
+    <p>一个敌国的流亡者，为苏州造了一座城；他看见了自己的死，也看见了吴国的亡。<b>「伍子胥筑城」四个字，是苏州 2500 年故事的开头</b>——刺客是他荐的，城是他修的，剑是吴王赐的。</p>
+    <h4>一个悬念贯穿全场</h4>
+    <p>开场问「胥门那尊石像是谁、他埋在哪座城门边」——<b>不揭晓</b>，直到尾声回到胥门才回收，并用「考据 vs 传说」这把钥匙作答。</p>
+    <h4>一把方法论钥匙：考据 vs 传说</h4>
+    <p>本线全程示范「两层并讲」：史书里有骨架（《史记》《左传》），民间有情感（一夜白头、悬目胥门、端午潮神）——<b>传说照讲，但点明是传说；考据讲准，数字说「大约」</b>。这既是讲法，也是给孩子的一堂史料辨析课。</p>
+    <h4>四个情绪台阶</h4>
+    <table>
+      <tr><th>台阶</th><th>内容</th><th>情绪</th></tr>
+      <tr><td>好奇</td><td>三个「胥」字（胥门·胥江·胥口）</td><td>轻快、认地名</td></tr>
+      <tr><td>悲愤</td><td>敌国来客（灭门·出奔）</td><td>沉重、紧张</td></tr>
+      <tr><td>昂扬</td><td>慧眼·筑城·破楚</td><td>庄重、自豪</td></tr>
+      <tr><td>苍凉→温暖</td><td>属镂剑下 → 一城永存</td><td>悲怆 → 回收</td></tr>
+    </table>
+    <h4>与文庙线、阊门线的衔接</h4>
+    <p>胥门线是《吴地时光机》单元一「城与河」第 1 课（筑城）；阊门线讲「门与商」；文庙线讲「学与魂」。三线共用人物库：伍子胥在阊门线与文庙线均有出场（文庙四大宋碑之《平江图》与本线规划展示馆的 3D 模型是<b>同一张图的碑与模</b>）。</p>
+    <div class="src"><b>信源</b>：主线与教学方法——原始课件《伍子胥筑城·现场讲解大纲（交互版·90′）》（Desktop/临时/xumen-xianchang.html，原文件未改动，本册整理迁移）；课程衔接——同上及文庙线、阊门线备课手册。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="xumen_shouce.html#route">胥门线 · 三站动线图 ↗</a>
+      <a class="spot-link" href="wenmiao_shouce.html#s4">文庙线 · 平江图碑（同一张图）↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第一部分 人物单元 ================= -->
+<section class="part" id="p1" data-anchor>
+  <div class="part-head"><span class="no">第一部分</span><h2>人物单元（四组）</h2></div>
+  <p class="part-intro">以伍子胥为核心大单元，其余三组围绕他展开——君、友、敌，合成春秋吴国最后一甲子（前527—前473）。</p>
+
+  <!-- ========= 伍子胥 ========= -->
+  <div class="unit gold" id="u1" data-anchor>
+    <h3>单元一 · 伍子胥<small>名员，字子胥 ｜ 苏州城的总设计师 ｜ ？—前 484</small></h3>
+    <table>
+      <tr><th>身份</th><td>楚国贵族 → 吴国客卿 → 都城总设计师；《史记》记官职「行人」（外交差遣），清华简《系年》记「吴太宰」——学界普遍认为<b>太宰（相国）才是核心职务</b>，「行人」是临时差遣</td></tr>
+      <tr><th>家世</th><td>楚国「三世忠臣」门阀：曾祖伍参（邲之战助楚庄王定霸业）、祖父伍举（历事四朝敢谏）、父伍奢（太子太傅）；「少好于文，长习于武」</td></tr>
+      <tr><th>生卒</th><td>卒年前 484（夫差赐属镂剑）；<b>生年史无明载</b>（一说前 559 前后）——<b>课上不写具体生年</b>，避免争议</td></tr>
+      <tr><th>结局</th><td>属镂剑赐死，鸱夷革盛尸浮江；苏州民间奉为潮神、涛神，端午最早纪念的正是他</td></tr>
+      <tr><th>留给苏州</th><td>一座 2540 年城址未变的城；胥门、胥江、胥口、胥山、胥王庙——<b>让山河都改姓他的姓</b></td></tr>
+    </table>
+
+    <h4>故事一 · 出奔——楚国贵族为什么逃到敌国去？（前 527—前 522）</h4>
+    <div class="story">
+    <span class="t">▲ 开场讲法——先说他本来该过的人生：</span>
+    <p>伍家是楚国世家：父亲伍奢是<b>太子太傅</b>——国家储君的老师。他原本的人生剧本是在郢都（今湖北荆州）当一辈子卿大夫。<b>可这个人，最后成了楚国通缉名单上的要犯，跑到死对头吴国，还替吴国造了一座城。</b></p>
+    <span class="t">▲ 祸起一场婚事（前 527）：</span>
+    <p>楚平王派少傅<b>费无忌</b>（左传作费无极，一人异写）去秦国替太子建迎亲。费无忌回来只说了一句：<b>「秦女绝美，王可自取。」</b>——新娘孟嬴成了平王夫人，太子另娶齐女。真正开始的地方不是色欲，是<b>恐惧</b>：费无忌心虚，怕太子即位后清算。第一步把太子调出郢都（前 523 出镇城父），第二步（前 522）诬告太子「外交诸侯、谋反」——太子奔宋转郑被杀，太傅伍奢下狱。<b>一个小人的恐惧，掀翻了一个国家。</b></p>
+    <div class="quote">「秦女绝美，王可自取。」<small>——《史记·伍子胥列传》（费无忌语）</small></div>
+    <span class="t">▲ 父亲的死局（前 522）——中国历史上最有名的兄弟对话：</span>
+    <p>费无忌出绝户计：召伍奢两子来，一起杀。使者传话：<b>来，父亲活；不来，父亲死。</b>哥哥伍尚说：「我去——父活一线希望不能不救，是孝；我死，你活着，你能报仇，是谋。」弟弟伍子胥说：「都回去，父子三人一起死，<b>仇谁来报</b>？」伍尚归郢与父同死；伍子胥张弓拒捕，亡命出奔。伍奢临刑留下一句预言：<b>「楚国君臣，从此要苦于战事了。」</b></p>
+    <span class="t">▲ 逃亡线上的两个人：</span>
+    <p>过昭关——《史记》只五个字「<b>橐载而出昭关</b>」（装进口袋抬出关）；京剧《文昭关》的「一夜白头」是后世浪漫加工，<b>但走投无路的急是真的</b>。过大江——老渔翁渡他，子胥解百金之剑相谢，渔翁答：<b>「楚国悬赏五万石粟、封大夫爵我都不动心，岂会贪你一把剑」</b>——连名字都没留（《吕氏春秋》称「江上丈人」），中国文学里最早的隐侠形象之一。此后贫病交加，<b>吴市吹箫、乞食于吴市</b>——十几年后为苏州画出第一张图纸的人，是从吹箫讨饭开始的。</p>
+    <span class="t">▲ 为什么偏偏是吴国？三个理由：</span>
+    <p>①吴是楚的世仇——报仇要借敌人的敌人之力；②吴国政局有一道缝——王僚在位而公子光不服（详见单元二）；③吴国正往上走——有野心、有地利、缺人才。<b>一个想干事的国家，最缺的就是能干事的人。</b></p>
+    <p>初到吴国即献策伐楚，被公子光一句点破：「伍子胥劝大王伐楚，是为报他<b>自己的私仇</b>。」——他立刻明白：这位公子光另有雄心。（吴楚世仇的荒诞注脚可作储备：吴边邑卑梁与楚边邑钟离的姑娘争采桑叶，两家打、边邑打，最后两国发兵——为几片桑叶，两个大国动了刀兵。）</p>
+    <div class="quote">收束句：「楚国给他的是一张通缉令；吴国给他的，是一张城市设计图。」</div>
+    </div>
+
+    <h4>故事二 · 鱼肠剑——那个刺客，是我推荐的（前 522—前 514）</h4>
+    <div class="story">
+    <span class="t">▲ 先看懂王位这笔账（不可省）：</span>
+    <p>第十九代吴王寿梦有四子：诸樊、余祭、余昧、季札。寿梦想传位最贤的季札，季札<b>三让不受</b>；于是「兄终弟及」一路轮，可余昧死时季札还是逃位——位子落到余昧之子<b>僚</b>头上（前 527）。长子诸樊之子<b>公子光</b>不服，说六个字：<b>「我真王嗣，当立。」</b>——按兄终弟及该转回长房，按父死子继我是长子的长子，怎么算他都有理。<b>伍子胥一到吴国，就看懂了这笔账。</b></p>
+    <span class="t">▲ 他不劝伐楚，他送了一个刺客：</span>
+    <p>被公子光点破私仇后，他明白两件事：只要王僚在位，他这辈子打不成楚国；真正能带吴国强大的是公子光。于是<b>退掉「正当」方案，换一个「快」方案</b>——把刺客专诸送给公子光。讲法分寸：不绕开「权谋」二字，直说这是政治选择而非道德选择——这也是他最后命运的伏笔。</p>
+    <span class="t">▲ 鱼肠剑（前 515）：</span>
+    <p>公子光设宴请僚；僚穿三重甲、布满亲兵，端菜人先脱衣换衣才准入。专诸把匕首藏进烤鱼腹，上菜一击——僚死，专诸当场被杀。公子光即位，就是<b>吴王阖闾</b>。前 514 年，阖闾任伍子胥参与国政——<b>那座城，开工了。他用一把剑，换来了落笔的资格。</b></p>
+    <span class="t">▲ 顺手一笔——七荐孙武：</span>
+    <p>他又荐了齐国人孙武（《孙子兵法》十三篇作者），前后<b>七次举荐</b>。阖闾让他试训宫女：一百八十名宫女分两队，宠姬当队长，<b>「三令五申」</b>后仍大笑——孙武斩两位队长，阖闾急喊，孙武只回八个字：<b>「将在军，君命有所不受。」</b>两颗人头落地，全场肃然，拜为将军。（史实提示：吴宫教战见于《史记》；「传说的生动」与「史实的骨架」各有用处。）</p>
+    <div class="quote">收束句：「复仇的路上，他先成全了别人的王位，才拿到自己的图纸。」</div>
+    </div>
+
+    <h4>故事三 · 相土尝水，象天法地——前 514 年，一座城诞生（全课分量所在）</h4>
+    <div class="story">
+    <span class="t">▲ 阖闾问对·十二个字：</span>
+    <div class="quote">「立城郭，设守备，实仓廪，治兵库。」<small>——《吴越春秋·阖闾内传》（伍子胥答阖闾「欲强国霸王，何由而可」之问；白话：先造一座坚固的城，再谈别的。本课题目由此而来）</small></div>
+    <span class="t">▲ 八个字的勘察：</span>
+    <p><b>相土尝水，象天法地</b>——考察土质、尝测水文、观察天象、对照地理。用今天的话说：一次结合水利、防洪、航运、军事防御的全面勘察。选址太湖东岸：西有湖山屏障、东为沃野鱼米乡、水网密布进退有据。</p>
+    <span class="t">▲ 城制与门名即国策：</span>
+    <p>史称「阖闾大城」，<b>周回四十七里；陆门八以象天八风，水门八以法地八聪</b>——水陆双棋盘、河街相邻的骨架自此定下。八座门的名字全是国策：<b>西二门冲楚</b>（阊门立「通天气」又名破楚门；胥门正对胥江）；<b>南二门压越</b>（东南蛇门悬木蛇、西南盘门蟠龙）；<b>北面平鲁威齐</b>（平门、齐门）；东面娄门、匠门管农桑百工。</p>
+    <span class="t">▲ 2540 年不变的奇迹：</span>
+    <p>前 514 筑城至 2026 年，苏州 <b>2540 岁</b>（1986 年苏州曾纪念建城 2500 年，即从前 514 起算）。吴亡了、越亡了，王朝无数兴替——<b>城的位置没变、骨架没变</b>，今古城区仍能对应阊门、胥门、盘门、娄门、齐门、平门、相门诸名，中国城建史上罕见的连续性。<b>这座城的第一张设计图，是伍子胥画的。</b></p>
+    <span class="t">▲ 破楚门等来决战（前 506）：</span>
+    <p>三分疲楚——吴军分三支轮番出动，楚军救哪边哪边退，数年拖疲；柏举之战联唐蔡五战五胜攻入郢都，楚昭王出逃——<b>从父兄被杀那天算起，他等了十六年</b>。掘墓鞭尸三百事《史记》有载，但唐代司马贞、明末顾炎武均质疑为后人增饰——<b>史料也要带着问号读</b>。老友申包胥斥其「倒行逆施」，让学员自判：被仇恨驱动十六年，是力量还是枷锁？</p>
+    <div class="quote">「子胥乃使相土尝水，象天法地，造筑大城，周回四十七里；陆门八，以象天八风；水门八，以法地八聪。」<small>——《吴越春秋·阖闾内传》</small></div>
+    <div class="quote">收束句：「一座城，2500 年，位置没挪过——这就是『伍子胥筑城』四个字的分量。」</div>
+    </div>
+
+    <h4>故事四 · 属镂剑下——一双望向未来的眼睛（前 496—前 484—前 473）</h4>
+    <div class="story">
+    <span class="t">▲ 转折·槜李（前 496）：</span>
+    <p>阖闾轻敌南征越国；勾践派敢死队阵前集体自刎，吴军看呆，越军掩杀，<b>阖闾伤指而亡</b>。临终嘱太子夫差：「你会忘记勾践杀了你父亲吗？」夫差答：<b>「不敢忘！」</b></p>
+    <span class="t">▲ 两次进谏，两次不听：</span>
+    <p>前 494 夫椒之战大败越国，勾践五千残兵困守会稽求和，愿「委国为臣妾」。伍子胥讲<b>少康的故事</b>——少康仅一成之田、一旅之众尚且复国，今日放过勾践等于养虎遗患；夫差听信受贿的太宰伯嚭，允和。此后夫差一心北上伐齐争霸，子胥反复警告：<b>「越，腹心之疾；齐，疥癣也」</b>——齐国不过一片石头田，打下来也没收成。夫差要的是面子，伍子胥要的是命——他成了那个国家<b>最扫兴的人</b>。</p>
+    <span class="t">▲ 一个父亲最无奈的决定：</span>
+    <p>前 484 前后，夫差派他出使齐国；他预感大祸，把儿子托付齐国鲍氏。伯嚭趁机进谗：<b>「把儿子送到敌国，是要造反。」</b>一个为国算到最后的老人，被一句话变成了叛徒。</p>
+    <span class="t">▲ 属镂剑（全场最重，停三秒再开口）：</span>
+    <p>夫差赐<b>属镂剑</b>令自尽。遗言两句：<b>在我墓上种梓树——长成能做棺材那天，吴国就要亡了；把我的眼睛挖出来挂在东门上——我要亲眼看越军进城灭吴。</b>夫差大怒，以鸱夷革（皮囊）盛尸抛入江中；百姓怜之，江边立祠，其山名胥山——传说此日正是<b>五月初五</b>：在苏州民间记忆中，端午最早纪念的正是伍子胥（潮神、涛神，比屈原说早约两百年，两说并存）。</p>
+    <div class="quote">「必树吾墓上以梓，令可以为器；而抉吾眼县吴东门之上，以观越寇之入灭吴也。」<small>——《史记·伍子胥列传》（「县」通「悬」。考据：遗言所悬为「吴东门」，后人把地点与城西胥门相连属情感性附会——但正是这份附会，让胥门立起了那尊石像）</small></div>
+    <span class="t">▲ 预言应验（前 473）：</span>
+    <p>十一年后越灭吴。夫差被围求和不成，叹<b>「吾悔不用子胥之言」</b>，自刎；传说他以白布蒙住双眼——无颜到地下去见伍子胥。</p>
+    <span class="t">▲ 死因三层答案（由表及里）：</span>
+    <div class="layer"><div class="ln">1</div><div><b>谗言</b>——伯嚭受贿替越说话，夫差愿意信他。国家的崩塌往往不从敌人开始，而从「君王想听什么」开始。</div></div>
+    <div class="layer"><div class="ln">2</div><div><b>挡了路</b>——君王坐上那个位子只想听「可以」，而他一辈子只会说「不可以」。</div></div>
+    <div class="layer"><div class="ln">3</div><div><b>位置从一开始就是错的</b>——楚人仕吴，他效忠的不是哪一个吴王，而是「吴国能不能活下去」这件事本身；当君意与国利分岔，他必站国家一边。这样的人，历史上很少有好下场。</div></div>
+    <div class="quote">收束句：「他算出了吴国的结局，却算不出自己人的刀——因为他算的是一国的国运，而杀他的是一个人的私心。」</div>
+    </div>
+
+    <h4>深一层 · 为什么筑城的偏偏是他？（胥门下加讲 3–5 分钟）</h4>
+    <div class="story">
+    <p><b>家世底气</b>——顶级贵族教育，文武两手都是家学；<b>本行经验</b>——出逃前他在楚国樊城当过城守（今襄阳一带边防重镇），守城实战、水文地理、城防体系摸了几年，后来原封不动「反哺」吴国——筑城对他不是赶鸭子上架，是本行；<b>技术代差</b>——吴国都邑始终是小城邑规模（太伯旧城不过「周三里二百步」），而对面楚国郢都（纪南城遗址）方圆约 16 平方公里，是春秋南方第一大都会——吴国有工匠，却缺既懂城防又懂水利、能总揽全局的规划型统帅，伍子胥把郢都一带的整套经验打包带来；<b>系统工程</b>——筑城、治水、练兵、屯粮四事同步，三面受敌布三道防线（太湖丘陵屏障、望虞河、湿地、城墙），从筑城到破楚只用八年——靠的是系统规划、分步实施；<b>不拘一格的班底</b>——阖闾大胆任用外来客卿：伍子胥、伯嚭是楚人，孙武是齐人，讲出身门第的春秋，这是破天荒的事。</p>
+    <div class="quote">「公子光赏识伍子胥，不是怜悯一个落难贵族，而是看中了他肚子里那套治国本事；伍子胥报答知遇，也不是空谈忠心，而是交出了一座两千五百年没挪过窝的城——这才叫互相成全。」</div>
+    </div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 胥门 · 石像与城门（本线终点）</b>
+    <p>城门口那尊佩剑望西的石像就是他；「三个胥字」地名链（胥门—胥江—胥口）从这里收拢；「抉目悬门」的传说落点也在这扇门——<b>故事的高潮留在最后收</b>。</p></div>
+    <div class="field"><b class="t">◆ 规划展示馆 · 平江图 3D 模型（本线起点）</b>
+    <p>他画的那张图，八百年后被人刻成碑（文庙四大宋碑之《平江图》），今天又被立成模型——「图纸上的城，就是脚下的城」。</p></div>
+    <div class="field"><b class="t">◆ 万年桥 · 狮子山</b>
+    <p>专诸刺僚的血雨腥风过去近两百年，才有三摆渡口的万年桥——<b>太平年代的桥，比乱世里任何一把剑都珍贵</b>。</p></div>
+    <div class="src"><b>信源</b>：生平主线——《史记·伍子胥列传》《史记·吴太伯世家》；「秦女绝美」「橐载而出昭关」「必树吾墓上以梓……」——《史记·伍子胥列传》；「我真王嗣，当立」「吾悔不用子胥之言」——《史记·吴太伯世家》；「立城郭，设守备，实仓廪，治兵库」「相土尝水，象天法地」「周回四十七里」——《吴越春秋·阖闾内传》；「吴王阖闾用伍子胥之谋，始创此河以为漕运」——宋《吴中水利书》引前人记载；太宰说——清华简《系年》（2008 入藏）；江上丈人——《吕氏春秋》；一夜白头——京剧《文昭关》文学加工；端午潮神——苏州民间记忆口径（与屈原说并存）；2540 年算法——前 514 筑城起算、1986 年建城 2500 年纪念；纪南城 16 平方公里——考古通行口径；逐字故事稿——原始课件《伍子胥筑城·三则故事（精简版 V2）》《现场讲解大纲（90′）》。原始课件未改动，本册整理迁移。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="xumen_shouce.html#s3">胥门 · 石像与三个胥字 ↗</a>
+      <a class="spot-link hl" href="xumen_shouce.html#s1">规划展示馆 · 平江图 3D 模型 ↗</a>
+      <a class="spot-link" href="xumen_shouce.html#s2">万年桥 · 狮子山 ↗</a>
+      <a class="spot-link" href="changmen_mingren.html">阊门线名人篇 · 伍子胥条目互参 ↗</a>
+    </div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：胥门真的是因伍子胥得名吗？</p>
+      <p class="a">A：两说并存——考据上门名更早（《左传》已见胥门，其时伍子胥尚在楚国；或与姑胥山、「故胥」转音有关）；传说上门名与他相连。讲法：<b>门名有古源，情感归子胥</b>。</p>
+      <p class="q">Q2：端午节到底纪念谁？</p>
+      <p class="a">A：在苏州民间记忆中最早是伍子胥（潮神、涛神），比屈原早约两百年；两说并存，表述用「在苏州民间记忆中……」。</p>
+      <p class="q">Q3：胥江真是伍子胥开凿的吗？</p>
+      <p class="a">A：宋代《吴中水利书》已引前人记载「吴王阖闾用伍子胥之谋，始创此河以为漕运」——此说至晚宋代已流传，有名有姓有年份。</p>
+      <p class="q">Q4：伍子胥的生卒年是多少？</p>
+      <p class="a">A：卒年前 484（赐属镂剑）通行；生年史无明载——课上不写具体生年。</p>
+      <p class="q">Q5：2026 年苏州多少岁？怎么算的？</p>
+      <p class="a">A：2540 岁——前 514 年筑城起算；1986 年苏州曾纪念建城 2500 年。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 官职两说并讲：《史记》记「行人」，清华简《系年》记「太宰」——学界认为太宰是核心职务，「行人」是联络蔡唐时的临时差遣。② 「掘墓鞭尸三百」《史记》有载，司马贞、顾炎武皆疑为增饰——两说并存。③ 遗言「抉吾眼县吴<b>东门</b>之上」，民间附会到胥门——点明即可，不必强辩。④ 司马迁在《伍子胥列传》篇末只留七个字：<b>「怨毒之于人甚矣哉！」</b>——怨恨对人的驱动力，太大了啊。⑤ 严嵩拆紫石巨桥运回江西分宜一说，真伪存争，当包袱听听。</div>
+  </div>
+
+  <!-- ========= 阖闾 ========= -->
+  <div class="unit teal" id="u2" data-anchor>
+    <h3>单元二 · 阖闾<small>公子光 ｜ 前 514—前 496 在位 ｜ 吴国崛起的操盘手</small></h3>
+    <table>
+      <tr><th>身份</th><td>吴王寿梦长子诸樊之子；以「我真王嗣，当立」六字为口实，经专诸鱼肠剑夺位（前 515）</td></tr>
+      <tr><th>最大功业</th><td>采纳伍子胥十二字方略筑城强吴；用孙武、伍子胥破楚入郢（前 506）——吴国霸业的顶点</td></tr>
+      <tr><th>结局</th><td>前 496 槜李之战伤指而亡；临终嘱夫差「不忘勾践」</td></tr>
+    </table>
+    <h4>核心故事：王位这笔糊涂账</h4>
+    <p>寿梦遗命欲传四子季札（最贤），季札三让不受；兄终弟及轮到老三余昧死时，季札<b>逃位</b>——位子落到余昧之子<b>僚</b>。长子一系的公子光不服：「我真王嗣，当立。」——这笔账怎么算他都有理。<b>僚的身世两说</b>：《史记·吴太伯世家》作「余昧之子」；《公羊传》作「长庶也」（寿梦庶长子说）——两说都指向「僚非正当继承人」，这正是公子光的口实。</p>
+    <h4>核心故事：君臣互相成全</h4>
+    <p>《吴越春秋》里那段著名对话是阖闾主动发问：「寡人欲强国霸王，何由而可？」——征求方案的口气，说明他想的是报仇争霸的「快招」；他自陈家底「君无守御，民无所依，仓库不设，田畴不垦」——缺什么心里有数，缺的正是把短板变成蓝图的人。伍子胥抢答十二字「立城郭，设守备，实仓廪，治兵库」，<b>把慢功夫说成了争霸的第一块基石——君臣这才真正对上了眼</b>。</p>
+    <div class="quote">收束句：「阖闾要的是王位霸业，伍子胥交的不是一张图纸，是一整套立国方案。」</div>
+
+    <h4>核心故事二：十九年年表——他用十九年把吴国从边缘推到霸主</h4>
+    <p>《史记·吴太伯世家》为阖闾留了一份完整的在位纪年，逐年点亮，就是一部吴国崛起编年史——<b>伍子胥的眼光没错，跟着他没错</b>：</p>
+    <table>
+      <tr><th>在位纪年</th><th>公历</th><th>大事</th></tr>
+      <tr><td>元年</td><td>前 514</td><td>举伍子胥为「行人」共谋国政；楚亡臣伯嚭来奔，以为大夫——<b>不拘一格用外来客卿</b></td></tr>
+      <tr><td>三年</td><td>前 512</td><td>与伍子胥、伯嚭伐楚，拔舒，杀吴国叛将二公子——清除内部隐患</td></tr>
+      <tr><td>四年</td><td>前 511</td><td>伐楚取六、灊——开始向西扩张</td></tr>
+      <tr><td>五年</td><td>前 510</td><td><b>伐越败之</b>——吴越交手吴国首胜，此前吴国对越从未吃过亏</td></tr>
+      <tr><td>六年</td><td>前 508</td><td>楚伐吴，伍子胥迎击破之，取居巢</td></tr>
+      <tr><td>九年</td><td>前 506</td><td>联唐、蔡大举伐楚——柏举之战<b>五战五胜，攻入郢都</b>，春秋时期南方最大战事，吴国霸业顶点；<b>伍子胥的父兄之仇，在阖闾任上实现</b></td></tr>
+      <tr><td>十年</td><td>前 505</td><td>秦救楚、越乘虚袭吴，弟夫概归国自立——阖闾引兵还击平叛，沉着收场</td></tr>
+      <tr><td>十一年</td><td>前 504</td><td>太子夫差伐楚取番——楚恐惧而<b>迁都于鄀</b>，吴对楚全面压制</td></tr>
+      <tr><td>十九年</td><td>前 496</td><td>槜李之战伤指而亡——一生最后一战（见下）</td></tr>
+    </table>
+    <div class="tip"><b>策略亮点：</b>入郢之前，伍子胥献「三师以肄」之策——吴军分三支轮番袭扰楚国，楚军救哪边哪边就退，数年之间把楚国拖疲，才有柏举一击必中（《左传·昭公三十年》）。<b>慢棋+快棋的组合拳，正是阖闾君臣的可怕之处。</b></div>
+
+    <h4>最后一战：槜李——一支「冷箭」改写的历史（前 496）</h4>
+    <p>越王允常去世、勾践新立，阖闾乘丧伐越。两军战于槜李（今浙江嘉兴一带）：勾践派敢死队两次冲击，吴阵岿然不动；于是使出春秋战史上最诡异的一招——<b>三行罪人列阵前，属剑于颈，致辞后集体自刭</b>。吴军全体看呆的那一瞬间，越军突然掩杀，越将灵姑浮直取阖闾。</p>
+    <p><b>伤在哪里？两说并存，正好又是「考据 vs 传说」的素材：</b></p>
+    <div class="layer"><div class="ln">史</div><div>《史记·越王勾践世家》：「吴师败于槜李，<b>射伤吴王阖庐</b>」——是箭伤。</div></div>
+    <div class="layer"><div class="ln">史</div><div>《左传·定公十四年》：「灵姑浮<b>以戈击</b>阖庐，阖庐<b>伤将指</b>（脚大拇趾），取其一屦（还抢走了一只鞋）。还，卒于陉，去槜李七里。」——是戈伤。</div></div>
+    <p>无论箭伤还是戈伤，落点都是同一个尴尬的位置——<b>脚趾头</b>。像极了希腊神话里的「阿喀琉斯之踵」：全身刀枪不入的英雄，命门恰恰在脚上（此为荷马史诗典故，课上作比喻用，非史实）。临终嘱太子夫差：「<b>尔而忘勾践杀汝父乎？</b>」对曰：「<b>不敢！</b>」</p>
+    <div class="tip"><b>现代医学彩蛋：</b>按理说这不是致命伤——他大概率死于<b>伤口感染</b>（破伤风或败血症）：春秋中后期已用铁铸箭镞，锈铁伤加战场污染，伤口感染在公元前五世纪就是不治之症。一世英雄，栽在一个脚趾头上——<b>历史有时候不讲道理，只讲概率。</b></div>
+    <div class="quote">收束句：「他带着吴国从东南一隅打到楚国的都城，最后倒在离胜利最远的地方——一根脚趾头，改写了吴越两国的二十年。」</div>
+
+    <h4>深一层：两条推论（讲到学员抬头为止）</h4>
+    <div class="story">
+    <p><b>推论一 · 伍子胥的眼光没错。</b>史证——《左传·哀公元年》伍员追述旧主：「昔阖庐<b>食不二味，居不重席</b>，室不崇坛，器不彤镂……天有灾疠，<b>亲巡孤寡而共其乏困</b>……勤恤其民，而与之劳逸」——这是一个对手阵营的贤臣给出的评价：节俭、恤民、与士卒同甘苦。事证——十九年从「君无守御、民无所依」到破楚入郢、逼得楚人迁都。有远见、有魄力、有能力，三条都立得住。</p>
+    <p><b>推论二 · 如果没有这支冷箭。</b>阖闾伤重时正值盛年（生年不详，在位十九年）；对照一下——夫差继位后<b>仅用两年</b>（前 494 夫椒之战）就把勾践打得只剩五千甲士困守会稽。用兵更老辣、班底更齐整的阖闾，多活五年十年是大概率事件——而这五年里，越国极可能被彻底打垮：<b>卧薪尝胆，根本不会有发生的舞台。</b>吴国后世所有悲剧，都可以从那根脚趾头说起。</p>
+    <p><b>开放思考题（不给答案）：</b>如果是阖闾击败并活捉了勾践——他会杀掉越王吗？想想看：阖闾朝中伯嚭尚未专权、伍子胥言听计从，放与不放的历史条件完全不同。<b>历史上没有发生的事，恰好让每个学员都能当一回总参谋。</b></p>
+    <div class="quote">「公子光赏识伍子胥，是互相成全；阖闾之死替吴国按下暂停键——历史的天平，往往就停在一个人多活几年还是少活几年之间。」</div>
+    </div>
+
+    <div class="src"><b>信源</b>：王位传承、「我真王嗣，当立」、元年举伍子胥为行人、三年拔舒、四年取六灊、五年伐越败之、六年取居巢、九年五战五胜入郢、十年夫概之乱、十一年取番楚徙鄀、十九年槜李、临终问答「尔而忘勾践杀汝父乎」——《史记·吴太伯世家》在位纪年全文；「射伤吴王阖庐」——《史记·越王勾践世家》；「灵姑浮以戈击阖庐，伤将指，取其一屦」「还，卒于陉，去槜李七里」——《左传·定公十四年》；「三师以肄」疲楚之策——《左传·昭公三十年》；节俭恤民评语——伍员语，《左传·哀公元年》；问对十二字——《吴越春秋·阖闾内传》；破伤风/伤口感染推论——现代医学视角课堂彩蛋（春秋中后期已有铁铸箭镞为考古通行口径），阿喀琉斯之踵为荷马史诗类比、非史实；夫椒两年败越——《史记·伍子胥列传》（继位后「三年乃报越」）。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link" href="xumen_shouce.html#s3">胥门 · 筑城故事收束处 ↗</a>
+    </div>
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：季札三次让掉王位，是高明还是迂腐？公子光夺位，是篡还是正？</p>
+      <p class="a">A：不给答案——同一笔账站在不同位置算出的结果完全不同；伍子胥的本事，就是能同时算清这几笔账。</p>
+      <p class="q">Q2：吴王阖闾最后死在哪里？怎么死的？</p>
+      <p class="a">A：槜李之战（前 496），被越将灵姑浮伤到<b>脚大拇趾</b>（将指）——《史记》说是箭伤、《左传》说是戈伤，两说并存；现代医学视角大概率死于伤口感染，春秋时期就是不治之症。</p>
+      <p class="q">Q3：如果阖闾没有死于那支冷箭，吴越的历史会怎样？</p>
+      <p class="a">A：开放题——夫差两年就把勾践打到会稽，用兵更老辣的阖闾多活五年十年，越国大概率被彻底打垮，「卧薪尝胆」将没有舞台；至于他会不会杀勾践，让学员自判。</p>
+    </div>
+    <h4>储备冷知识</h4>
+    <div class="tip">① 阖闾即位时内外交困：僚的两位王弟带兵投楚、庆忌在卫招兵、德高望重的季札终身不再入吴——新政权急需立国根基，这是他重用伍子胥的底层逻辑。② 伍子胥抚孤带大的白公胜（太子建之子）后于前 479 在楚国作乱——复仇的种子跨了两代人。</div>
+  </div>
+
+  <!-- ========= 名人群像 ========= -->
+  <div class="unit blue" id="u3" data-anchor>
+    <h3>单元三 · 名人群像<small>伍子胥朋友圈与对立面 ｜ 次级人物池</small></h3>
+    <table>
+      <tr><td><b>专诸</b><br>（？—前 515）</td><td>吴国屠夫出身的刺客，事母至孝；鱼腹藏剑刺王僚，当场被杀——《史记·刺客列传》五刺客之一，「鱼肠剑」典故主角</td></tr>
+      <tr><td><b>孙武</b><br>（齐国人）</td><td>兵圣，《孙子兵法》十三篇；伍子胥<b>七荐</b>乃登台；吴宫教战「三令五申」斩宠姬立军纪，「将在军，君命有所不受」；前 506 与伍子胥同谋破楚五战五捷</td></tr>
+      <tr><td><b>伯嚭</b><br>（？—前 473）</td><td>楚国郤宛之子——与伍子胥同为楚难遗孤、同奔吴、同受重用；却受越重赂力主许和、谗害子胥；越灭吴后被勾践诛杀——<b>忠奸同途的对照样本</b></td></tr>
+      <tr><td><b>费无忌</b><br>（？—前 515）</td><td>楚国少傅，「秦女绝美，王可自取」一句谗言祸起郢都；又谗杀左尹郤宛激起公愤，被令尹子常诛杀灭族——<b>一人之谗，祸延两国</b>的反派样板</td></tr>
+      <tr><td><b>季札</b><br>（延陵季子）</td><td>寿梦第四子，先秦著名的「让国」典范，三让王位最终逃位——品德传千古，继承乱局也由此埋下（封于延陵，今常州一带）</td></tr>
+      <tr><td><b>江上丈人</b></td><td>渡伍子胥过江的老渔翁；拒百金之剑——「楚国悬赏五万石粟、封大夫爵我都不动心」，不留姓名而去——中国文学里最早的隐侠形象之一（《吕氏春秋》记其名号）</td></tr>
+      <tr><td><b>白公胜</b></td><td>太子建之子，伍子胥抚孤带大；前 479 在楚国发动叛乱一度占领郢都，兵败被杀——<b>仇恨的代际传递</b>，复仇故事的楚国余波</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：专诸——《史记·刺客列传》；孙武——《史记·孙子吴起列传》、「七荐」——《吴越春秋》；伯嚭、费无忌、白公胜——《史记·伍子胥列传》《左传》；季札——《史记·吴太伯世家》《公羊传·襄公二十九年》；江上丈人——《吕氏春秋》。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link" href="xumen_shouce.html#s2">万年桥 · 「专诸的剑与百姓的桥」↗</a>
+    </div>
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q：同为楚国逃出来的遗孤，为什么伍子胥是忠臣、伯嚭是奸臣？</p>
+      <p class="a">A：同样背着灭门之仇，一个把仇化作建城强国的动力，一个把仇化作卖国的贿赂——起点相同，选择不同。费无忌灭族 → 郤宛之子伯嚭奔吴 → 二十年后谗死伍子胥 → 前 473 被勾践诛——一张恩怨闭环的网。</p>
+    </div>
+  </div>
+
+  <!-- ========= 夫差与勾践 ========= -->
+  <div class="unit" id="u4" data-anchor>
+    <h3>单元四 · 夫差与勾践<small>盛极而衰的两端 ｜ 前 496—前 473</small></h3>
+    <table>
+      <tr><td><b>吴王夫差</b><br>（前 496—前 473）</td><td>即位初「不敢忘」杀父之仇，夫椒大败越国；此后北上争霸连年伐齐，信伯嚭、赐死伍子胥；前 473 越灭吴被围，叹「吾悔不用子胥之言」自刎——传说以<b>白布蒙眼</b>，无颜地下见子胥</td></tr>
+      <tr><td><b>越王勾践</b></td><td>前 494 夫椒战败，携妻入吴为奴三年；归国后卧薪尝胆，用文种范蠡之谋；乘夫差北上伐齐，前 473 灭吴——<b>忍与耗的对决</b>：伍子胥早看穿「少康一成之田一旅之众尚且复国」</td></tr>
+    </table>
+    <h4>核心讲法：两个人的两张地图</h4>
+    <p>夫差心里的地图上主角是中原——打齐国、会诸侯、当中原霸主，像祖父父亲那样风光；伍子胥的地图上主角是身后的越国——「越，腹心之疾；齐，疥癣也」。<b>夫差要的是面子，伍子胥要的是命。</b>从此国家里出现一个最扫兴的人：伐齐，他说不可以；放勾践，他说不可以；跟越讲和，他还是说不可以。</p>
+    <div class="quote">收束句：「勾践用二十年证明伍子胥是对的——可惜对的话，只有输家才肯承认。」</div>
+    <div class="src"><b>信源</b>：夫椒、会稽求和、属镂剑、夫差自刎——《史记·伍子胥列传》《吴太伯世家》；「越，腹心之疾；齐，疥癣也」——语意见《史记》《吴越春秋》相关记载；白布蒙眼——后世传说。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link" href="xumen_shouce.html#s3">胥门 · 「看越军入吴」的传说落点 ↗</a>
+    </div>
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q：报仇报到了掘墓鞭尸的程度，过头了吗？</p>
+      <p class="a">A：没有标准答案——可引申包胥「倒行逆施」的质问让学员自判：被仇恨驱动十六年，是力量还是枷锁？</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第二部分 打卡点手册 ================= -->
+<section class="part" id="p2" data-anchor>
+  <div class="part-head"><span class="no">第二部分</span><h2>打卡点手册（速查表）</h2></div>
+  <p class="part-intro">完整解说词、动线图与互动任务见配套手册：<a href="xumen_shouce.html" style="color:var(--blue);font-weight:700">《胥门线 · 打卡点现场解说手册》↗</a>。此处仅速查。</p>
+  <div class="unit">
+    <table>
+      <tr><th style="width:180px">点位</th><th>要点</th><th>主讲人物</th></tr>
+      <tr><td><b>① 规划展示馆</b><br>（馆内 30–40′）</td><td>苏州最大室内平江图 3D 模型：1229 年的城立体铺开；双棋盘格局；与今城叠合「八九不离十」；馆本身是 2004 年第 28 届世界遗产大会主会场</td><td><a class="spot-link" href="xumen_shouce.html#s1">速查 ↗</a></td></tr>
+      <tr><td><b>② 万年桥 · 狮子山</b><br>（桥上 15′）</td><td>桥不正对胥门之谜：狮子山「煞气」说两百年禁桥 → 乾隆五年徐士林力排众议建桥于三摆渡；《姑苏万年桥》年画卖到日本</td><td><a class="spot-link" href="xumen_shouce.html#s2">速查 ↗</a></td></tr>
+      <tr><td><b>③ 胥门</b><br>（城门下 10′ 收尾）</td><td>「胥」＝伍子胥（通行说）vs 故胥—姑苏转音（地方志办考据说）；石像；抉目悬门传说落点；故事高潮收尾</td><td><a class="spot-link" href="xumen_shouce.html#s3">速查 ↗</a></td></tr>
+    </table>
+    <div class="src"><b>信源</b>：三站结构、时长、开场话术——原始课件《胥门·胥江·规划展示馆——研学三大亮点》（Desktop/临时/yanxueliangdian3.html，原文件未改动）。</div>
+  </div>
+</section>
+
+<!-- ================= 第三部分 矩阵 ================= -->
+<section class="part" id="p3" data-anchor>
+  <div class="part-head"><span class="no">第三部分</span><h2>人物 × 点位 结合矩阵</h2></div>
+  <div class="unit">
+    <table>
+      <tr><th>人物＼点位</th><th>规划展示馆</th><th>万年桥</th><th>胥门</th><th>延伸点</th></tr>
+      <tr><td><b>伍子胥</b></td><td>★ 主场（图是他画的）</td><td>—</td><td>★ 主场（三个胥字·石像）</td><td>胥口·胥王庙</td></tr>
+      <tr><td><b>阖闾</b></td><td>—</td><td>—</td><td>★ 十二字问对 · 十九年表 · 槜李「冷箭」</td><td>—</td></tr>
+      <tr><td><b>专诸 / 孙武</b></td><td>—</td><td>★ 刺客的剑与太平的桥</td><td>储备</td><td>—</td></tr>
+      <tr><td><b>伯嚭 / 费无忌 / 季札</b></td><td>储备（关系网）</td><td>—</td><td>储备</td><td>—</td></tr>
+      <tr><td><b>夫差 / 勾践</b></td><td>—</td><td>—</td><td>★ 看越军入吴（传说）</td><td>—</td></tr>
+    </table>
+    <p style="margin-top:10px">跨线联动：规划展示馆的<b>平江图 3D 模型</b>与文庙线的<b>《平江图》碑</b>是同一张图的两副身体——<a href="wenmiao_shouce.html#s4" style="color:var(--blue)">文庙四大宋碑站 ↗</a>。阊门线亦有伍子胥条目：<a href="changmen_mingren.html" style="color:var(--blue)">阊门名人篇 ↗</a>。</p>
+  </div>
+</section>
+
+<!-- ================= 第四部分 方法与题库 ================= -->
+<section class="part" id="p4" data-anchor>
+  <div class="part-head"><span class="no">第四部分</span><h2>讲述方法与题库</h2></div>
+  <div class="unit">
+    <h4>三条讲述纪律（沿用现场大纲）</h4>
+    <div class="tip">① <b>悬念纪律</b>——开场两问（石像是谁/埋在哪座门边）全场不揭晓，尾声才回收；中间被追问就笑答「课尾见分晓」。② <b>收束句必说</b>——每幕收束句是转场的「钉子」，宁舍互动、不舍收束句。③ <b>引文处理</b>——原典先读原文再白话翻译：原文给分量，白话给听懂。</div>
+    <h4>金句板书（五条一路写到底）</h4>
+    <div class="tip">「让山河都改姓他的姓。」／「先造一座坚固的城，再谈别的。」／「一座城，2500 年，位置没挪过。」／「一个敌国的流亡者，成了苏州城的设计师。」／「太平年代的桥，比乱世里任何一把剑都珍贵。」</div>
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 有奖竞猜题库（12 题速取）</h4>
+    <div class="qa">
+      <p class="a">1. 胥门的「胥」最早可能指谁？（佐禹治水、受封吴地的先贤——「故胥」转音「姑苏」，门名可能早于伍子胥）</p>
+      <p class="a">2. 费无忌对楚平王说了一句什么话，毁掉了两个国家？（「秦女绝美，王可自取」）</p>
+      <p class="a">3. 伍子胥怎么过的昭关？《史记》哪五个字？（「橐载而出昭关」；一夜白头是京剧加工）</p>
+      <p class="a">4. 老渔翁为什么不收伍子胥的百金之剑？（楚国悬赏五万石粟加大夫爵都不动心）</p>
+      <p class="a">5. 公子光凭什么说自己该当吴王？哪六个字？（「我真王嗣，当立」）</p>
+      <p class="a">6. 鱼肠剑藏在哪里？刺客是谁？（烤鱼腹中；专诸）</p>
+      <p class="a">7. 伍子胥答阖闾问计的十二个字？（「立城郭，设守备，实仓廪，治兵库」）</p>
+      <p class="a">8. 「相土尝水，象天法地」是什么意思？（考察土质、尝测水文、观察天象、对照地理——一次全面勘察）</p>
+      <p class="a">9. 哪座城门是为攻打楚国而立的？（阊门，又名破楚门）</p>
+      <p class="a">10. 伍子胥给夫差讲的哪个历史故事劝他杀勾践？（少康中兴——一成之田、一旅之众尚且复国）</p>
+      <p class="a">11. 属镂剑是谁赐给谁的？遗言要把眼睛挂在哪里？（夫差赐伍子胥；吴东门——民间附会为胥门）</p>
+      <p class="a">12. 苏州民间记忆中，端午节最早纪念的是谁？（伍子胥——潮神、涛神，比屈原早约两百年，两说并存）</p>
+    </div>
+    <div class="src"><b>信源</b>：答疑预案十四条——原始课件《现场讲解大纲（90′）》「叁·答疑预案」；题库为备课速取改编。</div>
+  </div>
+</section>
+
+<footer>
+  <div class="big">吴 地 时 光 机 · 胥 门 线</div>
+  <p>讲师备课手册 · 内部资料 ｜ 名人篇 v1 · 据《吴地时光机》胥门三份原始课件整理迁移（原文件未改动）</p>
+  <p style="margin-top:4px"><a href="xumen_shouce.html" style="color:var(--blue)">⟶ 配套手册：《胥门 · 打卡点现场解说手册》（逐点解说词与人物关联，点开互查）</a> ｜ ｜ <a href="index.html" style="color:var(--blue)">⟶ 研学总目录（全部线路一站式入口）</a></p>
+</footer>
+
+</div>
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSb();});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('xumen-toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('xumen-toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 人物单元下拉
+  var dropWrap=document.getElementById('dropWrap'),dropBtn=document.getElementById('dropBtn'),
+      dropPanel=document.getElementById('dropPanel');
+  function closeDrop(){dropWrap.classList.remove('open');dropPanel.classList.remove('open');dropBtn.setAttribute('aria-expanded','false');}
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var on=dropPanel.classList.toggle('open');
+    dropWrap.classList.toggle('open',on);
+    dropBtn.setAttribute('aria-expanded',on?'true':'false');
+  });
+  document.addEventListener('click',function(e){if(!dropWrap.contains(e.target))closeDrop();});
+  dropPanel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrop);});
+  // 滚动高亮（顶栏/下拉/侧栏联动）
+  var ids=['overview','p1','u1','u2','u3','u4','p2','p3','p4'];
+  var allLinks=document.querySelectorAll('nav.toc a, .drop-panel a, .side-nav a');
+  function setActive(id){
+    allLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    if(id&&id.charAt(0)==='u'){
+      dropBtn.classList.add('active');
+    }else if(id&&id.charAt(0)==='p'&&id!=='p1'){dropBtn.classList.remove('active');}
+    if(id==='overview')dropBtn.classList.remove('active');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ids.forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});
+  }
+})();
+</script>
+</body>
+</html>

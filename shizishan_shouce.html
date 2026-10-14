@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>狮子山 · 重阳登高研学｜登高打卡点解说手册 · 讲师备课版｜吴地时光机</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:660px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+.sister-link:hover{background:var(--blue-bg)}
+
+/* ===== 信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 顶栏导航（含下拉） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 14px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer;appearance:none;-webkit-appearance:none}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+.drop-wrap{flex:none;position:static}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:fixed;z-index:80;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:230px}
+.drop-panel.open{display:flex}
+.drop-panel .d-head{font-family:var(--serif);font-size:.8rem;color:var(--gold);letter-spacing:.3em;
+  padding:2px 10px 6px;border-bottom:1px dashed var(--line);margin-bottom:4px;text-align:center}
+.drop-panel a{display:block;text-decoration:none;color:var(--ink-soft);font-size:.9rem;font-weight:700;
+  padding:8px 12px;border-radius:9px;white-space:nowrap}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--ink)}
+.drop-panel a.active{background:#fdf1ef;color:var(--red)}
+.drop-panel a small{font-weight:400;color:var(--ink-soft)}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav .group{font-size:.74rem;color:var(--gold);letter-spacing:.2em;padding:8px 20px 2px}
+.side-nav a{padding:8px 20px 8px 30px;color:var(--ink-soft);text-decoration:none;font-size:.92rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节与点位卡 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px 22px 20px;margin-top:28px;position:relative}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.3rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+.spot h4{font-family:var(--serif);font-size:1.02rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:18px 0 6px;display:flex;align-items:center;gap:8px}
+.spot h4::before{content:"§";color:var(--gold);font-size:.9rem}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+table.tl td:first-child{white-space:nowrap;color:var(--ink);font-weight:700}
+tr.grp td{background:#fbf1ef;color:var(--red-deep);font-weight:700;letter-spacing:.02em;font-size:.9rem}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+
+.egg{background:#fdf6e8;border:1px dashed var(--gold);border-radius:14px;padding:12px 16px;margin:10px 0;font-size:.92rem}
+.egg b.t{color:var(--gold);font-family:var(--serif);letter-spacing:.1em}
+
+/* ===== 讲师口语稿 / 争议卡 ===== */
+.say{background:#f7f4ec;border:1px dashed var(--gold);border-radius:14px;padding:14px 18px;margin:12px 0;
+  font-family:var(--serif);color:var(--ink);font-size:1rem;line-height:2}
+.say .role{display:block;font-family:var(--sans);font-size:.76rem;color:var(--gold);letter-spacing:.2em;margin-bottom:8px}
+.say b{color:var(--red)}
+.say p{color:var(--ink);margin:6px 0}
+.debate{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:12px 0}
+.debate .d{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.debate .d b{display:block;color:var(--teal);font-size:.9rem;margin-bottom:4px}
+.debate .d p{font-size:.88rem;margin:0}
+.debate .d.primary{border-color:var(--teal);background:var(--teal-bg)}
+
+/* ===== 名人关联 ===== */
+.person-row{display:flex;flex-wrap:wrap;gap:10px;margin:10px 0}
+.person-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  border-radius:30px;padding:6px 16px;border:1px solid var(--teal);color:var(--teal);background:var(--teal-bg);
+  transition:transform .15s,box-shadow .15s}
+.person-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(61,122,120,.25)}
+.person-link small{font-weight:400;color:var(--ink-soft)}
+.person-link.primary{border-color:var(--red);color:var(--red);background:#fdf1ef}
+.relation-note{font-size:.9rem;color:var(--ink-soft);margin:6px 0 0}
+.relation-note b{color:var(--teal)}
+
+/* ===== 动线图 ===== */
+.route-box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px 12px;margin-top:20px;text-align:center}
+.route-flow{display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;gap:6px;margin:10px 0}
+.rf-b{display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:.92rem;border-radius:10px;padding:8px 14px;min-width:96px;text-align:center;flex:0 1 auto}
+.rf-b small{font-family:var(--sans);font-weight:400;font-size:.72rem;opacity:.85;margin-top:2px}
+.rf-b.main{background:var(--red);color:#fff}
+.rf-b.outline{background:var(--card);color:var(--red);border:2px solid var(--red)}
+.rf-b.gold{background:var(--gold);color:#fff}
+.rf-a{align-self:center;color:var(--ink-soft);font-weight:700}
+
+.route-box svg{max-width:none;min-width:900px}
+.route-box .rb-title{font-family:var(--serif);font-weight:900;letter-spacing:.15em;color:var(--ink);margin-bottom:6px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;font-size:.85rem;color:var(--ink-soft);margin-top:8px}
+.legend i{display:inline-block;width:14px;height:14px;border-radius:4px;margin-right:5px;vertical-align:-2px}
+
+/* ===== 信源 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 心法与题库 ===== */
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+.q{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;margin:8px 0}
+.q summary{cursor:pointer;font-weight:700;color:var(--ink);font-size:.95rem}
+.q summary .qn{color:var(--gold);font-family:var(--serif);margin-right:6px}
+.q .ans{margin-top:6px;padding-top:6px;border-top:1px dashed var(--line);color:var(--ink-soft);font-size:.9rem}
+.q .ans b{color:var(--red)}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{.toc-wrap,.side-tab,.sidebar,.side-mask,.drop-panel{display:none}body{background:none}}
+@media(max-width:640px){
+  .spot{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+}
+[data-anchor]{scroll-margin-top:70px}
+</style>
+<style>
+/* —— .layer 多段自动包装（装配器后处理）：一层多题时纵向堆叠 —— */
+.layer > .l-body{flex:1 1 0;min-width:0}
+.l-body p{margin:5px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= 封面 ================= -->
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学 · 户外篇 · 节令特辑</div>
+  <h1>狮子山 · 重阳登高</h1>
+  <div class="sub">登 高 打 卡 点 解 说 手 册 ｜ 讲 师 备 课 版</div>
+  <p class="desc">一条为<b>重阳节</b>（2026 年 10 月 18 日 · 农历九月初九）定制的登高线：山只有 <b>114.5 米</b>，登顶 <b>15～30 分钟</b>，老幼皆宜；但它<b>四周平原、不与群山相连</b>（明《姑苏志》白纸黑字"四山与诸山不相连"），站上山顶，<b>一座山望得见五座塔</b>——虎丘塔、北寺塔、寒山寺普明宝塔、灵岩山多宝佛塔、上方山楞伽塔，塔的年代从隋大业四年（608）跨到 1995 年，<b>一眼看一千四百年</b>。再加"狮子回头望虎丘"的摩崖石刻、吴王僚葬此山的唐人记载、状元宰相的读书台传说，和 1903 年那面在山顶扯起的"招国魂"幡——<b>山不高，故事是满的。</b></p>
+  <a class="sister-link" href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a class="sister-link" href="pingjiangtu_xiangjie.html" style="margin-left:8px">⟶ 跨线联动：《平江图》图文对照详解（岝崿山 · 招国魂）↗</a>
+  <div class="seal">狮子回头望虎丘 · 一山望五塔</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>手册定位</b><span>节令特辑 · 登高动线九站逐点解说词（讲师备课）</span></div>
+  <div class="m"><b>动线节奏</b><span>广场集合 → 北线上山 → 山顶三讲 → 南线下山收队，全程约 2～2.5 小时｜登顶步行 15～30 分钟（官方推荐北线或中线上、南线下，<b>南线只下不上</b>）</span></div>
+  <div class="m"><b>讲解主线</b><span>重阳为什么要登高（节俗）＋ 这座山凭什么看得远（地理）＋ 山顶凭什么看五塔（考据）＋ 山里凭什么有故事（传说 · 石刻 · 招国魂）</span></div>
+  <div class="m"><b>资料版本</b><span>2026-10-09 v1 · 方位与距离按地图数据实算 · 含讲师纠错彩蛋 · 配图清单见矩阵节（图包三轨未启动）</span></div>
+</div>
+
+<!-- ================= 顶栏导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <a href="#history">沿革长卷</a>
+    <a href="#route">动线图</a>
+    <div class="drop-wrap" id="dw1">
+      <button class="drop-btn" id="db1" aria-haspopup="true" aria-expanded="false">狮子山线<span class="caret">▾</span></button>
+    </div>
+    <a href="#matrix">素材矩阵</a>
+    <a href="#method">讲述心法</a>
+    <a href="#quiz">研学题库</a>
+    <a href="#faq">纠正与答疑</a>
+  </nav>
+  <div class="drop-panel" id="dp1">
+    <div class="d-head">狮 子 山 线 · 九 站</div>
+    <a href="#st1">① 狮山广场 · 天狮湖（集合）</a>
+    <a href="#st2">② 何山望狮 · 四山不相连</a>
+    <a href="#st3">③ 北线登山口 · 摩崖石刻群</a>
+    <a href="#st4">④ 思益寺与石佛寺遗址</a>
+    <a href="#st5">⑤ 状元读书台 · 申时行</a>
+    <a href="#st6">⑥ 狮首 · 狮子回头望虎丘</a>
+    <a href="#st7">⑦ 山顶五塔 · 一眼一千年</a>
+    <a href="#st8">⑧ 招国魂 · 1903</a>
+    <a href="#st9">⑨ 下山 · 西晋墓与重阳糕</a>
+  </div>
+</div>
+
+<!-- ================= 侧边栏目录 ================= -->
+<button class="side-tab" id="sideTab" aria-label="打开目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏目录">
+  <div class="side-head">
+    <span class="side-title">点位目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 为什么重阳登高选它</a>
+    <a href="#history">沿革长卷 · 2500 年一表通</a>
+    <a href="#route">动线图</a>
+    <div class="divider"></div>
+    <div class="group">狮 子 山 线</div>
+    <a href="#st1">① 狮山广场 · 天狮湖（集合）</a>
+    <a href="#st2">② 何山望狮 · 四山不相连</a>
+    <a href="#st3">③ 北线登山口 · 摩崖石刻群</a>
+    <a href="#st4">④ 思益寺与石佛寺遗址</a>
+    <a href="#st5">⑤ 状元读书台 · 申时行</a>
+    <a href="#st6">⑥ 狮首 · 狮子回头望虎丘</a>
+    <a href="#st7">⑦ 山顶五塔 · 一眼一千年</a>
+    <a href="#st8">⑧ 招国魂 · 1903</a>
+    <a href="#st9">⑨ 下山 · 西晋墓与重阳糕</a>
+    <div class="divider"></div>
+    <a href="#matrix">讲点 × 素材矩阵</a>
+    <a href="#method">讲述心法</a>
+    <a href="#quiz">研学题库（15题）</a>
+    <a href="#faq">纠正与答疑 · 讲师必背</a>
+    <div class="divider"></div>
+    <a href="index.html" style="color:var(--red)">⟶ 苏州研学游 · 总目录 ↗</a>
+    <a href="pingjiangtu_xiangjie.html" style="color:var(--red)">⟶ 《平江图》图文对照详解 ↗</a>
+  </nav>
+</aside>
+
+<!-- ================= 总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>重阳登高，为什么选这座小山</h2></div>
+  <div class="quote">「九月九日风色嘉，吴山胜事俗相夸。阖闾城中十万户，争门出郭纷如麻。」<small>—— 明 · 申时行《吴山观竞渡》句（写苏州重阳出城登高之盛）</small></div>
+
+  <div class="method">
+    <div class="layer"><div class="ln">先讲节</div>
+      <div class="l-body"><p>九是最大的阳数。农历九月九日，两九相重，所以叫<b>重九／重阳</b>。曹丕《九日与钟繇书》："九为阳数，而日月并应，俗嘉其名，以为宜于长久。"——"久久长寿"，所以重阳要登高、插茱萸、饮菊花酒。<b>登高的本义，是秋天最后一次站到高处，看一眼这一年。</b></p>
+      <p><b>苏州人的重阳</b>：登高、吃重阳糕（糕＝高，"百事俱高"）、赏菊、饮菊花酒，再赶一桌"九月团脐十月尖"的大闸蟹。老苏州登高的去处——城内<b>北寺塔</b>，城外<b>虎丘、灵岩山、天平山、上方山、阳山、穹窿山</b>；《清嘉录》还记了一桩奇俗：上方山下<b>治平寺</b>里重阳"牵羊赌彩"——斗羊，两羊相斗，正合"重（崇）阳"的谐音。</p>
+      <p><b>我们这条线加一座</b>：狮子山。它不在老名单上，却是新区人自己的重阳山——<b>离家近、免费、地铁直达、登顶只要半小时，而且看得比哪座山都全。</b></p></div>
+    </div>
+    <div class="layer"><div class="ln">四个凭什么</div>
+      <div class="l-body"><p><b>① 凭什么看得远？</b>——它是一座<b>孤立的山</b>。明《姑苏志》卷九把城西这批小山一口气列完，末了补一句：<b>"以上四山与诸山不相连。"</b>狮子山不挂在任何一条山脉上，四周是平畴和城区，<b>站上山顶就是 360 度无遮挡</b>。</p>
+      <p><b>② 凭什么人人能上？</b>——主峰 114.5 米，全台阶步道，15～30 分钟登顶；三条步道（北线、中线可上下，<b>南线只下不上</b>）。</p>
+      <p><b>③ 凭什么看五塔？</b>——正因为孤立无遮挡，四面塔尖尽收眼底。本手册第 ⑦ 站给了一张按地图数据实算的<b>望塔方位表</b>。</p>
+      <p><b>④ 凭什么有故事？</b>——唐《吴地记》说<b>吴王僚葬此山</b>；南朝梁天监二年山上就有<b>思益寺</b>，白居易写过它；明代宰相<b>申时行</b>传说在此读书；1903 年，一群二十来岁的苏州青年在山顶扯起"<b>招国魂</b>"的幡。</p></div>
+    </div>
+    <div class="layer"><div class="ln">口诀</div>
+      <div class="l-body"><p>一句话立住全篇：<b>「山不高，故事是满的；塔很远，一眼看千年。」</b></p>
+      <p>游客眼里狮子山是"苏州乐园旁边的小土丘"；我们要给他的是：<b>它为什么孤立（地理）、孤立带来了什么（视野与五塔）、山里埋着什么（吴王僚 · 思益寺 · 读书台 · 招国魂）。</b></p></div>
+    </div>
+    <div class="layer"><div class="ln">现场三件套</div>
+      <p><b>水</b>（山上无售卖，务必自带）、<b>防滑鞋</b>（全台阶，雨天湿滑）、<b>手机</b>（山顶认塔对照 + 扫《平江图》网页找"岝崿山"）。<b>重阳当天人流大，狮子山实行预约登山，务必提前提醒学员预约。</b></p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 沿革长卷 ================= -->
+<section class="part" id="history" data-anchor>
+  <div class="part-head"><span class="no">沿革</span><h2>狮子山 2500 年 · 一表通</h2></div>
+  <div class="story">
+    <b class="t">一座山的"生老病死"和"死而复生"</b>
+    <p><b>春秋（公元前 515 年前后）</b>——专诸藏鱼肠剑于鱼腹，刺杀吴王僚，公子光即位，是为阖闾。唐《吴地记》载：<b>"岝崿山在吴县西十二里，吴王僚葬此山中。"</b>此为"狮虎对望"的史源。</p>
+    <p><b>南朝梁（503）</b>——山顶建寺，初名<b>法音寺</b>（《吴地记》："有寺号思益，梁天监二年置"），唐开元中改称<b>思益寺</b>。</p>
+    <p><b>唐</b>——陆广微《吴地记》成书，狮子山以"岝崿山"入志；苏州刺史<b>白居易</b>留诗《自思益寺次楞伽寺》。</p>
+    <p><b>宋（1229）</b>——《平江图》刻碑，城西群山带明确题写<b>"岝崿山"</b>，其北紧邻"何山"，与今天方位全同。此时它还不叫狮子山——"俗称狮子山"是后人按山形叫出来的。</p>
+    <p><b>元～明</b>——山南顶上"巨石二如楼，云是狮子两耳"，<b>自元以来凿石且尽</b>（明《姑苏志》）：狮子的耳朵，六百年前就被采石凿掉了。明嘉靖状元<b>申时行</b>传说幼年在此读书，留下"状元读书台"；苏州人<b>徐有贞</b>登狮山留诗"横塘树色连龙坞，茂苑烟光接虎丘"。</p>
+    <p><b>清</b>——道光年间僧人题"洗心泉"摩崖（一说康有为书，两说并存）；光绪八年（1882）<b>吴昌硕</b>题"坠星岩"。</p>
+    <p><b>1903</b>——<b>朱梁任（朱锡梁）与包天笑、苏曼殊等十八人登狮子山"招国魂"</b>，山顶扯起黑幡"魂兮归来"、白幡绘雄狮，向北方鸣枪一响。</p>
+    <p><b>1917</b>——同一位朱锡梁与叶德辉<b>督工深刻宋碑《平江图》</b>——今天文庙里那块碑，就是他做的。</p>
+    <p><b>1976～1979</b>——东麓发掘<b>西晋砖室墓 4 座</b>，出土青瓷扁壶、兔形水注、金饰等随葬品 126 件，现藏苏州博物馆。</p>
+    <p><b>1997～2017</b>——<b>苏州乐园欢乐世界</b>在山麓开园（1997 年 2 月），运营整 20 年，"迪士尼太远，去苏州乐园"家喻户晓；2017 年 10 月 9 日闭园移址。</p>
+    <p><b>2021～2024</b>——<b>苏州博物馆西馆</b>启用（2021.9，后获鲁班奖）；<b>狮山公园</b>建成开放（2023.10，"一山一湖一环八区"）；<b>狮子山、天狮湖全面开放登山</b>（2024.10，一度需预约）；<b>狮山大剧院</b>开幕（2024.8.31，《剧院魅影》《猫》打头阵）。</p>
+    <p><b>今天</b>——"东有金鸡湖，西有狮子山"。一代人的旋转木马换成了博物馆、剧院、科技馆，<b>山还是那座山，还山于民。</b></p>
+  </div>
+</section>
+
+<!-- ================= 动线图 ================= -->
+<section class="part" id="route" data-anchor>
+  <div class="part-head"><span class="no">动线</span><h2>动线一览 · 九站</h2></div>
+  <div class="route-box">
+    <div class="rb-title">狮 子 山 线 · 北 线 上 · 南 线 下</div>
+    <div class="route-flow">
+      <span class="rf-b main">① 狮山广场<small>天狮湖 · 集合</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">② 何山望狮<small>四山不相连</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">③ 北线登山口<small>摩崖石刻群</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">④ 思益寺遗址<small>石佛寺 · 白居易</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑤ 状元读书台<small>申时行 · 玉蜻蜓</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑥ 狮首石刻<small>狮子回头望虎丘</small></span><span class="rf-a">→</span>
+      <span class="rf-b gold">⑦ 山顶五塔<small>一眼一千年</small></span><span class="rf-a">→</span>
+      <span class="rf-b outline">⑧ 招国魂<small>1903 · 朱梁任</small></span><span class="rf-a">→</span>
+      <span class="rf-b gold">⑨ 南线下山<small>西晋墓 · 重阳糕收队</small></span>
+    </div>
+    <div class="legend"><span><i style="background:#a4423a"></i>集合</span><span><i style="background:#b58a2c"></i>山顶／收队</span></div>
+  </div>
+  <p><b>实走动线：</b>地铁 1 号线狮子山站 → 狮山广场·天狮湖（苏州乐园记忆）→ 西北望何山（孤立之山的地理证据）→ <b>北线登山口</b>（摩崖石刻群）→ 思益寺·石佛寺遗址 → 状元读书台 → 登顶（狮首"狮子回头望虎丘"石刻 → 五塔辨认 → 招国魂）→ <b>南线下山</b>（南线只下不上）→ 山麓收队（西晋墓 + 重阳糕）。</p>
+  <div class="tip"><b>动线纪律：</b>① <b>南线只下不上</b>——上山绝不走南线，别把队带进死胡同；② 登山步道部分路段陡峭，老人小孩走队伍中间；③ 重阳及节假日人流大，<b>先预约、错峰、山顶不逗留过久</b>；④ 全程无售卖点，水在山下买好背上。</div>
+</section>
+
+<!-- ================= 狮子山线 · 逐站 ================= -->
+<section class="part" id="line-st" data-anchor>
+  <div class="part-head"><span class="no">本线</span><h2>九站逐点讲解</h2></div>
+  <p class="part-sub">编号即实走顺序。每站给：<b>现场怎么讲</b>（口语稿）· <b>考据支撑</b>（讲师底料）· <b>互动与彩蛋</b>。</p>
+
+  <!-- ① -->
+  <div class="spot" id="st1">
+    <span class="s-tag">第 ① 站</span>
+    <h3>狮山广场 · 天狮湖 —— 从"迪士尼太远"到"东有金鸡湖，西有狮子山"</h3>
+    <span class="en">St.1 · Lion Hill Plaza</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">集合 · 破题</span>
+      <p>"我们今天的登山，就从这里开始。先看脚下这片湖——<b>天狮湖</b>。狮子山的倒影就卧在水里：一座 114.5 米的小山，是苏州城西最孤零零、也最热闹的一座山。"</p>
+      <p>"孤零零，是地理——明代的《姑苏志》专门记了一笔：城西这四座小山，<b>'与诸山不相连'</b>。热闹，是今天——你们站的这块广场，二十年前是全苏州小孩最想去的地方。"</p>
+    </div>
+    <div class="say"><span class="role">加餐 · 一代人的乐园</span>
+      <p>"1997 年，苏州乐园欢乐世界就在这座山脚下开园。当年有句广告语，苏州人都会背——<b>'迪士尼太远，去苏州乐园'</b>。旋转木马、过山车、啤酒节，苏州 80 后、90 后的人生大事，一半在这座山脚下发生。"</p>
+      <p>"2017 年 10 月 9 日，乐园闭园。2023 年，原址建成了<b>狮山公园</b>；2024 年 10 月，<b>狮子山、天狮湖全面开放登山</b>。过山车的轨道还留着一段，和湖对岸的<b>苏州博物馆西馆</b>、<b>狮山大剧院</b>、在建的<b>苏州科技馆</b>隔水相望——一代人的旋转木马，换成了博物馆和剧院。这叫四个字：<b>还山于民。</b>"</p>
+    </div>
+    <h4>考据支撑</h4>
+    <p>苏州乐园：1995 年 7 月"水上世界"开业，<b>1997 年 2 月"欢乐世界"建成运营</b>，2017 年 10 月 9 日闭园（新乐园已迁大阳山）；狮山文化广场占地约 1213 亩，苏博西馆 2021 年 9 月启用、累计观众近五百万人次、获中国建设工程鲁班奖；狮山大剧院 2024 年 8 月 31 日开幕；狮山公园 2023 年 10 月开放，占地约 80 万平方米，"一山一湖、一环八区"，内环步道 2.2 公里。<b>"东有金鸡湖，西有狮子山"</b>是官方口径的城市格局语。</p>
+    <div class="tip"><b>互动：</b>问一句"谁小时候来过苏州乐园？"——举手的一定不少。<b>让学员自己讲一段乐园记忆，再接"今天我们换一种玩法：不排队，爬山。"</b></div>
+    <div class="egg"><b class="t">彩蛋 · 山为什么是光秃秃的石头？</b>
+      <p>让学员先看山：狮子山<b>裸岩占比超过六成，几乎不长树</b>。悬念留给第 ③ 站——"这不是山不想长树，是这块石头压根不给树面子。它是一块 1.5 亿年前从地底下拱出来的大花岗岩。"</p>
+    </div>
+  </div>
+
+  <!-- ② -->
+  <div class="spot" id="st2">
+    <span class="s-tag">第 ② 站</span>
+    <h3>何山望狮 —— 一座孤山，是它最大的本事</h3>
+    <span class="en">St.2 · Looking from He Hill</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">指认</span>
+      <p>"往北看，一公里外那座 63.8 米的小山，叫<b>何山</b>。它俩什么关系？<b>邻居，但不是亲戚。</b>"</p>
+      <p>"苏州城西其实有一条大山系——天平山、灵岩山、支硎山、穹窿山，一路排过去。但狮子山<b>不挂在这条山脉上</b>：它和何山、铃山、索山这几座小山，是孤零零立在平地上的。明代《姑苏志》把它们列在一起，末了专门加了一句——<b>'以上四山与诸山不相连。'</b>五百多年前的方志，白纸黑字替我们作证。"</p>
+      <p>"一座山挂不挂在山脉上，跟登山有什么关系？<b>关系大了。</b>挂在山系里的山，四周都是山，你登顶了看出去还是山脊。狮子山四面是平地和城区——<b>站上山顶，360 度没有遮拦</b>。等会儿你们登顶就明白了：苏州城的天际线、四面八方的塔尖，全在脚下铺开。这就是为什么苏州人说，看城，要上狮子山。"</p>
+    </div>
+    <h4>考据支撑</h4>
+    <p>何山：海拔 63.8 米，北东走向，在狮子山北约一里。明《姑苏志》："何山，在狮山北一里，其地旧名鹤邑墟，故山名<b>鹤阜山</b>。因<b>梁隐士何求、何点葬此</b>，改今名。"——南朝齐梁间隐士何求、何点兄弟拒绝出仕，先后归隐、安葬于此，山因此改姓"何"。何点被时人称作<b>"通隐"</b>，是当时士大夫的精神偶像。何山公园内今存辛亥元老<b>李根源</b>题刻"齐太子洗马何求何点葬此"。</p>
+    <p><b>《平江图》铁证：</b>1229 年刻的《平江图》，城西群山带自北向南题写着"何山 → <b>岝崿山</b> → 高景山 → 华山……"——<b>岝崿山就是狮子山的宋代名字</b>，何山画在它正北方，与今天两地实际方位完全一致（手机可扫《平江图》网页指给学员看）。</p>
+    <div class="tip"><b>讲师口径 · 两个"鹤阜山"别搞混：</b>《姑苏志》里<b>何山</b>"故山名鹤阜山"，同一卷里又注"<b>范志以岝崿山为鹤阜山</b>"——两座山都被叫过"鹤阜山"，这是方志层面的同名互混。<b>现场只讲"何山原名鹤阜山、因何氏兄弟改名"这一层即可，勿展开辨析，避免把学员绕晕。</b></div>
+    <div class="egg"><b class="t">彩蛋 · 何山上还有一位"老熟人"</b>
+      <p>何山山顶有座<b>张王庙</b>——祭祀的是<b>张士诚</b>。北寺塔线讲过他，山塘线讲过他，狮子的隔壁山上还给他立了庙（民间感念他在苏州的善政）。苏州人对张士诚的感情，走到哪儿都能撞见。另外何山 1980 年出土过一批春秋青铜器，其中一件提梁盉带铭文"楚叔之孙途为之盉"——吴地挖出楚国器物，吴楚文化交流的实物。</p>
+    </div>
+  </div>
+
+  <!-- ③ -->
+  <div class="spot" id="st3">
+    <span class="s-tag">第 ③ 站</span>
+    <h3>北线登山口 · 摩崖石刻群 —— 一部刻在石头上的"留言墙"</h3>
+    <span class="en">St.3 · Cliff Inscriptions</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">上山 · 破题</span>
+      <p>"为什么这座山几乎不长树？因为它整个就是<b>一块 1.5 亿年前从地底下拱出来的大花岗岩</b>——燕山期岩浆活动的产物，裸岩占六成以上。石头上种不了几棵树，但石头上能干另一件事：<b>刻字。</b>"</p>
+      <p>"从今天起，往上走的每一段石阶旁边，你们都会撞见石头上的题字。我把它们叫作<b>一座山的留言墙</b>——清朝的进士、民国的先生、现代的大师，都来这块石头上留过言。我们一路上山，一路'翻墙'。"</p>
+    </div>
+    <div class="method">
+      <div class="layer"><div class="ln">洗心泉</div><p>山腰石壁间的泉眼，题"洗心泉"三字。<b>题者两说并存</b>：景区导览多署<b>康有为</b>；李根源《吴郡西山访古记》记为"<b>道光十七年洗心泉摩崖</b>"（僧人所书，道光十九年二月住持通颠等书）。旁有<b>郭沫若</b>题刻"物洗则洁，心洗则清"。<b>现场让学员看落款，自己断案</b>——这正是"石刻会说话"。</p></div>
+      <div class="layer"><div class="ln">坠星岩</div><p>山南翠壑处巨石兀立，相传为<b>天外坠星</b>所化，山之东旧有"落星泾"地名。<b>吴昌硕</b>光绪八年（1882）题"坠星岩"三字，篆隶笔意。<b>吴昌硕是安吉人、寓苏多年</b>——"诗书画印"四绝的一代宗师，给苏州一块陨石题了名。</p></div>
+      <div class="layer"><div class="ln">其余刻石</div><p><b>云溪、仙人靴（传郑板桥题）、飞雨坡、中流砥柱、石船（"不系之舟"）</b>等，与"状元读书台"合称<b>狮山十八景</b>；近代还复刻了<b>康有为、徐悲鸿、顾廷龙、沙孟海</b>等名家题咏。十九世纪至今，一座小山攒下七八处摩崖——密度在苏州近郊山里数得上。</p></div>
+    </div>
+    <h4>考据支撑</h4>
+    <p>摩崖石刻群现存约 7 处，另有明<b>坠星岩一带吴门画派题刻</b>（含文徵明、唐寅等手迹摹刻之说）。<b>狮山十八景</b>（民间汇列，非官方定名）：状元读书台、洗心泉、云溪、仙人靴、飞雨坡、中流砥柱、石船、含晖洞、观音殿、御碑亭、坠星岩、昂霄、洞壑深邃、梦里同游、狮子回头望虎丘、湖山奇石等。</p>
+    <div class="tip"><b>互动 · 石刻寻字：</b>让学员沿途"认字"——把看到的题字拍照记名，登顶前对答案，认出最多的人喊"包场讲解"下一站。<b>身体参与过的信息，留存率最高。</b></div>
+    <div class="egg"><b class="t">彩蛋 · "仙人靴"是谁的靴子？</b>
+      <p>那块象形巨石远看像一只古人穿的靴子，于是题"仙人靴"。让学员自己找角度——<b>有人说像靴子，有人说像汉堡</b>。看石头这件事，古人也和我们在干同一件好玩的事。</p>
+    </div>
+  </div>
+
+  <!-- ④ -->
+  <div class="spot" id="st4">
+    <span class="s-tag">第 ④ 站</span>
+    <h3>思益寺与石佛寺遗址 —— 白居易来过的山顶寺</h3>
+    <span class="en">St.4 · Siyi Temple Site</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">遗址 · 破题</span>
+      <p>"现在脚下这一片，1500 年前是一座寺。南朝梁天监二年——公元 503 年，山顶建寺，初名<b>法音寺</b>，唐代改叫<b>思益寺</b>，清代康熙年间还重修过。唐代的苏州刺史、大诗人<b>白居易</b>，专门为它写过一首诗，题目就叫《自思益寺次楞伽寺》——从狮子山的思益寺，一路走到上方山的楞伽寺。<b>公元九世纪，一位苏州市长，从这座山走到那座山。</b>"</p>
+      <p>"寺早没了。石头还记得——你们看狮子下巴这块岩体，里面有一个洞，就是后来<b>石佛寺</b>的位置，洞里至今供着一块《般若波罗蜜多心经》刻碑。1926 年，<b>李根源</b>先生——就是刻《吴郡西山访古记》的那位辛亥元老——专程爬上来访古，把当时的所见一条条记了下来。"</p>
+    </div>
+    <div class="quote">「至祖师殿，即旧石佛寺，有<b>咸丰七年</b>香炉，殿后<b>道光十七年</b>洗心泉摩崖。再下至法音寺，即古思益寺，<b>吴王僚墓旧在寺中</b>。寺颓败，存<b>顾况</b>书'宏扬宗风'四字。」<small>—— 李根源《吴郡西山访古记》（民国十五年，1926 年访狮子山实录）</small></div>
+    <h4>考据支撑</h4>
+    <p>思益寺沿革：初名法音寺，<b>梁天监二年（503）置</b>（《吴地记》："岞崿山……有寺号思益，梁天监二年置"），唐开元中改思益寺，清康熙八年（1669）重修；故址在狮子山头部。白居易诗《自思益寺次楞伽寺》收入《全唐诗》（"次"＝途中停留）。<b>楞伽寺即今上方山下治平寺</b>——白居易这条路线，就是我们从狮子山望楞伽塔的那条视线。石佛寺为后建，在狮子颔部岩洞内，今存心经碑与香火痕迹。</p>
+    <div class="egg"><b class="t">纠错彩蛋 · 李根源这段话，景区牌子抄错了四个字</b>
+      <p>山上立的介绍牌引自李根源原文，却抄出了四处错：<b>"成丰七年"应为"咸丰七年"</b>（形近）；<b>"法昔寺"应为"法音寺"</b>（形近）；<b>"思忆寺"应为"思益寺"</b>（音同）；<b>"宏扬宗风"通行写法作"弘扬"</b>。<b>考据的功夫，就是在这四个字里练出来的。</b>（注：景区标牌是否已订正，带团前实地核一眼，讲法随现场调整。）</p>
+    </div>
+    <div class="tip"><b>跨线联动：</b>① <b>顾况</b>又出现了——山塘线讲过他调侃白居易"长安米贵，居大不易"；他写的"宏扬宗风"四字，清代还挂在思益寺里。② <b>治平寺</b>——苏州重阳登高"牵羊赌彩"的奇俗发生地，就在白居易这首诗的终点。一条唐诗里的动线，把两个重阳讲点串了起来。</div>
+  </div>
+
+  <!-- ⑤ -->
+  <div class="spot" id="st5">
+    <span class="s-tag">第 ⑤ 站</span>
+    <h3>状元读书台 —— 一块石桌，一个身世之谜</h3>
+    <span class="en">St.5 · Zhuangyuan Reading Terrace</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">传说</span>
+      <p>"这块石桌石凳，叫<b>状元读书台</b>。主人是明朝苏州人<b>申时行</b>——嘉靖四十一年（1562）的状元，后来做到万历朝的内阁首辅，相当于宰相。传说他小时候，就在狮子山的寺庙里发奋读书。"</p>
+      <p>"但这个人身上，藏着一个苏州人讲了几百年的<b>身世之谜</b>。有一种说法流传极广，还被编成了鼎鼎大名的弹词、戏曲——<b>《玉蜻蜓》</b>：富家公子与法华庵尼姑生下一子，送往无子的徐家收养，孩子后来高中状元，持信物玉蜻蜓入庵认母——<b>'庵堂认母'</b>那一折，是评弹、越剧的经典。很多人认为故事原型就是申时行：他本姓徐，中状元后归宗姓申。"</p>
+      <p>"传说归传说，正史里的申时行另有出处——但'狮子山上读过书'这一笔，苏州人愿意信。<b>一座山能出一位宰相，读书台就是苏州人给自己孩子立的精神地标。</b>"</p>
+    </div>
+    <h4>考据支撑</h4>
+    <p>申时行（1535—1614），字汝默，号瑶泉，长洲人，嘉靖四十一年状元，万历十一年起任内阁首辅，谥"文定"。<b>"幼年读书于狮山寺中"系民间传说，正史无载</b>；《吴门表隐》等载其祖宅在平江路混堂弄，早年<b>在卫道观读书</b>。今读书台石桌椅为原苏州乐园时期修建，站此西望可远眺天平山、灵岩山一线。</p>
+    <div class="egg"><b class="t">纠错彩蛋 · 申时行的墓不在天平山</b>
+      <p>网上不少游记写"从读书台望见的天平山，是申时行长眠之地"——<b>错</b>。申时行墓在<b>石湖吴山</b>（今上方山石湖景区一带），墓区旧制宏大、石人石马俱全。<b>站在读书台南望，那座带塔的山（楞伽塔）附近，才是他真正的归宿。</b>——传说他在此读书，安葬却遥遥对着这座山，也算一种巧合。</p>
+    </div>
+    <div class="tip"><b>跨线联动：</b>北寺塔线名人篇的<b>申时行</b>（申祠牌坊迁建于北寺塔前）——老熟人第二面。带过北寺塔线的团，此处一句"还记得塔前那座牌坊吗？主人就是他"即可接上。</div>
+  </div>
+
+  <!-- ⑥ -->
+  <div class="spot" id="st6">
+    <span class="s-tag">第 ⑥ 站</span>
+    <h3>狮首 · 狮子回头望虎丘 —— 一句老话，两版传说，一对冤家</h3>
+    <span class="en">St.6 · The Lion Looks Back at Tiger Hill</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">指认 · 破题</span>
+      <p>"登顶了。先别看城，先看脚下这块山岩——往东南探出去的那一角，像不像一颗<b>狮子的头</b>？整个山体就是一头伏在地上的大狮子，<b>狮首回望的方向，正是五公里半外的虎丘</b>。山顶这七个字的摩崖石刻，苏州人从小听到大——<b>'狮子回头望虎丘'</b>。"</p>
+      <p>"这句老话有两版讲法，都给你们。"</p>
+    </div>
+    <div class="say"><span class="role">传说一 · 青狮战白虎</span>
+      <p>"传说秦始皇东巡，到海涌山——就是虎丘——挖吴王阖闾的墓找宝剑，惊出一只<b>白额金睛猛虎</b>，一剑砍空，留下'试剑石'。老虎逃了又回来占山为王，祸害百姓。寒山寺的神僧寒山——传说是文殊菩萨的化身——他的坐骑是一只<b>青狮</b>。青狮趁主人闭目养神，偷跑下凡，与白虎恶斗一场，把白虎斗死了；可自己也误了回灵山的时辰，<b>跌落凡间化作石山</b>——就是狮子山。化石的一瞬间，它还不甘心，<b>回头望一眼斗死的恶虎</b>。"</p>
+    </div>
+    <div class="say"><span class="role">传说二 · 吴王僚的冤魂</span>
+      <p>"另一版更狠，直接接历史：公元前 515 年，公子光派专诸刺杀了堂兄吴王僚，自己登上王位，就是<b>阖闾</b>。吴王僚葬在狮子山，阖闾自己死后葬在虎丘剑池下。<b>一狮一虎，叔侄对望——有人说，狮子回头的那个姿态，是吴王僚冤魂不散，回头怒视篡位的阖闾。</b>"</p>
+      <p>"传说嘛，两版都别当史实。但你们注意——<b>两版传说指向同一个地方：虎丘。</b>一座山把'回头'这个动作保持了至少一千年，苏州人给它配了两套剧本，这就是城市的想象力。"</p>
+    </div>
+    <h4>考据支撑</h4>
+    <p>狮子山花岗岩山体，东西长约 1.2 公里、南北宽约 0.8 公里，东南侧岩体形似狮首回望虎丘方向（虎丘位于其北偏东约 34°、5.6 公里处，方志多记"东北六公里"）。清人缪宗俨诗状其形："巉石抉爪牙，灌莽动毛发。惊风入松林，震若吼声发。"<b>"狮子回头望虎丘"七字石刻在山顶，现场指认。</b></p>
+    <div class="egg"><b class="t">纠错彩蛋 · 这头狮子，其实早就"缺耳"了</b>
+      <p>明《姑苏志》记了一笔细节：狮子山"南顶上有巨石二如楼，云是<b>狮子两耳</b>"——可惜"自元以来凿石且尽"。也就是说，<b>至少从元代起，这座山就被开采石料，狮子的两只'耳朵'六百年前就被凿掉了</b>。你们今天看到的山形，是缺了耳朵的狮子。城市要石头，狮子贡献了耳朵——这也是一段真实的历史。</p>
+    </div>
+  </div>
+
+  <!-- ⑦ -->
+  <div class="spot" id="st7">
+    <span class="s-tag">第 ⑦ 站</span>
+    <h3>山顶五塔 —— 一眼一千年（本线王牌）</h3>
+    <span class="en">St.7 · Five Pagodas in One View</span>
+    <p class="part-sub">本站是全天的高潮：一张按地图数据实算的<b>望塔方位表</b>＋一幅方位示意＋认塔要诀。天气通透时逐一指认，阴天备好示意图与塔照对照。</p>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">开场</span>
+      <p>"现在，请大家围过来，我们一起干一件事：<b>在苏州的山顶上，把五座塔一次看全。</b>"</p>
+      <p>"从东北开始，顺时针转一圈。我报一座，你们找一座——找不到没关系，我教你们认。"</p>
+    </div>
+    <div class="method">
+      <div class="layer"><div class="ln">北偏东 34° · 5.6 km ｜ 虎丘塔（云岩寺塔）</div><p><b>先见虎丘塔，后见苏州城。</b>五代后周显德六年（959）始建，北宋建隆二年（961）落成，残高 47.7 米，<b>塔身倾斜 2.34 米，"东方斜塔"</b>——认它，认那个<b>歪</b>字。它脚下就是剑池下吴王阖闾墓的传说。</p></div>
+      <div class="layer"><div class="ln">东北 47° · 2.7 km ｜ 寒山寺普明宝塔</div><p>最近的一座，2.7 公里，枫桥那边。<b>仿唐木构楼阁式，四方五层，总高 42.2 米，1995 年落成</b>——此前寒山寺<b>六百多年只闻钟声、不见塔影</b>，性空法师发愿重建，1996 年开光。认它，认那个<b>方</b>字（五塔里唯一的方形唐塔）。《平江图》上枫桥旁那座带塔的寺，就是它的前世。</p></div>
+      <div class="layer"><div class="ln">东偏北 65° · 7.5 km ｜ 北寺塔（报恩寺塔）</div><p>最远的一座，7.5 公里开外，古城中轴线上。<b>高约 76 米，苏州古塔之最</b>，八角九层，现存塔身为南宋绍兴二十三年（1153）重建。认它，认那个<b>高</b>字——它是全城的天际线锚点，北寺塔线我们专程去看过。</p></div>
+      <div class="layer"><div class="ln">西南 231° · 5.6 km ｜ 灵岩山寺多宝佛塔</div><p>木渎灵岩山之巅。<b>始建传说可追南朝梁天监二年，现存塔身建于南宋绍兴十七年（1147）</b>，八角七层、砖木实心，塔壁有宋代铭文砖。认它，认那个<b>山上塔</b>——塔与山几乎融为一体，吴王夫差为西施建的馆娃宫就在那座山上。</p></div>
+      <div class="layer"><div class="ln">南偏东 149° · 6.5 km ｜ 上方山楞伽塔</div><p>石湖上方山顶。<b>隋大业四年（608）吴郡太守李显始建，北宋太平兴国三年（978）重建</b>——比虎丘塔只晚了 19 年，两塔并称"姐妹塔"；现存塔身明崇祯十三年（1640）再建，高两说并存（约 23／28.32 米），<b>塔身微向西倾，"苏州第二斜塔"</b>。认它，认那个<b>旧</b>字——五塔中始建最早。</p></div>
+    </div>
+    <div class="say"><span class="role">收束</span>
+      <p>"数一数这五座塔的年纪：楞伽塔始建<b>608 年</b>，虎丘塔 959，北寺塔原构南朝、现存 1153，灵岩塔 1147，普明宝塔<b>1995</b>——<b>最老和最新，差了一千三百八十七年。</b>站在一座 114.5 米的小山上，一眼看一千四百年。这就是'不与诸山相连'送给苏州的礼物。"</p>
+      <p>"下重阳登高，苏州老话是登北寺塔、登虎丘、登上方山。今天我们一座山，把他们的登高点全看了一遍——<b>明年重阳，你们可以轮流替我今天站的位置。</b>"</p>
+    </div>
+    <div class="tip"><b>方位示意（自绘 · 方位与距离按地图数据实算，入群发图包前请讲师实地目验一次）：</b></div>
+
+    <svg viewBox="0 0 680 580" style="display:block;max-width:640px;margin:10px auto;background:#fffdf7;border:1px solid #e5dcc9;border-radius:12px" xmlns="http://www.w3.org/2000/svg" font-family="inherit">
+      <!-- 罗盘圈 -->
+      <circle cx="340" cy="300" r="236" fill="none" stroke="#e5dcc9" stroke-width="1.5" stroke-dasharray="5 6"/>
+      <circle cx="340" cy="300" r="118" fill="none" stroke="#f0e9d8" stroke-width="1.2" stroke-dasharray="3 6"/>
+      <!-- 十字方位线 -->
+      <line x1="340" y1="52" x2="340" y2="548" stroke="#f0e9d8" stroke-width="1.2"/>
+      <line x1="92" y1="300" x2="588" y2="300" stroke="#f0e9d8" stroke-width="1.2"/>
+      <!-- 北箭头 -->
+      <g>
+        <polygon points="340,34 334,54 346,54" fill="#a4423a"/>
+        <text x="340" y="26" text-anchor="middle" font-size="14" fill="#a4423a" font-weight="bold">北</text>
+      </g>
+      <!-- 狮子山（中心） -->
+      <g>
+        <circle cx="340" cy="300" r="9" fill="#7d2f28"/>
+        <text x="340" y="332" text-anchor="middle" font-size="16" fill="#7d2f28" font-weight="bold">狮子山</text>
+        <text x="340" y="350" text-anchor="middle" font-size="11" fill="#6e675c">海拔 114.5 米 · 孤山</text>
+      </g>
+      <!-- 虎丘塔 NNE 33.6° 5.6km -->
+      <g>
+        <line x1="340" y1="300" x2="452" y2="132" stroke="#b58a2c" stroke-width="1.6" stroke-dasharray="2 4"/>
+        <rect x="441" y="106" width="22" height="30" rx="3" fill="#a4423a"/>
+        <text x="452" y="98" text-anchor="middle" font-size="13" fill="#33302a" font-weight="bold">虎丘塔 47.7m</text>
+        <text x="452" y="152" text-anchor="middle" font-size="11" fill="#6e675c">959 始建 · 斜塔 2.34m</text>
+      </g>
+      <!-- 寒山寺 NE 46.8° 2.7km -->
+      <g>
+        <line x1="340" y1="300" x2="411" y2="234" stroke="#b58a2c" stroke-width="1.6" stroke-dasharray="2 4"/>
+        <rect x="402" y="210" width="18" height="26" rx="2" fill="#3d7a78"/>
+        <text x="424" y="204" text-anchor="middle" font-size="13" fill="#33302a" font-weight="bold">寒山寺普明宝塔 42.2m</text>
+        <text x="424" y="250" text-anchor="middle" font-size="11" fill="#6e675c">1995 落成 · 唯一方形唐塔</text>
+      </g>
+      <!-- 北寺塔 ENE 65.3° 7.5km -->
+      <g>
+        <line x1="340" y1="300" x2="585" y2="187" stroke="#b58a2c" stroke-width="1.6" stroke-dasharray="2 4"/>
+        <rect x="574" y="147" width="22" height="40" rx="3" fill="#3a6ea5"/>
+        <text x="586" y="140" text-anchor="middle" font-size="13" fill="#33302a" font-weight="bold">北寺塔 76m</text>
+        <text x="560" y="202" text-anchor="middle" font-size="11" fill="#6e675c">1153 重建 · 苏州之最</text>
+      </g>
+      <!-- 灵岩山寺 SW 231° 5.6km -->
+      <g>
+        <line x1="340" y1="300" x2="183" y2="427" stroke="#b58a2c" stroke-width="1.6" stroke-dasharray="2 4"/>
+        <rect x="172" y="402" width="22" height="28" rx="3" fill="#b58a2c"/>
+        <text x="183" y="394" text-anchor="middle" font-size="13" fill="#33302a" font-weight="bold">灵岩山多宝佛塔</text>
+        <text x="183" y="448" text-anchor="middle" font-size="11" fill="#6e675c">1147 现存 · 馆娃宫故地</text>
+      </g>
+      <!-- 楞伽塔 SSE 149° 6.5km -->
+      <g>
+        <line x1="340" y1="300" x2="462" y2="500" stroke="#b58a2c" stroke-width="1.6" stroke-dasharray="2 4"/>
+        <rect x="451" y="474" width="22" height="30" rx="3" fill="#6e675c"/>
+        <text x="462" y="466" text-anchor="middle" font-size="13" fill="#33302a" font-weight="bold">上方山楞伽塔</text>
+        <text x="462" y="522" text-anchor="middle" font-size="11" fill="#6e675c">608 始建 · 第二斜塔</text>
+      </g>
+      <!-- 何山 -->
+      <g>
+        <circle cx="322" cy="196" r="5" fill="#9a938a"/>
+        <text x="322" y="186" text-anchor="middle" font-size="11" fill="#9a938a">何山 63.8m（北一里）</text>
+      </g>
+      <!-- 图注 -->
+      <text x="20" y="566" font-size="11" fill="#9a938a">示意方位角／距离按地图坐标实算（2026-10）· 非等比例尺 · 现场以目验为准</text>
+    </svg>
+
+    <div class="tip"><b>互动 · 认塔比赛：</b>发"认塔卡"（或手机出示塔照），让学员按<b>斜、方、高、山、旧</b>五个字的特征，在真实天际线里把塔一一指认出来，指认全对的发"重阳登高第一人"口头认证。<b>塔在几公里外只是个小点——靠特征认塔，才是本事。</b></div>
+    <div class="tip"><b>实拍提示：</b>山顶东北方向（狮首一侧）广角拍虎丘塔远景＋城市天际线同框；东南拍苏博西馆"十座盒子"与过山车轨道同框——<b>一张照片两个时代</b>。</div>
+  </div>
+
+  <!-- ⑧ -->
+  <div class="spot" id="st8">
+    <span class="s-tag">第 ⑧ 站</span>
+    <h3>招国魂 —— 1903 年，山顶上那面黑幡</h3>
+    <span class="en">St.8 · Summoning the National Soul, 1903</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">故事</span>
+      <p>"我们脚下站的位置，123 年前站过二十个年轻人。"</p>
+      <p>"1903 年——光绪二十九年，《辛丑条约》签完第二年，庚子国变刚过。苏州一个二十岁的年轻人，叫<b>朱梁任</b>，约了<b>包天笑、苏曼殊</b>等十八个人，雇小船出城，登上这座狮子山。他们带了祭品，还带了两面幡：一面黑幡，狭长形，下面开两个尖角，中间四个草书大字——<b>'魂兮归来'</b>；一面白幡，上面画一头狰狞的雄狮，落款写着——<b>'黄帝之曾孙小子'</b>。"</p>
+      <p>"摆祭品、诵诗文、放声痛哭——最后，朱梁任掏出一把前膛枪，<b>朝着北方，也就是清政府所在的方向，开了一枪</b>。史家范烟桥后来在《茶烟歇》里记了这件事：'其事甚密，而当时文人革命思想之活跃，此见其端。'苏州的辛亥前史，就在这座山顶上拉开了幕。"</p>
+      <p>"为什么是狮子山？因为他们喊的口号就是——<b>'睡狮醒兮'</b>。中国是一头睡狮，要醒，就得有人先站到狮子头顶上去喊。朱梁任回城后，把自家门口一条小弄堂改名叫<b>'醒狮路'</b>——这条路今天还在石路那边。"</p>
+    </div>
+    <div class="quote">「归去来兮我国魂，中原依旧属公孙。扫清膻雨腥风日，记取当时一片幡。」<small>—— 朱梁任《招魂幡》诗（范烟桥《茶烟歇》录）</small></div>
+    <h4>考据支撑</h4>
+    <p>朱梁任（1873—1932），名锡梁，字梁任，吴县人，<b>宋大儒朱长文第三十三世孙</b>，同盟会会员、南社发起人之一。1903 年（光绪二十九年）十月朔与包天笑、祝心渊、苏曼殊等十八人登狮子山招国魂（一说 11 月 19 日）；后在日加入同盟会，1909 年入南社。1932 年 11 月 12 日赴甪直参加保护保圣寺唐塑事务，归途覆舟，父子遇难——为保护文物而捐躯。</p>
+    <div class="egg"><b class="t">王牌彩蛋 · 十四年后，他在另一座"山"上又干了一件大事</b>
+      <p>"朱梁任这个人，和苏州两件国宝有关。第一件，就是这座山——1903 年他在山顶招国魂；第二件，你们在文庙见过——<b>1917 年，他和叶德辉一起出钱督工，把《平江图》碑深刻了一遍</b>，刻工黄慰萱执刀，碑右缘那行'郡人叶德辉朱锡梁督工深刻'，落的就是他的名字。"</p>
+      <p>"也就是说——<b>今天我们看的这座山，和文庙里那块碑，是同一个人的两件作品。</b>一个在山顶上喊醒中国，一个在碑刻里唤醒一座城。带过文庙线的同学，此刻应该起鸡皮疙瘩。"</p>
+      <p>再补一层：朱梁任是<b>朱长文</b>三十三世孙——朱长文的《吴郡图经续记》，正是文庙线讲"范仲淹开葑门、割南园建府学"时引的一手信源。<b>一家祖孙，隔九百年，都在为苏州写注脚。</b></p>
+    </div>
+  </div>
+
+  <!-- ⑨ -->
+  <div class="spot" id="st9">
+    <span class="s-tag">第 ⑨ 站</span>
+    <h3>下山 · 西晋墓与重阳糕 —— 山脚下还有两千年</h3>
+    <span class="en">St.9 · Back to the Foot</span>
+    <h4>现场怎么讲</h4>
+    <div class="say"><span class="role">下山路上</span>
+      <p>"下山的路走<b>南线</b>——官方就是设计成'只下不上'的，一边下一边看湖。趁大家腿还在抖，我讲山脚下最后一件事。"</p>
+      <p>"1976 年 3 月，枫桥林场在狮子山东麓平整土地，挖出了古墓。后来考古队两次发掘，清出<b>四座西晋砖室墓</b>，出土随葬品 126 件——青瓷扁壶、兔形水注、金钗金环，现在都在苏州博物馆躺着。"</p>
+      <p>"这说明什么？说明<b>一千七百年前，苏州人就觉得这座山是块好地</b>——吴王僚传说葬在这、西晋人把家族墓安在这、明代宰相在这读过书、民国青年在这喊醒中国。<b>一座 114.5 米的山，从头到脚每一层都被历史翻过牌。</b>"</p>
+    </div>
+    <div class="say"><span class="role">收队 · 重阳的正经事</span>
+      <p>"今天重阳，最后两件事。第一，<b>重阳糕</b>——'糕'与'高'同音，明人《五杂俎》说，九日天明要把一片糕放在儿女额头，祝一声'愿儿百事俱高'。等会儿山下买几块，人人分一口，<b>把今天登的高，吃进肚子里。</b>"</p>
+      <p>第二件事不用买——<b>重阳也是敬老节</b>（1989 年定老人节，2012 年立法为老年节）。今天队伍里谁是一路被爸妈牵着来的，下山请反过来：<b>替他们背包，扶他们下最后一段台阶。</b>登高的规矩，从来不是自己站到最高，是<b>把最好看的风景，指给你爱的人看。</b>"</p>
+    </div>
+    <h4>考据支撑</h4>
+    <p>狮子山西晋墓群：1976 年 3 月枫桥林场平整山地时发现，1976、1979 年吴县文管会两次发掘，清理<b>西晋砖室墓 4 座</b>，出土随葬品 126 件（青瓷簋、扁壶、兔形水注，铜灯座、鼎，铁剑及金钗、金环等），现藏苏州博物馆。收队建议：山麓<b>姑苏桥面馆</b>（苏式汤面）、"LadyMay 与山"咖啡馆，或顺势参观<b>苏博西馆</b>（需另约）。</p>
+    <div class="tip"><b>下次预告：</b>何山公园（鹤文化亭台＋李根源题刻＋张王庙）、苏博西馆"吴地春秋"通史陈列（可与此线闭环：馆里看西晋墓出土文物原件）——<b>狮子山以西，留一个"馆山联游"的二次深度游。</b></div>
+  </div>
+</section>
+
+<!-- ================= 矩阵 ================= -->
+<section class="part" id="matrix" data-anchor>
+  <div class="part-head"><span class="no">矩阵</span><h2>讲点 × 素材 · 现场与课后怎么配</h2></div>
+  <div class="method">
+    <div class="layer"><div class="ln">原则</div><p>沿用全线铁律：<b>现场能看到实物的一律不配当代实拍图</b>（山体、石刻、读书台、湖景，现场指认）；<b>本线的"不在眼前对象"＝五座塔＋吴王僚＋历史照片</b>，是群发图主力；纯文字大表不发，只作课后回顾。</p></div>
+  </div>
+  <div class="method">
+    <div class="layer"><div class="ln">已有素材</div><p>① <b>《平江图》城西群山段</b>（"何山 → 岝崿山 → 高景山"题名清晰，底图 4139×6088，源 <code>_pj3/z_西山北段.jpg</code>）——第 ② 站铁证；② <b>塔照三张</b>：虎丘、北寺、楞伽（素材库 <code>gusu4ta/img/</code> huqiu-1、beisi-1、lengqie-1）——第 ⑦ 站认塔卡用；③ <b>《平江图》枫桥段</b>（带塔寺院，源 <code>_pj3/zz_枫桥寺全景.jpg</code>）——第 ⑦ 站讲普明宝塔前世；④ <b>方位示意图</b>（本手册第 ⑦ 站内嵌 SVG，方位按地图数据实算）。</p></div>
+    <div class="layer"><div class="ln">待补（按优先级）</div><p>① <b>灵岩山多宝佛塔、寒山寺普明宝塔塔照</b>（认塔卡凑齐五塔）；② <b>苏州乐园老照片</b>（1997～2017， preferably 过山车＋狮子山同框——第 ① 站"还山于民"前后对比；共享盘暂无，<b>由讲师自备或经授权后取用</b>）；③ <b>摩崖石刻特写</b>（洗心泉落款、"坠星岩"——若发图须现场拍，注意逆光）；④ <b>朱梁任像／招魂幡史料图</b>（查苏州方志馆、南社纪念馆数字资源）。<b>图包三轨（干净版／字幕版／资料库）未启动，开团前按本清单制。</b></p></div>
+    <div class="layer"><div class="ln">数字资源</div><p><b>《平江图》深缩放网页</b>：<code>gusu-fanhua-scroll.app.workbuddy.host/pingjiangtu/</code>——第 ② 站扫图找"岝崿山"、第 ⑦ 站讲普明宝塔前世找"楓橋"带塔寺院，两处都在网页上可放大。</p></div>
+  </div>
+</section>
+
+<!-- ================= 讲述心法 ================= -->
+<section class="part" id="method" data-anchor>
+  <div class="part-head"><span class="no">心法</span><h2>讲述心法 · 讲师加餐</h2></div>
+  <div class="method">
+    <div class="layer"><div class="ln">一</div><p><b>用"一座小山凭什么"贯穿全程。</b>开场问："苏州西边那么多山，重阳登高为什么偏偏爬这个 114.5 米的小土丘？"——第 ② 站用"孤立"回答地理，第 ⑦ 站用"五塔"回答视野，第 ⑧ 站用"招国魂"回答精神。<b>游客记住的是问题，不是海拔。</b></p></div>
+    <div class="layer"><div class="ln">二</div><p><b>传说与史实分开说，而且要当着学员的面分开。</b>吴王僚葬此山——<b>有唐人文献（《吴地记》），无考古实证</b>；申时行狮山读书——<b>纯传说</b>，正史记他读的是卫道观。每讲完一个传说，补一句"这是传说／这是唐人的记载"，<b>学员反而更信你其余的每一句话。</b></p></div>
+    <div class="layer"><div class="ln">三</div><p><b>让学员动手动眼。</b>沿途认石刻字、登顶认五塔（斜·方·高·山·旧五字诀）、下南线数台阶——<b>这座山的所有知识都"看得见"，别用嘴替他们看。</b></p></div>
+    <div class="layer"><div class="ln">四</div><p><b>跨线是本线的王牌打法。</b>朱梁任：1903 山顶招魂 ↔ 1917 文庙深刻平江图；申时行：北寺塔祠坊 ↔ 狮山读书台；张士诚：北寺塔纪功碑 ↔ 何山张王庙；白居易：山塘开河 ↔ 思益寺题诗。<b>老学员听到"回马枪"，比听新故事更兴奋。</b></p></div>
+    <div class="layer"><div class="ln">五</div><p><b>落点落在"人"。</b>结尾不讲知识点，讲那句收队词：<b>"登高的规矩，是把最好看的风景，指给你爱的人看。"</b>——重阳、敬老、这座山，三件事在这一句里合拢。</p></div>
+  </div>
+</section>
+
+<!-- ================= 题库 ================= -->
+<section class="part" id="quiz" data-anchor>
+  <div class="part-head"><span class="no">题库</span><h2>研学题库 · 15 题（讲师用／可作互动）</h2></div>
+  <div class="method">
+    <div class="layer"><div class="ln">基础</div>
+      <div class="l-body"><p><b>1.</b> 狮子山有多高？——主峰海拔 114.5 米，登顶步行约 15～30 分钟。</p>
+      <p><b>2.</b> 狮子山的宋代名字叫什么？——<b>岝崿山</b>（又写作岞崿山、苲萼山，又名乍山）；"俗称狮子山"是后人按山形叫出来的。《平江图》（1229）上题的就是"岝崿山"。</p>
+      <p><b>3.</b> "狮子回头望虎丘"的两大传说是什么？——① 青狮战白虎（寒山的坐骑青狮下凡斗白虎，化石后回望）；② 吴王僚冤魂回望葬于虎丘的阖闾。</p>
+      <p><b>4.</b> 重阳节为什么叫"重阳"？——九是最大的阳数，九月九日两九相重，故名"重九／重阳"；曹丕："九为阳数，而日月并应，俗嘉其名，以为宜于长久。"</p>
+      <p><b>5.</b> 苏州人重阳有哪几样习俗？——登高、插茱萸、赏菊、饮菊花酒、吃重阳糕（"百事俱高"）、持螯赏菊（"九月团脐十月尖"）。</p></div>
+    </div>
+    <div class="layer"><div class="ln">进阶</div>
+      <div class="l-body"><p><b>6.</b> 为什么狮子山看五塔看得特别全？——明《姑苏志》："以上四山与诸山不相连。"它是一座孤立的花岗岩山，四周平畴无遮挡，山顶 360 度视野。</p>
+      <p><b>7.</b> 山顶能望见的五座塔，请按方位各说一座。——北偏东·虎丘塔（5.6km）｜东北·寒山寺普明宝塔（2.7km）｜东偏北·北寺塔（7.5km）｜西南·灵岩山多宝佛塔（5.6km）｜南偏东·上方山楞伽塔（6.5km）。</p>
+      <p><b>8.</b> 五塔里最老和最新的是哪两座？——最老：上方山楞伽塔（隋大业四年 608 始建）；最新：寒山寺普明宝塔（1995 落成）——相差 1387 年。</p>
+      <p><b>9.</b> "东方斜塔"和"苏州第二斜塔"分别指哪两座？——虎丘塔（倾斜 2.34 米）；楞伽塔（塔身微向西倾）。两塔并称"姐妹塔"，始建仅差 19 年（959／608+978 重建口径各异，讲时选一种说清）。</p>
+      <p><b>10.</b> 狮子山上白居易写过诗的寺叫什么？——思益寺（山顶，初名法音寺，梁天监二年 503 置，唐开元中改今名），诗题《自思益寺次楞伽寺》。</p></div>
+    </div>
+    <div class="layer"><div class="ln">拓展</div>
+      <div class="l-body"><p><b>11.</b> 1903 年在狮子山顶"招国魂"的是谁？——朱梁任（朱锡梁），与包天笑、苏曼殊等十八人，扯黑幡"魂兮归来"、白幡绘雄狮，朝天鸣枪；回城后把家门口一条弄堂命名"醒狮路"。</p>
+      <p><b>12.</b> 朱梁任与《平江图》什么关系？——1917 年他与叶德辉共同<b>督工深刻</b>宋碑《平江图》（刻工黄慰萱执刀），碑右缘落款可证。狮子山与文庙《平江图》碑，是同一个人的两件"作品"。</p>
+      <p><b>13.</b> 狮子山出土过什么重要文物？——1976／1979 年东麓发掘西晋砖室墓 4 座，出土随葬品 126 件（青瓷扁壶、兔形水注、金饰等），现藏苏州博物馆。</p>
+      <p><b>14.</b> 狮子山哪两个"零件"六百年前就没了？——"狮子两耳"：南顶两块如楼巨石，明《姑苏志》记"自元以来凿石且尽"——元代起采石，狮耳被凿。</p>
+      <p><b>15.</b> 苏州乐园哪年开园、哪年闭园？——1997 年 2 月"欢乐世界"开园（"迪士尼太远，去苏州乐园"），2017 年 10 月 9 日闭园移址；2023 年原址建成狮山公园。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 纠正与答疑 ================= -->
+<section class="part" id="faq" data-anchor>
+  <div class="part-head"><span class="no">纠正</span><h2>纠正与答疑 · 讲师必背</h2></div>
+  <div class="debate">
+    <div class="d primary"><b>① "吴王僚葬此山中"——是唐人记载，不是考古结论</b><p>信源链：唐陆广微《吴地记》"岝崿山在吴县西十二里，吴王僚葬此山中"→ 李根源 1926 年访古记"吴王僚墓旧在寺中"。<b>墓的具体位置至今未经考古确认。</b>讲法：说"唐代文献记载吴王僚葬在这座山"，<b>不要说"墓就在那儿，坟头是某某处"</b>。讲师个人可以不信，讲给学员时给足两说：传说是趣味，《吴地记》是信源。</p></div>
+    <div class="d"><b>② 灵岩山多宝佛塔在西南，不在正西</b><p>按地图坐标实算，从狮子山顶望灵岩山寺多宝佛塔的方位约 <b>231°（西南偏西）、5.6 公里</b>——口头说"往西看木渎方向"可以，<b>示意图、图包字幕上一律写"西南"</b>。其余四塔：虎丘塔北偏东 34°、普明宝塔东北 47°、北寺塔东偏北 65°、楞伽塔南偏东 149°。</p></div>
+    <div class="d"><b>③ "一山望五塔"的"唯一"之说别写死</b><p>"苏州唯一能依山看古塔的山"是体验性概括（虎丘山上望北寺塔、天平山望灵岩塔亦有可能）。<b>稳妥讲法："能一次望全这五座塔的山，苏州找不出第二座"——限定在这五塔的组合上，不说绝对化的"唯一看塔"。</b></p></div>
+    <div class="d"><b>④ 申时行"狮山读书"是传说</b><p>正史与《吴门表隐》记他祖宅平江路混堂弄、<b>早年读书于卫道观</b>；"状元读书台"系民间附会（石桌椅还是苏州乐园时期修的）。另<b>申时行墓在石湖吴山，不在天平山</b>——网上游记多写错。讲《玉蜻蜓》务必加一句"戏曲演绎，原型之争没有定论"。</p></div>
+    <div class="d"><b>⑤ "洗心泉"题者两说，别替石头做主</b><p>景区导览多署<b>康有为</b>书；李根源《吴郡西山访古记》记为"<b>道光十七年</b>洗心泉摩崖"（另记道光十九年二月住持等书）。<b>现场让学员看落款自己断案</b>；讲义与字幕统一写"题者两说（康有为／清道光间僧人）"。旁边郭沫若"物洗则洁，心洗则清"是现代刻，别与古刻混讲。</p></div>
+    <div class="d"><b>⑥ 两个"鹤阜山"是方志互混，不是你记错</b><p>《姑苏志》同卷：何山"故山名鹤阜山"，又注"范志以岝崿山为鹤阜山"——<b>何山、岝崿山都被叫过鹤阜山</b>。现场只讲何山改名一层即可，其余留给追问的学员。</p></div>
+    <div class="d"><b>⑦ 南线只下不上，动线别带反</b><p>官方口径：三条步道中<b>南线只下不上</b>，北线、中线可上下。本线设计＝北线上、南线下。<b>重阳及节假日实行预约登山，开团前务必核当期预约规则。</b></p></div>
+    <div class="d"><b>⑧ 狮山公园 ≠ 狮子山公园 ≠ 苏州乐园</b><p>1997～2017 的主题乐园叫<b>苏州乐园</b>（已迁大阳山）；2023 年开放的公园叫<b>狮山公园</b>（"一山一湖、一环八区"）；周边文化设施合称<b>狮山文化广场</b>（苏博西馆 2021、大剧院 2024、科技馆在建）。三个名字三个东西，字幕上别串。</p></div>
+    <div class="d"><b>⑨ 《平江图》上它还不叫狮子山</b><p>1229 年刻图时题"<b>岝崿山</b>"——"狮子山"是按山形叫出的俗名，晚于宋图。<b>别讲反成"宋代就叫狮子山"。</b>另注意：平江图上岝崿山<b>未绘塔</b>（思益寺彼时存废无考，图未标），勿说"平江图上狮子山有塔"。</p></div>
+    <div class="d"><b>⑩ 李根源原文里的四个错字，是景区牌子的错，不是李根源的错</b><p>"成丰→咸丰""法昔→法音""思忆→思益""宏扬→弘扬"——四错皆出景区转抄（见第 ④ 站彩蛋）。<b>带团前实地核对标牌是否已改，现场讲法随之调整；若牌子未改，这四个字就是最好的考据课教具。</b></p></div>
+    <div class="d"><b>⑪ 楞伽塔高度两说，别报死数</b><p>塔高记载并存<b>约 23 米</b>（塔身残高）与 <b>28.32 米</b>（含 rebuilt 口径）两说；始建隋大业四年（608）、北宋太平兴国三年（978）重建、现存明崇祯十三年（1640）再建。<b>讲"隋代始建、宋塔为身"最稳。</b></p></div>
+    <div class="d"><b>⑫ 朱梁任牺牲的时间地点要讲准</b><p><b>1932 年 11 月 12 日</b>，赴甪直参加<b>保圣寺唐塑</b>保护事务，归途轮船（源兴轮）倾覆，与子朱世隆一同遇难——<b>为保护文物而捐躯</b>。他同时是甲骨文鉴别家（曾识罗振玉不能识之字四十余）。别把他只讲成"一个爱国青年"。</p></div>
+  </div>
+  <div class="tip"><b>学员常问三答：</b>「小孩几岁能爬？」——全台阶步道，能走路的都能上，陡段牵好。「能看到东方之门吗？」——能，东望城市天际线即含湖西方向（约 12 公里，通透天才明显）。<b>「下雨还爬吗？」</b>——台阶湿滑，小雨改走天狮湖环线＋苏博西馆（馆山联游备选），大雨直接改期。</div>
+</section>
+
+<footer style="text-align:center;padding:36px 0 10px;color:var(--ink-soft);font-size:.85rem">
+  <div style="font-family:var(--serif);letter-spacing:.2em;color:var(--gold);margin-bottom:8px">吴 地 时 光 机 · 狮 子 山 线</div>
+  <div>本手册为讲师备课用，含提问话术与教学指令，<b>不直接发给学员</b>；学员材料另见现场发图（干净版）与课后图包。</div>
+  <div style="margin-top:8px">2026-10-09 v1 · 考据来源：唐陆广微《吴地记》、明王鏊《姑苏志》卷九（"四山与诸山不相连""吴王僚葬此山""自元以来凿石且尽"）、《吴郡西山访古记》（李根源 1926 访狮子山实录）、《吴门表隐》卷五、清《清嘉录》（吴山治平寺"牵羊赌彩"）、曹丕《九日与钟繇书》、范烟桥《茶烟歇》（1903 招国魂）、《苏州市志》（狮子山西晋墓群）、苏州高新区管委会官网（114.5 米·三条步道·摩崖石刻·登高路线）、苏州市文广旅局官网（狮子山）、寒山寺官网《寒山寺普明塔院记》（普明宝塔 42.2 米·1995 落成·赵朴初据〈平江图〉定案）、人民日报客户端《中国古塔揽胜——江苏苏州》（北寺塔 76m／楞伽塔 608+978／灵岩塔 1147）、古建家园《苏州七古塔》（虎丘塔 47.7m·倾斜 2.34m）、交汇点《狮子山再塑经典》（1997 开园／2017 闭园／2023 狮山公园／2024 全面开放）、朱锡梁传记资料（同盟会·南社·督工深刻〈平江图〉·醒狮路）、腾讯地图坐标实算（五塔方位与距离，2026-10）等；方位示意自绘，<b>入群发图包前请讲师实地目验</b></div>
+</footer>
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var topbar=document.getElementById('topbar');
+  var sideTab=document.getElementById('sideTab');
+  var sidebar=document.getElementById('sidebar');
+  var sideMask=document.getElementById('sideMask');
+  var sideClose=document.getElementById('sideClose');
+  var sw=document.getElementById('topbarSwitch');
+
+  /* ---- 顶栏显隐偏好 ---- */
+  try{
+    var pref=localStorage.getItem('walk_toc_mode');
+    if(pref==='side'&&sw){sw.checked=false;topbar.style.display='none';}
+  }catch(e){}
+  if(sw){sw.addEventListener('change',function(){
+    topbar.style.display=sw.checked?'':'none';
+    try{localStorage.setItem('walk_toc_mode',sw.checked?'top':'side');}catch(e){}
+  });}
+
+  /* ---- 侧栏 ---- */
+  function openSide(){sidebar.classList.add('open');sideMask.classList.add('show');}
+  function closeSide(){sidebar.classList.remove('open');sideMask.classList.remove('show');}
+  sideTab.addEventListener('click',openSide);
+  sideClose.addEventListener('click',closeSide);
+  sideMask.addEventListener('click',closeSide);
+  sidebar.addEventListener('click',function(e){if(e.target.closest('a'))closeSide();});
+
+  /* ---- 下拉面板 ---- */
+  var drops=[
+    {btn:document.getElementById('db1'),panel:document.getElementById('dp1')}
+  ];
+  function closeDrops(except){
+    drops.forEach(function(d){
+      if(d.panel&&d.panel!==except){d.panel.classList.remove('open');if(d.btn){d.btn.setAttribute('aria-expanded','false');}}
+    });
+  }
+  drops.forEach(function(d){
+    if(!d.btn||!d.panel)return;
+    document.body.appendChild(d.panel);   /* 挂到body下：顶栏的backdrop-filter/overflow不再影响面板定位基准，彻底修掉错位与"看不到" */
+    d.btn.addEventListener('click',function(e){
+      e.stopPropagation();
+      var willOpen=!d.panel.classList.contains('open');
+      closeDrops(willOpen?d.panel:null);
+      d.panel.classList.toggle('open',willOpen);
+      d.btn.setAttribute('aria-expanded',willOpen?'true':'false');
+      if(willOpen){
+        var r=d.btn.getBoundingClientRect();
+        d.panel.style.visibility='hidden';d.panel.classList.add('open');
+        var pw=d.panel.offsetWidth;
+        var left=r.left;
+        if(left+pw>window.innerWidth-10)left=window.innerWidth-pw-10;
+        d.panel.style.left=left+'px';
+        d.panel.style.top=(r.bottom+6)+'px';
+        d.panel.style.position='fixed';   /* fixed 逃出 nav.toc 的 overflow 裁剪——这就是下拉"打不开"的根因 */
+        d.panel.style.visibility='';
+      }
+    });
+    d.panel.addEventListener('click',function(e){
+      if(e.target.closest('a')){closeDrops(null);}
+      e.stopPropagation();
+    });
+  });
+  window.addEventListener('scroll',function(){
+    drops.forEach(function(d){
+      if(d.panel&&d.panel.classList.contains('open')){
+        var r=d.btn.getBoundingClientRect();
+        var pw2=d.panel.offsetWidth;
+        var left2=r.left;
+        if(left2+pw2>window.innerWidth-10)left2=window.innerWidth-pw2-10;
+        d.panel.style.left=left2+'px';
+        d.panel.style.top=(r.bottom+6)+'px';
+      }
+    });
+  },{passive:true});
+  document.addEventListener('click',function(){closeDrops(null);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeDrops(null);closeSide();}});
+
+  /* ---- 滚动高亮 ---- */
+  var sections=[];
+  document.querySelectorAll('[data-anchor]').forEach(function(s){sections.push(s);});
+  var navLinks=Array.prototype.slice.call(document.querySelectorAll('nav.toc > a'));
+  var dropLinks=Array.prototype.slice.call(document.querySelectorAll('.drop-panel a'));
+  var sideLinks=Array.prototype.slice.call(document.querySelectorAll('.side-nav a[href^="#"]'));
+  var btnFor={};
+  drops.forEach(function(d){
+    if(!d.btn||!d.panel)return;
+    d.panel.querySelectorAll('a').forEach(function(a){
+      var href=a.getAttribute('href');
+      if(href&&href.charAt(0)==='#'){btnFor[href.slice(1)]=d.btn;}
+    });
+  });
+  function setActive(id){
+    navLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    dropLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    sideLinks.forEach(function(a){a.classList.toggle('active',a.getAttribute('href')==='#'+id);});
+    drops.forEach(function(d){if(d.btn)d.btn.classList.remove('active');});
+    if(btnFor[id])btnFor[id].classList.add('active');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){setActive(en.target.id);}
+      });
+    },{rootMargin:'-70px 0px -65% 0px',threshold:0});
+    sections.forEach(function(s){io.observe(s);});
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>北寺塔名人篇 · 苏州城市漫游研学｜教学大纲（讲师备课版）</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:640px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+
+/* ===== 课程信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 导航（顶栏） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 15px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer}
+nav.toc .drop-btn{-webkit-appearance:none;appearance:none;margin:0}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+/* 人物单元下拉子菜单（面板挂在吸顶容器上，避开滚动容器裁切） */
+.drop-wrap{flex:none}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 6px);left:20px;z-index:60;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:210px;max-height:calc(100dvh - 130px);overflow-y:auto}
+.drop-panel.open{display:flex}
+.drop-panel a{border:none;border-radius:9px;background:none;font-weight:400 !important;color:var(--ink-soft) !important;padding:8px 14px !important}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--red) !important}
+.drop-panel a.active{background:var(--gold-bg) !important;color:var(--red) !important;font-weight:700 !important}
+.drop-panel .d-head{font-size:.72rem;color:var(--gold);letter-spacing:.2em;padding:4px 14px 6px;font-weight:700}
+.toc-hint{display:none}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav a{padding:10px 20px;color:var(--ink-soft);text-decoration:none;font-size:.94rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a.sub{padding-left:38px;font-weight:400;font-size:.89rem}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节头 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+/* ===== 人物单元 ===== */
+.unit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;margin-top:34px;position:relative;overflow:hidden}
+.unit .tag-side{position:absolute;top:0;right:0;font-family:var(--serif);writing-mode:vertical-rl;letter-spacing:.3em;
+  background:var(--red);color:#fff;font-size:.8rem;padding:14px 8px;border-radius:0 0 0 12px;opacity:.92}
+.unit.teal .tag-side{background:var(--teal)}
+.unit.blue .tag-side{background:var(--blue)}
+.unit.gold .tag-side{background:var(--gold)}
+.unit h3{font-family:var(--serif);font-size:clamp(1.25rem,4.4vw,1.55rem);font-weight:900;letter-spacing:.06em;margin-bottom:2px}
+.unit .role{font-family:var(--serif);color:var(--gold);font-size:.95rem;letter-spacing:.2em;margin-bottom:12px}
+.unit h4{font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:22px 0 6px;display:flex;align-items:center;gap:8px}
+.unit h4::before{content:"§";color:var(--gold);font-size:.9rem}
+.unit.teal h4{color:var(--teal)} .unit.blue h4{color:var(--blue)} .unit.gold h4{color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px;letter-spacing:.05em}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.field{background:var(--teal-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.field b.t{color:var(--teal)}
+
+.qa{border:2px dashed var(--gold);border-radius:14px;padding:12px 18px;margin:10px 0}
+.qa b.t{color:var(--gold)}
+.qa p{margin:5px 0}
+.qa .q{color:var(--ink);font-weight:700}
+.qa .a{color:var(--ink-soft)}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+/* ===== 反向导航：去现场（跨页到打卡点手册 v2） ===== */
+.spot-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;align-items:center}
+.spot-row .lbl{font-size:.8rem;color:var(--ink-soft);font-weight:700;letter-spacing:.1em}
+.spot-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  color:var(--blue);background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:30px;padding:6px 14px;
+  transition:transform .15s,box-shadow .15s}
+.spot-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(58,110,165,.25)}
+.spot-link.hl{color:var(--red);background:#fdf1ef;border-color:var(--red)}
+
+/* ===== 信源标注 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 打卡点 ===== */
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-top:24px}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.25rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+
+.matrix td:first-child,.matrix th:first-child{white-space:nowrap}
+.matrix td{font-size:.88rem}
+
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{nav.toc,.side-tab,.sidebar,.side-mask{display:none}body{background:none}}
+@media(max-width:640px){
+  .unit{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+  .unit .tag-side{display:none}
+}
+[data-anchor]{scroll-margin-top:70px}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+.sister-link:hover{background:var(--blue-bg)}
+</style></head>
+<body>
+<div class="wrap">
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学</div>
+  <h1>北寺塔名人篇 · 苏州城市漫游研学</h1>
+  <div class="sub">教 学 大 纲 ｜ 讲 师 备 课 版</div>
+  <p class="desc">一座塔，六组人物。本大纲照《文庙名人篇》《阊门名人篇》体例，按<b>寺内动线</b>排人物：门口那座牌楼来自状元首辅申时行的家祠，他是事实上的"开门第一讲"；进寺先立"报恩"之名——孙权当年建寺的故事，就是一寺二母、寺名三变的由来；塔下讲的是一位大文豪的一个"舍"字——苏轼把自己一只装私印的铜龟子舍进了北宋那座塔（"予无舍利可舍，独舍盛舍利者"）；塔后碑亭里坐着吴王张士诚与民间财神沈万三，"无字碑"是全线悬念最强的一站；长廊里是徐扬的《姑苏繁华图》，苏州人画苏州；最后一位是盛宣怀夫人——<span class="hl">北寺塔为什么比虎丘塔、瑞光塔都"体面"？答案就在她那一笔钱上。</span></p>
+  <p class="desc" style="margin-top:10px"><b>本篇的选人标准（三问）：</b>①<b>绕不开</b>——与寺内打卡点高度相关，讲这个点就绕不过他；②<b>叫得响</b>——有大众知名度，<b>或者</b>本事够硬、成就说出来让人叹服；③<b>记得住</b>——讲完听众有印象。三问都不搭的（只在史料里出现的僧人、题匾文人），<b>不入单元，人名不报</b>，但知识点留下、并入实物讲解——这也就是"备多讲少"。</p>
+  <div class="src" style="margin-top:18px;border-top:none;padding-top:0"><b>信源体例</b>：与文庙、阊门名人篇同一口径——古籍注<b>原典书名与篇目</b>，考据结论注<b>史料</b>，近现代内容注<b>权威机构或媒体</b>（苏州市地方志办公室、苏州碑刻博物馆、苏州图书馆等），内部整理资料标注 <code>DS-export</code>；凡属<b>传说、民间说法、两说并存、待现场复核</b>的内容，均在行文中点明，不作定论。本篇与《北寺塔 · 解说手册》互为补充：手册管"现场怎么讲"，本篇管"人物备多讲少"。</div>
+  <a class="sister-link" href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a class="sister-link" href="beisita_shouce.html" style="margin-left:8px">⟶ 配套：《北寺塔 · 解说手册》（现场逐点解说）</a>
+  <div class="seal">备课备用 · 宁多勿缺</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>课程名称</b><span>吴地时光机 · 北寺塔名人篇（报恩寺寻塔之旅）</span></div>
+  <div class="m"><b>授课对象</b><span>亲子家庭（小学二年级以上）/ 成人研学团</span></div>
+  <div class="m"><b>行程主线</b><span>南门牌坊 → 山门 → 庭院（石雕龙壁）→ 塔（绕塔）→ 漆雕长廊 → 老照片展 → 碑亭 → 楠木观音殿 → 梅圃 → 东门（皮市街）</span></div>
+  <div class="m"><b>建议时长</b><span>半日（寺内约 2.5 小时 / 全程约 1.5km；寺庙香期人多，宜上午起讲）</span></div>
+  <div class="m"><b>集合地点</b><span>地铁 4 号线北寺塔站 → 南门牌坊前（动线详见解说手册）</span></div>
+  <div class="m"><b>资料版本</b><span>2026-09 v1 · 人物资料池持续补充中</span></div>
+</div>
+<!-- ================= 导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <div class="drop-wrap" id="dropWrap">
+      <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false">一·人物单元<span class="caret">▾</span></button>
+    </div>
+    <a href="#p2">二·打卡点手册</a>
+    <a href="#p3">三·点位矩阵</a>
+    <a href="#p4">四·方法题库</a>
+  </nav>
+  <div class="drop-panel" id="dropPanel">
+    <div class="d-head">六 组 人 物</div>
+    <a href="#u1">单元一 · 申时行</a>
+          <a href="#u2">单元二 · 孙权</a>
+          <a href="#u3">单元三 · 苏轼</a>
+          <a href="#u4">单元四 · 张士诚与沈万三</a>
+          <a href="#u5">单元五 · 徐扬</a>
+          <a href="#u6">单元六 · 盛宣怀夫人庄德华</a>
+  </div>
+</div>
+
+<button class="side-tab" id="sideTab" aria-label="打开课程目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏课程目录">
+  <div class="side-head">
+    <span class="side-title">课程目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 课程总览与教学目标</a>
+    <div class="divider"></div>
+    <a href="#p1">第一部分 · 人物单元（六组）</a>
+    <a class="sub" href="#u1">单元一 · 申时行</a>
+          <a class="sub" href="#u2">单元二 · 孙权</a>
+          <a class="sub" href="#u3">单元三 · 苏轼</a>
+          <a class="sub" href="#u4">单元四 · 张士诚与沈万三</a>
+          <a class="sub" href="#u5">单元五 · 徐扬</a>
+          <a class="sub" href="#u6">单元六 · 盛宣怀夫人庄德华</a>
+    <div class="divider"></div>
+    <a href="#p2">第二部分 · 打卡点手册（按动线）</a>
+    <div class="divider"></div>
+    <a href="#p3">第三部分 · 人物 × 点位矩阵</a>
+    <div class="divider"></div>
+    <a href="#p4">第四部分 · 讲述方法与题库</a>
+  </nav>
+</aside>
+<!-- ================= 总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>课程总览与教学目标</h2></div>
+  <p class="part-sub">本课程回答一个核心问题：<b>一座 1700 年的塔，凭什么一直没倒、还越活越体面？</b>答案不只在砖石里，而在六个"人"（六组）身上——有人给它起了名字，有人给它立了碑，有人给它写出了真相，有人替它把毁掉的木檐又补了回来。</p>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red);margin-bottom:10px">◆ 一条"报恩"线 · 六组人物 · 三层讲述</h4>
+    <p><b>主线叙事：</b>门口那座牌楼，是状元首辅<b>申时行</b>家祠的旧物——它先讲的是"忠"，而这座寺从三国起讲的是"恩"（<b>孙权</b>报母恩、舍宅建寺，"报恩寺"三个字就是这么来的；一千多年里它叫过通玄寺、也叫过开元寺）→ 寺里的塔倒了又立，北宋重修那年<b>苏轼</b>把自己一只装私印的铜龟子舍进塔里——"予无舍利可舍，独舍盛舍利者" → 塔后的碑亭里坐着<b>张士诚与沈万三</b>，一块"无字碑"让四位学者猜了一百年 → 长廊里<b>徐扬</b>把乾隆年间的苏州画成十二米长卷，250 年后这卷画又成了阊门重建的底稿 → 而今天我们抬头看到的塔檐与平座，是 <b>盛宣怀夫人庄德华</b>在 1900 年出钱补回来的。<span class="hl">一座塔，从"报恩"起头，在"守护"上收束——一条完整的闭环。</span></p>
+    <div class="layer"><div class="ln">1</div><p><b>表象层（孩子都能看见）：</b>牌楼、塔、碑、树、殿、长廊——先引导观察："你看到了什么？"小而浅，没关系，这是入口。</p></div>
+    <div class="layer"><div class="ln">2</div><p><b>故事层（背后的人）：</b>每一站背后都站着具体的人——申时行、孙权、苏轼、张士诚与沈万三、徐扬、庄德华。讲人的抉择与命运。</p></div>
+    <div class="layer"><div class="ln">3</div><p><b>精神层（带得走的东西）：</b>报恩之心、屡毁屡建的韧劲、考据求真（四位学者七次跑现场）、以画存城的自觉、有钱人把钱花在留得下的东西上——这些是孩子带回家的"种子"。</p></div>
+  </div>
+
+  <table>
+    <tr><th style="width:130px">教学目标</th><td>① 认识与北寺塔相关的六组人物及其事迹；② 理解这座塔"三国建寺—南朝始塔—北宋九层—南宋重建—清末重修"的千年生命线；③ 学会"由塔见人、由人见精神"，并初步分辨<b>传说 / 推测 / 史实</b>三类说法。</td></tr>
+    <tr><th>情感目标</th><td>对家乡这座塔产生亲近感；从四位学者七次跑现场的较真、庄德华两次解囊的担当里，受到具体的人格感染。<b>"塔能站到今天，靠的是一代代人接力。"</b></td></tr>
+    <tr><th>讲解原则</th><td>现场看到的都是"浅"的小东西，备课却要"深"——<b>讲不一定都讲，备必须备足</b>。按现场时间、孩子反应灵活取舍；传说与史实始终分开讲。</td></tr>
+    <tr><th>选人原则</th><td><b>三问</b>：绕不开、叫得响、记得住。不达标者不入单元、不报人名，知识点并入实物讲解（见第四部分"怎么选人不翻车"）。</td></tr>
+  </table>
+</section>
+<!-- ================= 第一部分 人物单元 ================= -->
+<section class="part" id="p1" data-anchor>
+  <div class="part-head"><span class="no">第一部分</span><h2>人物单元（六组）</h2></div>
+  <p class="part-sub">每个单元包含：档案速览 → 核心故事 → 现场结合点 → 互动问答 → 储备冷知识。六组按<b>寺内动线</b>排列：申时行在门口（山门牌坊）开场；孙权在寺名上立主题；苏轼在塔下讲一个"舍"字；张士诚与沈万三在塔后碑亭做悬念高潮；徐扬在长廊；盛宣怀夫人收官——<b>用"这座塔为什么最体面"收尾，正好回扣开场的牌楼与塔本身。</b>人物之间的故事链见总览；现场按站点就近取用。</p>
+  <p class="part-sub"><b>与本篇的分工（重要）</b>：<b>塔本身的形制与层数沿革</b>（南朝十一层 → 北宋九层 → 南宋八面九层）、<b>观音殿三件宝</b>（不染尘殿额／六根楠木柱／脱沙塑像与南宋青石须弥座），属于"实物讲解"，已在《北寺塔 · 解说手册》（"寺史长卷""第⑥站 楠木观音殿"）里写全——<b>本篇不再重复设单元</b>，讲师现场直接用手册那一份。</p>
+
+  <div class="unit teal" id="u1" data-anchor>
+    <div class="tag-side">单元一</div>
+    <h3>申时行</h3>
+    <div class="role">状元首辅 · 家门牌楼站到了报恩寺门口</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>申时行（1535—1614），字<b>汝默</b>，号<b>瑶泉</b>，晚号休休居士；苏州府<b>长洲县</b>人；谥<b>文定</b>，世称"申文定公"</td></tr>
+      <tr><th>功名</th><td>嘉靖四十一年（1562）<b>殿试第一（状元）</b>，授翰林院修撰</td></tr>
+      <tr><th>仕途顶点</th><td>吏部尚书、中极殿大学士；<b>万历十一年（1583）起任内阁首辅</b></td></tr>
+      <tr><th>罢归</th><td>万历十九年（1591），因<b>建储（立太子）之争</b>遭言官弹劾辞官，时年 57；回乡闲居 <b>23 年</b></td></tr>
+      <tr><th>与北寺塔关系</th><td>他与寺、与塔本身<b>没有关系</b>。唯一的关系是门口那座牌楼——原为马医科巷<b>申文定公祠</b>前的"忠良柱石"坊，<b>1979 年 9 月</b>移建到北寺塔正门前</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平——《明史》本传；牌楼原址与移建时间——<b>苏州市地方志编纂委员会办公室</b>、<b>苏州碑刻博物馆</b>公开资料（另见"1978 年"一说，以 1979 年 9 月为准）。</div>
+
+    <h4>核心故事：榜上那个名字，本来不姓申</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先讲一件奇事：<b>当年状元榜上写的名字，是"徐时行"。</b>他祖父幼时过继给了徐姓舅家，所以他从小姓徐；直到中了状元，才归宗改回姓申。一个状元，改过姓——这在苏州是件老百姓津津乐道的事。</p>
+    <p>第二件：他这一辈子，夹在一个天大的名字底下——<b>张居正</b>。张居正是他殿试的考官（座主），临终前把他荐进内阁。张居正一死就被清算、抄家，申时行接了首辅，却换了个法子做官：不再强推，改成"宽大""和衷调剂"，反而把万历中期的局面稳住了。<b>同一个位置，两种活法，两种结局。</b></p>
+    <p>第三件：把他逼走的是"立太子"。万历皇帝迟迟不立长子为太子，朝里吵成一团，他两头不讨好，57 岁辞官回家，一住 23 年，活到 80 岁。最戏剧性的一幕在最后：<b>神宗派使者来探望，诏书刚送到申府大门口，他就咽了气。</b></p>
+    <div class="src"><b>信源</b>：改姓归宗、张居正荐举与继任首辅——《明史·申时行传》及明人笔记（生母、养父等细节各源说法不一，现场只讲"改姓归宗"这一层）；卒前遣使存问——《明史》本传。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 山门牌楼（第一站 · 全场第一件文物）</b>
+    <p>这是学员进寺见到的<b>第一件文物</b>，所以申时行是事实上的"开门人"。抬头看：四柱三门五重楼、石柱木构，中间两柱高约 11 米、每柱约 8 吨，檐下斗拱密得像网（俗称"网状科"）。<b>它是苏州仅存的明代木构牌楼，也是现存规模最大的一座牌坊。</b></p>
+    <p>原额正面"<b>忠良柱石</b>"、背面"<b>独秉纯忠</b>"，是<b>万历四十五年（1617）</b>为纪念申时行奉敕所建——不是他生前自建。今天挂的额各说并存（"报恩寺""北塔胜迹"等），<b>带团前抬头核一次再定稿</b>。</p></div>
+    <div class="field"><b class="t">◆ 一句话立意（可从这里进寺）</b>
+    <p>"这座牌坊，本来是给一位状元首辅立的功德坊，刻着'忠良柱石'；如今它站在一座'报恩寺'的门口，学的第一件事是'报恩'。"——<b>从"忠"到"恩"，苏州人换了块匾，也换了讲法。</b>正好接上下一站的孙权。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：门口这座牌楼，原本立在什么地方？</p>
+      <p class="a">A：马医科巷的申文定公祠（申公祠）前，1979 年 9 月移建到这里。</p>
+      <p class="q">Q2：申时行是状元吗？</p>
+      <p class="a">A：是——嘉靖四十一年（1562）殿试第一。他还做到<b>内阁首辅</b>，是苏州出的一位"状元首辅"。</p>
+      <p class="q">Q3：牌楼原来刻的四个字是什么？</p>
+      <p class="a">A：正面"忠良柱石"、背面"独秉纯忠"，1617 年为纪念他奉敕所建。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① <b>"状元榜上写的是徐时行"</b>——他幼时随祖父过继徐姓，中状元后归宗姓申，这是现场最好用的一个"钩子"。② 申家在苏州留下的是<b>八处宅院</b>（《吴门表隐》载，以金、石、丝、竹、土、革、木、匏命名，分在申衙前即今景德路中段与百花巷），其中一处就是今天的<b>环秀山庄</b>（世界文化遗产）。③ 虎丘也有一座申文定公祠（1620 年建于第三泉南），虎丘碑廊还藏有他手书《忆虎丘》碑。④ 他的儿子申用懋官至兵部尚书。⑤ 牌楼与报恩寺塔是<b>同年</b>列进江苏省文物保护单位的（1957 年）——一个明代的坊、一座宋代的塔，站在一起。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="beisita_shouce.html#bs1">山门 · 牌楼与"没有天王殿" ↗</a>
+      <a class="spot-link" href="beisita_shouce.html#history">寺史长卷 · 1700 年一表通 ↗</a>
+    </div>
+  </div>
+<div class="unit" id="u2" data-anchor>
+    <div class="tag-side">单元二</div>
+    <h3>孙权</h3>
+    <div class="role">东吴开国之君 · "报恩"二字的源头</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>孙权（182—252），字<b>仲谋</b>，吴郡富春（今浙江富阳）人</td></tr>
+      <tr><th>身份</th><td>三国东吴开国之君——229 年称帝，国号吴，都建业（今南京）；苏州一带即其父兄孙氏起家的"江东"核心</td></tr>
+      <tr><th>建寺</th><td><b>赤乌年间（238—250）</b>于此处建寺，初名<b>通玄寺</b>——这是苏州最早的佛寺之一</td></tr>
+      <tr><th>与北寺塔关系</th><td>"<b>报恩</b>"二字即源于他报母恩的传说：寺名由"通玄寺"到"报恩寺"，中间隔了 700 多年，但起点是这里</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：建寺年代与"舍宅为寺"说——《吴郡志》《吴县志》；碑刻与方志汇编见《宋平江城坊考》系统。</div>
+
+    <h4>核心故事：一寺二母——报的是谁的恩？</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>这座寺为什么叫"报恩寺"？老苏州的说法是：<b>孙权为报母恩，把宅子舍出来建了寺。</b>可"母亲"是哪一位，史料里有两说——</p>
+    <p>第一说：<b>生母吴太夫人</b>。《吴郡志》写得明白："吴先主母吴夫人<b>舍宅</b>所建通玄寺基"。第二说：<b>乳母陈氏</b>。这一系文献说"大帝为乳母陈氏剏建"。两说并存了几百年，很多人以为非此即彼。</p>
+    <p>其实两种说法<b>并不矛盾</b>：一个是"<b>舍宅</b>"——给的是地；一个是"<b>创建</b>"——说的是把寺盖起来这件事。这是现场最好的一个提问点：问孩子"报恩寺报的到底是谁的恩"，然后告诉他——<b>报恩这件事，本来就不必只报给一个人。</b></p>
+    <div class="src"><b>信源</b>：生母舍宅说——《吴郡志》；乳母陈氏说——"大帝为乳母陈氏剏建"（《宋学士文集》一系文献，并见梁简文帝《吴郡浮海石像铭》相关的寺史记载）。<b>两说并录，现场讲成"一寺二母"，不下定论。</b></div></div>
+
+    <div class="story"><span class="t">▲ 故事文本（续）：寺名三变，一块招牌搬了三次家</span>
+    <p>这座寺的名字改过三次，每一次背后都站着一个时代：</p>
+    <p>① <b>通玄寺</b>——三国赤乌年间孙权所建，这是起点。<br>
+    ② <b>开元寺</b>——唐<b>开元二十六年（738）</b>，玄宗下诏"天下诸郡各置一寺，以开元年号为名"，苏州应诏改名；寺中铸玄宗镀金铜像，长史张楚荐高僧<b>昙一</b>为首任住持。《吴郡图经续记》记其盛况："莲房藻井，悉皆宝玩，光明相辉，若辰象罗列也。"<br>
+    ③ <b>报恩寺</b>——<b>后周显德年间（954—960）</b>，这里改悬<b>支硎山报恩寺</b>的匾额，"报恩寺"三个字从此定下来，一直叫到今天。</p>
+    <p><b>这里有个大疑问必须替学员解开：</b>苏州人说"开元寺在东大街（无梁殿那处）"，那是怎么回事？答案很漂亮——<b>这块"开元寺"的招牌，是从这里搬到盘门去的，不是反过来。</b>后人（吴越钱氏）在盘门瑞光塔旁另立了一座开元寺（后唐同光三年，925 年前后；也有"迁建"一说），而我们脚下这块地方，到后周就改回了"报恩寺"。<b>也就是说：925 年以前，苏州的开元寺，就在北寺塔这块地上。</b></p>
+    <div class="src"><b>信源</b>：738 年诏改——《吴郡志》《吴郡图经续记》多源；钱氏于盘门另建开元寺——见苏州地方志系统资料及东大街开元寺（无梁殿）沿革；北寺址改悬支硎山报恩寺额——《宋平江城坊考》系统。<b>防坑</b>：东大街开元寺的公开条目开头也写"初名通玄寺，孙权为乳母陈氏所建"，两寺源流本就纠缠，二手资料常混为一谈。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 山门与寺名（进寺即讲）</b>
+    <p>站在山门前先问一句："这座寺叫什么？为什么叫'报恩'？"把两个字拆开来讲——<b>报谁的恩、由谁来报、报到哪里为止</b>。也可顺势讲山门"没有天王殿"的特别之处（详见解说手册）。</p></div>
+    <div class="field"><b class="t">◆ 塔前（转入单元三的接口）</b>
+    <p>"三国建寺，塔却是南朝才有的——<b>寺比塔老了 250 到 300 年</b>。"一句话把学员从"寺名"带到"塔"，顺势进下一单元。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："报恩寺"报的是谁的恩？</p>
+      <p class="a">A：传说是孙权报母恩——一说生母吴太夫人"舍宅为寺"，一说为乳母陈氏所建；两说并存，正是"报恩"的本意。</p>
+      <p class="q">Q2：这座寺比这座塔老多少年？</p>
+      <p class="a">A：寺建于三国赤乌年间（3 世纪），第一座塔要到南朝梁（6 世纪）才有——<b>寺比塔老约 250 至 300 年</b>。</p>
+      <p class="q">Q3：苏州的"开元寺"不是在东大街吗？</p>
+      <p class="a">A：那是 925 年前后才有的。738 年改名开元寺的，就是脚下这块地方——<b>"开元寺"这块招牌是从这里搬到盘门去的。</b></p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① <b>高频误植要背熟</b>：白居易有一首《题报恩寺》（"好是清凉地，都无系绊身"），写的是<b>支硎山报恩寺</b>（826 年），<b>不是这里</b>；刘禹锡同题诗"云外支硎寺"可以互证。谁都可能拿这首诗来"考"你。② "赤乌"是孙权后期的年号（238—250），看到"赤乌"就知道是三国。③ 寺名沿革完整链条：<b>通玄寺（三国）→ 开元寺（738）→ 报恩寺（954—960）→ 报恩万岁寺（北宋徽宗赐号）→ ……</b>，一路叫到今天。④ 苏轼那件"铜龟子"的事，是北宋这座塔最动人的一笔——<b>他舍的是装舍利的器物</b>（一只装私印的唐代龟形盒），不是"用铜龟装舍利"，下一单元讲。⑤ 山门牌楼的"忠良柱石"（上一单元申时行）与"报恩"两个字，一站一匾，正好是全线的开场对句。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="beisita_shouce.html#bs1">山门 · "报恩"之名与牌楼 ↗</a>
+      <a class="spot-link" href="beisita_shouce.html#history">寺史长卷 · 寺名三变 ↗</a>
+    </div>
+  </div>
+<div class="unit" id="u3" data-anchor>
+    <div class="tag-side">单元三</div>
+    <h3>苏轼</h3>
+    <div class="role">北宋文豪 · "予无舍利可舍，独舍盛舍利者"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>人物</th><td><b>苏轼</b>（1037—1101），字子瞻，号东坡居士，眉州眉山人；唐宋八大家之一</td></tr>
+      <tr><th>与塔的关联</th><td>北宋重修这座塔时，众人争舍舍利，苏轼<b>"无舍利可舍"</b>，便把自己的一件旧物——一只唐代<b>龟形盒</b>（平时装私印）舍入塔中，供瘗埋舍利之用。有苏轼本人文章《<b>舍铜龟子文</b>》为证</td></tr>
+      <tr><th>时间</th><td>塔于北宋<b>元丰年间（1078—1085）经火重修</b>（《吴县志》"元丰时经火复新"）；舍铜龟子一事，另有系于<b>熙宁六年（1073）</b>者——<b>两说并录，现场讲"塔重修的时候"最稳</b></td></tr>
+      <tr><th>与苏州</th><td>苏轼一生多次过苏州，自言"<b>一年三度过苏台</b>"；登虎丘（"老守娱宾得二丘""不谒虎丘，即谒闾丘"）、访定慧禅院（住持为其设"啸轩"，旁巷后称<b>苏公弄</b>）、出<b>阊门</b>时作《醉落魄·苏州阊门留别》，还替报恩寺从成都荐过住持</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：苏轼《舍铜龟子文》（《苏轼文集》）原文"苏州报恩寺重造古塔，诸公皆舍所藏舍利。予无舍利可舍，独舍盛舍利者……予其并舍之"；《吴县志》"元丰时经火复新，苏轼舍铜龟以藏舍利"；铜龟子考——西北大学冉万里《"铜龟子"考》（考为唐代龟形盒，与法门寺塔基地宫出土龟形盒形制相近）；苏轼与苏州——《虎丘寺》诗、"一年三度过苏台"（《阮郎归·苏州席上作》）、定慧禅院"啸轩"与苏公弄、《苏州请通长老疏》、《醉落魄·苏州阊门留别》；"二丘"——《次韵王忠玉游虎丘绝句三首》"老守娱宾得二丘"及苏轼自注"不谒虎丘，即谒闾丘"，《洪武苏州府志》引"苏州有二丘，不到虎丘，即到闾丘"；"东坡"号所自——苏轼《东坡八首》序（马正卿请地）、南宋洪迈《容斋三笔》卷五"东坡慕乐天"、周必大《二老堂诗话》。</div>
+
+    <h4>核心故事：一个"舍"字</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>北宋重修这座塔，是当时的一件大事。<b>四方的人纷纷把自己珍藏的舍利捐出来，供进塔里。</b>消息传开，苏轼也到了苏州。</p>
+    <p>可是他没有舍利。他没有舍利可舍。</p>
+    <p>他拿出的是一件自己的旧物——一只<b>铜龟子</b>。这是一位老朋友王颐在武功当县令时，长安修古塔、从旧葬里发掘出来送给他的，形制近于唐代的龟形盒，苏轼平时就用它<b>装自己的私印</b>。</p>
+    <p>他在这件器物的事上写下了一段话：<b>"予无舍利可舍，独舍盛舍利者……予其并舍之。"</b>——我没有舍利可舍，那就把我这件"盛舍利的器物"，连着私印一起舍了吧。</p>
+    <p>他还反问了一句：<b>"贵舍利而贱私印，乐久存而悲速坏，物岂有是哉。"</b>——我们看重舍利、看轻私印，无非觉得舍利能久存、私印易朽坏罢了；可物哪里有什么贵贱呢？</p>
+    <p>于是那只铜龟子被供进了这座塔。<b>一位大文豪留在这里的不是诗，是一件随身旧物，和一个"舍"字。</b></p>
+    <div class="src"><b>考据修正（讲师必背）</b>：坊间多写"苏轼舍铜龟<b>盛放舍利</b>"，<b>不确</b>——他舍的是<b>装舍利的容器</b>（唐代龟形盒），并非用铜龟去盛舍利；苏轼本人文章写得很清楚："<b>予无舍利可舍，独舍盛舍利者</b>"。现场讲这一句，既准确又有味道。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 塔（绕塔时讲）</b>
+    <p>抬头看塔身，说一句：<b>"你眼前这座塔的塔身是南宋的；但它脚下这块地方，北宋就立过一座塔——苏轼舍进去的那只铜龟子，就是给那时候的塔。"</b>再讲"舍"这个故事。塔本身的层数变迁与几次重建，详见《解说手册》"寺史长卷"，此处<b>不重复</b>。</p></div>
+    <div class="field"><b class="t">◆ 延伸：学员提到虎丘时（顺口接上）</b>
+    <p>"苏东坡当年说，到苏州有两件事不好错过——<b>不游虎丘，不谒闾丘</b>。虎丘人人都去；'闾丘'是一位苏州朋友，姓闾丘名孝终，当过黄州知州，退休回苏州，就住在今天<b>人民路因果巷北的闾邱坊巷</b>。"（若有人追问"东坡这名字是不是得自他"——不是：那是黄州城东一块地，外加他仰慕白居易。）</p></div>
+    <div class="field"><b class="t">◆ 一句可以带走的话</b>
+    <p>"他把自己没有的东西舍了出来——这就是苏轼。"（有一分力，出一分心）</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：苏轼跟这座塔有什么关系？</p>
+      <p class="a">A：北宋重修这座塔时，众人争舍舍利，苏轼<b>没有舍利可舍</b>，就舍了自己一只装私印的<b>唐代龟形盒（铜龟子）</b>入塔——有他的文章《舍铜龟子文》为证。</p>
+      <p class="q">Q2：那只"铜龟子"本来干什么用？</p>
+      <p class="a">A：朋友王颐所赠的旧物，<b>平时用来装私印</b>；苏轼把它当作"盛舍利者"舍进了塔。</p>
+      <p class="q">Q3：苏轼常来苏州吗？</p>
+      <p class="a">A：常来。他自己说"<b>一年三度过苏台</b>"；登过虎丘，去过定慧禅院，还替报恩寺荐过住持。</p>
+      <p class="q">Q4：他叫"东坡"，跟苏州人闾丘孝终有关系吗？</p>
+      <p class="a">A：<b>没有关系</b>。"东坡"是黄州城东门外的一块坡地——元丰四年（1081）朋友马正卿替他请得，他躬耕其中，因地名自号；另有一层是追慕<b>白居易</b>在忠州东坡种花（洪迈《容斋三笔》"东坡慕乐天"条）。闾丘孝终确曾任黄州知州，但<b>在苏轼到黄州之前就已致仕回苏州</b>——苏轼《水龙吟》词序写明"闾丘大夫孝终公显<b>尝</b>守黄州……公显<b>时已致仕，在苏州</b>"，两人并未在黄州共事。"东坡之名得自闾丘"是误传。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① <b>苏州"二丘"——有苏轼本人的诗注为证</b>：苏轼《次韵王忠玉游虎丘绝句三首》有"老守娱宾得<b>二丘</b>"句，他<b>自注</b>："<b>不谒虎丘，即谒闾丘</b>"。"闾丘"指<b>闾丘孝终</b>（字公显，苏州人，曾任黄州知州，晚年致仕归苏；今人民路因果巷北的<b>闾邱坊巷</b>即因其旧宅得名）。苏州方志（《洪武苏州府志》等）另引作"过姑苏，不游虎丘，不谒闾丘，乃二欠事"——<b>措辞不一，宜说"苏州方志引苏轼语"，别当作文集原文</b>。虎丘今存铁华岩、千顷云阁（皆取苏轼《虎丘寺》诗句命名），明代又在天王殿东建"<b>仰苏楼</b>"，康熙登楼题"波光先得月，山秀自生云"，楼毁于咸丰兵燹。② <b>"东坡"这个号从哪来？——与闾丘无关</b>：一是<b>地名</b>——元丰四年（1081）友人马正卿替他在黄州州府请得城东门外故营地五十余亩，苏轼躬耕其中，因地在城东而称"东坡"（见其《东坡八首》序）；二是<b>慕白居易</b>——白氏任忠州刺史时曾在城东坡地种花种树，有《东坡种花》《步东坡》等诗，苏轼谪黄境遇与之相似，遂取以为号。南宋洪迈《<b>容斋三笔</b>》卷五"东坡慕乐天"条说得最明白："苏公谪居黄州，始自称东坡居士。详考其意，盖专慕白乐天而然……非东坡之名偶尔暗合也。"<b>⚠讲师必背的辨误</b>：坊间有"东坡之名与闾丘孝终有关""苏轼曾在闾丘手下任职"等说法，<b>与苏轼本人文字直接矛盾</b>——其《水龙吟》词序明说闾丘"<b>尝</b>守黄州"（曾经当过）、"公显时<b>已致仕，在苏州</b>"；苏轼元丰三年（1080）才到黄州，闾丘早已离任还乡，<b>两人并未在黄州共事</b>。有人这么说，一句话就能纠正。③ 苏轼与报恩寺老住持交好，写过《苏州请通长老疏》，要从成都请通长老来当住持——<b>文人与名刹的关系，不只是题诗，还管"人事"</b>。④ 唐代龟形盒在扶风法门寺塔基地宫也有出土——<b>"铜龟子"不是玩物，是唐代器物</b>，一件旧物串起唐宋两代。⑤ 讲这条要留一句"<b>有一种说法，此事系在熙宁六年（1073）</b>"——年份两说并存，不必替古人敲定。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="beisita_shouce.html#history">寺史长卷 · 北宋元丰重修古塔 ↗</a>
+      <a class="spot-link" href="beisita_shouce.html#bs2">庭院 · 塔前广场与塔 ↗</a>
+    </div>
+  </div>
+<div class="unit gold" id="u4" data-anchor>
+    <div class="tag-side">单元四</div>
+    <h3>张士诚与沈万三</h3>
+    <div class="role">吴王与民间财神 · 碑亭里的"无字之谜"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>张士诚</th><td>1321—1367，泰州白驹场（今属盐城大丰）盐贩出身；元末起兵，1356 年据平江（改称<b>隆平府</b>），后自称<b>吴王</b>，治苏州十余年；1367 年为朱元璋所灭</td></tr>
+      <tr><th>与碑的关系</th><td>塔北碑亭内那座<b>隆平造像碑</b>（俗称"张士诚记功碑"）的主景人物就是他——画面作他<b>宴请元使伯颜</b>的场景（至正十八年，1358）；另有"他曾把卧佛改为立像"的记载</td></tr>
+      <tr><th>沈万三</th><td>元末明初江南巨富，"富可敌国"的民间代表人物；<b>一说此碑的镌刻由他出资</b></td></tr>
+      <tr><th>碑亭谜团</th><td>碑额中央<b>空无一字</b>（似被挖去/磨去）——俗称"无字碑"；匾额四家题字，断代曾争论近百年</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：张士诚生平——《明史》；碑主景与场景——碑面题记与苏州碑刻博物馆资料；沈万三出资说——碑刻研究界通行说法（<b>未见确证，现场讲成"有一种说法"</b>）；"无字碑"——碑额现状观察 + 研究者推测（<b>推测，不作定论</b>）。</div>
+
+    <h4>核心故事：一块碑，一百年的"断代侦探课"</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>塔后这座亭子里，立着全寺最"麻烦"的一件东西——一块碑，四个学者为它吵了近一百年。</p>
+    <p><b>第一个出场的是李根源</b>（民国元老，就是他主修了《吴县志》）。1924 年碑亭修好，他给亭子题了匾：<b>"赤乌垂迹"</b>——他认为这是三国孙权时期（赤乌年间）的老东西。</p>
+    <p><b>第二位是吴荫培</b>（光绪十六年探花）。他题的是<b>"武梁遗轨"</b>——把它比作山东嘉祥的汉代武梁祠石刻，意思是：这碑的风格很古，像汉代的。</p>
+    <p><b>第三位是金松岑</b>（吴江学者）。这个人较真得厉害——<b>前后七次跑到现场考察</b>，最后写出《苏州报恩寺石堪造像索引》，把碑的断代定为<b>元代</b>。</p>
+    <p><b>第四位是陈去病</b>（南社创始人）。他题的匾是<b>"隆平造像"</b>——"隆平"正是张士诚据苏州时的府名，等于直接点名：碑上这位吴王，是张士诚。</p>
+    <p>而这块碑最吊人胃口的地方是<b>碑额上空无一字</b>——不是没刻字，是像被人磨掉、挖掉了。有人推测：朱元璋灭张之后要把他在苏州的痕迹抹掉，字就是这么没的。<b>这就是现场最好的悬念：为什么这块碑不敢写自己的名字？</b></p>
+    <div class="src"><b>信源</b>：四位学者的题匾与考察——匾额实物 + 苏州碑刻博物馆、苏州市地方志系统资料 + 金松岑《苏州报恩寺石堪造像索引》（《吴王张士诚载记》收录）；"碑额被磨刻"——研究者<b>推测</b>，现场讲"有一种说法"。<b>注意</b>：本寺碑亭的学者是<b>四位</b>（此前资料多写"三学者"，已订正）。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 碑亭（塔北 · 悬念高潮站）</b>
+    <p>三步讲法：①先让学生自己看——<b>"这块碑上最奇怪的是什么？"</b>（碑额空白）；②再讲四个人怎么给碑认亲（赤乌垂迹 → 武梁遗轨 → 隆平造像 → 元代确证），让他们体会"做学问是一场接力"；③最后落到张士诚——一位苏州人记了六百年的吴王。</p></div>
+    <div class="field"><b class="t">◆ 与阊门线的钩子</b>
+    <p>张士诚在阊门增筑瓮城，又在北寺塔后留下这块碑——<b>同一个人，两条线各占一站</b>。带北寺塔线时埋一句："下次走阊门，我们再看这位吴王的城墙。"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：这块碑为什么叫"无字碑"？</p>
+      <p class="a">A：不是整块无字——是<b>碑额中央空无一字</b>，像被磨去/挖去，故有此称。</p>
+      <p class="q">Q2：碑上画的是谁、在做什么？</p>
+      <p class="a">A：张士诚（吴王）宴请元使伯颜的场面（至正十八年，1358）。</p>
+      <p class="q">Q3：碑亭里一共几位学者题过匾？</p>
+      <p class="a">A：四位——李根源"赤乌垂迹"、吴荫培"武梁遗轨"、陈去病"隆平造像"，再加金松岑七次考察定为元代。</p>
+      <p class="q">Q4：最后把碑定在元代的是谁？</p>
+      <p class="a">A：金松岑，著《苏州报恩寺石堪造像索引》。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① <b>"讲张"（gāng zhāng）</b>——苏州话里"闲聊、说闲话"的意思，一种说法与苏州人私下议论张士诚有关（<b>词源待复核，讲成"有一种说法"</b>）。② 苏州人对张士诚感情复杂：他治苏州十余年、减赋宽民，山塘街至今有<b>张王庙</b>；朱元璋灭他之后，苏州的赋税一直很重，老百姓的怀念其来有自。③ 沈万三的"聚宝盆"纯属民间传说；但他确与明初的南京城墙、苏州商业有关——讲成"民间财神的符号"最稳。④ 至正十八年（1358）宴元使这件事，是碑上画面所据的场景，也是"张士诚为何要立这块碑"的关键——<b>他在向元朝示好</b>。⑤ 碑亭 1924 年建成，正是"请学者来考证"的年代——那批题匾，本身就是一场公开的学术讨论。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="beisita_shouce.html#bs5">碑亭 · 张士诚记功碑与"武梁遗轨" ↗</a>
+      <a class="spot-link" href="changmen_shouce.html#overview">姊妹线 · 阊门瓮城（张士诚筑城）↗</a>
+    </div>
+  </div>
+<div class="unit teal" id="u5" data-anchor>
+    <div class="tag-side">单元六</div>
+    <h3>徐扬</h3>
+    <div class="role">苏州人画苏州 · 把阊门画进了长卷</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>徐扬（生卒年不详），字<b>云亭</b>，苏州府吴县人；<b>居阊门内专诸巷</b>（另有"穿珠巷"一说，并录）</td></tr>
+      <tr><th>身份</th><td>清代宫廷画家，供职<b>如意馆</b>，是乾隆朝重要的"纪实绘画"画家</td></tr>
+      <tr><th>成名</th><td><b>乾隆十六年（1751）</b>乾隆首次南巡，徐扬献画，被召入宫中如意馆</td></tr>
+      <tr><th>代表作</th><td><b>《盛世滋生图》</b>（即《姑苏繁华图》），乾隆二十四年（1759）成，纸本设色，<b>纵 36.5 厘米 × 横 1241 厘米（约 12.4 米，长宽比约 34∶1）</b>，现藏辽宁省博物馆；画面自灵岩山起，经木渎、石湖入城，出阊门转山塘至虎丘——是“盛世苏州”最完整的一张图像证词</td></tr>
+      <tr><th>与北寺塔关系</th><td>寺内山门东侧长廊陈列巨型漆雕：以《盛世滋生图》为蓝本，<b>长约 32 米（亦记长廊约 34 米）、高 2 米、立屏 12 块</b>，国内最大的巨型漆雕。<b>⚠它不是等比放大，而是节选删减版</b>——原画 34∶1、漆雕 16∶1，人物却未变形；按 2 米高等比应长约 68 米，实做 32 米，<b>只用到原卷一半左右</b>（详见现场结合点“比例尺考据”）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：徐扬生平与《盛世滋生图》——故宫博物院、辽宁省博物馆系统资料（原作现藏辽宁省博物馆）；画幅尺寸——<b>纵 36.5 × 横 1241 厘米</b>（江苏省地方志办公室、辽宁省文化和旅游厅、中国邮政《姑苏繁华图》特种邮票口径），<b>另有 35.8 × 1225 厘米一说</b>（辽博馆长口径，央视报道）；漆雕长廊尺寸——寺院现场说明、搜狗百科“苏州报恩寺塔”条（<b>长 32 米、高 2 米</b>；另有“长廊约 34 米”一说，并录）；<b>比例尺考据（34∶1 vs 16∶1 → 节选删减）为本篇推演，具体删减段落待逐段比对</b>。</div>
+
+    <h4>核心故事：一个苏州人，把家乡画给皇帝看</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>徐扬是苏州人，<b>家就在阊门里的专诸巷</b>——每天出门抬头就是阊门。1751 年乾隆第一次南巡到苏州，他献上画作，被带进宫里、进了如意馆；八年后，他完成了那幅《盛世滋生图》。</p>
+    <p>这幅画长十二米多，从苏州城西的灵岩山一路画到城东的山塘，<b>画里画的就是他自己的家乡</b>：运河、桥、街市、店铺、行船、赶路的人……据研究者统计，画中人物数以千计（通行说法约<b>四千八百人</b>上下，具体数字学界统计有异说），是"乾隆盛世的苏州"最完整的一张图像。而<b>其中就有阊门那一段</b>——我们另一条线（阊门线）走的那扇门，就画在这卷画里。</p>
+    <p>最妙的一层在后头：<b>250 年后的 2006 年，苏州参照考古发掘与这幅《姑苏繁华图》，把阊门城楼重新建了起来。</b>——画是"当时"，楼是"现在"，中间隔了两个半世纪。<b>古人把城画下来，后人照着画把城"找回来"。</b></p>
+    <div class="src"><b>信源</b>：献画入如意馆与《盛世滋生图》成画年代——故宫博物院、辽宁省博物馆及清宫档案研究系统；2006 年阊门重建参照该画——苏州市官方口径与工程报道（详见阊门线解说手册）。<b>数字提示</b>：画中人物数量各处统计不一，建议现场说"数以千计"或"约四千八百人（有异说）"。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 姑苏繁华图漆雕长廊（山门内东侧）</b>
+    <p>走到长廊前，先让孩子<b>找三样东西</b>：①水上有没有船、有几条；②街上有没有招牌幌子；③能不能找到阊门那段城门与桥。<b>任务是"找"，不是"看"</b>——找到再讲画；找不到也能讲："三百年前的苏州，比你现在能想象的还热闹。"</p></div>
+    <div class="field"><b class="t">◆ 姊妹线双看（教学钩子）</b>
+    <p>这幅画在本线看一次（漆雕版本），到阊门线再对照一次实景——“<b>同一幅画，我们看两次；一次看画，一次看它画的真地方。</b>”</p></div>
+    <div class="field"><b class="t">◆ 比例尺考据（现场可发问，讲师加分项）</b>
+    <p>原作《姑苏繁华图》<b>纵 36.5 厘米 × 横 1241 厘米</b>——长宽比约 <b>34∶1</b>；这条漆雕 <b>32 米 × 2 米</b>——比例 <b>16∶1</b>，<b>整整差一倍</b>。可画上人物比例正常、没有被挤扁拉长。<b>这说明它不是把全卷等比放大，而是节选删减之后重新编排的</b>：真按 2 米高等比放大，长度要做到约 <b>68 米</b>，现在只有 32 米，<b>大约只用到原卷的一半</b>。<b>现场就这么问</b>：“少了哪几段？”（全卷自灵岩山起，经木渎、石湖入城，出阊门，转山塘至虎丘）——<b>具体删去哪些段落，待逐段比对后补</b>。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：《姑苏繁华图》是谁画的？原作叫什么？</p>
+      <p class="a">A：乾隆时苏州画家<b>徐扬</b>画的，原作名叫《<b>盛世滋生图</b>》。</p>
+      <p class="q">Q2：徐扬是哪里人？</p>
+      <p class="a">A：苏州人，住在<b>阊门内的专诸巷</b>——他是"苏州人画苏州"。</p>
+      <p class="q">Q3：这条长廊的漆雕有多长？</p>
+      <p class="a">A：长约 <b>32 米</b>（亦记长廊约 34 米）、高 2 米，12 块立屏，目前国内最大的巨型漆雕。<b>但它其实是个“节选版”</b>——原画 1241 × 36.5 厘米（约 34∶1），漆雕 32 米 × 2 米（16∶1），比例差一倍而人物未变形，说明没有等比全放，是按内容挑了一部分重排的。</p>
+      <p class="q">Q4：这幅画跟我们走的另一条线有什么关系？</p>
+      <p class="a">A：2006 年重建阊门城楼时，参照了这幅画——<b>画里就有阊门</b>。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 《盛世滋生图》原作现藏<b>辽宁省博物馆</b>——它怎么从清宫到了沈阳？和末代皇帝溥仪出宫时带走的一批书画有关（讲一句即可，别展开）。② 徐扬是乾隆朝“纪实绘画”的代表，同期的还有画《乾隆南巡图》的一批宫廷画家。<b>他们画的是“皇帝的视角”</b>——所以画面秩序井然、市面繁华，读画时要有一分清醒。③ 这幅画里能认出今天的<b>灵岩山、木渎、胥门、阊门、山塘</b>等一串地名，是最早的“苏州全域地图”。④ “以画存城”这件事在苏州不止一例：<b>徐扬画阊门，阊门照画重建</b>；在本线，我们还看到漆雕、木刻年画——<b>苏州人很擅长用“手艺”把城市存下来</b>。⑤ 《清明上河图》是宋人画汴京，仇英（阊门线单元三）曾以漆工身份进入画坛、也画过一版《清明上河图》——两条线的画家可以对读。⑥ <b>漆雕是“节选版”</b>——比例尺可以当场证明：原画长宽比约 34∶1，漆雕 16∶1，人物却不变形；按 2 米高等比放大应长约 68 米，实做 32 米，只到原卷一半左右（<b>具体删减段落待逐段比对</b>）。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="beisita_shouce.html#bs3">漆雕长廊 · 32 米《姑苏繁华图》↗</a>
+      <a class="spot-link" href="changmen_mingren.html#u4">姊妹篇 · 阊门名人篇（徐扬单元）↗</a>
+    </div>
+  </div>
+<div class="unit gold" id="u6" data-anchor>
+    <div class="tag-side">单元六</div>
+    <h3>盛宣怀夫人庄德华</h3>
+    <div class="role">两次解囊 · 让这座塔在照片里"体面"的人</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>盛宣怀</th><td>1844—1916，字杏荪，江苏武进人；晚清首富，被称为"<b>中国实业之父</b>"——创办轮船招商局、天津电报局、中国通商银行、汉冶萍公司，并创办北洋大学堂（今天津大学）、南洋公学（今上海交通大学）；官至邮传部尚书</td></tr>
+      <tr><th>庄德华</th><td>盛宣怀夫人，<b>毗陵庄氏第十六世</b>，字畹玉，1866 年生；热心佛事——<b>上海玉佛寺亦其捐建</b>；1916 年盛宣怀去世后，她主持了那场著名的盛大葬礼</td></tr>
+      <tr><th>与北寺塔关系</th><td><b>两次出资</b>：①<b>光绪二十六年（1900）</b>资助重修塔身——把 1860 年毁掉的<b>各层平座与塔檐等木构</b>补回来；②<b>1921—1924 年</b>与李朴诚资助<b>重建大雄宝殿</b></td></tr>
+    </table>
+    <div class="src"><b>信源</b>：盛宣怀生平——近代史通行研究（轮船招商局、北洋大学堂等）；庄德华家世与捐建玉佛寺——毗陵庄氏谱系与玉佛寺沿革资料；北寺塔 1860 损毁与 1900 重修——《世界佛教美术图说大辞典》"报恩寺塔"条；大殿重建——寺院沿革资料（<b>注意</b>：此处是"光绪二十六年＝1900 年"，二手资料常见误写作 1895）。</div>
+
+    <h4>核心故事：为什么北寺塔的老照片，比虎丘塔、瑞光塔都光鲜？</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先给学员看一个对比（老师可用手机翻出老照片）：一百多年前拍的苏州古塔——<b>虎丘塔</b>只剩砖身、还斜着；<b>瑞光塔</b>的腰檐残破，像老僧的破袍；灵岩山的多宝塔烧得没剩什么。可<b>北寺塔的老照片，看上去几乎都是完整、光鲜的</b>。为什么？</p>
+    <p>第一个原因很简单：<b>1860 年那场战火，它其实也被烧过——而且烧得不轻。</b>不是塔身没了，是塔上那圈漂亮的<b>木头</b>（各层平座、塔檐、栏杆）全毁了，只剩一根光秃秃的砖柱子。第二个原因才是答案：<b>光绪二十六年（1900），有人出钱把它重修了</b>——木檐、平座就是那一年补回来的。</p>
+    <p><b>这位出钱的人，就是盛宣怀的夫人庄德华。</b>二十多年后（1921—1924），她又与李朴诚一起出钱，把<b>大雄宝殿</b>重新建了起来。</p>
+    <p>还有一层对比可以讲：<b>城里的塔留住了，城外的塔烧光了</b>（虎丘塔、灵岩山塔都在城外）；而这被留住的一座，又被修好了。<b>所以今天我们抬头看到的那一圈漂亮塔檐，是一位夫人掏钱换来的。</b></p>
+    <div class="src"><b>信源</b>：1860 损毁与 1900 重修——《世界佛教美术图说大辞典》"报恩寺塔"条原文；盛宣怀夫人与李朴诚 1921—1924 年重建大殿——寺院沿革资料；横向对比（虎丘塔、瑞光塔、灵岩山塔）——各塔沿革通行记载。<b>现场口径</b>：大殿于 <b>1963 年因坍毁拆除</b>，故今日"有塔无殿"——"塔是她修的，殿她建过，只是后来没留下"。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 绕塔（看那一圈木檐与平座）</b>
+    <p>这一站的现场实物，就是<b>整座塔</b>。抬头指着那圈木檐说："这些木头，是 1900 年的。<b>你看到的不是宋代的木头，是清代一位夫人的心意。</b>"——这是全线最"实"的一段讲解：不用借任何文物，塔本身就是她的作品。</p></div>
+    <div class="field"><b class="t">◆ 老照片展（收尾呼应）</b>
+    <p>到老照片展再看一眼塔的旧影，反问一句："这些老照片为什么都是 1900 年以后的？"——答案已经讲过，让孩子自己说出来。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：北寺塔现在的木檐和平座，是什么时候修的？谁出的钱？</p>
+      <p class="a">A：<b>光绪二十六年（1900）</b>重修，出钱的是<b>盛宣怀的夫人庄德华</b>。</p>
+      <p class="q">Q2：1860 年北寺塔被毁的是哪一部分？</p>
+      <p class="a">A：<b>各层平座与塔檐等木构</b>全毁，砖砌塔身幸存——所以后来才有必要重修。</p>
+      <p class="q">Q3：盛宣怀是谁？</p>
+      <p class="a">A：晚清首富、"中国实业之父"——轮船招商局、电报局、通商银行、汉冶萍，还办了北洋大学堂和南洋公学（今天津大学、上海交大）。</p>
+      <p class="q">Q4：她除了修塔，还为这座寺做了什么？</p>
+      <p class="a">A：1921—1924 年与李朴诚一起资助<b>重建大雄宝殿</b>。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① <b>口诀给学员带走</b>："<b>城外的塔烧光，城里的塔留住；留住之后，北寺塔还修好了。</b>"② 那一座重建起来的<b>大雄宝殿，1963 年因坍毁被拆除</b>——所以今天寺里"有塔无殿"；这也解释了当年为什么要把马医科巷的牌楼移来"补门面"。③ 庄德华捐建的<b>上海玉佛寺</b>至今香火极盛——她与佛教的缘分不止北寺塔一处。④ 1916 年盛宣怀去世，庄夫人主持的葬礼极为隆重（旧记耗银 30 万两）——民国初年的旧闻，讲一句即可，别跑偏。⑤ 这一站正好回扣全线的开场：门口那座牌楼讲"忠"（申时行），这座塔的木头讲"恩"（报恩寺）——<b>一忠一恩，一头一尾，收在东门。</b></div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="beisita_shouce.html#bs4">老照片展 · 塔的旧影与"消失的大殿" ↗</a>
+      <a class="spot-link" href="beisita_shouce.html#history">寺史长卷 · 1860 兵燹与 1900 重修 ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第二部分 打卡点手册 ================= -->
+<section class="part" id="p2" data-anchor>
+  <div class="part-head"><span class="no">第二部分</span><h2>打卡点手册（按动线顺序）</h2></div>
+  <p class="part-sub">北寺塔线记忆口诀（出自解说手册）：<span class="hl"><b>"未见苏城先见塔，一塔七百年。"</b></span>——老照片上是这么写的：远来的人还没进苏州城，先看见的就是这座塔。本手册把寺内八站再"钉"一遍人：每一站先看什么、背后站着谁、现场怎么带。</p>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 1 站 · 行程①</span>
+    <h3>山门 · 牌楼、哼哈二将与"没有天王殿"</h3>
+    <div class="en">SHANMEN · THE ARCHWAY OF A PRIME MINISTER</div>
+    <table>
+      <tr><th>看点</th><td>苏州仅存的明代木构牌楼（四柱三门五重楼、中柱高约 11 米）+ 山门内的哼哈二将；本寺<b>没有天王殿</b></td></tr>
+      <tr><th>历史三层</th><td>表象：一座比寺"年轻"的牌楼 → 故事：它本是马医科巷申文定公祠前的"忠良柱石"坊，1979 年 9 月移来 → 精神：一块匾换个门口，讲法就从"忠"变成了"恩"</td></tr>
+      <tr><th>人物挂钩</th><td><b>申时行</b>（牌楼）★ → <b>孙权</b>（"报恩"之名）★</td></tr>
+      <tr><th>任务设计</th><td>①抬头找牌楼上的字；②进寺前问"这座寺叫什么、为什么叫报恩"；③找一找：为什么没有天王殿？</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 2 站 · 行程②</span>
+    <h3>庭院 · 石雕龙壁与塔前广场（原大雄宝殿殿基）</h3>
+    <div class="en">STONE DRAGON SCREEN · THE SITE OF THE LOST HALL</div>
+    <table>
+      <tr><th>看点</th><td>①<b>石雕龙壁</b>（俗称九龙壁；塔前广场<b>西北角</b>、弥勒像身后，仿北京九龙壁的<b>微缩石雕</b>）——<b>现代增设，非古物</b>（约 20 世纪 90 年代至 2000 年代初，<b>确切来历待核</b>）；②<b>塔前广场＝原大雄宝殿殿基</b>——全寺最容易被“看漏”的一处遗址；③塔前视野，第一次完整看到塔的全貌</td></tr>
+      <tr><th>遗址怎么认（三证）</th><td>①广场上露天供着<b>弥勒（前）与韦陀（后，相对而立）</b>——这本是别处寺院<b>天王殿</b>里的配置，报恩寺没有天王殿，它们就露天站在大殿旧基上；②周边<b>香樟长势极猛</b>，树根把残存殿基拱得高低起伏——<b>这片不平的台地，就是大殿站过的证据</b>；③第④站老照片展里 1959 年的照片，大殿还在</td></tr>
+      <tr><th>历史三层</th><td>表象：一片空地、一尊笑佛、一道小壁 → 故事：这里原是中轴线上的<b>大雄宝殿</b>，1921—1924 年由盛宣怀夫人庄氏等资助重建，1960 年代因坍毁拆除，<b>从此报恩寺有塔无殿</b> → 精神：一座大殿就这样从城市记忆里消失，只剩殿基与照片</td></tr>
+      <tr><th>人物挂钩</th><td><b>盛宣怀夫人庄德华</b>（重建大殿的出资人）★；苏轼可在此接入（北宋塔的舍物者）</td></tr>
+      <tr><th>延伸对照<br>（讲师加分项）</th><td>苏州"被 1860 年那场火烧掉的大殿"不止一处：<b>虎丘</b>塔旁尚存一片<b>石柱础</b>（1860 年前后旧照上"大殿已毁，仅存部分立柱"）；<b>双塔罗汉院正殿</b>存<b>石檐柱 16 根、覆盆石础 30 个</b>，梁思成考出石柱花纹与宋《营造法式》吻合；<b>本寺大殿</b>连石柱也没留下——只剩这片殿基。<b>一火三殿、三种下场</b>：木头烧得掉，石头烧不掉，而"民国重建又拆掉"的这座，连石头都没剩下</td></tr>
+
+      <tr><th>任务设计</th><td>①<b>数龙</b>：这道石雕龙壁上的龙到底有几条？现场清点（名为“九龙”，未必真有九条）；②<b>看材质断代</b>——它为什么不可能是一件古物？（玉、琉璃一类贵重工艺不会露天长年陈列；历代文献与寺院传统看点里都没有它）；③找一找广场上凹凸不平的地面，问“为什么会这样”；④认出这个“露天的天王殿”——弥勒在前、韦陀在后；⑤预告下一站“以刀代笔”的漆雕（工艺线：石雕 → 漆雕 → 木雕 → 砖雕）</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 3 站 · 行程③</span>
+    <h3>姑苏繁华图 · 32 米漆雕长廊</h3>
+    <div class="en">THE PROSPEROUS SUZHOU · LACQUER CARVING</div>
+    <table>
+      <tr><th>看点</th><td>山门内东侧长廊巨型漆雕：以清·徐扬《盛世滋生图》为蓝本，<b>长约 32 米（亦记长廊约 34 米）、高 2 米、立屏 12 块</b>，国内最大的巨型漆雕</td></tr>
+      <tr><th>比例尺考据<br>（讲师加分项）</th><td>原作<b>纵 36.5 厘米 × 横 1241 厘米（约 34∶1）</b>，漆雕 <b>32 米 × 2 米（16∶1）</b>——<b>比例差一倍，画上人物却未变形</b>；按 2 米高等比放大应长约 <b>68 米</b>，实做 32 米，<b>只用到原卷一半左右</b>。结论：<b>非等比放大，而是节选删减后重排</b>。现场可发问“少了哪几段”；<b>具体删减段落待逐段比对</b></td></tr>
+      <tr><th>历史三层</th><td>表象：一条会"讲故事"的长廊 → 故事：苏州人画苏州，献给皇帝；250 年后苏州又照它重建了阊门 → 精神：古人用画把城留下来</td></tr>
+      <tr><th>人物挂钩</th><td><b>徐扬</b>★（本线）→ 姊妹线阊门：同一幅画，再对照一次实景</td></tr>
+      <tr><th>任务设计</th><td>找船、找招牌幌子、找阊门城门段；"这幅画和阊门线有什么关系？"</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 4 站 · 行程④</span>
+    <h3>老照片展 · "未见苏城先见塔"</h3>
+    <div class="en">OLD PHOTOS · THE MISSING MAHĀVĪRA HALL</div>
+    <table>
+      <tr><th>看点</th><td>老照片上的塔影；<b>"消失的大雄宝殿"</b>——今天寺内有塔无殿的由来</td></tr>
+      <tr><th>历史三层</th><td>表象：几张泛黄的照片 → 故事：1860 兵燹后"寺几荒废，七级宝塔也将颓圯"→ 1900 修塔、1921—1924 重建大殿、1963 大殿坍毁拆除 → 精神：一座寺的"起落"，就是一城人的记性</td></tr>
+      <tr><th>人物挂钩</th><td><b>盛宣怀夫人庄德华</b>★（1900 修塔、1921—1924 重建大殿）；<b>李根源</b>（主修《吴县志》，记下战后荒状）</td></tr>
+      <tr><th>任务设计</th><td>①对比照片与眼前的塔；②问："这些老照片为什么都是 1900 年以后拍的？"（引出修塔之人）</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 5 站 · 行程⑤</span>
+    <h3>碑亭 · 张士诚记功碑（亭额"武梁遗轨"）</h3>
+    <div class="en">THE STELE PAVILION · AN UNLETTERED TABLET</div>
+    <table>
+      <tr><th>看点</th><td>塔北碑亭内的<b>隆平造像碑</b>（俗称张士诚记功碑）；匾额四家题字；<b>碑额空无一字</b>的"无字之谜"</td></tr>
+      <tr><th>历史三层</th><td>表象：一块很难看懂的老碑 → 故事：四位学者接力断代（赤乌垂迹 → 武梁遗轨 → 隆平造像 → 七次考察定为元代）→ 精神：做学问是一场接力赛</td></tr>
+      <tr><th>人物挂钩</th><td><b>张士诚</b>★ <b>沈万三</b>★（碑上吴王与出资传说）→ <b>李根源 / 吴荫培 / 金松岑 / 陈去病</b>（四位学者）→ 姊妹线阊门瓮城</td></tr>
+      <tr><th>任务设计</th><td>找"最奇怪的地方"（碑额空白）；猜"碑上这人在干什么"；把四个学者的名字当"破案线索"排一排</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 6 站 · 行程⑥</span>
+    <h3>楠木观音殿 · "不染尘"的两种解释</h3>
+    <div class="en">NANMU (PHOEBE) GUANYIN HALL</div>
+    <table>
+      <tr><th>看点</th><td><b>三件宝</b>：①"不染尘"殿额与原典；②<b>六根楠木柱</b>；③<b>脱沙法塑像</b> + <b>南宋青石须弥座</b></td></tr>
+      <tr><th>历史三层</th><td>表象：一栋老殿、一尊老像 → 故事：明代碑记写明"不染尘"说的是<b>像</b>、不是木头 → 精神：读古人的话不能想当然</td></tr>
+      <tr><th>人物挂钩</th><td><b>本单元不点人名</b>——只讲"明代一篇碑记里写着"（碑记撰者不入名人录）</td></tr>
+      <tr><th>任务设计</th><td>三问：殿额写什么？不染尘说的是什么？数一数几根大柱？</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 7 站 · 行程⑦</span>
+    <h3>梅圃 · 寺中藏园</h3>
+    <div class="en">PLUM GARDEN · A GARDEN INSIDE A TEMPLE</div>
+    <table>
+      <tr><th>看点</th><td>黄石假山、飞英堂、花溪 / 芹涧 / 蒲湾、雨花池；塔影入园——<b>全寺最"雅"的一段</b></td></tr>
+      <tr><th>历史三层</th><td>表象：一方小小的园林 → 故事：1986—1987 年修复，寺中造园、园中见塔 → 精神：苏州人再挤的地方也要留一处"可坐一坐"的山水</td></tr>
+      <tr><th>人物挂钩</th><td>无人物——作全线的"静场"与休息点；题额书法可作"牌匾寻宝"（当代题匾群像，备讲）</td></tr>
+      <tr><th>任务设计</th><td>找塔影、找假山上的洞；发一张"画一张你眼里的北寺塔"的写生任务</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--gold)">第 8 站 · 收官</span>
+    <h3>东门出 · 皮市街（鲜得楼）</h3>
+    <div class="en">PISHI STREET · SUZHOU WONTON</div>
+    <table>
+      <tr><th>看点</th><td>出东门就是皮市街；老苏州的<b>砂锅馄饨</b>——把"课堂"收到一碗热汤里</td></tr>
+      <tr><th>历史三层</th><td>表象：一碗馄饨 → 故事：皮市街是苏州最有市井气的老街之一 → 精神：研学不止看古物，也要尝一尝这座城的日常</td></tr>
+      <tr><th>人物挂钩</th><td>无人物——收官收心</td></tr>
+      <tr><th>任务设计</th><td>回程路上"一句话总结"：今天让你记得住的那个人是谁？为什么？</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 第三部分 矩阵 ================= -->
+<section class="part" id="p3" data-anchor>
+  <div class="part-head"><span class="no">第三部分</span><h2>人物 × 打卡点 结合矩阵</h2></div>
+  <p class="part-sub">备课时反向使用：每个点位至少锚定一位人物；每个人物至少落在一个现场点位。<b>前六行为本篇六个单元——现场优先讲、顺序即上场顺序</b>；其后为备讲与交叉注解。★=现场必讲；△=可讲可不讲（时间紧就跳过）。</p>
+  <table class="matrix">
+    <tr><th>人物 \ 点位</th><th>山门</th><th>塔</th><th>长廊</th><th>老照片展</th><th>碑亭</th><th>观音殿</th><th>延伸点</th></tr>
+
+    <tr><td><b>申时行</b></td>
+      <td>★ 全场第一件文物：状元首辅的家门牌楼、原额"忠良柱石"</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>马医科巷（牌楼原址）· 环秀山庄（申氏八宅之一）· 虎丘申文定公祠</td></tr>
+
+    <tr><td><b>孙权</b></td>
+      <td>★ "报恩"之名：赤乌建寺、"一寺二母"提问点、寺名三变</td><td>△ 寺比塔老 250—300 年</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td><b>辨误</b>：白居易《题报恩寺》写的是支硎山报恩寺 · 东大街开元寺（925 年后）</td></tr>
+
+    <tr><td><b>苏轼</b></td>
+      <td>—</td>
+      <td>★ 舍铜龟子："予无舍利可舍，独舍盛舍利者"（《舍铜龟子文》）</td><td>—</td><td>△ 老照片上的塔影</td><td>—</td><td>—</td>
+      <td>苏轼与苏州：虎丘"二丘"（不谒虎丘，即谒闾丘） · 定慧禅院"啸轩"与苏公弄 · 《苏州请通长老疏》 · 唐代龟形盒（法门寺地宫同类器）<br><b>辨误</b>："东坡"之号与闾丘孝终无关（黄州城东坡地＋慕白居易）</td></tr>
+
+    <tr><td><b>张士诚 &amp; 沈万三</b></td>
+      <td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>★ 悬念高潮：碑上吴王宴元使、"无字碑"真相、沈万三出资说</td><td>—</td><td>—</td>
+      <td>姊妹线：阊门瓮城（张士诚筑城）· 山塘街张王庙 · 苏州话"讲张"（待核）</td></tr>
+
+    <tr><td><b>徐扬</b></td>
+      <td>—</td><td>—</td>
+      <td>★ 32 米漆雕长廊《姑苏繁华图》：苏州人画苏州</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>2006 年阊门照此画重建 · 原作藏辽宁省博物馆 · 姊妹线阊门（同一幅画看两次）</td></tr>
+
+    <tr><td><b>盛宣怀夫人庄德华</b></td>
+      <td>—</td>
+      <td>★ 塔檐与平座（整座塔就是她的作品）</td><td>—</td>
+      <td>★ 核心噱头：老照片对比 → 1860 毁木构、1900 重修</td><td>—</td><td>—</td><td>—</td>
+      <td>盛宣怀（轮船招商局／北洋大学堂／南洋公学）· 上海玉佛寺 · 大雄宝殿 1963 年拆除（有塔无殿）</td></tr>
+  <tr><td><b>四位学者</b><br><span style="font-size:.85em;color:var(--ink-soft)">（李根源／吴荫培／金松岑／陈去病）</span></td>
+      <td>—</td><td>—</td><td>—</td><td>△ 李根源记战后荒状</td>
+      <td>★ 断代公案：四块匾、七次考察，一块碑的"认亲史"</td><td>—</td><td>—</td>
+      <td>《吴县志》（李根源主修）·《苏州报恩寺石堪造像索引》（金松岑）</td></tr>
+
+    <tr><td><b>观音殿三件宝</b><br><span style="font-size:.85em;color:var(--ink-soft)">（无人物单元 · 详见解说手册）</span></td>
+      <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>△ 不染尘殿额 ＋ 六根楠木柱 ＋ 脱沙塑像与南宋青石须弥座——<b>讲解稿见《北寺塔 · 解说手册》第⑥站，本篇不重复</b></td><td>—</td>
+      <td>脱沙法工艺 · 须弥座</td></tr>
+    </table>
+</section>
+
+<!-- ================= 第四部分 方法与题库 ================= -->
+<section class="part" id="p4" data-anchor>
+  <div class="part-head"><span class="no">第四部分</span><h2>讲述方法与有奖题库</h2></div>
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 三条讲解心法</h4>
+    <p><b>一、由小见大：</b>现场看到的都是"小东西"（一块匾、一块碑、一圈木头、一根柱子），小东西背后一定是"人"和"故事"。先问"你看到了什么"，再讲"它背后站着谁"，最后落"他给我们留下了什么"。</p>
+    <p><b>二、人带人（本线的两条链）：</b>①<b>报恩链</b>：孙权建寺（报恩）→ 历代重建（塔倒了又立）→ 张士诚立碑 → 庄德华修塔——<b>一座塔是一部接力史</b>。②<b>守护链</b>：李根源题匾 → 四位学者接力断代 → 金松岑七次跑现场 → 今天还在修缮（2025—2026 塔刹纠偏）——<b>守护这件事，一代人交给下一代人做</b>。每介绍一个新人物，都先接上上一个已认识的人。</p>
+    <p><b>三、虚实分明：</b>传说（孙权报母恩、"一寺二母"、沈万三出资）照讲，但点一句"这是传说"或"有一种说法"；推测（碑额为何无字、张士诚为乳母建寺的细节）明示"很多人认为"；考据结论（1153 年重建、1860 损毁 1900 重修、1979 年移建）讲准确。<b>给孩子示范"怎么区分故事、推测与史实"，这本身就是研学的一部分。</b></p>
+  </div>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 怎么选人不翻车（讲师选人三问）</h4>
+    <p><b>绕不开</b>：与打卡点高度相关，讲这个点绕不过他——所以申时行（牌楼）、孙权（报恩之名）、张士诚（碑）必讲。<br>
+    <b>叫得响</b>：有大众知名度，<b>或者</b>成就够硬、说出来让人叹服——所以苏轼（文坛第一流）、盛宣怀（晚清首富、"中国实业之父"）能立住。<br>
+    <b>记得住</b>：讲完听众有印象——"还没回到家就忘了"的人，讲了不如不讲。</p>
+    <p style="margin-top:8px"><b>反面案例（本篇的处理方式）：</b>史料里留名的造塔僧人、写碑记的文人、题匾的学者——<b>人名不报、不入单元</b>，但知识点留下，并入实物讲解（<b>"最早是十一层塔""不染尘说的是像""明代碑记里写着"</b>）。<b>知识点留住，人名放下——这就是"备多讲少"的分寸。</b></p>
+  </div>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 有奖竞猜题库（20题 + 附加3题）</h4>
+    <div class="qa">
+      <p class="a">1. 门口那座牌楼原本立在哪儿？（马医科巷申文定公祠前，1979 年 9 月移建到这里）</p>
+      <p class="a">2. 牌楼原来刻的四个字是什么？（正面"忠良柱石"、背面"独秉纯忠"）</p>
+      <p class="a">3. 那位状元首辅叫什么？他是哪一年中的状元？（申时行；嘉靖四十一年，1562 年）</p>
+      <p class="a">4. 申时行当年状元榜上的名字，本来姓什么？（姓徐——"徐时行"，中状元后才归宗姓申）</p>
+      <p class="a">5. 这座寺最初叫什么？谁建的、什么时候？（通玄寺；孙权，赤乌年间，238—250 年）</p>
+      <p class="a">6. "报恩寺"报的是谁的恩？（传说是孙权报母恩——生母"舍宅"说、乳母"创建"说并存，即"一寺二母"）</p>
+      <p class="a">7. 这座寺比这座塔大约老多少年？（250 至 300 年——寺是三国，第一座塔是南朝梁）</p>
+      <p class="a">8. 这座寺还叫过什么名字？（开元寺——唐开元二十六年即 738 年；后来又改报恩寺，后周显德年间 954—960）</p>
+      <p class="a">9. 今天苏州人说"开元寺在东大街"，那座开元寺是怎么来的？（925 年前后吴越钱氏在盘门瑞光塔旁另建/迁建——"开元寺"这块招牌是从北寺这里搬到盘门去的）</p>
+      <p class="a">10. 白居易写过《题报恩寺》，写的是这里吗？（不是——是支硎山报恩寺；这是本线最重要的一个"辨误"）</p>
+      <p class="a">11. 北寺塔现在有几层？（八面九层）</p>
+      <p class="a">12. "七级宝塔"是七层的意思吗？（不是——"七级浮屠"是泛称、雅称）</p>
+      <p class="a">13. 现存这座塔是哪一年重建的？（南宋绍兴二十三年，1153 年；此前北宋塔毁于 1130 年兵火）</p>
+      <p class="a">14. 苏轼跟这座塔有什么关系？（北宋重修此塔时，众人争舍舍利，苏轼"无舍利可舍"，就舍了自己一只装私印的<b>铜龟子</b>入塔——见其《舍铜龟子文》）</p>
+      <p class="a">14-1. 他舍的那件"铜龟子"本来干什么用？<b>补</b>：（朋友所赠的旧物，平时用来<b>装私印</b>；他舍的是"盛舍利的器物"，<b>不是用铜龟去盛舍利</b>——这是本单元最需要纠正的一处误传）</p>
+      <p class="a">15. 塔后碑亭里那块碑，碑上最奇怪的地方是什么？（碑额空无一字——"无字碑"）</p>
+      <p class="a">16. 碑上画的是谁、在做什么？（张士诚宴请元使伯颜，至正十八年即 1358 年）</p>
+      <p class="a">17. 碑亭里几位学者题过匾、分别题什么？（四位：李根源"赤乌垂迹"、吴荫培"武梁遗轨"、陈去病"隆平造像"，加上金松岑七次考察定为元代）</p>
+      <p class="a">18. "不染尘"说的是什么不染尘？（塑像——用七宝末和泥塑成、飞尘不集；<b>不是木头</b>）</p>
+      <p class="a">19. 长廊里那幅大漆雕，是谁画的画？有多长？（徐扬的《盛世滋生图》；长约 32 米、高 2 米、12 块立屏，是<b>节选删减版</b>——原画 1241 × 36.5 厘米，按 2 米高等比应长 68 米）</p>
+      <p class="a">20. 北寺塔现在的木檐和平座，是什么时候、谁出钱修的？（1900 年，盛宣怀夫人庄德华出资重修）</p>
+      <p class="a">21.（附加）1860 年北寺塔被毁的是哪一部分？（各层平座与塔檐等木构——砖砌塔身幸存）</p>
+      <p class="a">22.（附加）为什么北寺塔的老照片比虎丘塔、瑞光塔都光鲜？（城外的塔烧光了，城里的塔留住；而北寺塔在 1900 年被修好了——"城外的塔烧光，城里的塔留住；留住之后，北寺塔还修好了"）</p>
+      <p class="a">23.（附加）徐扬的家在哪儿？他画的那幅画，200 年后帮苏州做了什么事？（阊门内专诸巷；2006 年重建阊门城楼时参照了这幅《姑苏繁华图》）</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="big">吴地时光机 · 文史研学系列</div>
+  <p>讲师备课手册 · 内部资料 ｜ 资料来源：原典（《吴郡志》《吴县志》《宋平江城坊考》《明史》等）+ 苏州市地方志办公室 · 苏州碑刻博物馆 · 苏州图书馆等机构资料 + DeepSeek 历史研究档案（DS-export）；传说/推测/两说处均已在文中标明</p>
+  <p style="margin-top:4px">总目录：<a href="index.html">苏州城市漫游研学 · 总目录</a> ｜ 配套现场解说：<a href="beisita_shouce.html">北寺塔 · 解说手册（讲师备课版）</a> ｜ 名人堂持续补充中</p>
+</footer>
+</div>
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSb();closeDrop();}});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  // 两种目录模式切换：勾选框控制顶部导航显隐
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 人物单元下拉子菜单（面板挂在吸顶容器 .toc-wrap 下，定位对齐按钮）
+  var dropWrap=document.getElementById('dropWrap'),dropBtn=document.getElementById('dropBtn'),
+      dropPanel=document.getElementById('dropPanel');
+  function closeDrop(){
+    dropWrap.classList.remove('open');dropPanel.classList.remove('open');
+    dropBtn.setAttribute('aria-expanded','false');
+  }
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var opening=!dropPanel.classList.contains('open');
+    if(opening){
+      dropPanel.classList.add('open');               // 先显示才能量宽
+      var br=dropBtn.getBoundingClientRect(),
+          wr=topbar.getBoundingClientRect(),
+          pw=dropPanel.offsetWidth||220;
+      var left=br.left-wr.left;                      // 相对吸顶容器对齐按钮
+      left=Math.min(Math.max(12,left),Math.max(12,wr.width-pw-12));
+      dropPanel.style.left=left+'px';
+      dropWrap.classList.add('open');
+      dropBtn.setAttribute('aria-expanded','true');
+    }else{closeDrop();}
+  });
+  document.addEventListener('click',function(e){
+    if(!dropWrap.contains(e.target)&&!dropPanel.contains(e.target))closeDrop();
+  });
+  dropPanel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrop);});
+  // 滚动高亮当前位置（顶栏胶囊、下拉面板、侧边栏三处联动）
+  var unitIds=['u1','u2','u3','u4','u5','u6','u7'];
+  var allLinks=document.querySelectorAll('nav.toc a, .drop-panel a, .side-nav a');
+  var dropBtnEl=document.querySelector('.drop-btn');
+  function setActive(id){
+    allLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+    });
+    dropBtnEl.classList.toggle('active',unitIds.indexOf(id)>=0||id==='p1');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ['overview','p1','u1','u2','u3','u4','u5','u6','u7','p2','p3','p4'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)io.observe(el);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

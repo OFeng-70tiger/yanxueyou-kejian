@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>阊门名人篇 · 苏州城市漫游研学｜教学大纲（讲师备课版）</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:640px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+
+/* ===== 课程信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 导航（顶栏） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 15px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer}
+nav.toc .drop-btn{-webkit-appearance:none;appearance:none;margin:0}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+/* 人物单元下拉子菜单（面板挂在吸顶容器上，避开滚动容器裁切） */
+.drop-wrap{flex:none}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 6px);left:20px;z-index:60;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:210px;max-height:calc(100dvh - 130px);overflow-y:auto}
+.drop-panel.open{display:flex}
+.drop-panel a{border:none;border-radius:9px;background:none;font-weight:400 !important;color:var(--ink-soft) !important;padding:8px 14px !important}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--red) !important}
+.drop-panel a.active{background:var(--gold-bg) !important;color:var(--red) !important;font-weight:700 !important}
+.drop-panel .d-head{font-size:.72rem;color:var(--gold);letter-spacing:.2em;padding:4px 14px 6px;font-weight:700}
+.toc-hint{display:none}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav a{padding:10px 20px;color:var(--ink-soft);text-decoration:none;font-size:.94rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a.sub{padding-left:38px;font-weight:400;font-size:.89rem}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节头 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+/* ===== 人物单元 ===== */
+.unit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;margin-top:34px;position:relative;overflow:hidden}
+.unit .tag-side{position:absolute;top:0;right:0;font-family:var(--serif);writing-mode:vertical-rl;letter-spacing:.3em;
+  background:var(--red);color:#fff;font-size:.8rem;padding:14px 8px;border-radius:0 0 0 12px;opacity:.92}
+.unit.teal .tag-side{background:var(--teal)}
+.unit.blue .tag-side{background:var(--blue)}
+.unit.gold .tag-side{background:var(--gold)}
+.unit h3{font-family:var(--serif);font-size:clamp(1.25rem,4.4vw,1.55rem);font-weight:900;letter-spacing:.06em;margin-bottom:2px}
+.unit .role{font-family:var(--serif);color:var(--gold);font-size:.95rem;letter-spacing:.2em;margin-bottom:12px}
+.unit h4{font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:22px 0 6px;display:flex;align-items:center;gap:8px}
+.unit h4::before{content:"§";color:var(--gold);font-size:.9rem}
+.unit.teal h4{color:var(--teal)} .unit.blue h4{color:var(--blue)} .unit.gold h4{color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px;letter-spacing:.05em}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.field{background:var(--teal-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.field b.t{color:var(--teal)}
+
+.qa{border:2px dashed var(--gold);border-radius:14px;padding:12px 18px;margin:10px 0}
+.qa b.t{color:var(--gold)}
+.qa p{margin:5px 0}
+.qa .q{color:var(--ink);font-weight:700}
+.qa .a{color:var(--ink-soft)}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+/* ===== 反向导航：去现场（跨页到打卡点手册 v2） ===== */
+.spot-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;align-items:center}
+.spot-row .lbl{font-size:.8rem;color:var(--ink-soft);font-weight:700;letter-spacing:.1em}
+.spot-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  color:var(--blue);background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:30px;padding:6px 14px;
+  transition:transform .15s,box-shadow .15s}
+.spot-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(58,110,165,.25)}
+.spot-link.hl{color:var(--red);background:#fdf1ef;border-color:var(--red)}
+
+/* ===== 信源标注 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 打卡点 ===== */
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-top:24px}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.25rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+
+.matrix td:first-child,.matrix th:first-child{white-space:nowrap}
+.matrix td{font-size:.88rem}
+
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{nav.toc,.side-tab,.sidebar,.side-mask{display:none}body{background:none}}
+@media(max-width:640px){
+  .unit{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+  .unit .tag-side{display:none}
+}
+[data-anchor]{scroll-margin-top:70px}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+.sister-link:hover{background:var(--blue-bg)}
+/* ===== 辅助图表（现场用图） ===== */
+.chartfig{background:#fdfaf3;border:1px solid var(--line);border-radius:14px;padding:12px 12px 8px;margin:10px 0 4px}
+.chartfig .lead{font-size:.9rem;background:#fff;border-left:4px solid var(--gold);border-radius:0 10px 10px 0;
+  padding:9px 14px;margin-bottom:10px;color:var(--ink-soft);line-height:1.85}
+.chartfig .lead b{color:var(--ink)}
+.chartfig .scr{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.chartfig svg{width:100%;height:auto;display:block}
+.chartfig .cf-note{font-size:.78rem;color:#9a9080;line-height:1.7;border-top:1px dashed var(--line);margin-top:8px;padding-top:6px}
+.chartfig .cf-note b{color:var(--gold)}
+@media(max-width:640px){.chartfig .scr svg{width:620px;max-width:none}}
+</style></head>
+<body>
+<div class="wrap">
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学</div>
+  <h1>阊门名人篇 · 苏州城市漫游研学</h1>
+  <div class="sub">教 学 大 纲 ｜ 讲 师 备 课 版</div>
+  <p class="desc">一扇城门，八组人物。本大纲照《文庙名人篇》体例、<b>按动线推进并兼顾IP热度</b>排人物：城楼开场用唐寅的诗给门面定调，紧接着请出名气最大的伍子胥——两大一线IP先声夺人；仇英、徐扬与阊门的缘分偏"顺带"型（仇英的贵人相遇在书画肆、徐扬住在专诸巷），到西中市一站才看得到，随西中市段讲述；瓮城归张士诚，泰伯庙站回到一切开始的地方——泰伯让国开出吴国、季札与阖闾串起让位链；梁鸿孟光的皋桥是全线离阊门最远的点位、故事知名度也低，<b>压轴作备选故事</b>，走到讲不到也不影响主线。250 年后，徐扬的画又成了 2006 年重建阊门的"底稿"。<span class="hl">一扇门，从人开始，回到画里，再从画里站起来——一条闭环。</span></p>
+  <div class="src" style="margin-top:18px;border-top:none;padding-top:0"><b>信源体例</b>：与文庙名人篇同一口径——古籍注<b>原典书名与篇目</b>，考据结论注<b>史料</b>，近现代内容注<b>权威机构或媒体</b>（故宫博物院、辽宁省博物馆等），内部整理资料标注 <code>DS-export</code>；凡属<b>传说、民间说法、两说并存、待现场复核</b>的内容均在行文中点明，不作定论。本篇与《阊门·解说手册》互为补充：手册管"现场怎么讲"，本篇管"人物备多讲少"。</div>
+  <a class="sister-link" href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a class="sister-link" href="changmen_shouce.html" style="margin-left:8px">⟶ 配套：《阊门 · 解说手册》（现场逐点解说）</a>
+  <div class="seal">备课备用 · 宁多勿缺</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>课程名称</b><span>吴地时光机 · 阊门名人篇（寻根研学之旅）</span></div>
+  <div class="m"><b>授课对象</b><span>亲子家庭（小学二年级以上）/ 成人研学团</span></div>
+  <div class="m"><b>行程主线</b><span>阊门城楼 → 瓮城遗址 → 北码头五龙汇阊 → 西中市 → 泰伯庙 → 五峰园</span></div>
+  <div class="m"><b>建议时长</b><span>半日（全程约 2km / 3 小时；泰伯庙、五峰园下午关门早，宜上午起线）</span></div>
+  <div class="m"><b>集合地点</b><span>地铁 2 号线石路站起（动线详见解说手册）</span></div>
+  <div class="m"><b>资料版本</b><span>2026-09 v1 · 人物资料池持续补充中</span></div>
+</div>
+<!-- ================= 导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <div class="drop-wrap" id="dropWrap">
+      <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false">一·人物单元<span class="caret">▾</span></button>
+    </div>
+    <a href="#p2">二·打卡点手册</a>
+    <a href="#p3">三·点位矩阵</a>
+    <a href="#p4">四·方法题库</a>
+  </nav>
+  <div class="drop-panel" id="dropPanel">
+    <div class="d-head">八 组 人 物</div>
+    <a href="#u1">单元一 · 唐寅</a>
+          <a href="#u2">单元二 · 伍子胥</a>
+          <a href="#u3">单元三 · 仇英</a>
+          <a href="#u4">单元四 · 徐扬</a>
+          <a href="#u5">单元五 · 张士诚</a>
+          <a href="#u6">单元六 · 泰伯与仲雍</a>
+          <a href="#u7">单元七 · 季札与阖闾</a>
+          <a href="#u8">单元八 · 梁鸿与孟光</a>
+  </div>
+</div>
+
+<button class="side-tab" id="sideTab" aria-label="打开课程目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏课程目录">
+  <div class="side-head">
+    <span class="side-title">课程目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 课程总览与教学目标</a>
+    <div class="divider"></div>
+    <a href="#p1">第一部分 · 人物单元（八组）</a>
+    <a class="sub" href="#u1">单元一 · 唐寅</a>
+          <a class="sub" href="#u2">单元二 · 伍子胥</a>
+          <a class="sub" href="#u3">单元三 · 仇英</a>
+          <a class="sub" href="#u4">单元四 · 徐扬</a>
+          <a class="sub" href="#u5">单元五 · 张士诚</a>
+          <a class="sub" href="#u6">单元六 · 泰伯与仲雍</a>
+          <a class="sub" href="#u7">单元七 · 季札与阖闾</a>
+          <a class="sub" href="#u8">单元八 · 梁鸿与孟光</a>
+    <div class="divider"></div>
+    <a href="#p2">第二部分 · 打卡点手册（按动线）</a>
+    <div class="divider"></div>
+    <a href="#p3">第三部分 · 人物 × 点位矩阵</a>
+    <div class="divider"></div>
+    <a href="#p4">第四部分 · 讲述方法与题库</a>
+  </nav>
+</aside>
+<!-- ================= 总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>课程总览与教学目标</h2></div>
+  <p class="part-sub">本课程回答一个核心问题：<b>这扇门凭什么当得起"红尘中一二等富贵风流之地"？</b>答案不在门本身，而在门背后站着的八组人。</p>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red);margin-bottom:10px">◆ 一条闭环 · 八组人物 · 三层讲述</h4>
+    <p><b>主线叙事：</b>泰伯让国奔吴，开出这个邦国的"人格源头"（没有泰伯下江南，就没有后来的吴）→ 数百年后寿梦、季札两代人再演"让位"，一连串多米诺推倒了吴王僚 → 专诸一刺、阖闾即位 → 伍子胥"相土尝水，象天法地"，<b>筑起阖闾大城，立起阊门</b> → 这扇门养出千年繁华 → 张士诚给它加筑瓮城，唐寅给它写"顶流文案"，梁鸿孟光在门口的皋桥留下成语 → 仇英、徐扬两位与阊门结缘的画家，先后把它画进《清明上河图》与《姑苏繁华图》 → 250 年后，徐扬的画成了 2006 年重建阊门的"底稿"。<span class="hl">故事从泰伯开始，在徐扬的画里站回人间——一条完整的闭环。</span></p>
+    <div class="layer"><div class="ln">1</div><p><b>表象层（孩子都能看见）：</b>门、瓮城、河、街、庙、园——先引导观察："你看到了什么？"小而浅，没关系，这是入口。</p></div>
+    <div class="layer"><div class="ln">2</div><p><b>故事层（背后的人）：</b>每一站背后都站着具体的人——伍子胥、泰伯仲雍、专诸、梁鸿孟光、张士诚、唐寅、仇英、徐扬。讲人的抉择与命运。</p></div>
+    <div class="layer"><div class="ln">3</div><p><b>精神层（带得走的东西）：</b>三让之德的干净、相土尝水的实干、举案齐眉的相敬、漆工逆袭的坚韧、以画存城的求实——这些是孩子带回家的"种子"。</p></div>
+  </div>
+
+  <table>
+    <tr><th style="width:130px">教学目标</th><td>① 认识与阊门相关的八组历史人物及其事迹；② 理解阊门"军事首门→商贸首门→文化符号"的身份流变与"让·筑·兴·传"四字主线；③ 学会"由门见人、由人见精神"的观察方法。</td></tr>
+    <tr><th>情感目标</th><td>对家乡这扇门产生亲近感与自豪感；从泰伯的"让得彻底干得认真"、仇英的"漆工逆袭"中受到具体的人格感染。</td></tr>
+    <tr><th>讲解原则</th><td>现场看到的都是"浅"的小东西，备课却要"深"——<b>讲不一定都讲，备必须备足</b>。按现场时间、孩子反应灵活取舍；传说与史实始终分开讲。</td></tr>
+  </table>
+</section>
+<!-- ================= 第一部分 人物单元 ================= -->
+<section class="part" id="p1" data-anchor>
+  <div class="part-head"><span class="no">第一部分</span><h2>人物单元（八组）</h2></div>
+  <p class="part-sub">每个单元包含：档案速览 → 核心故事 → 现场结合点 → 互动问答 → 储备冷知识。八组按<b>动线推进 + IP热度</b>排列：唐寅、伍子胥为一线主打先讲；仇英、徐扬随西中市段顺带展开；张士诚在瓮城；泰伯、季札阖闾在泰伯庙收官；梁鸿孟光作备选压轴。人物之间的故事链见总览"一条闭环"；现场按站点就近取用。</p>
+  <div class="unit teal" id="u1" data-anchor>
+    <div class="tag-side">单元一</div>
+    <h3>唐寅</h3>
+    <div class="role">桃花坞主 · 给阊门写"顶流文案"的人</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>唐寅（1470—1524），字伯虎，一字子畏，号六如居士、桃花庵主，吴县人——居阊门内桃花坞，筑桃花庵</td></tr>
+      <tr><th>身份</th><td>画家、诗人，"<b>明四家</b>"（吴门四家）之一；诗书画俱佳</td></tr>
+      <tr><th>科举</th><td>弘治十一年（1498）应天府乡试第一——<b>解元</b>；次年赴京会试，受同船举子徐经科场案牵连革黜，终身不得为官，从此卖画为生</td></tr>
+      <tr><th>与阊门关系</th><td>《阊门即事》："世间乐土是吴中，中有阊门更擅雄。翠袖三千楼上下，黄金百万水西东。"——古人写阊门最著名的四句，也是"红尘中一二等富贵风流之地"的诗歌版</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平——《明史·文苑传》及《唐伯虎全集》相关研究；科场案——《明史》及明人笔记；桃花庵——《桃花庵歌》自述；阊门即事诗——明清选本通行收录。</div>
+
+    <h4>核心故事：从"准状元"到卖画匠</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>唐寅是苏州府学的底子、乡试第一的解元——全苏州都等着他中状元。进京会试，却因同船举子徐经买通考官的案子被牵连，功名革除、发为小吏。他辞而不就，回到阊门内的桃花坞种桃树、盖桃花庵，靠卖画为生。"别人笑我太疯癫，我笑他人看不穿。"——官场少了一个唐解元，中国画史多了一个唐伯虎。他看阊门的眼光也与众不同：别人写城墙军事，他写"<b>翠袖三千楼上下，黄金百万水西东</b>"——一楼一桥、一河一街全是生意与烟火。这四句诗，就是明朝阊门的"顶流文案"。</p>
+    <div class="src"><b>信源</b>：《阊门即事》全诗与《桃花庵歌》——唐寅诗文通行本；科场案经过——《明史》及明人笔记（细节诸说有小异，讲主干即可）。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 阊门城楼（第一站 · 文学现场）</b>
+    <p>登楼齐诵《阊门即事》前四句，对照眼前的西中市与外城河——"翠袖三千楼上下"的楼上楼下、"黄金百万水西东"的河两岸，今天仍然对得上。唐寅的"文案"是可现场验证的。</p></div>
+    <div class="field"><b class="t">◆ 桃花坞（延伸点）</b>
+    <p>唐寅故居（桃花坞大街，修缮后开放口径以现场公告为准）与桃花坞木刻年画博物馆——年画正是阊门一带的非遗（与第二站瓮城站的年画图位呼应）。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："世间乐土是吴中，中有阊门更擅雄"是谁写的？</p>
+      <p class="a">A：唐寅（唐伯虎），《阊门即事》。</p>
+      <p class="q">Q2：唐伯虎中过状元吗？</p>
+      <p class="a">A：没有——他是乡试第一（解元），会试因科场案牵连被革黜，终身没做官。"唐伯虎点秋香"也是虚构。</p>
+      <p class="q">Q3："黄金百万水西东"写的是阊门什么景象？</p>
+      <p class="a">A：写它的商业繁华——水路两侧商贾云集、财富流转，是明朝的"第一商圈"。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① "唐伯虎点秋香"纯属附会：秋香是金陵妓、比唐寅大二十岁左右，两人并无交集——给孩子做"史料辨析"最好的案例。② 唐寅晚年贫居桃花庵，靠卖画度日，葬于横塘王家村——"风流才子"的浪漫想象与真实的落魄人生反差巨大。③ 桃花坞木刻年画盛于明清阊门一带，与杨柳青并称"南桃北杨"——瓮城站那张《阊门图》年画就是本地产物。④ 明四家里，唐寅是书香解元、仇英（下一单元）是油漆工——同一个朋友圈、两种人生起点，正好对讲。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">阊门城楼 · 齐诵《阊门即事》↗</a>
+      <a class="spot-link" href="changmen_shouce.html#line-cm">瓮城站 · 桃花坞年画呼应 ↗</a>
+    </div>
+  </div>
+<div class="unit" id="u2" data-anchor>
+    <div class="tag-side">单元二</div>
+    <h3>伍子胥</h3>
+    <div class="role">相土尝水 · 象天法地 · 阊门之父</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>伍员，字子胥（?—前484），楚国椒邑人；父伍奢、兄伍尚被楚平王冤杀，只身奔吴</td></tr>
+      <tr><th>身份</th><td>军事家、谋略家；辅佐阖闾、夫差两代吴王，官至行人（外交之官，其"行人/太宰"职衔之辨见桌面临时文件夹《阖闾大城与伍子胥专题探讨记录》）</td></tr>
+      <tr><th>与阊门关系</th><td>前514年辅阖闾"<b>相土尝水，象天法地</b>"筑阖闾大城，阊门为八门之首；《吴越春秋》："立阊门者，以象天门，通阊阖风也"——"阊"即天门，八门中唯一以"通天"命名</td></tr>
+      <tr><th>举贤</th><td><b>七荐孙武</b>（《史记》载孙武以兵法见阖闾由伍子胥引荐）——伐楚大军即自阊门出，故阊门别名"破楚门"</td></tr>
+      <tr><th>结局</th><td>因谏夫差拒越被赐死，尸沉江中；苏州端午祭伍子胥（与屈原并行的另一条端午叙事，苏州本地传统），胥门、胥江、胥口皆因其得名</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平主线——《史记·伍子胥列传》；筑城"相土尝水"与八门——《吴越春秋·阖闾内传》；七荐孙武——《史记·孙子吴起列传》；端午祭伍——苏州地方志与民俗资料（细节口径待复核）；DS-export 相关条目。</div>
+
+    <h4>核心故事一：过昭关与七荐孙武</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>楚平王听信谗言杀伍奢，又设计诱杀其子。伍子胥弃家逃亡，一路被追索，传说过昭关一夜急白了头（"一夜白头"为传说，照讲但点明）。到吴后他躬耕于野，结识公子光（后来的阖闾），先后<b>七次向吴王举荐孙武</b>——一位兵法家与一位筑城家，就这样在同一座朝廷相遇。前506年吴军自阊门出发、五战五捷攻破郢都，"破楚门"之名由此而来。</p>
+    <div class="src"><b>信源</b>：奔吴与举荐——《史记·伍子胥列传》《史记·孙子吴起列传》；"一夜白头"——后世传说（《吴越春秋》已有伍子胥奔吴伏险记载，白头细节为民间敷演，讲述时虚实分明）。</div></div>
+
+    <h4>核心故事二：相土尝水，象天法地</h4>
+    <div class="story"><span class="t">▲ 故事文本（现场必讲）：</span>
+    <p>"相土尝水"——亲口尝水味、察看土性来选城址；"象天法地"——陆门八像天之八风、水门八像地之八卦。伍子胥把一座都城建成了"天地的模型"：阊门立作"天门"，引阊阖之风入城。这是全世界少见的"用宇宙观做城市规划"——而且规划出的"水陆并行、河街相邻"双棋盘格局，苏州人一直用到了今天（宋《平江图》与今城高度吻合，文庙名人篇四大宋碑可互证）。</p>
+    <div class="src"><b>信源</b>：《吴越春秋·阖闾内传》"相土尝水，象天法地""立阊门者，以象天门，通阊阖风也"；双棋盘格局沿用至今——宋《平江图》（1229）与今城对照，见文庙名人篇四大宋碑条目。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 阊门城楼（第一站 · 开场即讲他）</b>
+    <p>开场定位就是他：公元前514年，阊门作为八门之首诞生。登楼远眺时提醒孩子：这扇门有两千五百多年，是"八门"里唯一以"通天"命名的——为什么？把《吴越春秋》那句原文抛出去。</p></div>
+    <div class="field"><b class="t">◆ 瓮城遗址（第二站 · 城防体系）</b>
+    <p>伍子胥建门，张士诚加瓮城——第二站正好讲"门"的升级换代（见单元五）。两人在同一站"接力"，人带人。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："阊门"的"阊"是什么意思？</p>
+      <p class="a">A：天门。《吴越春秋》说立阊门"以象天门，通阊阖风"——它是苏州八门中唯一以"通天"命名的大门。</p>
+      <p class="q">Q2：阊门为什么又叫"破楚门"？</p>
+      <p class="a">A：伍子胥辅佐吴王阖闾训练军队，伐楚大军就是从这扇门出征的，所以叫破楚门。</p>
+      <p class="q">Q3："相土尝水，象天法地"是什么意思？</p>
+      <p class="a">A：尝水味、看土性来选城址，按天象地理来设计城市——两千五百年前的"科学选址"。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 苏州端午纪念的是伍子胥而非屈原——吴地自成一条端午叙事，与屈原说并行（两说并讲，正是"一方水土一方史"的好例子）。② 胥门、胥江、胥口都以他命名——一个人给苏州留下了一串地名。③ 清华简《系年》等新出文献对吴楚史事有新证，深层辨析见桌面临时文件夹《阖闾大城与伍子胥专题探讨记录》（行人/太宰之辨）。④ 伍子胥的"复仇"与"忠谏"是一体两面：为父复仇时是刺客逻辑，事吴谏君时是忠臣逻辑——成人团好话题。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">阊门城楼 · 开场定位 ↗</a>
+      <a class="spot-link" href="changmen_shouce.html#line-cm">瓮城遗址 · 城防体系 ↗</a>
+    </div>
+  </div>
+<div class="unit blue" id="u3" data-anchor>
+    <div class="tag-side">单元三</div>
+    <h3>仇英</h3>
+    <div class="role">从漆工到明四家 · 阊门画肆走出的"异才"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>仇英（约1505—1552；生年另有约1498、约1509两说，<b>并录待核</b>），字实父，号十洲，太仓人，寓居苏州</td></tr>
+      <tr><th>出身</th><td>出身寒微，<b>初为漆工，兼彩绘栋宇</b>——一个给房屋梁柱上漆描花的工匠；后改习绘画，拜<b>周臣</b>（唐寅的老师）为师，主宗南宋院体</td></tr>
+      <tr><th>贵人</th><td>移居苏州后得识<b>文徵明</b>并受器重，文氏赞其为"<b>异才</b>"；嘉靖十一年（1532）应王宠邀为拙政园作《园居图》；嘉靖十六年（1537）应昆山藏家周凤来延聘坐馆六年；嘉靖二十六年（1547）起为嘉兴大藏家<b>项元汴</b>作画十余年，遍览宋元名迹——画艺大进</td></tr>
+      <tr><th>地位</th><td>"吴门四家/明四家"之一；董其昌叹"<b>十洲为近代高手第一</b>"；《明画录》评"精丽艳逸，无惭古人"。画上<b>只题名款</b>、不题诗文——明四家中唯一不擅诗文者</td></tr>
+      <tr><th>代表作</th><td>《桃源仙境图》《汉宫春晓图》及<b>仇英版《清明上河图》</b>（辽宁省博物馆藏，2010年入选上海世博会中国馆展出）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平与艺术——故宫博物院人物词条（dpm.org.cn/lemmas/242667）及百度百科历代书画家库（嘉靖年系年、项元汴项数均据此核校）；董其昌、文徵明评语——明代画论文献转引；仇英版《清明上河图》藏地——辽宁省博物馆（2010世博会展讯见新浪新闻）。</div>
+
+    <h4>核心故事一：一个油漆工的逆袭</h4>
+    <div class="story"><span class="t">▲ 故事文本（现场必讲）：</span>
+    <p>明四家里，沈周是隐士世家，文徵明是官宦之后，唐寅是乡试解元——只有仇英，是个<b>没有受过教育的油漆工</b>。他怎么进的江南文化圈？通行记载很简洁："移居苏州后得识文徵明"——民间讲述更生动：<b>在阊门一带做漆作活计、出入书画铺子，被文徵明看中</b>（具体地点无直接史料，讲作"民间说法"）。但可以确定的是：明代苏州书画市场正是以阊门内外最盛，一个干活认真的年轻漆工，在这扇门下被看到、被推荐、被收徒——然后是周臣的调教、大藏家项元汴家十余年的名迹滋养。董其昌说他作画时"耳不闻鼓吹阗骈之声"——专心到听不见闹市。油漆工干到"近代高手第一"，这扇门见证了中国艺术史上最励志的一次逆袭。</p>
+    <div class="src"><b>信源</b>：漆工出身与师承——故宫博物院词条；项元汴家作画"目睹宋元名迹千余幅"——历代书画家资料库；"耳不闻鼓吹"——董其昌语，见《画旨》系文献转引；阊门一带书画市盛——明代苏州史料通行说法；"在阊门画肆打工被文徵明发现"为民间叙事（无直接史料，<b>讲作传说</b>）。</div></div>
+
+    <h4>核心故事二：仇英版《清明上河图》——城门是阊门吗？</h4>
+    <div class="story"><span class="t">▲ 考据提示（虚实分明示范）：</span>
+    <p>仇英版《清明上河图》并非摹张择端，而是<b>以明代苏州为蓝本的重创</b>：卷首乡野、入城、城内街市三段，城楼、水门、跨河吊桥的形制与阊门吻合，入城后的繁华街市被很多人认为正是西中市、学士街一带的写照——"城门以阊门为原型"是学界与民间的通行<b>推测</b>，仇英本人未在卷中题明，<b>讲作"很多人认为"，不作定论</b>。有意思的巧合是：两百年后徐扬（见单元三）画《姑苏繁华图》，同样把镜头对准阊门——这扇门，是苏州画家的"共同取景地"。</p>
+    <div class="src"><b>信源</b>：仇英本《清明上河图》为明代苏州风物重创——辽宁省博物馆及学界通行认识；"城门原型阊门"为推测性观点（<b>一家之言照讲、明示推测</b>）。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 西中市（第四站）</b>
+    <p>走在西中市就可以讲他：这条街的雏形正是明代阊门内大街——仇英当年就是在这片街市里做漆工、看画铺。让孩子想一想：一个"手艺人"和一位"大官人"（文徵明）怎么认识？——通过活儿好。</p></div>
+    <div class="field"><b class="t">◆ 城楼站（与徐扬对读）</b>
+    <p>城楼站图位②是徐扬的《姑苏繁华图》阊门段；北寺塔姊妹线还藏着仇英本的漆雕版——两位画家一明一清画同一扇门，"同一个取景地，两种画法"。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：明四家是哪四位？其中出身最低微的是谁？</p>
+      <p class="a">A：沈周、文徵明、唐寅、仇英。仇英是油漆工出身，没受过正规教育，靠手艺和勤奋逆袭。</p>
+      <p class="q">Q2：文徵明用哪两个字夸仇英？</p>
+      <p class="a">A："异才"——董其昌更进一步，说他是"近代高手第一"。</p>
+      <p class="q">Q3：仇英版《清明上河图》画的是哪个朝代的哪里？</p>
+      <p class="a">A：以明代苏州为蓝本重创（不是摹张择端的汴京）；卷中城门很多人认为以阊门为原型——注意这是推测。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 仇英画上只落名款、几乎不题诗文——明四家里唯一"不会写诗"的画家，出身即短板，他索性把全部力气花在笔上。② 女儿<b>仇珠</b>（号杜陵内史）也是名家，善人物仕女——画史上有名的"画家父女"。③ 在项元汴家十余年，仇英等于上了"宋元名迹大学"——项氏天籁阁藏品后来天下闻名。④ 2010年上海世博会中国馆《智慧长河展》全国仅8件国宝入选，仇英本《清明上河图》与徐扬《姑苏繁华图》同期在沪展出——两卷"苏州长卷"的一次合展。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">西中市 · 明代大街雏形 ↗</a>
+      <a class="spot-link" href="beisita_shouce.html#line-bs">姊妹线 · 仇英本漆雕版 ↗</a>
+    </div>
+  </div>
+<div class="unit gold" id="u4" data-anchor>
+    <div class="tag-side">单元四</div>
+    <h3>徐扬</h3>
+    <div class="role">住专诸巷的宫廷画家 · 给阊门留下"标准照"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>徐扬，字云亭，苏州府吴县人——<b>家住阊门（内）专诸巷</b>（口述材料亦有作"穿珠巷"者，两巷相邻，通说专诸巷，<b>待复核</b>）</td></tr>
+      <tr><th>出身</th><td>监生，擅山水、梅花、界画、人物；曾参与《苏州府志》《苏州府城图》《苏州府九邑全图》《姑苏城图》等编绘——先是个"地图小能手"</td></tr>
+      <tr><th>入宫</th><td>乾隆十六年（1751）乾隆首次南巡至苏州，徐扬与同乡张宗苍献画受赏识，当年六月入<b>如意馆</b>为画院供奉——"每月钱粮公费照余省、丁观鹏一样堂给"，从草根一跃吃上皇粮；乾隆十八年（1753）钦赐举人、授内阁中书</td></tr>
+      <tr><th>代表作</th><td><b>《盛世滋生图》（姑苏繁华图）</b>，乾隆二十四年（1759）成，纸本设色，<b>纵36.5cm × 横1241cm</b>（辽宁省博物馆现行口径；辽宁省文旅厅/辽宁日报、中国邮政特种邮票同，<b>另有旧说35.8×1225cm</b>并列备查），现藏<b>辽宁省博物馆</b>（国家一级文物）；另有《乾隆南巡图》等</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平与入宫档案——清宫如意馆档案（"六月初二日员外郎奉旨"条）及辽宁省博物馆、中文百科等通行资料；住阊门内专诸巷——多家资料一致（穿珠巷一说并录）；《盛世滋生图》尺寸与收藏——辽宁省博物馆（2010世博会报道，新浪新闻）。</div>
+
+    <h4>核心故事：从献画草根到"给苏州画像"</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>1751年，乾隆第一次下江南到了苏州。城里一个住在专诸巷的监生把自己画的山水敬了上去——皇帝喜欢，六月就把他召进宫里画院，跟宫廷画师同等待遇。徐扬从民间草根一跃吃上皇粮，还跟着皇帝下江南、参与编绘苏州府志地图。1759年，他把八年积累交成一张长卷：<b>《盛世滋生图》</b>——从灵岩山起笔，经木渎、石湖入城，历盘、胥、<b>阊</b>三门，穿山塘街，到虎丘收尾；全长两倍于《清明上河图》，画着"商贾辐辏、百货骈阗"的苏州，而<b>全图最繁华的一段正是阊门内外</b>。卷尾自跋"图写太平"。250年后——2006年苏州重建阊门城楼，主要"底稿"就是这幅画（阊门手册图位②）。<b>250年前画家的一笔，成了今天城楼的模样。</b></p>
+    <div class="src"><b>信源</b>：进献与成画经过——清宫档案及收藏天下、中文百科等资料；《盛世滋生图》起讫路线与尺寸——辽宁省博物馆资料（两说并录）；2006年重建取样——阊门手册城楼站考据（同源）。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 阊门城楼（第一站 · 图位②）</b>
+    <p>"民国时已经没有城楼了，眼前这座城楼是哪来的？"——把时间拨回1759年，看徐扬画的阊门段：城墙、瓮城、"阊门"门额、吊桥、城内红阁与西中市街市、远处北寺塔皆入画。再让孩子对照眼前实景"找不同"——一座门就这样在画与实景之间穿行了两百五十年。</p></div>
+    <div class="field"><b class="t">◆ 西中市 · 专诸巷（第四站）</b>
+    <p>他的家就在这条巷子：专诸巷——刺客住过的巷，后来住进了给全城画像的画家。一句串场词："这条巷子先出刺客，后出画家——苏州的巷子有性格。"</p></div>
+    <div class="field"><b class="t">◆ 姊妹线联动</b>
+    <p>北寺塔手册的32米《姑苏繁华图》漆雕即据此画复制——讲完本单元埋钩子："这张画还有一版32米长的漆雕，下条线见。"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：《姑苏繁华图》原名什么？作者是谁？</p>
+      <p class="a">A：原名《盛世滋生图》，清代苏州宫廷画家徐扬，1759年画成。</p>
+      <p class="q">Q2：徐扬的家住在哪条巷子里？那条巷子以前出过什么人？</p>
+      <p class="a">A：阊门内专诸巷——专诸（鱼肠剑刺王僚的刺客）就与他隔了几百年住同一条巷。</p>
+      <p class="q">Q3：今天我们看到的阊门城楼和徐扬有什么关系？</p>
+      <p class="a">A：2006年重建城楼的主要"底稿"就是他1759年画的阊门段——画家的一笔变成了今天的城楼。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 画中店铺招牌可辨认的达两百余家（学界统计口径不一，讲作"两三百家"量级），是研究乾隆盛世苏州商业的第一手图像史料——所谓"形象的历史教科书"。② 与仇英对读：仇英靠贵人（文徵明），徐扬靠皇帝（献画进宫）；两人都与阊门结缘，一明一清给同一扇门留影——"苏州画家的取景地共识"。③ 徐扬《南巡纪道图卷》2004年翰海秋拍以1980万元成交——宫廷画师的"KPI作品"今天很值钱。④ 《盛世滋生图》既是歌颂"帝治光昌"的命题作文，又被史料证明确写实——"奉命之作"里也有真实的市井，史料使用要两面看。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">阊门城楼 · 图位②对照实景 ↗</a>
+      <a class="spot-link" href="beisita_shouce.html#line-bs">姊妹线 · 32米漆雕长卷 ↗</a>
+      <a class="spot-link" href="wenmiao_mingren.html#u1">文庙名人篇 · 孔子单元（望吴闭环）↗</a>
+    </div>
+  </div>
+<div class="unit" id="u5" data-anchor>
+    <div class="tag-side">单元五</div>
+    <h3>张士诚</h3>
+    <div class="role">瓮城增筑者 · 苏州人记了六百年的"九四"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>张士诚（1321—1367），小名九四，泰州白驹场人，盐贩出身；至正十三年（1353）率盐丁起义（"十八条扁担"）</td></tr>
+      <tr><th>据苏</th><td>至正十六年（1356）定都平江（苏州），自称吴王；在位大兴土木、轻徭薄赋，苏州民间至今对他好感颇多</td></tr>
+      <tr><th>与阊门关系</th><td>同治《苏州府志》："至张士诚入据，<b>增置月城</b>。"铁证是阊门出土的元代<b>《新建瓮城记铭碑》</b>："隆平府阊门，元设二关。天佑三年（1356）……复造南北二关，重加备御。"——他在六城门外普遍加筑瓮城（现存盘门瓮城亦同期），糯米石灰浆砌筑，号称"天下第一坚城"</td></tr>
+      <tr><th>结局</th><td>1367年朱元璋围平江十个月城破，张士诚被俘至金陵自缢——吴地进入明初，"洪武赶散"等移民叙事与阊门相关（待复核，另册详考）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：同治《苏州府志》；《新建瓮城记铭碑》碑文（阊门遗址出土，现苏州博物馆藏）；苏州博物馆对阊门瓮城遗址、阊门北码头等地的考古发掘；与阊门手册瓮城站考据同源。</div>
+
+    <h4>核心故事：给苏州城"加固"的人</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>伍子胥立的门，六百年后由一个盐贩子出身的吴王来"升级"。张士诚踞苏州，在六城门外普遍加筑瓮城：阊门瓮城基础一直延伸到吊桥，是苏州发掘出的<b>最大瓮城</b>，更是罕见的<b>嵌套瓮城</b>——大瓮城套小瓮城，南北各有童梓门。糯米拌石灰浆砌城墙，硬得号称"天下第一坚城"。可惜坚城没能救他：朱元璋围城十月，1367年城破。苏州人却记了他的好——至今苏州话把闲聊叫"<b>讲张</b>"（一说即源于百姓私下念叨张士诚，民间词源说，待复核）；旧俗七月三十烧"九四香"（地藏香，一说纪念张九四，两说并存）。</p>
+    <div class="src"><b>信源</b>：瓮城规模与嵌套结构——姑苏区资料转引（<b>待现场复核</b>）；盘门瓮城同期增建——同治《苏州府志》；"讲张""九四香"——苏州民俗资料（民间词源，两说并存照讲）。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 瓮城遗址公园（第二站）</b>
+    <p>开场提问"瓮中捉鳖怎么捉"，讲清"二道门不直线贯通"的防御逻辑；指认张士诚增筑的月城位置。2006年曾有连瓮城一并复建的"修复方案二"（施小平《苏州城门城墙那些事》），对照古画与示意图让孩子还原雄关——方案最终未全建，留作想象底稿。</p></div>
+    <div class="field"><b class="t">◆ 争位讨论（成人团好话题）</b>
+    <p>张士诚与朱元璋：一个是"保境安民却胸无大志"的守成者，一个是"狠辣果决"的统一者——苏州民间对他六百年的好感，本身就是一道"历史评价由谁书写"的思考题。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：阊门的瓮城是谁加筑的？有什么证据？</p>
+      <p class="a">A：元末张士诚。铁证是阊门出土的元代《新建瓮城记铭碑》，同治《苏州府志》也记载"至张士诚入据，增置月城"。</p>
+      <p class="q">Q2："瓮中捉鳖"在城防上是什么意思？</p>
+      <p class="a">A：敌军攻破第一道门进入瓮城后，四面城墙箭矢滚石居高临下——瓮城就是个"口袋"。</p>
+      <p class="q">Q3：苏州话"讲张"是什么意思？和谁有关？</p>
+      <p class="a">A：闲聊的意思——一说源于百姓私下谈论张士诚（民间词源说，两说并存）。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 张士诚记功碑（皇废基）在姊妹线北寺塔手册里——讲完瓮城埋钩子："想知道他给自己立了块什么碑，下条线见。"② 盘门瓮城也是他同期增筑——姊妹门同一双手。③ "洪武赶散"传说把不少苏北人家谱指向阊门——阊门因此成了移民史上的"寻根地标"（学理考辨另册，宣传口径从简）。④ 糯米石灰浆是中国古代建筑"混凝土"，明代南京城墙仍在用——可作跨学科小知识。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">瓮城遗址 · 嵌套瓮城 ↗</a>
+      <a class="spot-link" href="beisita_shouce.html#line-bs">姊妹线 · 张士诚记功碑 ↗</a>
+    </div>
+  </div>
+<div class="unit teal" id="u6" data-anchor>
+    <div class="tag-side">单元六</div>
+    <h3>泰伯与仲雍</h3>
+    <div class="role">三让至德 · 吴地人文始祖</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>姬泰伯（一作太伯），周太王古公亶父长子；仲雍为次子，随兄同奔江南</td></tr>
+      <tr><th>核心事迹</th><td>为成全父意（传位三弟季历、再传圣孙姬昌——后来的周文王），让位出走，"断发文身"，奔江南"自号句吴"，土著千余家归之——勾吴国由此奠基</td></tr>
+      <tr><th>身后评价</th><td>孔子："泰伯，其可谓至德也已矣！三以天下让，民无得而称焉。"（《论语·泰伯》）——至德=让得毫无痕迹</td></tr>
+      <tr><th>祭祀</th><td><b>泰伯庙（至德庙）"三吴首祠"</b>：东汉永兴二年（154）吴郡太守麋豹奉旨建于阊门外；五代后梁乾化四年（914）吴越王钱镠迁建于今址（阊门内下塘）——钱镠是文庙名人篇单元五的主角，两条线在此"会师"</td></tr>
+      <tr><th>世系</th><td>泰伯卒，无子，弟仲雍立（《史记·吴太伯世家》）——后世吴王（阖闾、夫差……）全是仲雍后裔</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：《论语·泰伯》《史记·吴太伯世家》；建庙迁庙沿革——同治《苏州府志》及庙史资料（同治重建系年两说并存待核）；DS-export/482_孔子评泰伯。</div>
+
+    <h4>核心故事：泰伯奔吴四拍（现场必讲）</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p><b>第一拍 · 父亲的心思：</b>周太王看的是孙子姬昌，传位路线绕过长子泰伯。是偏心还是深谋远虑？先不下结论。</p>
+    <p><b>第二拍 · 让，而且让得彻底：</b>以采药为名出走千里；父亲去世也不回奔丧（避免被推立）；索性<b>断发文身</b>，从体貌上自绝于周人继承礼制——"示不可用"。</p>
+    <p><b>第三拍 · 到了江南干什么？</b>没有隐居摆烂：入乡随俗、筑城立国，把中原农耕与礼乐带进水乡，千余家土著归附——让出来的王位，变成了干出来的邦国。</p>
+    <p><b>第四拍 · 历史的对答：</b>姬昌成了周文王，周室八百年；勾吴传到阖闾，伍子胥筑起阊门。<b>没有泰伯下江南，就没有后来这扇门。</b>让与干，在他身上是同一件事。</p>
+    <div class="src"><b>信源</b>：《史记·吴太伯世家》（"泰伯奔荆蛮，自号句吴""泰伯卒，无子，弟仲雍立"）；"断发文身""示不可用"——《左传》及《史记》注疏；孔子评语——《论语·泰伯》；与阊门手册泰伯庙站四拍结构同源。</div></div>
+
+    <div class="quote">"泰伯，其可谓至德也已矣！三以天下让，民无得而称焉。"<small>—— 孔子。郑玄版"三让"：采药出走一让／奔丧不回二让／断发文身三让；朱熹版：知父意而走／不返奔丧／终身不返。按孩子年龄选讲一版即可。</small></div>
+    <h4>趣味备讲一："三让"到底是哪三次（展开版）</h4>
+    <div class="story"><span class="t">▲ 郑玄版（最顺口，现场首选）：</span>
+    <p><b>第一让 · 当立不立：</b>父亲古公亶父属意三弟季历一系（为的是圣孙姬昌），泰伯读懂父意，借上山采药之名出走——人还没走远，继承权已经让出去了。</p>
+    <p><b>第二让 · 奔丧不回：</b>太王去世，按礼当由长子主持丧事、顺势继位。泰伯与二弟仲雍故意不回奔丧，不给国人"推长立嫡"任何机会。</p>
+    <p><b>第三让 · 断发文身：</b>索性在荆蛮断发文身，从体貌上自绝于周人礼法，"示不可用"——就算你们来找我，我也当不成周人的君，季历父子从此再无后顾之忧。</p>
+    <p>朱熹另有一版（知父意而走／不返奔丧／终身不返），两说并存。<b>让一次容易；让三次、让得毫无痕迹，所以孔子说"民无得而称焉"——找不到词夸。</b></p>
+    <div class="src"><b>信源</b>：《论语·泰伯》郑玄注、朱熹《论语集注》；《史记·吴太伯世家》。</div></div>
+
+    <h4>趣味备讲二：名字里的排行密码——伯仲叔季</h4>
+    <div class="story"><span class="t">▲ 现场调剂用（孩子最爱猜排行）：</span>
+    <p>古人兄弟排行，看名字就知道老几：<b>伯＝老大，仲＝老二，季＝最小的；中间的都叫叔</b>。泰伯三兄弟就是活教材——<b>泰伯（伯·老大）、仲雍（仲·老二）、季历（季·老三）</b>：家里只有三个，"季"收尾直接落到老三头上，轮不到"叔"出场。</p>
+    <p>规则细讲：<b>兄弟四人及以上，"叔"才会出现</b>。比如兄弟十个：老大伯、老二仲，老三到老九全是"叔"，最小的老十叫"季"。</p>
+    <p>对照本线人物：<b>吴王寿梦四个儿子</b>——诸樊、馀祭、馀眜、季札：前三位没按伯仲叔排，但小儿子名字里的"季"正合"最末"之义。还有大名鼎鼎的<b>刘邦，小名刘季</b>：上头大哥刘伯、二哥刘仲，听着像老三；传说刘太公生他时自认是最后一个儿子才叫"季"，后来又得了小儿子刘交——"老四"纯属意外（民间趣谈，讲时点明"相传"）。</p>
+    <p><b>证据最全的一家人：周文王的儿子们</b>——人多，规律一目了然：</p>
+    <table>
+      <tr><th>排行</th><th>名字</th><th>看点</th></tr>
+      <tr><td>老大</td><td>伯邑考</td><td>"伯"＝长子，名字里明明白白</td></tr>
+      <tr><td>老二</td><td>发（周武王）</td><td>按排行本该叫"仲发"；当了武王，尊号置顶，"仲"字反而不传</td></tr>
+      <tr><td>老四</td><td>旦（周公）</td><td>本该叫<b>"鲁叔旦"</b>——他的封国其实是鲁（曲阜），因留朝辅政不就封、长子伯禽代封；采邑在周故称"周公"，封号盖过排行。同理，老三管叔鲜、老五蔡叔度……一串"叔"</td></tr>
+      <tr><td>最末</td><td>载（冉季载）</td><td>"季"＝最小，规律收尾</td></tr>
+    </table>
+    <p>顺带答一个常见疑问：文王的儿子里怎么没有"仲"？不是没有老二，而是老二成了周武王——<b>最尊贵的称呼优先，排行的字就让位了</b>。</p>
+    <div class="src"><b>信源</b>：《史记·管蔡世家》（文王十子：伯邑考、武王发、管叔鲜、周公旦、蔡叔度、曹叔振铎、成叔武、霍叔处、康叔封、冉季载）；周公封鲁不就——《史记·鲁周公世家》"封周公旦于少昊之虚曲阜，是为鲁公。周公不就封，留佐武王"，后"使其子伯禽代就封于鲁"；刘邦排行——《史记·楚元王世家》载刘交为少弟，"刘季"排行旧说与民间趣谈并存。</div></div>
+    <h4>趣味备讲三：那女子怎么论排行？（抖包袱备用）</h4>
+    <div class="story"><span class="t">▲ 看情况讲，不进主线——讲出来就是"老师连这个都懂"：</span>
+    <p>先秦女子没名字也照样有"排行编号"：<b>排行字 + 姓</b>（《礼记·丧服小记》"妇女书姓与伯仲"）。因为那时<b>同姓不婚</b>——姓比名重要得多，嫁人先报姓。于是就有了：伯姬、仲子、叔姜、季芈——一看就知道是姬家老二、子家老三、芈家幺妹。</p>
+    <p>有意思的是<b>老大有两个字：伯和孟</b>。汉代经书（《礼纬》，《白虎通》引）给了个精细划分：<b>"嫡长称伯，庶长称孟"</b>——正妻生的大女儿叫"伯"，妾生的大女儿叫"孟"。所以<b>孟姜女不是姓孟</b>——她是<b>姜家的大闺女</b>（一说因是庶出才用"孟"）。同理，鲁国权臣孟氏、孔子所在的孟孙氏，"孟"字也是这么来的。</p>
+    <p><b>严谨提示（别把话说死）：</b>"伯嫡孟庶"是汉代人的划分，先秦已有反例——晋国赵武是嫡子却称"赵孟"；郑玄注《诗经》也只说"孟姜，列国之长女"。现场讲法：<b>"一说伯是嫡出、孟是庶出"</b>，两说摆出来，反而显得懂行。</p>
+    <p>嫁了人怎么叫？三个套路：冠<b>夫谥</b>（庄姜＝卫庄公夫人）、冠<b>母国</b>（齐姜＝齐国姜姓女）、冠<b>夫氏</b>（孔姬＝卫国孔圉之妻）——先秦典籍里几乎见不到女性自己的名字。</p>
+    <p><b>终极包袱：</b>孟姜女的原型是《左传·襄公二十三年》记载的<b>杞梁妻</b>——齐国将军杞梁的遗孀，春秋时人。她"哭崩城墙"的故事流传千年，被附会到秦长城上，才成了"孟姜女哭长城"——比秦始皇整整早了三百年，她哭的本来也不是长城。</p>
+    <div class="src"><b>信源</b>：《礼记·丧服小记》；《白虎通义·姓名》引《礼纬·含文嘉》"嫡长称伯，庶长称孟"；《诗·鄘风·桑中》郑玄笺"孟姜，列国之长女"；伯孟嫡庶说之反例——光明日报《"伯"与"孟"是嫡庶之别吗》；孟姜女原型——《左传·襄公二十三年》杞梁妻。</div></div>
+
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 泰伯庙（第五站 · 重头戏）</b>
+    <p>御匾双璧：康熙四十四年（1705）南巡钦赐"<b>至德无名</b>"、乾隆十六年（1751）"<b>三让高踪</b>"——两块匾是两代皇帝的"官方认证"。至德殿现塑<b>泰伯（中）、仲雍（右）、季札（左）</b>——纠错彩蛋：宣传页曾误作"季简"（仲雍之子、谱牒人物，不在殿上），现场以塑像为准。</p></div>
+    <div class="field"><b class="t">◆ 反思讨论（无标准答案，吵起来才算讲到位）</b>
+    <p>①你是泰伯，争还是让？争，你有什么底牌；让，你拿什么说服自己？②周太王"废长立幼"：纯属偏爱国家会怎样？真是为国选贤，这眼光服不服？③一个连王位都不要的人带队，你放不放心？④断发文身是"背叛祖宗"还是"尊重当地"？你进入陌生群体，先坚持还是先融入？</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：孔子说的"至德"是夸谁？</p>
+      <p class="a">A：泰伯——"三以天下让，民无得而称焉"，让得毫无痕迹。</p>
+      <p class="q">Q2：泰伯奔吴后，吴国的王位最后传给了谁一系？</p>
+      <p class="a">A：他无子，弟弟仲雍继位——后世吴王全是仲雍后裔。</p>
+      <p class="q">Q3：泰伯庙为什么敢称"三吴首祠"？</p>
+      <p class="a">A：全江南奉吴姓先祖的祠庙都认这一支——它是吴文化的人格源头。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① "三让"两解（郑玄/朱熹）并存——同一句经文，后世读出两套答案，正是经学史的入口。② 迁建今址的是钱镠（914）——文庙名人篇单元五的吴越王与阊门线在此相接，可用"钱镠你在文庙线见过"做串场。③ 泰伯的"让"与寿梦一家的"让"（见单元八）对照讲：同样是让，一个让出八百年，一个让出血案——差别在"人"还是"规矩"？开放讨论。④ 苏州城西泰伯庙（阊门内）与无锡梅里泰伯庙并存，吴地祭祀自成体系，现场莫混。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">泰伯庙 · 三让至德 ↗</a>
+      <a class="spot-link" href="wenmiao_mingren.html#u1">文庙名人篇 · 孔子单元（"至德"另解）↗</a>
+    </div>
+  </div>
+<div class="unit blue" id="u7" data-anchor>
+    <div class="tag-side">单元七</div>
+    <h3>季札与阖闾</h3>
+    <div class="role">让位的续集 · "叔，你不想当王，这位置指定给我不就好了"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>季札</th><td>吴王寿梦第四子，贤而让国，封于延陵，史称"<b>延陵季子</b>"；孔子盛赞的"南方君子"（相传孔子手书碑文"呜呼有吴延陵君子之墓"），今泰伯庙主殿左位塑像即他。<b>他与阖闾是叔侄</b>——阖闾（公子光）是他大哥诸樊的儿子</td></tr>
+      <tr><th>阖闾（公子光）</th><td>吴王诸樊之子，季札的侄子。按"父死子继"，他认定王位该回到自己这一系，却眼看堂弟僚坐上王座——这口气他忍了十二年。前515年夺位，前514年即位，<b>命伍子胥"相土尝水，象天法地"筑阖闾大城——阊门之名由此而立</b>；后来西破强楚、称霸一时（前496年伐越伤趾而亡）。<b>他才是"让位链"的收束点</b></td></tr>
+      <tr><th>专诸</th><td>堂邑（一说吴县人）人，屠户出身的勇士，"<b>四大刺客</b>"之一（《史记·刺客列传》）。<b>他的直接关联人是伍子胥与阖闾</b>——伍子胥自楚奔吴后与他结交，再引荐给公子光；这也是本单元"助演"的位置。专诸巷在西中市南侧，苏州唯一以刺客命名的巷（地名由来为口传，<b>待复核</b>）</td></tr>
+      <tr><th>一条链</th><td>寿梦欲传季札→兄终弟及转到老三余眜死后季札再辞→立余眜之子<b>僚</b>→诸樊之子<b>公子光</b>不服→伍子胥引荐专诸→<b>鱼肠剑刺王僚</b>→公子光即位，是为<b>阖闾</b>→重用伍子胥、孙武，筑阖闾大城——<b>阊门是这条多米诺链条的最后一格</b>。<b>反过来说：季札当年若接了王位，这条链整根都不存在。</b></td></tr>
+    </table>
+    <div class="src"><b>信源</b>：季札让国与观周乐——《史记·吴太伯世家》《左传·襄公二十九年》；专诸刺王僚与鱼肠剑——《史记·刺客列传》《吴越春秋·王僚使公子光传》；阖闾筑城——《吴越春秋》；DS-export 相关条目。</div>
+
+    <h4>核心故事一：季札辞位——一场"计划周全却失败"的让位</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>寿梦想学老祖宗周太王，把王位传给小儿子季札——又是个"季"字辈。小儿子不肯接，那就立规矩：兄终弟及，老大传老二、老二传老三、老三传老四，转一圈总该落到季札头上。计划听起来滴水不漏：诸樊→余祭→余眜，挨个传。到余眜去世，怎么轮也该轮到季札了——他却<b>再次避让，死活不肯继位</b>。国不可一日无君，众人立了余眜之子僚。老大诸樊的儿子<b>公子光</b>不服："四叔不继位，就该回到父死子继——凭什么落到僚头上？"疙瘩越积越硬。</p>
+    <p><b>阖闾的账本：</b>从公子光的眼里看，这笔账比"让不让"更直接——四叔不肯接，那就该按"父死子继"回到我父亲诸樊这一系，凭什么落到堂弟僚头上？<b>叔侄之间隔着的不是情分，是那把椅子。</b>（现场可把这句当引子："如果你是公子光，这口气你咽得下吗？"）</p>
+    <div class="src"><b>信源</b>：《史记·吴太伯世家》《史记·刺客列传》相关叙述；阖闾即位与筑城年——《吴越春秋·阖闾内传》；与阊门手册泰伯庙站"拓展故事"同源。</div></div>
+
+    <h4>现场辅助图表：一图看尽“让位链”</h4>
+    <div class="chartfig">
+      <div class="lead">这一单元的两段故事，就是这张图：讲完“季札辞位”，把图切出来，用手比那条折线——诸樊 → 余祭 → 余眜，兄终弟及转了三手；季札那条金色虚线标明“三让”始终没接；到余眜之后一断，王位掉给了僚（图下小字注明僚的身世两说，现场照讲、不作定论）；再看那根红色虚线——<b>前 515 年，专诸的鱼肠剑就在这一格上</b>，一格之后是阖闾、夫差。全图三种线型：实线＝正常传位，红虚线＝刺杀夺位，灰虚线＝血缘／让位。</div>
+      <div class="scr">
+<svg viewBox="0 0 780 800" xmlns="http://www.w3.org/2000/svg"
+     font-family="'Songti SC','SimSun','Noto Serif SC',serif">
+
+  <rect x="0" y="0" width="780" height="800" fill="#fdfaf3"/>
+
+  <text x="390" y="22" text-anchor="middle" font-size="17" font-weight="bold" fill="#2e2a25" letter-spacing="1">吴国王位传承线 · 竖版</text>
+  <text x="390" y="38" text-anchor="middle" font-size="11" fill="#7a6f60">寿梦家这笔糊涂账：兄终弟及 · 季札三让 · 僚被「截胡」 · 公子光夺位</text>
+
+  <!-- 主线（正常传位） -->
+  <g fill="none" stroke="#8a7a5e" stroke-width="2">
+    <line x1="265" y1="94" x2="265" y2="160"/>
+    <line x1="265" y1="214" x2="265" y2="262"/>
+    <line x1="265" y1="316" x2="265" y2="374"/>
+    <line x1="265" y1="428" x2="265" y2="496"/>
+    <line x1="585" y1="550" x2="585" y2="606"/>
+  </g>
+  <!-- 季札（金虚线） -->
+  <path d="M350,67 H455 V289 H500" fill="none" stroke="#a97b28" stroke-width="1.6" stroke-dasharray="5,4"/>
+  <!-- 公子光血缘（灰虚线） -->
+  <path d="M350,187 H420 V480 H585 V496" fill="none" stroke="#8a7a5e" stroke-width="1.5" stroke-dasharray="4,4"/>
+  <!-- 刺杀（红） -->
+  <line x1="500" y1="525" x2="350" y2="525" stroke="#b0432f" stroke-width="2.5" stroke-dasharray="7,5"/>
+
+  <!-- 寿梦之子 · 兄弟框（带底色） -->
+  <rect x="165" y="126" width="520" height="320" rx="10" fill="#f6eeda" fill-opacity="0.65" stroke="#a97b28" stroke-width="1.3" stroke-dasharray="6 4"/>
+  <text x="178" y="118" font-size="12" font-weight="bold" fill="#a97b28">寿梦之子</text>
+
+  <!-- 标签 -->
+  <g font-size="11" fill="#6a5a42" stroke="#fdfaf3" stroke-width="3.6" paint-order="stroke" stroke-linejoin="round">
+    <text x="275" y="148">父卒传长</text>
+    <text x="275" y="242">前548 传弟</text>
+    <text x="275" y="349">前531 传弟</text>
+    <text x="468" y="154">遗命欲传四子 · 三让王位</text>
+    <text x="600" y="582">父死子继 · 前496</text>
+  </g>
+  <g font-size="10.5" fill="#7a6522" stroke="#fdfaf3" stroke-width="3.6" paint-order="stroke" stroke-linejoin="round">
+    <text x="275" y="466">季札逃位 · 立僚 · 前527</text>
+    <text x="436" y="466">长子公子光 ·「我真王嗣，当立」</text>
+  </g>
+  <g font-size="10.5" fill="#8a3a2a" stroke="#fdfaf3" stroke-width="3.6" paint-order="stroke" stroke-linejoin="round">
+    <text x="425" y="515" text-anchor="middle" font-weight="bold">专诸鱼肠剑刺杀 · 前515</text>
+  </g>
+
+  <!-- 节点 -->
+  <g>
+    <rect x="180" y="40" width="170" height="54" rx="8" fill="#8d3326" stroke="#6e2418" stroke-width="1.5"/>
+    <text x="265" y="63" text-anchor="middle" fill="#f7ecd7" font-size="15" font-weight="bold">寿梦</text>
+    <text x="265" y="82" text-anchor="middle" fill="#e8cfa8" font-size="10">第19世 · 前561 卒</text>
+
+    <rect x="180" y="160" width="170" height="54" rx="8" fill="#8d3326" stroke="#6e2418" stroke-width="1.5"/>
+    <text x="265" y="183" text-anchor="middle" fill="#f7ecd7" font-size="15" font-weight="bold">诸樊（长子）</text>
+    <text x="265" y="202" text-anchor="middle" fill="#e8cfa8" font-size="10">前560—前548</text>
+
+    <rect x="180" y="262" width="170" height="54" rx="8" fill="#8d3326" stroke="#6e2418" stroke-width="1.5"/>
+    <text x="265" y="285" text-anchor="middle" fill="#f7ecd7" font-size="15" font-weight="bold">余祭（次子）</text>
+    <text x="265" y="304" text-anchor="middle" fill="#e8cfa8" font-size="10">前547—前531</text>
+
+    <rect x="180" y="374" width="170" height="54" rx="8" fill="#8d3326" stroke="#6e2418" stroke-width="1.5"/>
+    <text x="265" y="397" text-anchor="middle" fill="#f7ecd7" font-size="15" font-weight="bold">余昧（三子）</text>
+    <text x="265" y="416" text-anchor="middle" fill="#e8cfa8" font-size="10">前530—前527</text>
+
+    <rect x="180" y="496" width="170" height="54" rx="8" fill="#6e5644" stroke="#4e3c2c" stroke-width="2"/>
+    <text x="265" y="519" text-anchor="middle" fill="#f7ecd7" font-size="15" font-weight="bold">吴王僚 ※</text>
+    <text x="265" y="538" text-anchor="middle" fill="#e0cdb2" font-size="10">余昧之子 · 前526—前515</text>
+
+    <rect x="500" y="262" width="170" height="54" rx="8" fill="#a97b28" stroke="#7a5a1a" stroke-width="1.5"/>
+    <text x="585" y="285" text-anchor="middle" fill="#fdf6e3" font-size="15" font-weight="bold">季札（四子）</text>
+    <text x="585" y="304" text-anchor="middle" fill="#f3e2bd" font-size="10">延陵季子 · 三让王位</text>
+
+    <rect x="500" y="496" width="170" height="54" rx="8" fill="#2f5d50" stroke="#1e4036" stroke-width="2"/>
+    <text x="585" y="519" text-anchor="middle" fill="#eef4ea" font-size="15" font-weight="bold">阖闾（公子光）</text>
+    <text x="585" y="538" text-anchor="middle" fill="#c2d6c4" font-size="10">诸樊长子 · 前514—前496</text>
+
+    <rect x="500" y="606" width="170" height="54" rx="8" fill="#2f5d50" stroke="#1e4036" stroke-width="1.5"/>
+    <text x="585" y="629" text-anchor="middle" fill="#eef4ea" font-size="15" font-weight="bold">吴王夫差</text>
+    <text x="585" y="648" text-anchor="middle" fill="#c2d6c4" font-size="10">前495—前473</text>
+  </g>
+
+  <!-- 图例 -->
+  <g font-size="11" fill="#5a5148">
+    <line x1="40" y1="700" x2="72" y2="700" stroke="#8a7a5e" stroke-width="2"/>
+    <text x="82" y="704">正常传位</text>
+    <line x1="220" y1="700" x2="252" y2="700" stroke="#b0432f" stroke-width="2.5" stroke-dasharray="7,5"/>
+    <text x="262" y="704">刺杀夺位</text>
+    <line x1="400" y1="700" x2="432" y2="700" stroke="#8a7a5e" stroke-width="1.5" stroke-dasharray="4,4"/>
+    <text x="442" y="704">虚线 ＝ 血缘 / 让位</text>
+  </g>
+
+  <g font-size="10.5" fill="#8a3a2a">
+    <text x="40" y="738">※ 僚的身世两说：《史记 · 吴太伯世家》「乃立王馀眛之子僚为王」（本图所采）</text>
+    <text x="40" y="758">　　　　　　　　　《公羊传 · 襄公二十九年》「僚者，长庶也」（寿梦庶长子说）</text>
+  </g>
+</svg>
+      </div>
+      <div class="cf-note">※ 本图沿用胥门线《伍子胥筑城 · 现场讲解大纲》“图二 · 吴王王位传承线（竖版）”，<b>内容未改动</b>；小屏可左右滑动查看。图中“余昧”即本篇他处之“余眜”，一人异写——《史记 · 吴太伯世家》作“餘眛”《吴越春秋 · 寿梦二十五年》作“餘昧”、左氏与穀梁作“夷末”（《史记索隐》已辨）。图是竖版、合手机看，现场也可截图投屏。</div>
+    </div>
+
+    <h4>核心故事二：公子光夺位——专诸一刺，一条烤鱼改写的历史</h4>
+    <div class="story"><span class="t">▲ 故事文本（现场必讲）：</span>
+    <p>公子光厚待流亡的伍子胥，伍子胥把勇士专诸引荐给他。前515年，公子光设宴请吴王僚，专诸把<b>鱼肠剑</b>藏进炙鱼的鱼腹，端菜上桌、抽剑直刺——王僚当场毙命，专诸被左右卫士杀死，公子光趁乱夺位，就是<b>吴王阖闾</b>。阖闾上位后没有乱来：重用伍子胥、孙武，西破强楚——<b>阊门这座大城，正是他在位时由伍子胥修筑的</b>。</p>
+    <div class="src"><b>信源</b>：《史记·刺客列传》（专诸炙鱼进炙、"王僚使兵陈自宫至光之家"）；鱼肠剑——《吴越春秋》《越绝书》；阖闾筑城——《吴越春秋·阖闾内传》。</div></div>
+
+    <div class="quote">"让位是美德，把让位安排周全是智慧。"<small>—— 泰伯让得干净利落，寿梦让得后患无穷。同样是让，差别为什么这么大？是"人"的差别，还是"规矩"的差别？把问题留给孩子。</small></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 泰伯庙（第五站 · 主殿左位找季札）</b>
+    <p>让孩子在至德殿三尊塑像里"找季札"——他在左位。讲完"让位续集"，回望主殿：三尊像正好排成两场让位的"主角团"。</p></div>
+    <div class="field"><b class="t">◆ 西中市 · 专诸巷（第四站顺路点）</b>
+    <p>西中市南侧的专诸巷，相传因专诸居此得名（口传，待复核）。一条巷子把"刺客"写进了城市地名两千年——孩子会记住这条巷子的。</p></div>
+    <div class="field"><b class="t">◆ 城楼站（钩子回收）</b>
+    <p>讲伍子胥筑城时回收："伍子胥为什么能为阖闾所用？往前追，是季札辞位、阖闾夺位（关键一步是专诸那一刺）——一座门背后是一串人的选择。"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："鱼肠剑"藏在什么里面刺杀了吴王僚？</p>
+      <p class="a">A：藏在炙鱼（烤鱼）的鱼腹里——专诸借端菜上桌的机会行刺。</p>
+      <p class="q">Q2：专诸刺王僚之后，即位的吴王是谁？他做了什么大事？</p>
+      <p class="a">A：阖闾（公子光）。他重用伍子胥、孙武，伍子胥为他筑起阖闾大城——阊门由此而来。</p>
+      <p class="q">Q3：季札两次都不肯当吴王，这是好事还是坏事？</p>
+      <p class="a">A：开放题——他成全了"让"的美名，却让继承规则乱了套：兄终弟及到一半卡壳，王位旁落引发血案。让位本身没错，"没把规矩安排周全"才是祸根。</p>
+      <p class="q">Q4：季札和阖闾是什么关系？如果季札当年接了王位，还会有阖闾吗？</p>
+      <p class="a">A：叔侄——阖闾（公子光）是季札大哥诸樊的儿子。反过来推：季札若继位，王位就不会"掉"到堂弟僚头上，也就不会有公子光夺位、专诸行刺这一连串事（这是课堂假设题，讲给孩子当思考题，不作历史结论）。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 季札最著名的典故其实是"<b>挂剑</b>"：出使途中心许徐君宝剑，徐君已死仍解剑挂于其墓树而去——《史记·吴太伯世家》载，"季札挂剑"从此成为"心里答应过的事也要兑现"的诚信符号，孩子最好懂。② 相传孔子手书"呜呼有吴延陵君子之墓"十字碑（丹阳延陵镇，真伪历来有辨，讲作"相传"）。③ 专诸巷相传还是明清苏州眼镜作坊聚集地（"眼镜巷"之说待核）——一条刺客巷后来磨起了镜片。④ 阖闾夺位手段并不光彩，但他用人和功业换来了历史评价——"手段与结果"的讨论留给成人团。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">泰伯庙 · 主殿找季札 ↗</a>
+      <a class="spot-link" href="changmen_shouce.html#line-cm">西中市 · 专诸巷口 ↗</a>
+    </div>
+  </div>
+  
+<div class="unit gold" id="u8" data-anchor>
+    <div class="tag-side">单元八</div>
+    <h3>梁鸿与孟光</h3>
+    <div class="role">举案齐眉 · 皋桥下的硬核夫妻</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>梁鸿</th><td>字伯鸾，扶风平陵（今陕西咸阳）人，东汉隐士；太学毕业后家贫牧猪，曾失火赔猪做工抵债——乡里皆知是个有担当的老实人</td></tr>
+      <tr><th>孟光</th><td>梁鸿同县人，貌丑而力大（能举石臼），三十不嫁，扬言"<b>欲得贤如梁伯鸾者</b>"——梁鸿闻而聘之</td></tr>
+      <tr><th>成语出处</th><td>"<b>举案齐眉</b>"——《后汉书·逸民列传·梁鸿》："每归，妻为具食，不敢于鸿前仰视，举案齐眉。"（"案"是带脚的小食案，不是桌子）</td></tr>
+      <tr><th>苏州落点</th><td>二人逃祸入吴，投富室<b>皋伯通</b>家庑下舂米——皋桥（西中市东口）即因皋伯通宅第得名；梁鸿卒后葬吴地<b>要离墓旁</b>，"要离烈士，伯鸾清高，可令相近"</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：《后汉书·逸民列传·梁鸿》（四拍故事、引文均出自该传）；皋桥得名——《吴地记》及苏州地方志；与阊门手册西中市站"研学故事"同源。</div>
+
+    <h4>核心故事：四拍讲完一个成语（现场必讲）</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p><b>第一拍 · 互相"挑"出来的一对：</b>梁鸿一概不娶富贵人家小姐；孟光三十不嫁，指名要嫁"梁伯鸾"。梁鸿聘她，她盛装入门，梁鸿七天不理——"我要的是能陪我布衣隐居的人"；孟光当即换上椎髻布衣操持家务——"此真梁鸿妻也"。</p>
+    <p><b>第二拍 · 一首歌闯了祸：</b>梁鸿东出函谷关见洛阳宫室巍峨、百姓劳苦，作《五噫诗》——五句诗每句叹一个"噫"。汉章帝读到不高兴，下令抓人。夫妻俩改名换姓，一路南逃到吴地阊门。</p>
+    <p><b>第三拍 · 庑下舂米，举案齐眉：</b>投靠皋伯通，住在堂边廊屋，白天受雇舂米。每天收工，孟光备好饭食，把食案举到与眉毛齐平——不敢在丈夫面前仰视。</p>
+    <p><b>第四拍 · 一个细节暴露了高人：</b>皋伯通看在眼里暗惊："一个佣人能让妻子敬到这个地步，绝非常人！"请他们搬进正屋。梁鸿从此闭门著书十余篇。</p>
+    <p><b>尾声：</b>梁鸿病重嘱托：学延陵季子葬子的规矩，<b>不必送回老家安葬</b>。皋伯通把他葬在刺客要离墓旁——"要离烈士，伯鸾清高，可令相近"。孟光带孩子回扶风去了。</p>
+    <div class="src"><b>信源</b>：《后汉书·逸民列传·梁鸿》（"举案齐眉""彼佣能使其妻敬之如此，非凡人也""要离烈士，而伯鸾清高"均为原传文字）；五噫诗原文见该传。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 西中市 · 皋桥（第四站街口）</b>
+    <p>站上皋桥就是成语现场：脚下这座桥因皋伯通宅得名，两千年前那对夫妻就住在旁边廊屋里。让孩子比划"举案"动作——案是带脚的小食案，比划错了正好纠正。</p></div>
+    <div class="field"><b class="t">◆ 讲法提示</b>
+    <p>这个故事的"眼"不在"敬夫"动作，而在<b>旁观者皋伯通从细节识人</b>——机会永远留给能看出别人厉害之处的人。另可点一句：主角是"互相看对眼"的硬核夫妻，爱情观讨论交给家长。</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："举案齐眉"这个成语是在苏州哪座桥边诞生的？</p>
+      <p class="a">A：皋桥——西中市东口，因富室皋伯通宅第得名。</p>
+      <p class="q">Q2：孟光为什么三十岁还不嫁人？</p>
+      <p class="a">A：她放话"要嫁就嫁梁伯鸾那样的贤人"——最后真的嫁到了。</p>
+      <p class="q">Q3：梁鸿为什么从陕西逃到苏州？</p>
+      <p class="a">A：他在洛阳写《五噫诗》感叹百姓劳苦，得罪了汉章帝被通缉——夫妻俩改名换姓逃到吴地。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① "案"是带脚的小食案（类似小托盘带矮足），举到眉际并不夸张——古人席地而坐，案本来就举得起来。② 梁鸿葬处与<b>要离墓</b>为邻：要离是吴王阖闾手下的刺客（"要离刺庆忌"，与专诸同属吴地刺客叙事），一个壮烈一个清高做邻居——苏州城的"名人关系网"密度可见一斑。③ 《五噫诗》是中国最早的"民生批评诗"之一，五句五"噫"，全文32字——可让孩子现场念一遍体会语气。④ 孟光是成语级女性，却几乎没有单独传记——她的名字全靠《后汉书》梁鸿传里的这几行流传，史料里的女性可见一斑（成人团好话题）。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="changmen_shouce.html#line-cm">西中市 · 皋桥与成语现场 ↗</a>
+    </div>
+  </div>
+      </section>
+    <!-- ================= 第二部分 打卡点手册 ================= -->
+<section class="part" id="p2" data-anchor>
+  <div class="part-head"><span class="no">第二部分</span><h2>打卡点手册（按动线顺序）</h2></div>
+  <p class="part-sub">阊门线记忆口诀（出自解说手册）：<span class="hl"><b>"一座城门聚五龙，泰伯庙旁列五峰。”</b></span>——上句城门聚五水（军事+交通），下句庙、园相对（文化+雅趣），两句走完一条线；本手册把每一站背后的人物再钉一遍。</p>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">9:00–9:40 · 行程①</span>
+    <h3>阊门城楼</h3>
+    <div class="en">CHANGMEN GATE TOWER</div>
+    <table>
+      <tr><th>看点</th><td>2006年依考古与《姑苏繁华图》重建的城楼；登楼东北望北寺塔、西北望虎丘塔、东偏南望东方之门——"古今同框"</td></tr>
+      <tr><th>历史三层</th><td>表象：一座"遗址"碑下的新楼 → 故事：前514年伍子胥立"天门"，民国1934年罗马式三拱门，1958年拆除，2006年照徐扬的画站回来 → 精神：门会被拆掉，门的"人脉"拆不掉</td></tr>
+      <tr><th>人物挂钩</th><td><b>伍子胥</b>（筑门）★ → <b>孙武</b>（伐楚出发地）→ <b>孔子</b>（泰山望吴传说，文庙名人篇单元一）→ <b>唐寅</b>（《阊门即事》齐诵）→ <b>曹雪芹</b>（"红尘中一二等富贵风流之地"）→ <b>徐扬</b>（2006年重建的底稿）</td></tr>
+      <tr><th>任务设计</th><td>开场两图（门洞特写→繁华图）设悬念；登楼齐诵《阊门即事》前四句；"找不同"：徐扬1759年的画 vs 眼前的楼</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">9:45–10:10 · 行程②</span>
+    <h3>瓮城遗址</h3>
+    <div class="en">WENGCHENG (BARBICAN) SITE</div>
+    <table>
+      <tr><th>看点</th><td>苏州最大、罕见的嵌套瓮城遗址公园（大瓮城套小瓮城，南北童梓门）；"气通阊阖"门额</td></tr>
+      <tr><th>历史三层</th><td>表象：一片草坡遗迹 → 故事：张士诚1356年增筑月城（《新建瓮城记铭碑》为铁证），糯米石灰浆"天下第一坚城"，太平天国战火毁其前部、1927年拆其后部 → 精神：坚城挡不住人心，"讲张"六百年</td></tr>
+      <tr><th>人物挂钩</th><td><b>张士诚</b>★（增筑者）→ <b>伍子胥</b>（城防体系源头接力）→ 桃花坞年画（唐寅单元的非遗呼应）</td></tr>
+      <tr><th>任务设计</th><td>"瓮中捉鳖"怎么捉；手画瓮城平面示意（二道门错位逻辑）；埋钩子：记功碑在北寺塔线</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red-deep)">10:15–10:45 · 行程③（重头戏 · 视频号直播点位）</span>
+    <h3>北码头 · 五龙汇阊</h3>
+    <div class="en">BEIMATOU · FIVE RIVERS CONFLUENCE</div>
+    <table>
+      <tr><th>看点</th><td>五水汇阊的航拍视角实景（中市河、上塘河、山塘河、南濠北濠会于阊门外护城河）；万人码头旧影对照</td></tr>
+      <tr><th>历史三层</th><td>表象：一段安静的河岸 → 故事：明清漕运与货运转运中心，"五龙汇阊"养出红尘第一门 → 精神：交通即财富，地理即命运</td></tr>
+      <tr><th>人物挂钩</th><td><b>白居易</b>★（宝历元年〔825〕任苏州刺史开山塘河——阊门外七里山塘由此而来，北码头即"白居易码头"）→ <b>徐扬</b>（繁华图里最热闹的水面就是这里）</td></tr>
+      <tr><th>任务设计</th><td>五龙口诀带背（"东一条中市河，西两条上塘河山塘河，南濠北濠把城绕"）；发图包08航拍对照；播放五龙汇阊视频号短片</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">10:50–11:30 · 行程④</span>
+    <h3>西中市（含皋桥、专诸巷）</h3>
+    <div class="en">XIZHONGSHI STREET</div>
+    <table>
+      <tr><th>看点</th><td>清末民初苏州金融街（1908年全城24家钱庄20家在此）；民国骑楼洋楼街区；街口皋桥、南侧专诸巷</td></tr>
+      <tr><th>历史三层</th><td>表象：一条烟火老街 → 故事：宋元"皋桥西巷"→清代"阊门大街"→1935年拓建12米路幅定名"西中市"→今日民国风街区 → 精神：一条街的名字史=半部苏州近代史</td></tr>
+      <tr><th>人物挂钩</th><td><b>梁鸿与孟光</b>★（皋桥·举案齐眉现场）→ <b>皋伯通</b>（识人者）→ <b>专诸</b>（专诸巷，刺客巷）→ <b>仇英</b>（阊门画肆，明代大街雏形）→ <b>徐扬</b>（家住专诸巷）</td></tr>
+      <tr><th>任务设计</th><td>皋桥上比划"举案"动作；辨认民国西式装饰（廊檐雕花、券窗）；老字号寻宝（陆稿荐、雷允上、采芝斋、杜三珍）</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--teal)">11:35–12:10 · 行程⑤（主线讲解站）</span>
+    <h3>泰伯庙</h3>
+    <div class="en">TAIBO TEMPLE</div>
+    <table>
+      <tr><th>看点</th><td>"三吴首祠"：至德桥→至德坊→至德殿；康熙"至德无名"、乾隆"三让高踪"御匾双璧</td></tr>
+      <tr><th>历史三层</th><td>表象：一座安静的祠庙 → 故事：东汉154年麋豹奉旨建庙、914年钱镠迁建今址、孔子以"至德"许泰伯 → 精神：让得彻底，干得认真——吴文化的人格源头</td></tr>
+      <tr><th>人物挂钩</th><td><b>泰伯与仲雍</b>★（三让至德）→ <b>季札</b>（主殿左位；让位续集）→ <b>钱镠</b>（迁建者，文庙名人篇单元五）→ <b>孔子</b>（"至德"评语）</td></tr>
+      <tr><th>任务设计</th><td>开场三问带进庙；主殿三尊找季札（纠错彩蛋：不是季简）；"至德"一词串两条线（文庙祭孔子/阊门祀泰伯）</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--teal)">13:00–13:40 · 行程⑥（收官站 · 园+餐）</span>
+    <h3>五峰园 + 聚新春面馆</h3>
+    <div class="en">WUFENG GARDEN</div>
+    <table>
+      <tr><th>看点</th><td>五座太湖石峰（丈人、观音、三老、庆云、擎云——"五老峰"，皱瘦漏透，可与留园冠云峰媲美）；柳毅井/柳毅亭；省级文保、免费</td></tr>
+      <tr><th>历史三层</th><td>表象：巴掌大的小园 → 故事：明嘉靖年间宅园（文伯仁说/杨成"杨家园"说两并存），石峰传为北宋花石纲遗物（南宋《烬余录》"偃仰柳毅桥畔"）→ 1998年整修后"园是新的，石是真的" → 精神：真古董是石头，园林是给石头安的家</td></tr>
+      <tr><th>人物挂钩</th><td><b>柳毅</b>（唐传奇《柳毅传》主角，但《吴县志》确称柳毅为吴县人住阊门下塘——小说人物vs方志记载，虚实两分好例子）→ <b>文伯仁</b>（文徵明之侄，园主两说之一）→ 聚新春紧酵馒头（非遗收尾）</td></tr>
+            <tr><th>拓展讲述<br>柳毅传书</th><td><b>故事梗概</b>（唐·李朝威《柳毅传》；元杂剧《柳毅传书》家喻户晓）：唐仪凤年间书生柳毅落第返乡，路过泾阳，遇见在河边牧羊的落难少女——她是洞庭龙君的小女儿，嫁到泾川受尽虐待。柳毅受托千里传书洞庭，龙女的叔父钱塘君一怒飞去，惩治泾川逆子救回侄女。后来柳毅两度丧偶，娶回的范阳卢氏正是龙女化身——当年河畔一见如故的姻缘终于圆满，相传夫妇一同成仙。<br><b>苏州落点</b>：《异闻集》、乾隆《吴县志》称柳毅字道远、吴县人、住阊门下塘；南宋《平江图》碑上，阊门内太伯庙东南确刻"柳毅桥"；清《吴门表隐》载"柳毅墓在阊门西街五峰园"——园西南角土阜（柳毅亭下）相传即墓所在。另有"泥马渡康王"传说：宋高宗渡江所骑泥马即柳毅化身，故江南多建柳毅庙、水仙庙；洞庭东山席家花园柳毅井（王鏊题字）传为柳毅入湖传书的入口。<br><b>虚实两分</b>：龙女是小说虚构，但桥、墓、井、庙层层见于方志图籍——柳毅成了"小说人物被方志坐实"的罕见样本，正适合现场做"故事 vs 史实"的辨析示范。</td></tr>
+      <tr><th>任务设计</th><td>五峰数一数、各认各名；"园新石真"的辨识练习；头汤面收官——"苏州的繁华，最后都落回市井烟火"</td></tr>
+    </table>
+  </div>
+</section>
+<!-- ================= 第三部分 矩阵 ================= -->
+<section class="part" id="p3" data-anchor>
+  <div class="part-head"><span class="no">第三部分</span><h2>人物 × 打卡点 结合矩阵</h2></div>
+  <p class="part-sub">备课时反向使用：每个点位至少锚定一位人物；每个人物至少落在一个现场点位。★=现场必讲。</p>
+  <table class="matrix">
+    <tr><th>人物 \ 点位</th><th>城楼</th><th>瓮城</th><th>北码头</th><th>西中市</th><th>泰伯庙</th><th>五峰园</th><th>延伸点</th></tr>
+
+    <tr><td><b>唐寅</b></td>
+      <td>★ 登楼齐诵《阊门即事》——"世间乐土"的文学开场</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>桃花坞故居 · 木刻年画博物馆（年画与瓮城站图位呼应）</td></tr>
+    <tr><td><b>伍子胥</b></td>
+      <td>★ 八门之首开场：相土尝水、"以象天门"</td><td>△ 与张士诚"接力"讲门的升级换代</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>盘门 · 胥门（同为伍子胥所辟八门）</td></tr>
+    <tr><td><b>仇英</b></td>
+      <td>△ 与徐扬对读："同一扇门，两种画法"</td><td>—</td><td>—</td><td>★ 明代阊门内大街街市——漆工看画铺、遇见文徵明（民间说法）</td><td>—</td><td>—</td>
+      <td>北寺塔线漆雕藏仇英本《清明上河图》</td></tr>
+    <tr><td><b>徐扬</b></td>
+      <td>★ 图位②：《姑苏繁华图》阊门段对照实景"找不同"</td><td>—</td><td>—</td><td>△ 专诸巷旧居——"先出刺客，后出画家"</td><td>—</td><td>—</td>
+      <td>北寺塔线 32 米漆雕即据此画复制</td></tr>
+    <tr><td><b>张士诚</b></td>
+      <td>—</td>
+      <td>★ 瓮中捉鳖怎么捉 · 指认增筑月城位置</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>记功碑详见北寺塔线 · "讲张"词源</td></tr>
+    <tr><td><b>泰伯·仲雍</b></td>
+      <td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>★ 御匾双璧 + 至德殿三尊塑像 + 反思讨论</td><td>—</td>
+      <td>无锡梅里泰伯庙 · 鸿山（奔吴路线延伸）</td></tr>
+    <tr><td><b>季札 · 阖闾</b></td>
+      <td>△ 钩子回收：季札辞位、阖闾夺位，才有伍子胥筑门（专诸那一刺是关键一步）</td><td>—</td><td>—</td><td>△ 专诸巷——相传因专诸居此得名（待复核）</td><td>★ 主殿左位"找季札"；讲"叔侄与那把椅子"</td><td>—</td>
+      <td>延陵挂剑台（诚信故事延伸）</td></tr>
+    <tr><td><b>梁鸿·孟光</b></td>
+      <td>—</td><td>—</td><td>—</td><td>★ 皋桥成语现场：比划"举案"动作</td><td>—</td><td>—</td>
+      <td>皋伯通宅（收留者，识人眼光）</td></tr>
+    <tr><td><b>配角池</b><br>（次级）</td>
+      <td>孔子（望吴）· 孙武（伐楚出发）· 曹雪芹（"红尘一二等富贵"）</td><td>阖闾（即位筑城）<br><b>已升入单元七，与季札并列</b></td><td>—</td><td>皋伯通（收留梁鸿）</td><td>钱镠（914 迁建）</td><td>柳毅（亭下相传墓）</td>
+      <td>白居易（山塘钩子）· 文伯仁</td></tr>
+  </table>
+  <p>补充说明：白居易、曹雪芹、孔子、孙武、皋伯通、柳毅、文伯仁为<b>次级人物池</b>（阖闾已升入单元七，与季札并列成单元）——不单设单元，作现场"配角"储备。白居易（山塘）可作山塘线钩子；孔子望吴详见文庙名人篇单元一；张士诚记功碑、仇英本漆雕详见北寺塔线。名人堂后续将陆续补充（如吴地画家沈周/文徵明专论、明清阊门商帮等）。</p>
+</section>
+<!-- ================= 第四部分 讲述方法 ================= -->
+<section class="part" id="p4" data-anchor>
+  <div class="part-head"><span class="no">第四部分</span><h2>讲述方法与有奖题库</h2></div>
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 三条讲解心法</h4>
+    <p><b>一、由小见大：</b>现场看到的都是"小东西"（一块碑、一座桥、一爿园），小东西背后一定是"人"和"故事"。先问"你看到了什么"，再讲"它背后站着谁"，最后落"他给我们留下了什么"。</p>
+    <p><b>二、人带人（本线的两条链）：</b>①<b>让位链</b>：泰伯让国→寿梦传季札→季札辞位→专诸刺僚→阖闾即位→伍子胥筑阊门——一座门是一串人的选择。②<b>书画链</b>：唐寅写诗→仇英画图→徐扬定稿→2006年照画重建——门从画里站回人间。每介绍一个新人物，都先接上上一个已认识的人。</p>
+    <p><b>三、虚实分明：</b>传说（望吴白马、柳毅传书、挂剑）照讲，但点一句"这是传说"；推测（仇英本城门原型、专诸巷得名）明示"很多人认为"；考证结论（《新建瓮城记铭碑》、两说并录的生卒）讲准确。给孩子示范"怎么区分故事、推测与史实"，这本身就是研学的一部分。</p>
+  </div>
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 有奖竞猜题库（20题 + 附加3题）</h4>
+    <div class="qa">
+      <p class="a">1. 阊门的"阊"是什么意思？（天门——"以象天门，通阊阖风"）</p>
+      <p class="a">2. 阊门为什么又叫"破楚门"？（伐楚大军由此出征）</p>
+      <p class="a">3. 孔子夸谁的"至德"？（泰伯——三以天下让）</p>
+      <p class="a">4. 泰伯奔吴后，吴国王位传给了谁一系？（弟弟仲雍——后世吴王皆其后）</p>
+      <p class="a">5. 泰伯庙的两块皇帝御匾写什么？（"至德无名"——康熙；"三让高踪"——乾隆）</p>
+      <p class="a">6. 泰伯庙主殿三尊塑像是谁？（泰伯、仲雍、季札——不是季简）</p>
+      <p class="a">7. 鱼肠剑藏在什么里刺杀了吴王僚？（炙鱼/烤鱼的鱼腹）</p>
+      <p class="a">8. 专诸刺王僚之后即位的吴王是谁？他让谁筑了苏州城？（阖闾；伍子胥）</p>
+      <p class="a">9. "举案齐眉"的现场在苏州哪座桥？（皋桥——西中市东口）</p>
+      <p class="a">10. "案"是什么？（带脚的小食案，不是桌子）</p>
+      <p class="a">11. 梁鸿闯祸的那首诗叫什么？（《五噫诗》——五句五个"噫"）</p>
+      <p class="a">12. 阊门瓮城是谁加筑的？证据是什么？（张士诚；元代《新建瓮城记铭碑》）</p>
+      <p class="a">13. 苏州话"讲张"什么意思？（闲聊——一说源于念叨张士诚）</p>
+      <p class="a">14. "世间乐土是吴中，中有阊门更擅雄"是谁写的？（唐寅《阊门即事》）</p>
+      <p class="a">15. 唐伯虎中过状元吗？（没有——乡试解元，会试受科场案牵连革黜）</p>
+      <p class="a">16. 明四家是哪四位？（沈周、文徵明、唐寅、仇英）</p>
+      <p class="a">17. 明四家里出身最低微的是谁？原来是干什么行当的？（仇英；油漆工）</p>
+      <p class="a">18. 文徵明用什么词夸仇英？（"异才"——董其昌称他"近代高手第一"）</p>
+      <p class="a">19. 《姑苏繁华图》原名什么？作者是谁？（《盛世滋生图》；徐扬，1759年画成）</p>
+      <p class="a">20. 2006年重建阊门城楼主要参考了什么？（考古发现＋徐扬《姑苏繁华图》阊门段）</p>
+      <p class="a">21.（附加）"季札挂剑"讲的是什么品德？（诚信——心里许诺过的事也要兑现）</p>
+      <p class="a">22.（附加）五峰园的五座石峰分别叫什么？（丈人峰、观音峰、三老峰、庆云峰、擎云峰）</p>
+      <p class="a">23.（附加）五峰园柳毅亭下的土阜相传是谁的墓？他留下哪个家喻户晓的传奇？（柳毅——《柳毅传》"柳毅传书"，为洞庭龙女千里传书）</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="big">吴地时光机 · 文史研学系列</div>
+  <p>讲师备课手册 · 内部资料 ｜ 资料来源：原典（《史记》《吴越春秋》《后汉书》《论语》《明史》）+ 方志核校 + 故宫博物院、辽宁省博物馆等机构资料 + DeepSeek 历史研究档案（DS-export）；传说/推测/两说处均已在文中标明</p>
+  <p style="margin-top:4px">总目录：<a href="index.html">苏州城市漫游研学 · 总目录</a> ｜ 配套现场解说：<a href="changmen_shouce.html">阊门 · 解说手册（讲师备课版）</a> ｜ 名人堂持续补充中</p>
+</footer>
+</div>
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSb();closeDrop();}});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  // 两种目录模式切换：勾选框控制顶部导航显隐
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 人物单元下拉子菜单（面板挂在吸顶容器 .toc-wrap 下，定位对齐按钮）
+  var dropWrap=document.getElementById('dropWrap'),dropBtn=document.getElementById('dropBtn'),
+      dropPanel=document.getElementById('dropPanel');
+  function closeDrop(){
+    dropWrap.classList.remove('open');dropPanel.classList.remove('open');
+    dropBtn.setAttribute('aria-expanded','false');
+  }
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var opening=!dropPanel.classList.contains('open');
+    if(opening){
+      dropPanel.classList.add('open');               // 先显示才能量宽
+      var br=dropBtn.getBoundingClientRect(),
+          wr=topbar.getBoundingClientRect(),
+          pw=dropPanel.offsetWidth||220;
+      var left=br.left-wr.left;                      // 相对吸顶容器对齐按钮
+      left=Math.min(Math.max(12,left),Math.max(12,wr.width-pw-12));
+      dropPanel.style.left=left+'px';
+      dropWrap.classList.add('open');
+      dropBtn.setAttribute('aria-expanded','true');
+    }else{closeDrop();}
+  });
+  document.addEventListener('click',function(e){
+    if(!dropWrap.contains(e.target)&&!dropPanel.contains(e.target))closeDrop();
+  });
+  dropPanel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrop);});
+  // 滚动高亮当前位置（顶栏胶囊、下拉面板、侧边栏三处联动）
+  var unitIds=['u1','u2','u3','u4','u5','u6','u7','u8'];
+  var allLinks=document.querySelectorAll('nav.toc a, .drop-panel a, .side-nav a');
+  var dropBtnEl=document.querySelector('.drop-btn');
+  function setActive(id){
+    allLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+    });
+    dropBtnEl.classList.toggle('active',unitIds.indexOf(id)>=0||id==='p1');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ['overview','p1','u1','u2','u3','u4','u5','u6','u7','u8','p2','p3','p4'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)io.observe(el);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

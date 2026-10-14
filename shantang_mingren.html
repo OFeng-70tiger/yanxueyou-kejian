@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>山塘街名人篇 · 苏州城市漫游研学｜教学大纲（讲师备课版）｜吴地时光机</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:640px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+
+/* ===== 课程信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 导航（顶栏） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 15px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer}
+nav.toc .drop-btn{-webkit-appearance:none;appearance:none;margin:0}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+/* 人物单元下拉子菜单（面板挂在吸顶容器上，避开滚动容器裁切） */
+.drop-wrap{flex:none}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 6px);left:20px;z-index:60;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:210px;max-height:calc(100dvh - 130px);overflow-y:auto}
+.drop-panel.open{display:flex}
+.drop-panel a{border:none;border-radius:9px;background:none;font-weight:400 !important;color:var(--ink-soft) !important;padding:8px 14px !important}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--red) !important}
+.drop-panel a.active{background:var(--gold-bg) !important;color:var(--red) !important;font-weight:700 !important}
+.drop-panel .d-head{font-size:.72rem;color:var(--gold);letter-spacing:.2em;padding:4px 14px 6px;font-weight:700}
+.toc-hint{display:none}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav a{padding:10px 20px;color:var(--ink-soft);text-decoration:none;font-size:.94rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a.sub{padding-left:38px;font-weight:400;font-size:.89rem}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节头 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+/* ===== 人物单元 ===== */
+.unit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;margin-top:34px;position:relative;overflow:hidden}
+.unit .tag-side{position:absolute;top:0;right:0;font-family:var(--serif);writing-mode:vertical-rl;letter-spacing:.3em;
+  background:var(--red);color:#fff;font-size:.8rem;padding:14px 8px;border-radius:0 0 0 12px;opacity:.92}
+.unit.teal .tag-side{background:var(--teal)}
+.unit.blue .tag-side{background:var(--blue)}
+.unit.gold .tag-side{background:var(--gold)}
+.unit h3{font-family:var(--serif);font-size:clamp(1.25rem,4.4vw,1.55rem);font-weight:900;letter-spacing:.06em;margin-bottom:2px}
+.unit .role{font-family:var(--serif);color:var(--gold);font-size:.95rem;letter-spacing:.2em;margin-bottom:12px}
+.unit h4{font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:22px 0 6px;display:flex;align-items:center;gap:8px}
+.unit h4::before{content:"§";color:var(--gold);font-size:.9rem}
+.unit.teal h4{color:var(--teal)} .unit.blue h4{color:var(--blue)} .unit.gold h4{color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px;letter-spacing:.05em}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.field{background:var(--teal-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.field b.t{color:var(--teal)}
+
+.qa{border:2px dashed var(--gold);border-radius:14px;padding:12px 18px;margin:10px 0}
+.qa b.t{color:var(--gold)}
+.qa p{margin:5px 0}
+.qa .q{color:var(--ink);font-weight:700}
+.qa .a{color:var(--ink-soft)}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+/* ===== 反向导航：去现场（跨页到打卡点手册 v2） ===== */
+.spot-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;align-items:center}
+.spot-row .lbl{font-size:.8rem;color:var(--ink-soft);font-weight:700;letter-spacing:.1em}
+.spot-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  color:var(--blue);background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:30px;padding:6px 14px;
+  transition:transform .15s,box-shadow .15s}
+.spot-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(58,110,165,.25)}
+.spot-link.hl{color:var(--red);background:#fdf1ef;border-color:var(--red)}
+
+/* ===== 信源标注 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 打卡点 ===== */
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-top:24px}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.25rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+
+.matrix td:first-child,.matrix th:first-child{white-space:nowrap}
+.matrix td{font-size:.88rem}
+
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{nav.toc,.side-tab,.sidebar,.side-mask{display:none}body{background:none}}
+@media(max-width:640px){
+  .unit{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+  .unit .tag-side{display:none}
+}
+[data-anchor]{scroll-margin-top:70px}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+.sister-link:hover{background:var(--blue-bg)}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学</div>
+  <h1>山塘街名人篇 · 苏州城市漫游研学</h1>
+  <div class="sub">教 学 大 纲 ｜ 讲 师 备 课 版</div>
+  <p class="desc">一条街，几朝人。本大纲照《北寺塔名人篇》《阊门名人篇》体例，按<b>沿街动线</b>排人物：街是<b>白居易</b>开的——唐宝历元年他凿河筑堤，苏州人叫它"白公堤"；<b>吴一鹏</b>在山塘长大，捐了一座桥（通贵桥）、留了一座宅（玉涵堂）；塔后的<b>五义士</b>死在一件不平事上，张溥一篇《五人墓碑记》把他们写进了课本；<b>乾隆</b>站在山塘桥头题下"山塘寻胜"，回京还照着这条街仿建了两条"苏州街"；<b>康熙</b>从阊门出城、沿山塘河到虎丘，那一趟被画成了一幅五米四的长卷；<b>贝氏</b>把家祠留在桐桥堍，十五世出了个贝聿铭；<b>柳亚子与南社</b>在张公祠宣告成立；而<b>张士诚与刘伯温</b>，留下了整条街最迷人的传说——七只石狸。<span class="hl">我们讲的不是"名人生平"，而是"这条街上的名人"——每个人都要落回一个能站人的点位。</span></p>
+  <p class="desc" style="margin-top:10px"><b>本篇的选人标准（三问）：</b>①<b>绕不开</b>——与沿街打卡点高度相关，讲这个点就绕不过他；②<b>叫得响</b>——有大众知名度，<b>或者</b>本事够硬、成就说出来让人叹服；③<b>记得住</b>——讲完听众有印象。<b>本线加一条"街本位"尺度</b>：山塘街是一条街，它的名人只收四类人——<b>造这条街的人、走过这条街的人、写这条街的人、守这条街的人</b>；仅在别处有名、恰好路过的，不收。</p>
+  <div class="src" style="margin-top:18px;border-top:none;padding-top:0"><b>信源体例</b>：与全线其他名人篇同一口径——古籍注<b>原典书名与篇目</b>，考据结论注<b>史料</b>，近现代内容注<b>权威机构或媒体</b>（苏州市地方志办公室、苏州图书馆、苏州碑刻博物馆、University of Alberta Museums 等），内部整理资料标注 <code>DS-export</code>；凡属<b>传说、民间说法、两说并存、待现场复核</b>的内容，均在行文中点明，不作定论。本篇与《山塘街 · 研学解说手册》互为补充：手册管"现场怎么讲"，本篇管"人物备多讲少"。</div>
+  <a class="sister-link" href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a class="sister-link" href="shantang_shouce.html" style="margin-left:8px">⟶ 配套：《山塘街 · 研学解说手册》（现场逐点解说）</a>
+  <div class="seal">备课备用 · 宁多勿缺</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>课程名称</b><span>吴地时光机 · 山塘街名人篇（千年老街的人物长廊）</span></div>
+  <div class="m"><b>授课对象</b><span>成人研学团 / 亲子家庭（小学三年级以上）</span></div>
+  <div class="m"><b>行程主线</b><span>阊门 → 阊门钓桥 → 白居易纪念苑 → 山塘桥头 → 山塘街（会馆段）→ 通贵桥·玉涵堂 → 过街楼 → 新民桥 → 桥洞长卷 → 七狸 → 烟火段 → 星桥（收队）</span></div>
+  <div class="m"><b>建议时长</b><span>主线 2–2.5 小时（新民桥／星桥两档收队）；星桥以西＝二次深度游</span></div>
+  <div class="m"><b>集合地点</b><span>地铁 2 号线山塘街站 / 阊门吊桥 — 山塘桥头（动线详见解说手册）</span></div>
+  <div class="m"><b>资料版本</b><span>2026-10 v1 · 人物资料池持续补充中</span></div>
+</div>
+<!-- ================= 导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <div class="drop-wrap" id="dropWrap">
+      <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false">一·人物单元<span class="caret">▾</span></button>
+    </div>
+    <a href="#p2">二·打卡点手册</a>
+    <a href="#p3">三·点位矩阵</a>
+    <a href="#p4">四·方法题库</a>
+  </nav>
+  <div class="drop-panel" id="dropPanel">
+    <div class="d-head">八 组 人 物</div>
+    <a href="#u1">单元一 · 白居易（附苏州三贤）</a>
+          <a href="#u2">单元二 · 吴一鹏</a>
+          <a href="#u3">单元三 · 五义士与张溥</a>
+          <a href="#u4">单元四 · 贝聿铭与吴中贝氏</a>
+          <a href="#u5">单元五 · 乾隆</a>
+          <a href="#u6">单元六 · 康熙</a>
+          <a href="#u7">单元七 · 柳亚子与南社</a>
+          <a href="#u8">单元八 · 张士诚与刘伯温</a>
+  </div>
+</div>
+
+<button class="side-tab" id="sideTab" aria-label="打开课程目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏课程目录">
+  <div class="side-head">
+    <span class="side-title">课程目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 课程总览与教学目标</a>
+    <div class="divider"></div>
+    <a href="#p1">第一部分 · 人物单元（八组）</a>
+    <a class="sub" href="#u1">单元一 · 白居易（附苏州三贤）</a>
+          <a class="sub" href="#u2">单元二 · 吴一鹏</a>
+          <a class="sub" href="#u3">单元三 · 五义士与张溥</a>
+          <a class="sub" href="#u4">单元四 · 贝聿铭与吴中贝氏</a>
+          <a class="sub" href="#u5">单元五 · 乾隆</a>
+          <a class="sub" href="#u6">单元六 · 康熙</a>
+          <a class="sub" href="#u7">单元七 · 柳亚子与南社</a>
+          <a class="sub" href="#u8">单元八 · 张士诚与刘伯温</a>
+    <div class="divider"></div>
+    <a href="#p2">第二部分 · 打卡点手册（按动线）</a>
+    <div class="divider"></div>
+    <a href="#p3">第三部分 · 人物 × 点位矩阵</a>
+    <div class="divider"></div>
+    <a href="#p4">第四部分 · 讲述方法与题库</a>
+  </nav>
+</aside>
+<!-- ================= 总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>课程总览与教学目标</h2></div>
+  <p class="part-sub">本课程回答一个核心问题：<b>一条由诗人开出来的街，凭什么被记了一千二百年？</b>答案不只在砖石里，更在八组人身上——有人开了它，有人捐了桥，有人为它写了诗、题了碑、画了画，有人把命留在了街上，也有人把它的样子搬回了北京。</p>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red);margin-bottom:10px">◆ 一条千年街 · 八组人物 · 三层讲述</h4>
+    <p><b>主线叙事：</b>唐宝历元年，苏州刺史<b>白居易</b>凿山塘河、筑白公堤，这条街从水里长了出来 → 明代，<b>吴一鹏</b>在山塘长大、捐建通贵桥、营建玉涵堂，"阁老厅"至今立在东杨安浜；同一个明代，五位普通市民为一件不平事挺身而死，<b>张溥</b>一支笔写下《五人墓碑记》→ 清代，<b>康熙</b>从阊门出城、沿山塘河登虎丘（这一趟被画成了行宫图），<b>乾隆</b>在山塘桥头题下"山塘寻胜"、回京仿建两条苏州街 → 近现代，<b>贝氏</b>的家祠留在桐桥堍，十五世出了世界级建筑师贝聿铭；<b>柳亚子与南社</b>在张公祠宣告成立，让山塘街成了辛亥革命的思想策源地之一；而整条街流传最广的故事，是<b>张士诚与刘伯温</b>的七只石狸。<span class="hl">从"开街"到"守街"，一条街的人物长廊，就是半部江南文史。</span></p>
+    <div class="layer"><div class="ln">1</div><p><b>表象层（看见的）：</b>一座桥、一间老宅、一块碑、七只小石兽、一间祠堂——先引导观察："你看到了什么？"小而浅没关系，这是入口。</p></div>
+    <div class="layer"><div class="ln">2</div><p><b>故事层（背后的人）：</b>每一站背后都站着具体的人——白居易、吴一鹏、五义士与张溥、贝聿铭、乾隆、康熙、柳亚子、张士诚。讲人的抉择与命运。</p></div>
+    <div class="layer"><div class="ln">3</div><p><b>精神层（带得走的）：</b>开河是为治水不是为造市场（务实）、捐桥建宅而不忘乡里（达则兼济）、五位平民"激于义而死"（匹夫之重）、把美景搬回家（文化认同）、把家祠与家谱留给故乡（根脉）——这些是学员带回家的"种子"。</p></div>
+  </div>
+
+  <table>
+    <tr><th style="width:130px">教学目标</th><td>① 认识与山塘街相关的八组人物及其事迹；② 理解这条街"唐开河—宋初盛—明大盛—清极盛—1860 焚毁—2002 修复"的生命线；③ 学会"由街见人、由人见精神"，并初步分辨<b>传说 / 推测 / 史实</b>三类说法。</td></tr>
+    <tr><th>情感目标</th><td>对家乡这条老街产生亲近感；从白居易"开河为人民"、吴一鹏"达则兼济乡里"、五义士"匹夫之有重于社稷"、贝氏"道德传家"里，受到具体的人格感染。<b>"一条街能活一千年，靠的是一代代人接力。"</b></td></tr>
+    <tr><th>讲解原则</th><td>现场看到的都是"浅"的小东西，备课却要"深"——<b>讲不一定都讲，备必须备足</b>。按现场时间、听众反应灵活取舍；传说与史实始终分开讲。</td></tr>
+    <tr><th>选人原则</th><td><b>三问＋街本位</b>：绕不开、叫得响、记得住；且须是"造街／走街／写街／守街"的人。不达标者不入单元、不报人名，知识点并入实物讲解（见第四部分"怎么选人不翻车"）。</td></tr>
+  </table>
+</section>
+<!-- ================= 第一部分 人物单元 ================= -->
+<section class="part" id="p1" data-anchor>
+  <div class="part-head"><span class="no">第一部分</span><h2>人物单元（八组）</h2></div>
+  <p class="part-sub">每个单元包含：档案速览 → 核心故事 → 现场结合点 → 互动问答 → 储备冷知识。八组按<b>沿街动线＋历史时序</b>排列：白居易在街首（纪念苑、山塘桥）开场；吴一鹏在通贵桥·玉涵堂立"街的体面"；五义士与张溥、贝氏、南社在北段（义风园、贝家祠堂、南社纪念馆，属"二次深度游"区）；乾隆、康熙在御碑亭与长卷里讲"皇帝怎么看这条街"；张士诚与刘伯温在七狸处收尾——<b>用整条街最迷人的传说落幕，回扣开场的"街是怎么来的"。</b></p>
+  <p class="part-sub"><b>与本篇的分工（重要）</b>：<b>街本身的沿革与桥梁清单</b>（十五座桥"横七竖八"、会馆群、御碑亭形制、桥洞长卷等）属于"实物讲解"，已在《山塘街 · 研学解说手册》（沿革长卷与十三站）里写全——<b>本篇不再重复设单元</b>，讲师现场直接用手册那一份。本篇只管"人物备多讲少"。</p>
+
+  <div class="unit teal" id="u1" data-anchor>
+    <div class="tag-side">单元一</div>
+    <h3>白居易 · 一条堤的诞生</h3>
+    <div class="role">唐代 · 苏州刺史 · 开街的人 · 唐宣宗亲封"诗仙"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>白居易（772—846），字<b>乐天</b>，晚号<b>香山居士</b>、醉吟先生；祖籍太原，生于新郑；谥"文"，世称"白傅""白文公"</td></tr>
+      <tr><th>最高官职</th><td>太子少傅（荣誉职）、刑部尚书（实职），从二品——<b>唐代一流诗人里官职最高的一批</b></td></tr>
+      <tr><th>苏州任期</th><td><b>宝历元年（825）三月受命，五月五日到任；宝历二年（826）九月因病离任</b>——在苏州仅约 <b>一年四个月</b></td></tr>
+      <tr><th>与山塘街关系</th><td><b>这条街就是他开的</b>：825 年凿山塘河（东起阊门渡僧桥附近、西至虎丘望山桥，"七里山塘"），以河泥堆土为堤、堤上筑路，即今山塘街——苏州人称"<b>白公堤</b>"，离任后立白公祠祀之</td></tr>
+      <tr><th>现场结合点</th><td><b>白居易纪念苑</b>（山塘街 18 号，2006 年建，又名唐少傅白公祠）｜<b>山塘桥</b>（唐始建）｜<b>新民桥桥洞诗碑</b>《武丘寺路》</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：任期与开河——《旧唐书》本传、苏州市地方志办公室《关于白居易的那些苏州吟咏》；纪念苑与修缮沿革——苏州市地方志办公室、苏州日报专稿；诗——白居易《武丘寺路》《登阊门闲望》（《白氏长庆集》）。</div>
+
+    <h4>核心故事：一个诗人，开出一条街</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先说清楚一件事，这也是现场最容易讲过头的：<b>白居易开这条河，本意是"治水＋通路"，不是"造市场"。</b>当时阊门外的河道淤塞，两岸是大片低洼稻田，梅雨一来就淹、十年九灾；从城里去虎丘的陆路也不通畅。苏州文史专家徐刚毅的原话是：白居易开凿山塘河，"<b>首要目的是解决古城的水旱灾害和水路交通问题</b>"。</p>
+    <p>河挖出来了，挖出来的土顺势堆成堤、堤上铺成路——<b>一条河与一条街，同时诞生。</b>白居易自己也很得意，写了首《武丘寺路》："自开山寺路，水陆往来频。银勒牵骄马，花船载丽人。芰荷生欲遍，桃李种仍新。好住湖堤上，长留一道春。"<b>他写的热闹，是"游赏与交通"的热闹，不是货栈牙行的热闹</b>——商业是后来几百年里慢慢长出来的（详解说手册"沿革长卷"）。</p>
+    <p>公元 826 年秋，他以眼疾（一说是堕马伤腰）离任回洛阳。<b>苏州人送他，一直送到河边</b>——他的好友刘禹锡后来写诗记下这一幕："<b>苏州十万户，尽作婴儿啼。</b>"</p>
+    <p>顺手补一句他的"官声"：在苏州一年多，他做的事不止开河——主持疏浚、减免赋税、兴修水利，离任时百姓夹道相送。<b>一个诗人做了实事，这才是他被苏州人记了一千二百年的真正原因。</b></p>
+    <div class="src"><b>信源</b>：开河动机——新华日报专访徐刚毅；《武丘寺路》《登阊门闲望》——《白氏长庆集》；"苏州十万户，尽作婴儿啼"——刘禹锡《白太守行》；离任送别——历代苏州方志追述。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 白居易纪念苑（山塘街 18 号 · 进街第一站）</b>
+    <p>一座仿古院落，2006 年建，又名"<b>唐少傅白公祠</b>"。厅内有大型<b>磨漆插屏《白居易为民修山塘》</b>，把开河筑堤的场面整个刻了出来；院内用石雕连环画表现他在苏州的生活场景。</p>
+    <p><b>一句话讲法：</b>"山塘街的第一个'主人'不是哪家店铺，是一位诗人。这条街是他一寸一寸挖出来的——你们现在走的每一步，都踩在 825 年那批挑出来的土上。"</p></div>
+    <div class="field"><b class="t">◆ 山塘桥 · 与他直接相关（第 4 站）</b>
+    <p>山塘桥是山塘河上的<b>第一座桥</b>，始建于唐、清嘉庆二十三年（1818）重建、1963 年改建为水泥桥——<b>"桥名最老，身子最新"</b>。讲白居易在这里落板：<b>街从此开始，桥也从这里开始。</b></p></div>
+    <div class="field"><b class="t">◆ 新民桥桥洞诗碑（第 9–10 站 · 现场核碑再讲）</b>
+    <p>桥洞东侧壁间嵌三块大理石诗碑：<b>白居易《武丘寺路》</b>、范成大《半塘》、唐寅《虎丘泛舟》——一条街的"诗史"就刻在桥洞里。<b>现存碑文实况以现场为准。</b></p></div>
+
+    <h4>延伸 · "苏州三贤"：韦应物与刘禹锡</h4>
+    <div class="story"><span class="t">▲ 为什么一定要带上这两位：</span>
+    <p><b>唐代三位大诗人先后做过苏州刺史</b>——韦应物、白居易、刘禹锡。后人一句"<b>苏州刺史例能诗</b>"（刘禹锡语，说的正是白居易接的是韦应物这个"例"）把他们串在了一起；苏州人后来把他们三个并称"<b>苏州三贤</b>"，建"思贤堂"纪念，<b>还把三位奉为城隍神</b>——理由不只诗名，更是他们在任上给百姓办了实事。</p>
+    <div class="src"><b>信源</b>：苏州三贤与思贤堂——苏州图书馆《文韵苏州·刘禹锡》专题；"苏州刺史例能诗"——刘禹锡《白舍人曹长寄新诗，有游宴之盛，因以戏酬》。</div></div>
+
+    <h5 style="font-family:var(--serif);color:var(--teal);margin:16px 0 4px">其一 · 韦应物（737—约 792）｜清贫到没有路费回家</h5>
+    <table>
+      <tr><th>苏州任期</th><td>贞元四年（788）出任苏州刺史，约三年；世称"<b>韦苏州</b>"</td></tr>
+      <tr><th>与山塘街／苏州的关联</th><td>① 在苏州刺史官署（郡斋）写下名篇<b>《郡斋雨中与诸文士燕集》</b>，宴集的客人里就有<b>苏州人顾况</b>——顾况后来又是白居易"长安米贵"典故里的那位前辈（见"储备冷知识"）；② 登<b>重玄寺阁</b>（重玄寺即今北寺报恩寺前身）写下"<b>始见吴都大，十里郁苍苍</b>"，这是唐诗里关于苏州最壮阔的全景镜头之一；③ 与友人"<b>虎丘惬登眺，吴门怅踌躇</b>"（《赠丘员外》）——虎丘与山塘正是他时常去的地方</td></tr>
+      <tr><th>结局（最动人的一笔）</th><td>任满后<b>清贫到凑不出回京的路费</b>，索性留在苏州租田亲耕，最后<b>客死苏州永定寺</b>"身多疾病思田里，邑有流亡愧俸钱"是他的名句，范仲淹赞为"仁者之言"</td></tr>
+      <tr><th>与白居易的"神交"</th><td>白居易十四五岁旅居苏杭时，韦应物已老、无缘相见，但白居易一生仰慕他。<b>后来白居易任苏州刺史，特地把韦应物的诗刻在郡斋石上，并撰《吴郡诗石记》记下少年时的仰慕</b>——两位苏州刺史隔着三十年"接了力"</td></tr>
+    </table>
+    <div class="quote">"兵卫森画戟，宴寝凝清香……<b>自惭居处崇，未睹斯民康</b>……吴中盛文史，群彦今汪洋。"<small>—— 韦应物《郡斋雨中与诸文士燕集》（唐人郡斋宴集名篇，顾况有和作）</small></div>
+    <div class="src"><b>信源</b>：韦应物苏州事略与诗——陈尚君《韦应物在苏州》（中国作家网）、苏州市地方志办公室《说古道今·"遇一人白首，择一城终老"》；《吴郡诗石记》——白居易文。</div>
+
+    <h5 style="font-family:var(--serif);color:var(--teal);margin:16px 0 4px">其二 · 刘禹锡（772—842）｜与白居易同年生、同做苏州刺史</h5>
+    <table>
+      <tr><th>苏州任期</th><td>大和五年（831）十月出任苏州刺史，大和八年（834）离任——比白居易晚约五年</td></tr>
+      <tr><th>政绩（比诗更硬）</th><td>到任时苏州刚遭大水，"<b>昼夜苦心，寝食忘味</b>"：深入民间查灾、上书朝廷，从常平义仓<b>调拨十二万石米</b>逐户分发、并减免赋役，使"<b>民无流徙</b>"；因政绩第一，朝廷赐他<b>紫金鱼袋</b>（三品章服）。白居易隔空贺他："<b>海内姑苏太守贤</b>"</td></tr>
+      <tr><th>与山塘街／虎丘的关联</th><td>① 离任后写的<b>《发苏州后登武丘寺望海楼》</b>——"碧池涵剑彩，宝刹摇星影。却忆郡斋中，虚眠此时景"，武丘寺即<b>虎丘寺</b>，正是山塘街的西端终点；② <b>《别苏州》</b>其一："<b>流水阊门外，秋风吹柳条。从来送客处，今日自魂销</b>"——<b>写的正是阊门外、山塘河头</b>，是全唐诗里最著名的苏州送别句</td></tr>
+      <tr><th>与白居易</th><td>同年生（皆 772）、并称"<b>刘白</b>"，唱和诗编成《刘白唱和集》。白居易《寄刘苏州》："同年同病同心事，除却苏州更是谁！"</td></tr>
+      <tr><th>身后哀荣</th><td>沧浪亭五百名贤祠有其石刻像，赞曰"<b>政擢贤良，学通经史。颉韦颃白，卓哉刺史</b>"——"颉韦颃白"四字，正是说他与韦应物、白居易比肩</td></tr>
+    </table>
+    <div class="quote">"<b>流水阊门外，秋风吹柳条。从来送客处，今日自魂销。</b>"<small>—— 刘禹锡《别苏州二首》其一（写阊门外送别，即今山塘街东口一带）</small></div>
+    <div class="src"><b>信源</b>：刘禹锡苏州政绩与诗——苏州图书馆《苏州文学名家系列·刘禹锡》；《吴郡图经续记》"梦得之为州，当灾疫之后，民无流徙"；五百名贤祠像赞——苏州碑刻博物馆。</div>
+    <div class="tip"><b>现场用法：</b>"山塘街的第一位主人白居易，不是孤例——他前后还有两位'同行'：一位是清贫到回不了家的韦应物，一位是拨了十二万石救命米的刘禹锡。苏州人把三个刺史供进了城隍庙。<b>一条街的开头，站着的是一群会写诗、也会做事的人。</b>"</div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：山塘街是谁开的？哪一年？</p>
+      <p class="a">A：苏州刺史白居易，唐宝历元年（825）——凿山塘河、堆土筑堤成路，苏州人叫它"白公堤"。</p>
+      <p class="q">Q2：他开这条河，本来是为了什么？</p>
+      <p class="a">A：<b>治水患＋通水陆交通</b>（两岸低洼稻田常淹、去虎丘陆路不畅）——<b>不是</b>为了造商业街，商业是后来几百年长出来的。</p>
+      <p class="q">Q3：白居易在苏州当了多久的官？</p>
+      <p class="a">A：约一年四个月（825.5—826.9），最后因病离任。</p>
+      <p class="q">Q4：唐代还有哪两位大诗人做过苏州刺史？</p>
+      <p class="a">A：<b>韦应物</b>（788—791，清贫到无路费回京，客死苏州）与<b>刘禹锡</b>（831—834，拨十二万石米救灾）——三人并称"苏州三贤"，被苏州人奉为城隍神。</p>
+      <p class="q">Q5："诗仙"是谁？</p>
+      <p class="a">A：<b>最早是白居易，而且是唐宣宗亲封的</b>——宣宗《吊白居易》"缀玉联珠六十年，谁教冥路作诗仙"。李白在世时的称号是贺知章给的"谪仙人"，"诗仙"正式移用于李白要晚到北宋。白居易一人三名号：<b>诗仙、诗魔、诗王</b>。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① <b>顾况——这条线上的"枢纽人物"</b>：他是苏州人，既在韦应物的郡斋宴上作和诗，又是白居易初到长安时那句"<b>长安米贵，居大不易</b>"的调侃者（顾况读了"离离原上草"之后改口："有句如此，居天下亦不难"）。<b>一句话把韦应物、白居易两条线串起来。</b><br>
+    ② 白居易的"三称号"排场：<b>诗仙</b>（唐宣宗封）、<b>诗魔</b>（《与元九书》自述"知我者以为诗仙，不知我者以为诗魔"）、<b>诗王</b>（后世泛称，本主其实是杜甫）。<br>
+    ③ 他存诗近 3000 首，是<b>唐代存诗最多</b>的诗人（约占《全唐诗》1/17）。高产的一个诀窍是"活得久"——白居易 75 岁、陆游 85 岁、乾隆 89 岁，而李贺只活了 27 岁。<br>
+    ④ "红栏三百九十桥"里的"三百九十"是<b>诗家概数</b>，别当成唐代苏州真有 390 座桥。<br>
+    ⑤ 古今"白公祠"不是一处：今天的纪念苑在渡僧桥附近（2006 年建）；而历史上嘉庆二年（1797）苏州知府任兆炯所建的白公祠，在山塘街 845 号（后来的塔影园、李鸿章祠旧址，今苏州幼师内）。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="shantang_shouce.html#st3">第 3 站 · 白居易纪念苑 ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#history">沿革长卷 · "先有水利，后有商街" ↗</a>
+    </div>
+  </div>
+
+  <div class="unit" id="u2" data-anchor>
+    <div class="tag-side">单元二</div>
+    <h3>吴一鹏 · 桥与宅</h3>
+    <div class="role">明代 · 南京吏部尚书 · 山塘本地人 · 沧浪亭五百名贤之一</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>吴一鹏（1460—1542），字<b>南夫</b>，号<b>白楼居士</b>；长洲人，<b>世居苏州阊门外山塘</b>；谥<b>文端</b>，人称"<b>吴阁老</b>"，著《吴文端公集》</td></tr>
+      <tr><th>功名仕途</th><td>成化二十二年（1486）中举，<b>弘治六年（1493）进士</b>；历任翰林院编修、国子监祭酒、太常卿、礼部尚书兼翰林学士；<b>七十岁在太子少保、南京吏部尚书任上致仕</b>，卒赠太子太保</td></tr>
+      <tr><th>与山塘街关系</th><td>① <b>捐建通贵桥</b>（明弘治初，约 1488）——桥名"通贵"就因他而取；② 嘉靖十年（1531）在<b>通贵桥下塘东杨安浜</b>建成<b>玉涵堂</b>（俗称"阁老厅"），为山塘地区最大的古建筑群；③ <b>正德年间山塘街重修，他捐出俸银</b>；④ 致仕后居家十四年，对乡里"颇多义举"</td></tr>
+      <tr><th>身后荣典</th><td><b>沧浪亭五百名贤祠</b>有其石刻像，赞曰"<b>侃侃吴公，独持大礼。宁被罪愆，不敢失礼</b>"；卒后<b>文徵明为其撰墓志铭</b>，并作《寿吴白楼先生》称他"冲襟淡宇渊而静，儒雅风流更辉映"</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平与山塘义举——苏州市政协文史委员会夏冰考述（《苏州杂志》1992、苏州日报《玉涵堂的故事》）；五百名贤像赞——苏州碑刻博物馆；墓志铭——文徵明文集。</div>
+
+    <h4>核心故事：一座桥，一间宅，一个"达则兼济乡里"的人</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先讲个苏州本地人才知道的梗：<b>明代苏州出过两位"吴阁老"</b>——一位是文定公<b>吴宽</b>，另一位就是文端公<b>吴一鹏</b>。吴宽历代记载多、名气大；吴一鹏反而"事迹鲜为人知"。而他就住在<b>阊门外的山塘</b>。</p>
+    <p>第一件事是<b>捐桥</b>。他住在山塘街，好友郭某住在河对岸，来往不便。于是他出资在河上造了一座石拱桥，桥一建成，两位"贵人"的往来之路就通了，<b>因此取名"通贵"</b>。《丹午笔记》记的就是这桩"造桥以便往来"。这座桥今天仍站在山塘街上——<b>你今天走上去的那几级台阶，是 1488 年前后的事了。</b></p>
+    <p>第二件事是<b>修街</b>。正德年间山塘街重修，他捐了俸银；嘉靖五年（1526）江南大旱、江北大水，他上奏请求减免灾区租税、发粮赈灾。此外他捐田百亩创建崇正书院、恢复齐门外被侵占的陆宣公墓、修葺蠡口陈孝子祠、为长洲县丞刘幹建衣冠冢——<b>一个人为家乡做的事，能列成一张单子。</b></p>
+    <p>第三件事是<b>他的宅子</b>。嘉靖十年（1531），71 岁的吴一鹏在通贵桥下塘建起"玉涵堂"，名字取自孔子"<b>君子于玉比德</b>"之意。这处宅子四路五进、占地 4896 平方米，是<b>山塘地区最大的古建筑群</b>；中路第三进"阁老厅"至今仍是明代遗构。</p>
+    <p>最后一件是<b>他的脾气</b>。为官正直、不阿权贵，为规范典章制度<b>敢当面顶撞皇帝</b>，因此得罪过刘瑾（被贬南京）、也因"大礼议"为张璁、桂萼所忌——<b>五百名贤祠那句"宁被罪愆，不敢失礼"，说的就是他的骨头。</b></p>
+    <div class="src"><b>信源</b>：通贵桥捐建与桥名由来——《丹午笔记》；玉涵堂形制与年代——苏州市文物保护单位档案、苏州日报；为官与顶撞皇帝——《国朝献征录·吴一鹏传》、《明史》相关记载；赠匾像赞——苏州碑刻博物馆。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 通贵桥（第 7 站 · 第一座真正的古桥）</b>
+    <p>单孔石拱桥，长 19 米、宽 2.3 米、跨径 7.2 米，南堍 13 级踏步、北堍 16 级。桥栏望柱上还刻着"<b>里人吴三复重建通贵桥</b>"（乾隆五十三年，1788）与"光绪陆年九月吉旦·虎丘清节堂、昌善局重修"——<b>桥身本身就是一部石头记的修缮账</b>。</p>
+    <p>现场两件事：① 桥头那只通贵狸是七只里<b>包浆最亮</b>的一只（"摸摸狸猫头，一年好到头"）；② <b>南看静谧、北看热闹</b>——一桥两面，一张照片两种气质。</p></div>
+    <div class="field"><b class="t">◆ 玉涵堂（通贵桥下塘 · 东杨安浜）</b>
+    <p>过桥即到。中路第三进"阁老厅"为明代遗构，面阔三间 16 米、进深六檩 14 米，扁作梁架、青石鼓墩柱础；全宅原有砖雕门楼五座，其中"<b>状元游街图</b>"砖雕尤为精巧——状元、榜眼、探花骑高头大马，仪仗鸣锣开道，是江南砖雕门楼中难得一见的精品。</p>
+    <p><b>近况：</b>此宅民国后曾归安徽休宁茶商，后来长期作<b>苏州茶厂仓库</b>（电影《红粉》曾在此取景），2002 年随山塘保护工程作修复试点，2003 年底竣工，现为文旅空间（东路茶文化馆、西路"山塘人文风情馆"）。<b>能否入内以现场为准。</b></p></div>
+    <div class="field"><b class="t">◆ 一句话立意</b>
+    <p>"这条街上有两种了不起：一种是把街开出来的人（白居易）；一种是生在街上、发达了也没忘了街的人——吴一鹏就是后者。<b>他捐了一座桥，留了一座宅，还把'阁老'两个字，永远地钉在了山塘的一条小巷里。</b>"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：通贵桥是谁捐的？为什么叫"通贵"？</p>
+      <p class="a">A：<b>吴一鹏</b>捐建（明弘治初，约 1488）。他住山塘街、好友郭某住对岸，造桥以便往来，桥通"贵人"之路，故名"通贵"。</p>
+      <p class="q">Q2："阁老厅"是谁家的宅子？什么时候建的？</p>
+      <p class="a">A：吴一鹏故居<b>玉涵堂</b>（俗称阁老厅），嘉靖十年（1531）建成，四路五进、占地 4896㎡，是山塘最大的古建筑群。</p>
+      <p class="q">Q3："玉涵"两个字什么意思？</p>
+      <p class="a">A：取自孔子"<b>君子于玉比德</b>"——用玉来比德，是文人对自己的期许。</p>
+      <p class="q">Q4：这位吴阁老的"证据"在哪块碑上？</p>
+      <p class="a">A：<b>沧浪亭五百名贤祠</b>——"侃侃吴公，独持大礼。宁被罪愆，不敢失礼。"（山塘街的第一个"官方认证"，就在沧浪亭的墙上）</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 他的儿子<b>吴子孝</b>（1495—1563）是文学家，写了一部《<b>玉涵堂稿</b>》——<b>宅名直接进了书名</b>，这在古代是很少见的待遇。<br>
+    ② 通贵桥"通贵"的另一半来历：与吴一鹏"朝夕过从"的那位对岸邻居是<b>郭方伯</b>（《丹午笔记》所记）。<br>
+    ③ 吴一鹏的墓志铭是<b>文徵明</b>写的——而文徵明的孙子<b>文肇祉</b>后来也在山塘建了"海涌山庄"（即后来的塔影园）。<br>
+    ④ 玉涵堂修复用的"香山帮传统建筑营造技艺"是国家级非遗，领衔者是代表性传承人<b>薛福鑫</b>——修古宅本身，就是一门手艺。<br>
+    ⑤ 苏州"被 1860 年那场火烧掉的大殿"不止一处，而玉涵堂能留下明代主厅，靠的是"一直有人用着它"——<b>茶厂当仓库，反倒保住了它</b>。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="shantang_shouce.html#st7">第 7 站 · 通贵桥（摸通贵狸） ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#st4">第 4 站 · 十五座桥"横七竖八" ↗</a>
+    </div>
+  </div>
+
+  <div class="unit gold" id="u3" data-anchor>
+    <div class="tag-side">单元三</div>
+    <h3>五义士与张溥 · 街的骨气</h3>
+    <div class="role">明天启—崇祯 · 《五人墓碑记》主角 · 义风园（星桥以西）</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>五位义士</th><td><b>颜佩韦、杨念如、马杰、沈扬、周文元</b>——明末苏州市民，职业各异（周文元是周顺昌的车夫/轿夫），"生于编伍之间，素不闻诗书之训"</td></tr>
+      <tr><th>导火索人物</th><td><b>周顺昌</b>（1584—1626），号蓼洲，东林党人，原吏部员外郎，因不满魏忠贤而被构陷逮捕——"<b>五人者，盖当蓼洲周公之被逮，激于义而死焉者也</b>"</td></tr>
+      <tr><th>执笔人</th><td><b>张溥</b>（1602—1641），字天如，太仓人，<b>复社领袖</b>；崇祯二年（1629）撰《五人墓碑记》，后收入《古文观止》——<b>入选中学语文教材，国民认知度极高</b></td></tr>
+      <tr><th>与山塘街关系</th><td>事件发生在山塘街：天启六年（1626）魏忠贤党羽在山塘街为魏建"<b>普惠生祠</b>"，周顺昌当街大骂；五人死难后，崇祯年间<b>拆生祠、葬五人于祠基之上</b>——即今<b>义风园</b>（山塘街 775 号，一说 777 号）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：事件始末——《明史》相关传、张溥《五人墓碑记》；义风园沿革——江苏省不可移动文物档案、"成长苏州"官方介绍、苏州日报《寻访明代散文里的"五人墓"》；碑刻——苏州碑刻博物馆。</div>
+
+    <h4>核心故事：五个普通人，为什么值得建一座园子</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>天启六年（1626）三月，苏州发生了一件震动全国的事。</p>
+    <p>魏忠贤权焰熏天的时候，他的党羽、苏州巡抚毛一鹭在山塘街上为魏忠贤建了一座"<b>普惠生祠</b>"（用的木料还是从无锡东林书院拆来的）。而苏州本地的东林党人<b>周顺昌</b>，因为给被逮捕的友人魏大中设宴送行、还与他结为亲家，被魏忠贤记恨，罗织罪名下令逮捕。</p>
+    <p>锦衣卫到苏州开读诏书那天，<b>数万苏州市民自发聚集，持香为周顺昌鸣冤</b>。缇骑蛮横叫嚣"拿人"，人群中五位普通市民挺身而出，带头痛打缇骑，一名东厂缇骑被当场打死，巡抚毛一鹭<b>吓得躲进厕所</b>才逃过一劫。事后的报复来了：毛一鹭以"吴民之乱"上奏，要追究所有人——<b>这五个人为了不牵连参与斗争的百姓，主动站出来投案</b>。</p>
+    <p>临刑那天，史书的记载是这样的八个字："<b>意气扬扬，呼中丞之名而詈之，谈笑以死。</b>"头颅被挂在城上，"颜色不少变"，后来有义士凑了五十金把头颅买回来，与尸身合葬——<b>所以今天墓中的五人，是完整的。</b></p>
+    <p>下一年（1627），天启帝亡、崇祯即位、魏忠贤自杀。苏州人积压的怒火一夜之间迸发：<b>把魏忠贤的生祠夷为平地，把五义士的遗骨迁来，葬在生祠的废基上，立碑大书"五人之墓"。</b>——<b>用奸臣献媚的祠基，做义士的坟茔，这是苏州人给出的一个态度。</b></p>
+    <p>两年后（1629），复社领袖张溥路过苏州，面对五人墓，挥笔写下了《五人墓碑记》。文末那句话，一千年来分量不减：<b>"亦以明死生之大，匹夫之有重于社稷也。"</b>——一个普通人的分量，一样能压得住江山。</p>
+    <div class="src"><b>信源</b>：细节取自张溥《五人墓碑记》原文及《明史》相关记载；"躲进厕所""五十金买头"等情节见张溥原文与苏州日报专稿；"一夜之间拆祠"见"成长苏州"官方介绍。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 义风园（山塘街 775 号 · 星桥以西 = 二次深度游）</b>
+    <p>墓门朝南、前临山塘河，进门按顺序看四样东西：</p>
+    <p>① <b>"义风千古"石坊</b>——双柱出头石坊，匾额为<b>杨廷枢</b>所题；<br>
+    ② <b>享堂</b>——明间立"<b>五人之墓</b>"碑，高约 2.2 米，<b>是一位叫韩馨的人 8 岁时所题</b>（崇祯元年，1628）——<b>"八岁小孩题墓碑"，这是全场最好用的一个钩子</b>；东次间立《五人墓碑记》石刻，另有清代书条石 10 余块；<br>
+    ③ <b>墓冢</b>——一字横列、条石围砌，东西长 16.87 米、南北宽 6 米、高 1.35 米，正面嵌五人名碑，墓前塑五义士像；<br>
+    ④ <b>葛成墓</b>——在五人墓西侧。葛成（尊称"葛贤"）是万历年间苏州丝织工人抗税斗争的领袖，出于敬佩<b>自愿在五人墓旁结庐守墓</b>，崇祯三年（1630）病故后就葬在这里，陈继儒为他题"吴葛将军碑记"。</p>
+    <p>园内还有明末<b>《重修白公堤记》石幢</b>、复社纪念展馆——<b>一件讲"街是我们修出来的"，一件讲"这些人是怎么被记住的"。</b></p></div>
+    <div class="field"><b class="t">◆ 一句话立意</b>
+    <p>"这条街上有阁老的宅子（玉涵堂），也有五个普通人的坟。苏州人把两样都供了起来——<b>五百名贤祠里有吴一鹏，义风园里有五义士。</b>体面与骨气，这条街都有。"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：五人墓安葬的是哪五个人？</p>
+      <p class="a">A：<b>颜佩韦、杨念如、马杰、沈扬、周文元</b>（其中周文元是周顺昌的车夫）。</p>
+      <p class="q">Q2：他们为什么而死？</p>
+      <p class="a">A：天启六年（1626）苏州市民为保护被魏忠贤构陷的东林党人<b>周顺昌</b>而聚集抗议，五人带头反抗，事后为不连累百姓主动投案赴死。</p>
+      <p class="q">Q3：《五人墓碑记》是谁写的？什么时候？</p>
+      <p class="a">A：复社领袖<b>张溥</b>，崇祯二年（1629）；此文后收入《古文观止》，并被选入中学语文教材。</p>
+      <p class="q">Q4：为什么把五个人葬在魏忠贤的生祠旧址上？</p>
+      <p class="a">A：崇祯即位后魏忠贤失势自杀，苏州人拆了他的"普惠生祠"，<b>把用奸臣之祠基，做义士之坟茔</b>——这是一个态度。</p>
+      <p class="q">Q5："五人之墓"碑是谁题的？</p>
+      <p class="a">A：<b>韩馨 8 岁时所题</b>（崇祯元年）——碑高约 2.2 米，1981 年整修时自墓门移入享堂。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 五位义士之外，园里还有第六个人值得讲——<b>葛成（葛贤）</b>：万历年间苏州丝织工人的抗税领袖，晚年自愿为五人守墓，"守墓人"这个身份本身就是一种态度。<br>
+    ② <b>54 位复社名士</b>在崇祯七年（1634）合力出资建墓，并立《五人墓义助疏》碑——出资名单里有吴默、文震孟、钱谦益、瞿式耜、<b>董其昌</b>、陈继儒、王时敏、张溥、杨廷枢……<b>一份出资名单，就是半部晚明文化史</b>。<br>
+    ③ 李玉根据此事创作了昆剧《<b>清忠谱</b>》——<b>中国戏剧史上第一部纪实性反映市民斗争的历史剧</b>。<br>
+    ④ 1956 年义风园被列为<b>江苏省文物保护单位</b>；1966 年起遭破坏，1981 年重修并移建清代厅堂为"义风堂"，1982 年 5 月重新开放。<br>
+    ⑤ 苏州日报 2026 年专稿的一句话可以直接引用：<b>"山塘街 775 号的青山桥畔，一座不起眼的墓园静静伫立，却承载着苏州城最惊心动魄的一段历史。"</b></div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="shantang_shouce.html#st13">第 13 站 · 星桥收队（往西即义风园） ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#faq">纠错与答疑 · 1860 年那场火 ↗</a>
+    </div>
+  </div>
+
+  <div class="unit blue" id="u4" data-anchor>
+    <div class="tag-side">单元四</div>
+    <h3>贝聿铭与吴中贝氏 · 一个家族的根</h3>
+    <div class="role">现当代 · 世界级建筑大师 · 贝家祠堂（半塘桐桥堍）</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>贝氏源流</th><td>明中叶，一世<b>贝兰堂</b>自浙江兰溪迁居苏州，在<b>阊门外南濠</b>世代经营药业；至七世已成"吴中巨富"，至今<b>绵延十八世</b>——苏州"吴中大姓"之一（郡望"清河"）</td></tr>
+      <tr><th>建祠人</th><td>祠原为清礼部儒士<b>贝启祚</b>之妻<b>贝程氏</b>的<b>节孝祠</b>——贝启祚与贝程氏为贝氏第四世；至七世<b>贝慕庭</b>时，在虎丘山塘半塘桐桥堍建此家祠</td></tr>
+      <tr><th>贝程氏其人</th><td>据乾隆《府志》：老父患病伤口溃疡时她亲自吮毒、几乎染病；27 岁丧夫，<b>守节 32 年</b>，织麻纺絮、抚养 7 岁孤子成人——这就是"节孝"二字的来历</td></tr>
+      <tr><th>第十五世</th><td><b>贝聿铭</b>（1917—2019），世界著名建筑大师：肯尼迪图书馆、卢浮宫金字塔、香山饭店、<b>苏州博物馆</b>；少年时代在苏州度过，<b>苏州博物馆被誉为他"最亲密的'小女儿'"</b></td></tr>
+    </table>
+    <div class="src"><b>信源</b>：贝氏世系与节孝祠——乾隆《府志》、中国经济网《"贝家祠堂"修复工程在山塘奠基》、中新社《探访贝聿铭家族的"贝家祠堂"》；纪念馆现状——苏州市廉政教育基地预约须知。</div>
+
+    <h4>核心故事：一座祠堂，一个家族的十八代</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先讲这座祠堂的来历，它其实是一座<b>"女人的祠堂"</b>。贝家第四世的贝程氏，27 岁守寡，守节 32 年，织麻纺絮把 7 岁的儿子拉扯成人；更早的时候，父亲伤口溃烂，她亲自用嘴吸吮驱毒，差点送了命。到第七世贝慕庭当家时，家族为纪念这位祖奶奶，在<b>虎丘山塘半塘桐桥堍</b>建起了这座"贝节孝祠"。</p>
+    <p>再讲一个神话。院墙上有一块牌匾讲着贝家的"发家故事"：康熙初年，贝氏在阊门外开药店；仙人<b>刘海</b>为追寻逃到贝家的三足金蟾上门，为报贝氏恩德，便满足贝氏的愿望，保其子孙衣食无忧、平平安安。<b>神话归神话，贝家确实兴旺了十八代。</b></p>
+    <p>兴旺靠什么？纪念馆里有一句家训，答案就在里面——"<b>道德传家久，家风继世长</b>"。从药业起家，到后世的金融（贝理泰、贝祖诒）、建筑（贝聿铭），贝氏一脉文风日盛，向上海、香港、美国扩展，<b>但家祠一直留在这条老街的桥堍上</b>。</p>
+    <p>2008 年 5 月，"贝家祠堂"修复工程奠基。当时已九十多岁的贝聿铭委托胞弟<b>贝聿昆</b>携在苏亲属赶来参加，贝聿昆代表贝氏亲属发言，说了"<b>思祖之情、思乡之情、思报之情</b>"，并赠匾"<b>吴中一贝，根深叶茂</b>"。<b>——这十二个字，就是这座祠堂的全部意义。</b></p>
+    <div class="src"><b>信源</b>：奠基与赠匾——中国经济网 2008-05 报道；贝程氏事迹——乾隆《府志》引述、中新社报道；家训与"三情"——中新社《探访贝聿铭家族的"贝家祠堂"》。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 吴中贝氏纪念馆（山塘街 603 号 · 半塘桐桥堍）</b>
+    <p><b>形制变迁（讲这条线最有味道）：</b>祠堂前后祠宇分别毁于 <b>1959 年筑双轨铁路</b>、<b>1998 年建北环路万福桥</b>；仅存的牌坊在 2007 年北环路扩建时<b>被逐块编号拆除保存</b>，后移建于新祠堂入口处。2008 年 5 月开工，2009 年 9 月完工，<b>2010 年虎年春节正式开馆</b>。新祠堂在原址<b>东移 50 米</b>处修复，由东西两路组成（东路三进辅房、西路祠堂＋西花园）。</p>
+    <p><b>看点：</b>牌坊（仅存的原物，牌坊上还刻着"节孝"）→ 门厅悬挂"吴中贝氏纪念馆"匾 → 内院墙上贝氏神话牌匾 → 陈列<b>贝氏世系图、家谱、杰出人物介绍</b>，回廊陈列贝聿铭作品图片（肯尼迪图书馆、香山饭店、苏州博物馆）。</p>
+    <p><b>开放：</b>工作日 9:00–17:00（16:30 停止入馆），<b>实名制分时段预约</b>，一般通过单位发函预约——<b>带团前务必先约</b>。</p></div>
+    <div class="field"><b class="t">◆ 一句话立意</b>
+    <p>"这条街上有位世界级的建筑师，他是贝家第十五代。他的作品遍布世界，但他家的祠堂、他家的家谱、他家的根，都在这条老街的一座桥堍上。<b>贝聿铭晚年给苏州博物馆起过一个绰号——'最亲密的小女儿'。一个把家祠留在老街上的人，盖得出让人记住的房子。</b>"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：山塘街 603 号这座建筑，原本是谁的祠堂？</p>
+      <p class="a">A：贝氏四世<b>贝启祚之妻贝程氏的节孝祠</b>，由贝氏七世贝慕庭所建——所以它最早是"节孝祠"，不是普通的家祠。</p>
+      <p class="q">Q2：贝聿铭是贝家第几代？</p>
+      <p class="a">A：<b>第十五世</b>（贝氏一世贝兰堂明中叶自浙江兰溪迁吴，至今已历十八世）。</p>
+      <p class="q">Q3：贝家祠堂最"传奇"的一段经历是什么？</p>
+      <p class="a">A：祠堂主体先后毁于 1959 年铁路、1998 年北环路的建设；仅存牌坊在 2007 年道路扩建时<b>被逐块编号拆下保存</b>，后来在新建祠堂入口重新立起来——<b>"拆的时候编了号，就是准备再见面的"</b>。</p>
+      <p class="q">Q4："吴中一贝，根深叶茂"是谁送来的一块匾？</p>
+      <p class="a">A：2008 年祠堂修复奠基时，贝聿铭委托胞弟<b>贝聿昆</b>携亲属参加并赠送——"一贝"是姓，"根深叶茂"是盼头。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 贝氏家训"<b>道德传家久，家风继世长</b>"——纪念馆里的话，也是这个家族十八代不衰的一个注脚。<br>
+    ② 贝氏近代还有"金融一脉"：<b>贝理泰</b>（参与创办上海银行）、<b>贝祖诒</b>（贝聿铭之父，曾任中央银行总裁）——<b>这个家族不止出了建筑师，还出过管钱的人</b>。<br>
+    ③ 与贝家渊源相连的还有<b>狮子林</b>：1917 年为贝聿铭叔祖<b>贝润生</b>所购，修葺后成为贝家花园，少年贝聿铭曾在其中玩耍——<b>苏州博物馆的"片石假山"，正是从这里得到的灵感（此说属通行说法，讲时用"一般认为"）</b>。<br>
+    ④ 祠堂的位置学问：它选在<b>半塘桐桥堍</b>——桐桥是山塘街中段最著名的一处（顾禄《桐桥倚棹录》即以此桥为名），<b>贝家把祠堂建在全街最"有书卷气"的地方</b>。<br>
+    ⑤ 祠堂门牌"山塘街 603 号"，与南社纪念馆（800 号）、义风园（775 号）同在星桥以西——<b>三处都在"二次深度游"段，可以连成一条"名人祠堂线"</b>。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="shantang_shouce.html#st13">第 13 站 · 星桥收队（往西即贝家祠堂） ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#mat">素材矩阵 · 二次深度游清单 ↗</a>
+    </div>
+  </div>
+
+  <div class="unit" id="u5" data-anchor>
+    <div class="tag-side">单元五</div>
+    <h3>乾隆 · 御碑亭里的头号铁粉</h3>
+    <div class="role">清代 · 六下江南 · "山塘寻胜"题碑人 · 两条苏州街的幕后</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>清高宗<b>爱新觉罗·弘历</b>（1711—1799），年号乾隆，在位 60 年（后为太上皇 4 年）</td></tr>
+      <tr><th>六下江南</th><td><b>1751（十六年）／1757（二十二年）／1762（二十七年）／1765（三十年）／1780（四十五年）／1784（四十九年）</b>——共六次</td></tr>
+      <tr><th>与山塘街关系</th><td>① 六次南巡每次过苏州都经山塘；② <b>乾隆二十七年（1762）题"山塘寻胜"</b>；③ 据统计他诗中直接写到山塘的<b>九首</b>；④ 回京后<b>以七里山塘为蓝本仿建了两条"苏州街"</b></td></tr>
+      <tr><th>现场结合点</th><td><b>御碑亭</b>（山塘街入口、山塘桥堍，2003 年新建，碑字拓自虎丘御碑——"字是真迹，亭是新造"）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：六次南巡年份——光明日报《乾隆的"旅行手册"》、人民网、《清史稿·高宗本纪》；"山塘寻胜"——乾隆《御制诗三集》卷二十一《题虎邱云岩寺》；仿建苏州街——中国经济网、搜狐《老街故事》等，1986 年颐和园重建；御碑亭——苏州市地方志办公室。</div>
+
+    <h4>核心故事：一个把江南"搬回家"的皇帝</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先说那句你们每天都能看到的四个字：<b>"山塘寻胜"</b>。它不是一句独立的题词，是从乾隆一首诗的首联里"各取两个字"拼出来的——原诗<b>《题虎邱云岩寺》</b>开头两句："<b>阊门西转历山塘，寻胜云岩春载阳</b>"。<b>"山塘"＋"寻胜"</b>，四个字，把"出阊门—经山塘—上虎丘"的整条动线都装进去了。</p>
+    <p><b>年份要记牢：乾隆二十七年，1762 年，是他六下江南中的第三次。</b>（网上不少文章写成"第二次南巡"——是错的，正好可以当一个防坑点讲。）还有一条时间线很妙：<b>《姑苏繁华图》成于乾隆二十四年（1759），比这一趟早三年</b>——<b>画先记下了山塘的盛况，皇帝三年后才亲自走到街上。</b></p>
+    <p>接着讲他有多喜欢这条街。最实在的证明不是御笔，而是他回去以后干的事：<b>乾隆在皇家园林里仿建了两条"苏州街"</b>——① 1761 年，为庆贺太后七十大寿，在北京万寿寺紫竹院旁沿玉河仿建了一条苏州街，"<b>以山塘街为蓝本</b>"；② 1792 年，又在清漪园（今颐和园）万寿山北造了一条，"<b>也还是山塘街的翻版</b>"。这两条街后来毁于战火，<b>1986 年颐和园又按旧貌重建了苏州街</b>——七里山塘的样子，就这样在北京被复刻了两次。</p>
+    <p>最后收一句：<b>苏州的繁华，是被皇帝"看进去、写下来、搬回家"的。</b>而这条街上唯一还留着"他来过"的实物，就是山塘桥头那座小亭子里的碑。</p>
+    <div class="src"><b>信源</b>：仿建苏州街的时间与蓝本——中国经济网、搜狐《老街故事·苏州七里山塘街》等多源一致；1761／1792 两次与 1986 重建——同上；"山塘寻胜"取字——乾隆原诗首联；《姑苏繁华图》1759——辽宁省博物馆现行口径。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 御碑亭（第 4 站 · 山塘桥堍）</b>
+    <p>四方小亭，碑正面"<b>山塘寻胜</b>"，背面刻乾隆《题虎邱云岩寺》诗，碑阴落款"<b>壬午仲春月 御题</b>"。</p>
+    <p><b>必须讲清楚的一件事（讲师防坑）：</b>亭子是 <b>2003 年修复山塘街时新建</b>的，碑上的字是从<b>虎丘塔院的乾隆御碑拓来</b>的——<b>"字是真迹，亭是新造"</b>。诗碑的真身在虎丘御碑亭（该处现存御碑五方）。<b>讲明白这一层，比含糊过去更有说服力。</b></p>
+    <p>另外备一句：这首诗本意咏虎丘，只是首联写的是"出阊门—经山塘—到云岩寺"的全程，立在山塘街口题旨也说得通；<b>也有意见认为属旅游移花接木——现场"点到即可，不下断语"。</b></p></div>
+    <div class="field"><b class="t">◆ 一句话讲法</b>
+    <p>"亭子里这块碑，是这条街收到的最高规格的一条'好评'。乾隆一辈子六下江南，写山塘的诗有九首，喜欢到什么程度？<b>回北京以后，照着这条街的样子，在皇家园林里建了两条'苏州街'。</b>——你想让皇帝记住你，得先让他舍不得走。"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1："山塘寻胜"四个字是谁题的？哪一年？</p>
+      <p class="a">A：乾隆，<b>乾隆二十七年（1762）</b>——从《题虎邱云岩寺》首联"阊门西转历山塘，寻胜云岩春载阳"中各取两个字拼成。</p>
+      <p class="q">Q2：1762 年是他第几次下江南？</p>
+      <p class="a">A：<b>第三次</b>（六次：1751／1757／1762／1765／1780／1784）——写成"第二次"是常见错误。</p>
+      <p class="q">Q3：乾隆回京后做了什么，证明他喜欢这条街？</p>
+      <p class="a">A：仿建了<b>两条"苏州街"</b>——1761 年北京万寿寺一带（为太后七十大寿）、1792 年清漪园（今颐和园）万寿山北，均以山塘街为蓝本；颐和园那条 1986 年重建。</p>
+      <p class="q">Q4：今天这座御碑亭是古迹吗？</p>
+      <p class="a">A：<b>亭是 2003 年新建的，字是从虎丘御碑拓来的</b>——"字是真迹，亭是新造"。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 乾隆另有《山塘策马》："山塘策马揽山归，澹荡韶春鞭漫挥"——"揽山归"三个字，把整条街的功能说尽了。<br>
+    ② 他写山塘的诗据统计有<b>九首</b>；历代文人咏山塘的诗更多达三百余首（有《山塘古诗词》专集）。<br>
+    ③ 那条 1761 年的苏州街出现在颐和园之前——<b>紫竹院旁的万寿寺一带也仿建过一条</b>；两条后来都被战火毁，只有颐和园这条在 1986 年重建活了下来。<br>
+    ④ 民间有"御碑是乾隆为其母七十大寿贺礼"之说——<b>多见于网络，未见官志记载，讲时用"有一种说法"</b>。<br>
+    ⑤ 防坑三连：<b>1762＝第三次南巡</b>（不是第二次）；<b>《姑苏繁华图》1759</b>（比他这趟早三年）；<b>《乾隆南巡图》（徐扬）画的是 1751 年第一次南巡</b>——三件事别混。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="shantang_shouce.html#st4">第 4 站 · 御碑亭（乾隆，苏州的头号铁粉） ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#faq">纠错与答疑 · 1762 是第三次 ↗</a>
+    </div>
+  </div>
+
+  <div class="unit blue" id="u6" data-anchor>
+    <div class="tag-side">单元六</div>
+    <h3>康熙 · 一幅画里的整条街</h3>
+    <div class="role">清代 · 六下江南开创者 · 行宫图中的皇帝 · 苏州织造署的客人</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>清圣祖<b>爱新觉罗·玄烨</b>（1654—1722），年号康熙，在位 61 年</td></tr>
+      <tr><th>六下江南</th><td><b>1684／1689／1699／1703／1705／1707</b>——他是清代"南巡"的开创者，主要目的为视察河工、通漕、咨访吏治</td></tr>
+      <tr><th>与苏州</th><td><b>六次到苏州，六次都住在苏州织造署</b>（带城桥下塘，今苏州十中内；织造署第一任织造即曹寅，李煦继之）——<b>乾隆六次到苏州，五次住织造署</b></td></tr>
+      <tr><th>与山塘街关系</th><td><b>1684 年第一次南巡苏州：从阊门入城；第二天从阊门出城，"沿着山塘河行至虎丘"</b>，屏退仪仗、只带亲随细看虎丘殿阁——这条"阊门—山塘—虎丘"的动线，正好是我们今天走的这一条</td></tr>
+      <tr><th>现场结合点</th><td><b>焦秉贞《南巡苏州虎丘行宫图》全卷深缩放网页</b>（gusu-fanhua-scroll.app.workbuddy.host/xinggong/）｜岭南会馆《康熙南巡图》绣品</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：康熙南巡苏州行程与驻跸——苏州市地方志办公室《旧志新说·康熙皇帝两次巡幸苏州》、康熙《苏州府志·巡幸》卷；织造署与三织造——苏州市政协提案答复文件、苏州织造署档案；行宫图——故宫博物院藏品说明（绢本设色 58.5 × 544 厘米）。</div>
+
+    <h4>核心故事：皇帝走的那条路，和我们今天走的是同一条</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>康熙二十三年（1684）十月，第一次南巡的康熙到了苏州。行程在《康熙苏州府志·巡幸》卷里记得清清楚楚：<b>皇帝从阊门入城</b>，士民"欢呼踊跃，咸设香烛"；当天去了瑞光寺、登盘门、游拙政园，晚上住在<b>苏州织造署</b>。第二天——<b>"从阊门出城，登虎丘，周览殿阁，徘徊良久"</b>。</p>
+    <p>重点来了：<b>出阊门到虎丘，走的就是山塘街这条线、沿的就是山塘河这条水。</b>而且还有一段很动人的细节——到了虎丘，他"<b>把仪仗队伍屏退在头山门以外，只身带着亲随把虎丘的殿阁一一看来，徘徊良久</b>"。<b>一个皇帝，把仪仗留在门外，自己一个人在虎丘上站了很久。</b></p>
+    <p>五年后（1689）第二次南巡，他又来了苏州，登虎丘万岁楼，<b>接受士民请求减免苏松税粮的奏本</b>，还象征性地取了米和福橘，表示"我收下了你们的请托"。</p>
+    <p>而今天，这一趟被画下来了——清·焦秉贞绘<b>《南巡苏州虎丘行宫图》</b>，绢本设色，纵 58.5 × 横 544 厘米，藏北京故宫博物院（藏品档案口径为"康熙南巡图第十一卷"）。<b>画的就是"阊门—山塘—虎丘"全程</b>：卷子右端收势于虎丘塔，中段是山塘街市，河面上船队连绵。<b>——这就是我们这条线的"看图神器"。</b></p>
+    <div class="src"><b>信源</b>：1684／1689 两次行程——苏州市地方志办公室《旧志新说》（引康熙《苏州府志》）；"屏退仪仗、只身看虎丘"——《旧志新说》原文；行宫图尺寸与藏地——故宫博物院藏品说明。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 行宫图全卷网页（现场扫码 · 反复可用）</b>
+    <p>网址：<b>gusu-fanhua-scroll.app.workbuddy.host/xinggong/</b>（微信内可直接打开，无需下载）</p>
+    <p>现场用法：让学员当场扫码，<b>在图上找到"我们现在站的这一段"</b>——从阊门往西数桥：山塘桥、通贵桥、星桥、彩云桥、普济桥、望山桥、西山庙桥，卷子上都画得出。<b>"你不是在看一幅古画，你是在看你自己站在画里的哪个位置。"</b></p>
+    <p><b>另可对照</b>：同一站点还有《姑苏繁华图》全卷（gusu-fanhua-scroll.app.workbuddy.host/）——<b>一个画康熙南巡、一个画乾隆盛世，两幅画里都有这条街。</b></p></div>
+    <div class="field"><b class="t">◆ 岭南会馆《康熙南巡图》绣品（第 6 站）</b>
+    <p>绣娘丝绸（原岭南会馆，山塘街 136 号）内陈列一幅《康熙南巡图》刺绣作品。要讲清的一层是：<b>《康熙南巡图》（王翚等绘，1691—1693）共十二卷，今存九卷；画苏州段的是第七卷（无锡—浒墅关—苏州阊门，可见虎丘塔、阊门登岸，卷末即苏州织造署），现藏加拿大阿尔伯塔大学博物馆（Mactaggart 藏品）</b>——<b>原作不在国内。</b></p>
+    <p><b>顺便串起来的一层：</b>康熙六次到苏州六次住<b>织造署</b>，而织造署就在<b>带城桥下塘</b>——"下塘"这个地名规律，正是我们第 7 站在通贵桥上讲过的。<b>一条街的地名学，和一位皇帝的行程，在这里合上了。</b></p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：康熙到苏州，住在哪里？</p>
+      <p class="a">A：<b>苏州织造署</b>（带城桥下塘，今苏州十中内）——他六次到苏州六次都住这里；乾隆六次来住过五次。</p>
+      <p class="q">Q2：他第一次到苏州，第二天去了哪儿？怎么去的？</p>
+      <p class="a">A：从<b>阊门出城，沿着山塘河行至虎丘</b>——就是我们今天走的这条线。</p>
+      <p class="q">Q3：故宫那幅画《南巡苏州虎丘行宫图》画的是什么路线？</p>
+      <p class="a">A：<b>阊门—山塘街—虎丘</b>全程（纵 58.5 × 横 544 厘米，绢本设色）——现在扫码就能在手机上展卷。</p>
+      <p class="q">Q4：《康熙南巡图》的原作在哪儿？</p>
+      <p class="a">A：十二卷今存九卷，画苏州段的<b>第七卷藏加拿大阿尔伯塔大学博物馆</b>——<b>不在国内</b>。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 康熙南巡的主要任务是<b>治河与通漕</b>（六次中五次视察河工、四次视察海塘）——看虎丘、看山塘是"顺路"，但正是这个"顺路"留下了画。<br>
+    ② 康熙第一次南巡的原始名义其实是"<b>东巡</b>"（祭泰山、孔子），南巡是行程延伸出来的；从第二次起才正式叫"南巡阅视河工"。<br>
+    ③ 苏州织造署是"<b>江南三织造</b>"（江宁、苏州、杭州）中<b>现存遗迹最多</b>的一处，署内西花园即当年为皇帝所造的行宫旧址，园中<b>瑞云峰</b>是江南三大名石之一（乾隆四十四年移入）。<br>
+    ④ 织造署的第一任织造是<b>曹寅</b>（曹雪芹祖父），继任者<b>李煦</b>是曹寅的妹夫——《红楼梦》里"接驾"的排场，一般认为与康熙南巡驻跸织造署有关（<b>此说为通行推测，讲时用"一般认为"</b>）。<br>
+    ⑤ 另一处交叉：苏州织造署所在的下塘与山塘街的下塘，是同一条命名规律——<b>"塘"是堤岸，主街商贸侧为上塘、对岸民居侧为下塘。</b></div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="https://gusu-fanhua-scroll.app.workbuddy.host/xinggong/">行宫图全卷 · 深缩放网页 ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#st6">第 6 站 · 岭南会馆与织造的故事 ↗</a>
+    </div>
+  </div>
+
+  <div class="unit gold" id="u7" data-anchor>
+    <div class="tag-side">单元七</div>
+    <h3>柳亚子与南社 · 一座祠堂里的枪声（笔的枪声）</h3>
+    <div class="role">明末—近代 · 张国维祠（南社首集地）· 山塘街的"政治符号"</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>张国维</th><td>（1595—1646）明末名臣，官至<b>兵部尚书</b>；清兵南下时坚守抗清，事败<b>投水殉国</b>；乾隆赐谥"<b>忠敏</b>"。其祠堂即今南社纪念馆馆舍（张公祠，又称<b>张东阳祠</b>——"东阳"是他的籍贯浙江东阳）</td></tr>
+      <tr><th>南社三杰</th><td><b>陈去病</b>（1874—1933，江苏吴江人，慕霍去病而改名"去病"）、<b>高旭</b>（1877—1925，江苏金山人）、<b>柳亚子</b>（1887—1958，江苏吴江人，16 岁改名人权，以"亚洲卢梭"自命）——三人同在 1906 年前后加入同盟会</td></tr>
+      <tr><th>成立</th><td><b>1909 年 11 月 13 日</b>，17 位社友＋2 位来宾<b>乘画舫沿山塘河至虎丘，在张国维祠举行首次雅集，宣告南社成立</b>——其中 14 人是同盟会会员</td></tr>
+      <tr><th>社名含义</th><td>"<b>南</b>"＝对北而言，寓不向满清之意；"<b>操南音，不忘本也</b>"；宗旨"洗前代结社之弊，作海内文学之导师"</td></tr>
+      <tr><th>与山塘街关系</th><td>首次雅集地＝<b>山塘街 800 号张国维祠</b>；社友当日从上塘乘画舫、经<b>山塘河</b>到虎丘——<b>这条街与这条河，是中国近代最大的文学社团的诞生地</b></td></tr>
+    </table>
+    <div class="src"><b>信源</b>：南社成立时间、人数、宣言——中国新闻网《百年辛亥：虎丘山下的革命宣传部》《"南风"百年》、《南社被称"辛亥革命宣传部"》；张国维事迹——《明史》本传；纪念馆——苏州市地方志办公室、苏州日报。</div>
+
+    <h4>核心故事：为什么偏偏选在山塘街的一座祠堂</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先讲背景。1907 年 7 月，秋瑾在绍兴轩亭口就义，震动全国。作为秋瑾好友的<b>陈去病</b>四处奔走，想在上海为她办追悼会，被阻挠没办成，于是改办社团（神交社）——这次活动后来被学者称作"南社的预备会议"。同一时期，革命党人起义屡败，<b>陈去病、高旭、柳亚子三个年轻人决定结社，与中国同盟会遥相呼应</b>。</p>
+    <p>那么，第一次正式雅集放在哪里？<b>他们选了山塘街张国维祠。</b></p>
+    <p>这个选择大有讲究。<b>在他们眼里，虎丘不是风景名胜，而是一个政治符号</b>——三百年前，政治文学社团"<b>复社</b>"曾在这里举行千人虎丘大会；而虎丘山下、山塘街上的张公祠，供的是明末<b>投水殉国</b>的张国维。<b>——用复社的旧地、用殉国者的祠堂，来宣告一个反清社团的诞生，这是把"骨气"两个字写进了选址里。</b></p>
+    <p>1909 年 11 月 13 日，17 位社友外加 2 位来宾，<b>从苏州阊门外乘画舫，经山塘河到虎丘，在张国维祠举行雅集</b>。当夜直到深夜才散，柳亚子兴奋地说了一句可以写进任何讲稿的话：<b>"三百年来，未有此盛事也。"</b></p>
+    <p>后来的事：南社鼎盛时期社员数以千计（有 1100 余人、近 3000 人两说），<b>被誉为"辛亥革命的宣传部"</b>，与"武有黄埔"并称"文有南社"；社中走出的名字有<b>李叔同、茅盾、苏曼殊、黄宾虹、沈尹默、于右任、陈布雷</b>……<b>一个从山塘街走出去的社团，几乎把民国初年的笔杆子都收进来了。</b></p>
+    <div class="src"><b>信源</b>：成立经过与"三百年来未有此盛事"——中国新闻网《南社被称"辛亥革命宣传部"》（引陈去病《南社雅集小启》、《民吁报》）；"文有南社，武有黄埔"——中国新闻网《"南风"百年》；社员名单——中国新闻网《南社百位辛亥人物与苏州·山塘》展讯。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 中国南社纪念馆（山塘街 800 号 · 原张国维祠）</b>
+    <p>进门沿中轴看：第一进天井墙上嵌着一块块浮雕，上书"<b>南社</b>"二字；第二进天井中矗立<b>南社三杰铜像</b>——陈去病坐，高旭、柳亚子分立左右。<b>馆内五个展厅</b>分别对应"南社风云、南社群贤、南士共进、承前启后、南社书房"，陈列书籍、印章、手迹与实物。</p>
+    <p><b>来历：</b>2009 年是南社成立一百周年，张公祠作为山塘历史文化街区修复工程的重要文化节点得以修缮，布展建成"中国南社纪念馆"，长期免费开放（爱国主义教育基地）。</p>
+    <p>门口那句可以照念的对照：<b>"它背靠'吴中第一山'虎丘山，门前流淌着一千多年前白居易开凿的七里山塘河。"</b></p></div>
+    <div class="field"><b class="t">◆ 一句话立意</b>
+    <p>"这条街上，有白居易挖出来的河，有吴一鹏捐的桥，有五个平民的坟——到了 1909 年，一群读书人坐着画舫从这条河上过来，在这条街的一座祠堂里成立了一个社团。他们后来被称为'辛亥革命的宣传部'。<b>一条街能承载的东西，比我们想的多。</b>"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：南社是哪一年、在哪儿成立的？</p>
+      <p class="a">A：<b>1909 年 11 月 13 日，山塘街张国维祠（张公祠）</b>——首次雅集即成立大会。</p>
+      <p class="q">Q2："南社"的"南"是什么意思？</p>
+      <p class="a">A：<b>"南者，对北而言，寓不向满清之意"</b>（陈去病语）；另有"操南音，不忘本也"的解释。</p>
+      <p class="q">Q3：他们为什么不选园林、偏选这座祠堂？</p>
+      <p class="a">A：虎丘是三百年前复社千人大会的旧地，张公祠供的是<b>投水殉国的张国维</b>——<b>选的是"骨气"，不是风景</b>。</p>
+      <p class="q">Q4：南社三位创始人是哪三位？</p>
+      <p class="a">A：<b>陈去病、高旭、柳亚子</b>——"南社三杰"，馆内第二进天井有三人的铜像。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① 首次雅集来了 17 人，其中 <b>14 人是同盟会会员</b>；柳亚子说"足可证明这一次雅集革命空气的浓厚了"。<br>
+    ② 南社后来出了一个几乎"全明星"的名单：<b>李叔同、茅盾、苏曼殊、黄宾虹、沈尹默、于右任、陈布雷、马君武、经亨颐</b>……<b>教育界占 30%、新闻界占 22%</b>。<br>
+    ③ 南社的活动经费<b>全部由社员自行解决</b>，没有外部资助——一群"有钱的读书人"自己掏钱办刊物、闹革命。<br>
+    ④ 张国维的另一面：他不仅是抗清殉国的兵部尚书，还是明末重要的水利专家（曾主持东南水利），<b>与"塘"这个字也算有缘</b>。<br>
+    ⑤ 纪念馆门牌 800 号、贝家祠堂 603 号、义风园 775 号——<b>三处都在星桥以西，串成"名人祠堂线"，正好是二次深度游的内容</b>。</div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="shantang_shouce.html#st13">第 13 站 · 星桥收队（往西即南社纪念馆） ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#mat">素材矩阵 · 二次深度游清单 ↗</a>
+    </div>
+  </div>
+
+  <div class="unit teal" id="u8" data-anchor>
+    <div class="tag-side">单元八</div>
+    <h3>张士诚与刘伯温 · 七只石狸的传说</h3>
+    <div class="role">元末—明初 · 传说线 · 整条街最受欢迎的讲点（正史无载 · 必须点明）</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>张士诚</th><td>（1321—1367）小字<b>九四</b>，泰州白驹场盐丁出身；元至正十三年（1353）率十八人起兵，十六年（1356）攻占平江（今苏州，改称隆平府），二十三年（1363）自立为<b>吴王</b>；<b>在苏州统治十二年</b>，至正二十七年（1367）城破被俘，自缢（一说被杀）于金陵，年 47</td></tr>
+      <tr><th>他治苏州的口碑</th><td>兴修水利（开白茆港九十里）、减免田赋、整顿吏治、开<b>宾贤馆</b>礼贤下士、通商外藩——时人杨维桢总结他"四不可及"：<b>兵不嗜杀、闻善言则拜、俭于自奉、厚给吏禄而奸贪必诛</b>。城破时"民皆为王死守"，守城十个月才下</td></tr>
+      <tr><th>刘伯温</th><td>（1311—1375）名基，字伯温，明初开国谋臣，民间智慧形象的代表</td></tr>
+      <tr><th>传说内容</th><td>明朝初立，朱元璋不放心曾是张士诚大本营的苏州，派刘伯温来视察。<b>刘伯温见山塘河横贯堤旁、状如卧龙，怕这里出"真龙天子"与朱家争江山，便在山塘街上设了七只石狸猫镇守七座桥</b>——"七狸"谐音"七里"，传说狸有"千斤巨锁"之功，锁住龙身</td></tr>
+      <tr><th>与山塘街关系</th><td>七只石狸（现存像为 <b>2006 年新设</b>）＋"七狸山塘"与"七里山塘"的音讹——<b>整条街传播最广的民间故事</b></td></tr>
+    </table>
+    <div class="src"><b>信源</b>：张士诚事迹——《明史》本传、杨维桢《复张吴王书》、高启《吴趋行》等；传说——民间流传，<b>正史无载</b>；七狸名录与寓意——山塘街七狸改造铭牌（姑苏发布）；旧像形制——苏州市地方志办公室《令人神往的山塘古桥》。</div>
+
+    <h4>核心故事：一个"失败者"为什么被苏州人记了六百年</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>讲七狸之前，得先讲一个"为什么"。<b>苏州人为什么那么怀念张士诚？</b></p>
+    <p>因为他在苏州这十二年，做得不差。苏州城被围十个月，<b>百姓"皆为王死守，无叛志"</b>；城破之后，朱元璋因"吴民殉守张士诚"而对苏州施以重赋，<b>苏州以占全国 1% 的耕地，交了 9.6% 的税粮</b>（洪武二十六年）——日子难过，苏州人就更想念张王。<b>这份想念，留在了方言里、留在了风俗里：</b></p>
+    <p>· 苏州话把"聊天"叫"<b>讲张</b>"——传说起初是百姓聚在一起谈论张士诚，被禁止后就说"<b>不在讲张</b>"，久而久之成了"聊天"的意思；<br>
+    · 农历七月三十（张士诚生日）夜里烧的香，民间叫"<b>狗屎香</b>"——原应是"<b>九四香</b>"（张士诚小字"九四"），谐音避祸变成了"狗屎"；<br>
+    · 苏州人吃的<b>酒酿饼</b>，传说也叫"<b>救娘饼</b>"，与他当年带着母亲逃难、靠酒糟饼救母的传说相连。</p>
+    <p><b>— 这些说法流传很广、也很有地方特色，但多属民间流传的"俗信"，出处不一，讲的时候说"传说""有一种说法"，不要讲死。</b></p>
+    <p>然后是七狸的故事。<b>这个传说是这样的：</b>明朝初立，朱元璋放心不下曾是张士诚大本营的苏州，特派刘伯温来视察。刘伯温一路转到山塘街，<b>倒吸一口凉气</b>——山塘河横贯在白堤旁，<b>状如卧龙</b>。善于阴阳占卜的他，预感这里要出"真龙天子"与朱家争江山，于是施展法术，<b>在山塘街上设了七只石狸猫，镇守七座桥</b>。传说狸猫是上古神兽，有"千斤巨锁"之功，能牢牢锁住龙身——<b>大明的江山，就可以传至万世。</b></p>
+    <p>而"<b>七狸</b>"与"<b>七里</b>"同音，于是这条街又多了一个名字——"七狸山塘"。</p>
+    <div class="src"><b>信源</b>：张士诚口碑与"讲张""九四香"等——苏州新闻出版集团《一座城 一个人》、搜狐专题《"讲张"：苏州的前朝梦忆》（引《明史》《吴中故语》《蓬窗类记》等）；重赋数据——陆容《菽园杂记》、《明史·食货志》；七狸传说——民间流传；2006 年新设——姑苏发布。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 七只石狸（第 11 站 · 过新民桥后的回望式讲点）</b>
+    <p><b>名录与寓意（按官方铭牌口径）：</b></p>
+    <table class="matrix">
+      <tr><th>狸名</th><th>所在桥</th><th>寓意</th><th>现场提示</th></tr>
+      <tr><td><b>美仁狸</b></td><td>山塘桥</td><td>优雅</td><td>第 4 站 · 进街第一只</td></tr>
+      <tr><td><b>通贵狸</b></td><td>通贵桥</td><td>富贵</td><td>第 7 站 · <b>包浆最亮</b>，人人都摸</td></tr>
+      <tr><td><b>文星狸</b></td><td>星桥</td><td>学识</td><td>第 13 站 · 收队点</td></tr>
+      <tr><td><b>彩云狸</b></td><td>彩云桥</td><td>幸福</td><td>半塘（二次深度游）</td></tr>
+      <tr><td><b>白公狸</b></td><td>普济桥</td><td>健康</td><td>二次深度游</td></tr>
+      <tr><td><b>海涌狸</b></td><td>望山桥</td><td>缘分</td><td>二次深度游 · 桥名"望山"即望虎丘</td></tr>
+      <tr><td><b>分水狸</b></td><td>西山庙桥</td><td>机遇</td><td>二次深度游 · 七里山塘西端</td></tr>
+    </table>
+    <p><b>现场讲法（本条是"讲师防坑"第一重点）：</b></p>
+    <p>① <b>今像 2006 年新设</b>——今天街上的七只狸猫像不是旧物，是 2006 年街区改造时新做的；<br>
+    ② <b>旧像什么模样，今天已无照片可考</b>——胶卷稀缺的年代，没人会去拍这些灰扑扑的小石兽。老山塘居民的回忆是"<b>很矮，抬脚就能坐到它头上</b>"，方志里也记着"仿制者高度比原状增一倍"；今天的像有 1.2—1.4 米高，<b>坐着是坐不上去了（除非你是姚明）</b>；<br>
+    ③ <b>原型来自洞庭东山</b>——据讲师实地考证，今像的蓝本是<b>洞庭东山雨花台一带的明清镇墓兽（守墓兽）石刻</b>。这一条最硬的地方在年代逻辑：<b>明清的旧刻，比 2006 年的新像早三百多年——只可能是后人摹前代，不可能明清的石刻倒过来抄今天的。</b>（此关联未见公开文献，属实地考证所得）；<br>
+    ④ <b>"刘伯温设七狸"正史无载</b>，属民间传说；此外还有"七里山塘由七狸山塘讹传而来"的说法，同样属传闻；<br>
+    ⑤ 另有两说属<b>老山塘口述、未见文献</b>：一是旧像在"五十年代大炼钢铁时被砸碎烧石灰"，二是旧像可能不止七只、造型也不止狸猫（方志载六十年代桐桥堍烟纸店前尚存一只）。<b>讲时用"据说"。</b></p></div>
+    <div class="field"><b class="t">◆ 一句话立意（收尾）</b>
+    <p>"这条街最出名的不是哪座桥、哪间宅，而是七只小石兽。它们今天的样子是新的，但它们背后的故事很老——老到有六百年。<b>苏州人用它记住了一个失败者，也用它成全了一条街的名字：七狸山塘，七里山塘。</b>"</p></div>
+
+    <h4>互动问答（题库）</h4>
+    <div class="qa">
+      <p class="q">Q1：山塘街上的七只石狸，传说是什么来历？</p>
+      <p class="a">A：传说刘伯温见山塘河状如卧龙，怕出"真龙天子"，设七只石狸镇守七桥，锁住龙气——<b>这是传说，正史没有记载</b>。</p>
+      <p class="q">Q2：它们分别代表什么？</p>
+      <p class="a">A：美仁狸（优雅）、通贵狸（富贵）、文星狸（学识）、彩云狸（幸福）、白公狸（健康）、海涌狸（缘分）、分水狸（机遇）。</p>
+      <p class="q">Q3：今天看到的这些狸猫像是古物吗？</p>
+      <p class="a">A：<b>不是，是 2006 年新设的</b>；旧像没有照片留存，老山塘的记忆里它们"很矮、抬脚能坐上去"。</p>
+      <p class="q">Q4：张士诚是谁？苏州人为什么记得他？</p>
+      <p class="a">A：元末吴王，在苏州十二年，兴水利、减赋税、礼贤下士，城破时百姓死守十个月。朱元璋后来对苏州施以重赋，苏州人因此更怀念他——<b>留下了"讲张""九四香""救娘饼"这些传说。</b></p>
+      <p class="q">Q5："七狸山塘"和"七里山塘"是一回事吗？</p>
+      <p class="a">A：<b>"七里"指街长七里，是实指；"七狸"来自传说</b>；两者同音，民间有"七狸山塘讹传为七里山塘"之说——<b>此说属传闻，讲时点明</b>。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip">① "讲张"两个字的地位：它是<b>苏州方言里的活化石</b>——一个方言词，藏着一座城对一个人的六百年记忆。<br>
+    ② 张士诚的墓与庙<b>都不在山塘街</b>：张王庙、张吴王墓在<b>斜塘</b>（今苏州工业园区，庙已迁建为"玉皇宫"，内设张士诚纪念馆）；《吴门表隐》《元和唯亭志》均有记载——<b>山塘街上流传的是"他的传说"，不是"他的墓"</b>，这一点现场别讲错。<br>
+    ③ 北寺塔那块"张士诚记功碑"（无字碑）与山塘街的七狸，是同一个人的"两种痕迹"：<b>一个是实物（碑在那座塔后），一个是传说（狸在这条街上）</b>——跨线讲解时正好对比。<br>
+    ④ 张士诚治下的苏州"颇有一番乐土气象"，高启《吴趋行》里那句"<b>财赋甲南州，词华并西京</b>"，说的就是他治下的苏州。<br>
+    ⑤ 朱元璋对他的评价（《大诰三编》）反而很高："<b>唯姑苏张士诚，虽在乱雄，心本智为，德本施仁</b>"——<b>成王败寇的史书里，能留下这样一句，不容易。</b></div>
+    <div class="spot-row"><span class="lbl">去现场 ⟶</span>
+      <a class="spot-link hl" href="shantang_shouce.html#st11">第 11 站 · 七狸传奇（张士诚与刘伯温） ↗</a>
+      <a class="spot-link" href="shantang_shouce.html#faq">纠错与答疑 · 七狸复刻与身世 ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= 第二部分 打卡点手册 ================= -->
+<section class="part" id="p2" data-anchor>
+  <div class="part-head"><span class="no">第二部分</span><h2>打卡点手册（按动线顺序 · 人物版）</h2></div>
+  <p class="part-sub">山塘线记忆口诀：<span class="hl"><b>"七里山塘到虎丘，一条街里千年事。"</b></span>——本手册把十三站再"钉"一遍人：每一站先看什么、背后站着谁、现场怎么带。<b>与《山塘街 · 研学解说手册》的分工：那份管"这一站怎么讲"，这份只管"这一站站着谁"。</b></p>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 1 站</span>
+    <h3>阊门 · 出城第一步</h3>
+    <div class="en">CHANGMEN · LEAVING THE CITY</div>
+    <table>
+      <tr><th>看点</th><td>城门、城楼与瓮城遗迹；"红尘中一二等富贵风流之地"（《红楼梦》开篇语）</td></tr>
+      <tr><th>人物挂钩</th><td><b>白居易</b>★（《登阊门闲望》"处处楼前飘管吹，家家门外泊舟航"——他写的就是这一带）→ <b>刘禹锡</b>（《别苏州》"流水阊门外，秋风吹柳条"——送别就在这个位置）</td></tr>
+      <tr><th>与本篇的分工</th><td>城楼、西中市的细讲归<b>阊门线</b>；本线在此只做"引子"＋诗——<b>同一个人两条线各讲一半，不重复</b></td></tr>
+      <tr><th>任务设计</th><td>①问："《红楼梦》开篇第一句提到苏州的哪儿？"②念一句"处处楼前飘管吹，家家门外泊舟航"，让学员猜是谁写的</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 2 站</span>
+    <h3>阊门钓桥（吊桥）· 名字里的门道</h3>
+    <div class="en">THE DRAWBRIDGE · A NAME WITH A HISTORY</div>
+    <table>
+      <tr><th>看点</th><td>廊桥与桥铭牌（<b>2026 年 4 月启动维护、7 月竣工后铭牌正式启用"钓桥"</b>）；桥面向西＝整条线的第一张定场照</td></tr>
+      <tr><th>名字三层</th><td>① 城门外的桥都叫"吊桥"——<b>防敌可升降，名字留着，功能没了</b>；② "钓"是本字（古文钓、吊同义，北宋《武经总要》已见"钓桥"）；③ 宋《平江图》上它叫<b>虹桥</b>，明成化六年改永济桥，清末才定型为吊桥</td></tr>
+      <tr><th>人物挂钩</th><td>暂无独立单元——<b>此站讲"桥"，人物留给下一站</b>（可埋伏笔："这座桥下流过的水，一会儿我们要顺着它一路走到虎丘——那条河是一位诗人挖的"）</td></tr>
+      <tr><th>任务设计</th><td>①为什么叫"钓桥/吊桥"？②找出桥上的铭牌念一遍；③《姑苏繁华图》上这段吊桥两岸的带棚商铺，数数有几间</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 3 站</span>
+    <h3>白居易纪念苑（山塘街 18 号）</h3>
+    <div class="en">BAI JUYI MEMORIAL · THE MAN WHO DUG THE STREET</div>
+    <table>
+      <tr><th>看点</th><td>唐少傅白公祠；大型<b>磨漆插屏《白居易为民修山塘》</b>；院内石雕连环画（白居易在苏州的生活场景）</td></tr>
+      <tr><th>历史三层</th><td>表象：一间仿古院落 → 故事：他开河是为治水与通路，不为造市场；离任时"苏州十万户，尽作婴儿啼" → 精神：一个诗人做了实事，被记住一千二百年</td></tr>
+      <tr><th>人物挂钩</th><td><b>白居易</b>★★（本线第一主角）→ <b>韦应物、刘禹锡</b>（苏州三贤，见单元一延伸）→ <b>顾况</b>（"长安米贵"）</td></tr>
+      <tr><th>任务设计</th><td>①看插屏，说出开河用了哪三样东西（河、土、堤）；②背《武丘寺路》里的"水陆往来频"；③问："他离任时，苏州人为什么哭？"</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 4 站</span>
+    <h3>山塘桥头 · 十五桥、第一只狸、御碑亭</h3>
+    <div class="en">SHANTANG BRIDGE HEAD · FIRST BRIDGE, FIRST LION, FIRST STELE</div>
+    <table>
+      <tr><th>看点</th><td>① 山塘桥（唐始建、1818 重建、1963 改水泥桥）② 十五座桥"<b>横七竖八</b>"（横跨山塘河七座：山塘桥、通贵桥、星桥、彩云桥、普济桥、望山桥、西山庙桥；纵贯街北支流八座：白姆桥、毛家桥／桐桥、白公桥、青山桥、绿水桥、斟酌桥、万点桥等——<b>以官方口径为准</b>）③ <b>美仁狸</b>（七狸第一只，寓意优雅）④ <b>御碑亭</b>（"山塘寻胜"）</td></tr>
+      <tr><th>人物挂钩</th><td><b>白居易</b>★（桥的来历）→ <b>乾隆</b>★★（御碑亭，"字是真迹，亭是新造"，1762 第三次南巡）→ <b>刘伯温</b>△（七狸传说埋线）</td></tr>
+      <tr><th>讲点提醒</th><td>①山塘桥"桥名最老、身子最新"，真正的古桥是通贵桥；②<b>山塘桥老照片之谜</b>——通贵桥与新民桥遥相对望百米故易互拍，而山塘桥取景角度差、镜头都给了阊门城楼，所以老照片几乎不见（此为合理分析，标"分析"）；③御碑亭防坑：1762＝第三次南巡</td></tr>
+      <tr><th>任务设计</th><td>①数一数"横七竖八"共几座桥；②摸第一只狸；③读出御碑上的四个字并翻译成白话</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 5 站</span>
+    <h3>步入山塘街 · 一条街上的一千年</h3>
+    <div class="en">ENTERING THE STREET · A THOUSAND YEARS IN ONE STREET</div>
+    <table>
+      <tr><th>看点</th><td>山塘老街（靠阊门段，全长 360 米＝"景区段"）；沿街旧铺、青石板路、枕河人家</td></tr>
+      <tr><th>沿革四段（口径把控）</th><td><b>唐＝通路（先有水利）→ 宋＝第一次大发展 → 明（万历漕运大兴）＝真正成为集散地 → 清乾隆＝极盛 → 1860 焚毁 → 2002 起修复</b>。<b>"先有水利，后有商街"——别说成"自唐以来即是商品集散地"。</b></td></tr>
+      <tr><th>人物挂钩</th><td><b>白居易</b>★ → <b>徐扬</b>（《姑苏繁华图》中<b>山塘街是唯一被完整描绘的一条街</b>，见单元五／六交叉）→ <b>乾隆</b>△（1759 成画，早于他 1762 题碑三年）</td></tr>
+      <tr><th>现场动作</th><td>发二维码／口播链接，让学员当场扫码打开《姑苏繁华图》全卷，<b>指认山塘街那一段</b>——"两百多年前，有人在同一个位置画下了你脚下的这块地"</td></tr>
+      <tr><th>任务设计</th><td>①找出沿街三种老行当的痕迹；②在繁华图上找到闸门／城门的位置</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 6 站</span>
+    <h3>会馆云集 · 岭南会馆与绣娘丝绸</h3>
+    <div class="en">GUILD HALLS · CANTON AND SILK</div>
+    <table>
+      <tr><th>看点</th><td>岭南会馆（山塘街 136 号，明代广东商人建，苏州最早会馆之一）；现存清代头门（控保建筑，岭南蕉叶纹砖雕、梁架跨 6.8 米）；今为"绣娘丝绸／江南织造府"；陈列《康熙南巡图》绣品</td></tr>
+      <tr><th>历史三层</th><td>表象：一间丝绸店 → 故事：明清山塘会馆云集（光绪年间大小祠堂达 65 座），会馆就是当年的"商会＋同乡会＋仓库"；苏州织造业之盛（江南三织造：江宁、苏州、杭州）→ 精神：一条街的商业史，就是苏州的经济史</td></tr>
+      <tr><th>人物挂钩</th><td><b>康熙</b>★（织造署六次驻跸；南巡图绣品）→ <b>曹寅／李煦</b>△（苏州织造世家）</td></tr>
+      <tr><th>讲点提醒</th><td>①"<b>江南织造局</b>"这个衙门<b>不存在</b>——有的是"<b>江南三织造</b>"；"江南织造府"是品牌名；②绣品"六绣娘两年、估值 200 万"＝<b>店家口径，讲时用"据说"，以现场展签为准</b>；③原作《康熙南巡图》第七卷藏<b>加拿大阿尔伯塔大学博物馆</b>，不在国内</td></tr>
+      <tr><th>任务设计</th><td>①找到头门上的蕉叶纹砖雕；②问："清朝的会馆相当于今天的什么？"</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 7 站</span>
+    <h3>通贵桥 · 玉涵堂（阁老厅）</h3>
+    <div class="en">TONG GUI BRIDGE · THE PRIME MINISTER'S HOUSE</div>
+    <table>
+      <tr><th>看点</th><td>① 通贵桥（山塘街第一座真正的古桥；明弘治初吴一鹏捐建；桥栏望柱刻"里人吴三复重建通贵桥"）② <b>通贵狸</b>（包浆最亮）③ 玉涵堂（过桥即到，东杨安浜；"阁老厅"为明代遗构，砖雕门楼"状元游街图"）④ 南看静谧／北看热闹的经典机位</td></tr>
+      <tr><th>人物挂钩</th><td><b>吴一鹏</b>★★（本线的"街之体面"）→ <b>文徵明</b>△（撰其墓志铭）→ <b>郭方伯</b>△（"通贵"之名的另一半）</td></tr>
+      <tr><th>讲点提醒</th><td>①"通贵"＝通两位贵人（吴一鹏与对岸郭某）；②玉涵＝"君子于玉比德"；③玉涵堂曾长期作苏州茶厂仓库（电影《红粉》取景地），2002—2003 修复——<b>能否入内以现场为准</b></td></tr>
+      <tr><th>任务设计</th><td>①摸通贵狸并说出它的寓意；②在南堍和北堍各拍一张，比较"静"和"闹"；③找出桥栏上的重建铭文</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 8 站</span>
+    <h3>过街楼 · 水乡的"骑楼"</h3>
+    <div class="en">THE OVER-STREET BUILDING · RIVERSIDE ARCHITECTURE</div>
+    <table>
+      <tr><th>看点</th><td>跨街而建的过街楼：下层通行、上层住人（或储物），临河一侧常见"廊棚"——江南水乡典型的河边建筑手法</td></tr>
+      <tr><th>人物挂钩</th><td>无独立人物——<b>此站讲"营造"</b>，可与吴一鹏单元并讲（玉涵堂"香山帮"营造技艺是本线唯一的人物关联点）</td></tr>
+      <tr><th>任务设计</th><td>①找一找：过街楼为什么"上住下通"？②对比乌镇、西塘、周庄的同类建筑；③注意河岸栏杆与"美人靠"</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 9 站</span>
+    <h3>新民桥 · 苏州最早的"立交桥"</h3>
+    <div class="en">XINMIN BRIDGE · SUZHOU'S EARLIEST GRADE SEPARATION</div>
+    <table>
+      <tr><th>看点</th><td>1906 年沪宁铁路通车配套马路跨山塘河而建（初名"洋桥"，1915 年地图已见音译 Hsin-min-chia）；1927 年拓建定名"新民"（"<b>革除旧满清，建立新民国</b>"，与孙中山革命语脉同源，属"有一种说法"）；三孔分层＝<b>苏州最早的立交桥之一</b>（中孔 8 米行船、两侧旱孔 3.5 米行人车）；1966 年重修为平桥；2002 年拆建为今貌，桥洞东壁嵌三块诗碑、桥联两副（俞涌撰）</td></tr>
+      <tr><th>人物挂钩</th><td><b>白居易／范成大／唐寅</b>★（诗碑三题主）→ <b>俞涌</b>△（桥联撰者）→ <b>孙中山</b>△（"新民"命名的说法来源）</td></tr>
+      <tr><th>讲点提醒</th><td>①<b>别写成"始建于 1927"</b>——是"清末始建、1927 拓建"；②它是<b>景区段（桥东 360 米）与烟火段（桥西）的分界线</b>；③桥面向西＝山塘街最佳机位之一（"拍下你与这条街的合影"）</td></tr>
+      <tr><th>任务设计</th><td>①站在桥上数三条通道（水中、左旱孔、右旱孔）；②读一首桥洞里的诗碑；③在桥面拍"到此一游"合影</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 10 站</span>
+    <h3>桥洞长卷 · 《山塘胜景图》</h3>
+    <div class="en">THE BRIDGE-ARCH RELIEF · A SCROLL IN STONE</div>
+    <table>
+      <tr><th>看点</th><td>新民桥桥洞两侧青石浮雕长卷<b>《山塘胜景图》</b>——<b>长 27 米</b>，从<b>阊门画到虎丘西山庙桥</b>，雕刻大师<b>蒋卫男</b>作，2021 年 1 月竣工</td></tr>
+      <tr><th>同名两件（考据核心）</th><td>另有一件同名作品：苏州画家<b>劳思</b>的国画长卷《山塘胜景图》（横 1177 × 纵 38 厘米，2010 年世博苏州馆镇馆之宝，被誉为"当代《姑苏繁华图》"，其线雕石刻版镶在五人墓碑廊）。<b>现场讲的是桥洞里这件石刻浮雕——别混。</b></td></tr>
+      <tr><th>人物挂钩</th><td><b>蒋卫男</b>★（浮雕作者）→ <b>劳思</b>★（同名长卷作者）→ 与单元六的<b>焦秉贞</b>、单元五的<b>徐扬</b>形成"三卷对照"</td></tr>
+      <tr><th>任务设计</th><td>①走进桥洞，找<b>起笔处（阊门）与收笔处（西山庙桥）</b>，说清"七里山塘"的头和尾在哪；②数一数浮雕里有几条船、几座桥；③对比《姑苏繁华图》与这幅浮雕：一画清代、一雕当代，画的都是同一条街</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 11 站</span>
+    <h3>七狸传奇 · 张士诚与刘伯温</h3>
+    <div class="en">THE SEVEN STONE LIONS · A LEGEND OF TWO MEN</div>
+    <table>
+      <tr><th>看点</th><td>七只石狸（名录与寓意见单元八表格）；"七狸山塘"与"七里山塘"的音讹</td></tr>
+      <tr><th>人物挂钩</th><td><b>张士诚</b>★（吴王，苏州人记了六百年）→ <b>刘伯温</b>★（传说中设狸锁龙的人）——<b>本线唯一一个"人物即传说"的单元</b></td></tr>
+      <tr><th>讲点提醒</th><td>①今像 2006 年新设；②"刘伯温设七狸"<b>正史无载</b>，必须补一句"这是传说"；③"原状很矮""大炼钢铁砸碎""原形是东山明清镇墓兽"——第一条与第三条有实证或物证（见单元八），第二条属口述；④民间所说"张王庙在山塘街"不确——张王庙在斜塘</td></tr>
+      <tr><th>任务设计</th><td>①"集狸大作战"——本次先摸两只（美仁狸、通贵狸），剩下五只留给学员自己来集；②问："如果让你给第八只狸猫起名，叫什么？"</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 12 站</span>
+    <h3>烟火段 · 老街的日常</h3>
+    <div class="en">THE SMOKE-AND-FIRE SECTION · EVERYDAY LIFE</div>
+    <table>
+      <tr><th>看点</th><td>新民桥以西＝"烟火段"：居民自己开的店、包子馒头、南北货、酱菜咸货——<b>像一个菜市场，被称作"苏州的葑门横街"</b>；与东段（景区段、商业业态规范）形成对照</td></tr>
+      <tr><th>人物挂钩</th><td><b>顾禄</b>△（《桐桥倚棹录》记的就是这一段的市廛行当——<b>讲师"秘密武器"，随便指一处旧业都能报出道光年间的记载</b>）</td></tr>
+      <tr><th>任务设计</th><td>①找出三种"本地人自己开的店"；②问："景区段和烟火段，哪一段更接近一百年前的山塘街？"（答案：烟火段更像日常，景区段更像繁华）</td></tr>
+    </table>
+  </div>
+
+  <div class="spot">
+    <span class="s-tag" style="background:var(--red)">第 13 站</span>
+    <h3>星桥收队（＋"山塘有座"茶馆）</h3>
+    <div class="en">XING BRIDGE · THE END (FOR NOW)</div>
+    <table>
+      <tr><th>看点</th><td>星桥（唐始建，旧名"<b>新桥</b>"，吴语"新／星"谐音演变，老地图两种写法并存）；<b>文星狸</b>（寓意学识）；桥头"<b>山塘有座</b>"茶馆（绿茶 5 元一杯、无限续杯，6:00—20:00，午至傍晚有评弹，小吃走廊有鹅汤馄饨、白玉方糕）</td></tr>
+      <tr><th>人物挂钩</th><td><b>刘伯温／文星狸</b>△（文脉寓意）→ <b>顾禄</b>△（星桥一带在他的书里）→ 收队合影最佳机位在茶馆二楼露台</td></tr>
+      <tr><th>收队方案</th><td><b>两档：新民桥（约 2 小时）／星桥（约 2.5 小时）</b>；星桥以西＝<b>二次深度游</b>：义风园（五义士）· 吴中贝氏纪念馆 · 中国南社纪念馆 · 普福禅寺（葫芦庙）· 怡贤亲王祠（"王宫"）· 五人墓 · 半塘野芳浜——<b>正好对应本篇单元三、四、七三组"纵深人物"</b></td></tr>
+      <tr><th>任务设计</th><td>①找文星狸并说出它的寓意；②在茶馆喝一杯 5 元的茶，听一段评弹；③二楼露台拍收队合影</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- ================= 第三部分 矩阵 ================= -->
+<section class="part" id="p3" data-anchor>
+  <div class="part-head"><span class="no">第三部分</span><h2>人物 × 打卡点 结合矩阵</h2></div>
+  <p class="part-sub">备课时反向使用：每个点位至少锚定一位人物；每个人物至少落在一个现场点位。<b>前八行为本篇八个单元——现场优先讲、顺序即上场顺序（前五组在主线，后三组在星桥以西的二次深度游段）</b>；其后为备讲与交叉注解。★=现场必讲；△=可讲可不讲（时间紧就跳过）。</p>
+  <table class="matrix">
+    <tr><th>人物 \ 点位</th><th>阊门·钓桥</th><th>白居易纪念苑</th><th>山塘桥头</th><th>通贵桥·玉涵堂</th><th>新民桥·桥洞</th><th>七狸</th><th>星桥以西</th></tr>
+
+    <tr><td><b>白居易</b>（＋韦应物·刘禹锡）</td>
+      <td>★《登阊门闲望》"处处楼前飘管吹"；刘禹锡《别苏州》"流水阊门外"</td>
+      <td>★★ 主场：开河筑堤、磨漆插屏、"苏州十万户尽作婴儿啼"</td>
+      <td>★ 山塘桥＝唐始建的第一座桥</td><td>—</td>
+      <td>★ 桥洞诗碑《武丘寺路》</td><td>—</td>
+      <td>—</td></tr>
+
+    <tr><td><b>吴一鹏</b></td>
+      <td>—</td><td>—</td><td>—</td>
+      <td>★★ 主场：通贵桥（他捐的）＋玉涵堂（他的宅，"阁老厅"）</td><td>—</td><td>—</td>
+      <td>延伸：沧浪亭五百名贤祠（市区）</td></tr>
+
+    <tr><td><b>五义士与张溥</b><br><span style="font-size:.85em;color:var(--ink-soft)">（星桥以西 · 二次深度游）</span></td>
+      <td>△ 五人"被处死于阊门之外"</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>★ 主场：义风园（775 号）"五人之墓"碑、《五人墓碑记》石刻、葛成墓、白公堤石幢</td></tr>
+
+    <tr><td><b>贝聿铭与吴中贝氏</b><br><span style="font-size:.85em;color:var(--ink-soft)">（星桥以西 · 二次深度游）</span></td>
+      <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>★ 主场：吴中贝氏纪念馆（603 号，半塘桐桥堍）节孝祠牌坊、贝氏世系、贝聿铭作品</td></tr>
+
+    <tr><td><b>乾隆</b></td>
+      <td>△ 六下江南每次经此</td><td>—</td>
+      <td>★★ 御碑亭"山塘寻胜"（1762 第三次南巡）</td><td>—</td><td>—</td><td>—</td>
+      <td>延伸：颐和园苏州街（北京，1986 重建）</td></tr>
+
+    <tr><td><b>康熙</b></td>
+      <td>★ 1684 年从阊门入城、次日从阊门出城沿山塘河至虎丘</td><td>—</td><td>—</td>
+      <td>—</td><td>△ 诗碑</td><td>—</td>
+      <td>延伸：焦秉贞行宫图（网页扫码）· 苏州织造署（带城桥下塘）· 岭南会馆绣品（第 6 站）</td></tr>
+
+    <tr><td><b>柳亚子与南社</b><br><span style="font-size:.85em;color:var(--ink-soft)">（星桥以西 · 二次深度游）</span></td>
+      <td>★ 1909 年社友从阊门外乘画舫出发</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>★ 主场：中国南社纪念馆（800 号，张国维祠）三杰铜像、南社风云展厅</td></tr>
+
+    <tr><td><b>张士诚与刘伯温</b><br><span style="font-size:.85em;color:var(--ink-soft)">（传说线 · 必须点明）</span></td>
+      <td>△ 张士诚曾据苏州十二年</td><td>—</td><td>△ 美仁狸（第一只）</td><td>△ 通贵狸</td><td>—</td>
+      <td>★ 主场：七狸传说、集狸大作战</td>
+      <td>△ 西山庙桥分水狸（七里山塘西端）</td></tr>
+
+    <tr><td><b>顾况</b><br><span style="font-size:.85em;color:var(--ink-soft)">（备讲 · 串联人物）</span></td>
+      <td>—</td><td>△ "长安米贵，居大不易"；韦应物郡斋宴和诗人</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+
+    <tr><td><b>顾禄</b><br><span style="font-size:.85em;color:var(--ink-soft)">（备讲 · 讲师秘密武器）</span></td>
+      <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>★ 烟火段／桐桥／普济桥一带：随便一处旧业都能报出道光年间《桐桥倚棹录》的记载</td></tr>
+
+    <tr><td><b>徐扬 · 焦秉贞 · 蒋卫男 · 劳思</b><br><span style="font-size:.85em;color:var(--ink-soft)">（备讲 · "四卷一条街"）</span></td>
+      <td>—</td><td>—</td><td>—</td><td>—</td><td>★ 蒋卫男《山塘胜景图》浮雕（27 米）；劳思同名长卷</td><td>—</td>
+      <td>△ 徐扬《姑苏繁华图》（1759 · 山塘是唯一完整描绘的一条街）· 焦秉贞行宫图（康熙南巡 · 扫码看）· 王翚《康熙南巡图》第七卷（藏加拿大）</td></tr>
+
+    <tr><td><b>李鸿章与白公祠</b><br><span style="font-size:.85em;color:var(--ink-soft)">（备讲 · 地址变迁）</span></td>
+      <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+      <td>△ 山塘街 845 号：嘉庆二年（1797）任兆炯建白公祠 → 光绪二十八年（1902）改李鸿章祠"靖园"（今苏州幼师内，<b>不可入</b>）——<b>讲"白居易在苏州的香火地址变迁"</b></td></tr>
+  </table>
+</section>
+
+<!-- ================= 第四部分 方法与题库 ================= -->
+<section class="part" id="p4" data-anchor>
+  <div class="part-head"><span class="no">第四部分</span><h2>讲述方法与有奖题库</h2></div>
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 三条讲解心法</h4>
+    <p><b>一、由街见人：</b>这条线上每一样看得见的东西，背后都站着人——一条河（白居易）、一座桥（吴一鹏）、一块碑（乾隆）、一只石狸（刘伯温与张士诚）、一间祠堂（贝氏、南社）。先问"你看到了什么"，再问"这是谁做的"，最后落"他为什么这么做"。</p>
+    <p><b>二、人带人（本线的两条链）：</b>①<b>开街链</b>：白居易开河筑堤 → 吴一鹏捐桥建宅 → 康熙走这条路 → 乾隆为它题碑、把它搬回北京——<b>一条街的"被看见"史</b>。②<b>守街链</b>：五个平民为街上的不平事而死（五义士）→ 一个家族把家祠留在桥堍（贝氏）→ 一群读书人在街上的一座祠堂里宣告成立南社——<b>"这条街值得有人为它挺身、为它留下、为它发声"</b>。每介绍一个新人物，都先接上上一个已认识的人。</p>
+    <p><b>三、虚实分明：</b>传说（刘伯温设七狸、"讲张"由来、"九四香"、酒酿饼救娘）照讲，但必须补一句"这是传说"或"有一种说法"；推测（"新民"取自孙中山语、康熙南巡与《红楼梦》接驾的关联、狮子林与苏博片石假山）明示"一般认为"；考据结论（825 年开河、1488 年通贵桥、1762 年第三次南巡、1909 年南社成立、2006 年七狸新设）讲准确。<b>给孩子示范"怎么区分故事、推测与史实"，这本身就是研学的一部分。</b></p>
+  </div>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 怎么选人不翻车（讲师选人三问＋街本位）</h4>
+    <p><b>绕不开</b>：与打卡点高度相关，讲这个点绕不过他——所以白居易（开街）、吴一鹏（通贵桥＋玉涵堂）、乾隆（御碑亭）、刘伯温与张士诚（七狸）必讲。<br>
+    <b>叫得响</b>：有大众知名度，<b>或者</b>成就够硬、说出来让人叹服——所以贝聿铭（世界级建筑师）、五义士（《五人墓碑记》在课本里）、柳亚子与南社（"辛亥革命的宣传部"）能立住。<br>
+    <b>记得住</b>：讲完听众有印象——"还没回到家就忘了"的人，讲了不如不讲。<br>
+    <b>街本位</b>：只收"造街／走街／写街／守街"的人。仅在别处有名、恰好路过的（陆游、范仲淹等）不收。</p>
+    <p style="margin-top:8px"><b>反面案例（本篇的处理方式）：</b>史料里留下名字的工匠、捐资的商人（如乾隆五十三年重建通贵桥的"里人吴三复"、光绪六年募资的"虎丘昌善堂"）、写碑记的文人——<b>人名不报、不入单元</b>，但知识点留下，并入实物讲解（"桥栏上刻着谁重建的""光绪年间募资重修过"）。<b>知识点留住，人名放下——这就是"备多讲少"的分寸。</b>唯一例外是《山塘胜景图》的两位作者（蒋卫男、劳思）——因为他们的作品就在你眼前。</p>
+  </div>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red)">◆ 有奖竞猜题库（24 题 + 附加 4 题）</h4>
+    <div class="qa">
+      <p class="a">1. 山塘街是谁开的？哪一年？（白居易；唐宝历元年，825 年——凿山塘河、堆土为堤）</p>
+      <p class="a">2. 这条街还有一个名字叫什么？（白公堤）</p>
+      <p class="a">3. 白居易开这条河，最初是为了什么？（治水患＋通水陆交通，不是为了造商业街）</p>
+      <p class="a">4. 他在苏州当了多久官？（约一年四个月：825.5—826.9）</p>
+      <p class="a">5. "苏州十万户，尽作婴儿啼"——谁写的？写的什么场面？（刘禹锡《白太守行》；写白居易离任时苏州人送别不舍）</p>
+      <p class="a">6. 唐代还有哪两位大诗人做过苏州刺史？合称什么？（韦应物、刘禹锡；与白居易合称"苏州三贤"）</p>
+      <p class="a">7. 韦应物任满后为什么没回京？（清贫到凑不出路费，留在苏州租田亲耕，最后客死苏州永定寺）</p>
+      <p class="a">8. 刘禹锡在苏州做了什么大事？（水灾后调拨十二万石米赈灾、减免赋役，使"民无流徙"，因政绩获赐紫金鱼袋）</p>
+      <p class="a">9. 刘禹锡哪两句诗写的是阊门外送别？（"流水阊门外，秋风吹柳条。从来送客处，今日自魂销。"——《别苏州》）</p>
+      <p class="a">10. "苏州刺史例能诗"这句话谁说的？说的是哪三位？（刘禹锡；韦应物、白居易、刘禹锡）</p>
+      <p class="a">11. 通贵桥是谁捐的？为什么叫"通贵"？（吴一鹏，明弘治初约 1488 年；他住山塘街、好友住对岸，造桥通"贵人"之路）</p>
+      <p class="a">12. "阁老厅"是谁的宅子？叫什么名字？（吴一鹏故居玉涵堂；"玉涵"取自"君子于玉比德"）</p>
+      <p class="a">13. 这位南京吏部尚书的"官方认证"在哪？（沧浪亭五百名贤祠石刻像："侃侃吴公，独持大礼"）</p>
+      <p class="a">14. 五人墓埋的是哪五位？（颜佩韦、杨念如、马杰、沈扬、周文元）</p>
+      <p class="a">15. 他们为谁而死？（东林党人周顺昌——反抗魏忠贤阉党的迫害）</p>
+      <p class="a">16. 《五人墓碑记》是谁写的？收入哪本书？（复社领袖张溥，1629 年；收入《古文观止》，入选中学语文教材）</p>
+      <p class="a">17. "五人之墓"碑是谁题的？多大年纪题的？（韩馨 8 岁时所题，崇祯元年 1628 年）</p>
+      <p class="a">18. 谁自愿在五人墓旁守墓，最后也葬在那里？（葛成／葛贤，万历年间丝织工人抗税斗争领袖）</p>
+      <p class="a">19. 山塘街 603 号祠堂原来是谁的祠？（贝氏四世贝启祚之妻贝程氏的"节孝祠"）</p>
+      <p class="a">20. 贝聿铭是贝家第几代？（第十五世；贝氏一世贝兰堂明中叶自浙江兰溪迁吴）</p>
+      <p class="a">21. 御碑亭上"山塘寻胜"四个字从哪句诗里取来？（乾隆《题虎邱云岩寺》首联"阊门西转历山塘，寻胜云岩春载阳"；题于 1762 年）</p>
+      <p class="a">22. 1762 年是乾隆第几次下江南？（<b>第三次</b>；六次：1751／1757／1762／1765／1780／1784）</p>
+      <p class="a">23. 乾隆回京后为这条街做了什么？（仿建了两条"苏州街"——1761 年万寿寺一带、1792 年清漪园／颐和园万寿山北，1986 年颐和园那条重建）</p>
+      <p class="a">24. 南社是哪一年、在哪儿成立的？（1909 年 11 月 13 日，山塘街张国维祠；社友乘画舫沿山塘河到虎丘）</p>
+      <p class="a">25.（附加）山塘街上的七只石狸，传说是什么来历？（刘伯温见山塘河状如卧龙，怕出"真龙天子"，设七只石狸镇守七桥——<b>传说，正史无载</b>）</p>
+      <p class="a">26.（附加）通贵狸代表什么寓意？为什么它包浆最亮？（富贵；"摸摸狸猫头，一年好到头"，人人去摸）</p>
+      <p class="a">27.（附加）苏州话"聊天"为什么叫"讲张"？（传说源自百姓聚谈张士诚、"不在讲张"——属民间流传的说法）</p>
+      <p class="a">28.（附加）新民桥桥洞里那幅石雕长卷叫什么？多长？（《山塘胜景图》，长 27 米，蒋卫男作，2021 年竣工，从阊门画到虎丘西山庙桥）</p>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="big">吴地时光机 · 文史研学系列</div>
+  <p>讲师备课手册 · 内部资料 ｜ 资料来源：原典（《明史》《白氏长庆集》《刘禹锡集》《韦苏州集》《五人墓碑记》《御制诗三集》《桐桥倚棹录》《吴郡图经续记》《丹午笔记》等）+ 苏州市地方志编纂委员会办公室（《旧志新说》《说古道今》）· 苏州图书馆（《文韵苏州》系列）· 苏州碑刻博物馆 · 沈阳／辽宁省博物馆 · 故宫博物院 · University of Alberta Museums（Mactaggart Art Collection）· 中国新闻网 · 人民日报 · 中国经济网等 + DeepSeek 历史研究档案（DS-export）；传说／推测／两说处均已在文中标明</p>
+  <p style="margin-top:4px">总目录：<a href="index.html">苏州城市漫游研学 · 总目录</a> ｜ 配套现场解说：<a href="shantang_shouce.html">山塘街 · 研学解说手册（讲师备课版）</a> ｜ 名人堂持续补充中</p>
+</footer>
+
+</div>
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSb();closeDrop();}});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  // 两种目录模式切换：勾选框控制顶部导航显隐
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 人物单元下拉子菜单（面板挂在吸顶容器 .toc-wrap 下，定位对齐按钮）
+  var dropWrap=document.getElementById('dropWrap'),dropBtn=document.getElementById('dropBtn'),
+      dropPanel=document.getElementById('dropPanel');
+  function closeDrop(){
+    dropWrap.classList.remove('open');dropPanel.classList.remove('open');
+    dropBtn.setAttribute('aria-expanded','false');
+  }
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var opening=!dropPanel.classList.contains('open');
+    if(opening){
+      dropPanel.classList.add('open');               // 先显示才能量宽
+      var br=dropBtn.getBoundingClientRect(),
+          wr=topbar.getBoundingClientRect(),
+          pw=dropPanel.offsetWidth||220;
+      var left=br.left-wr.left;                      // 相对吸顶容器对齐按钮
+      left=Math.min(Math.max(12,left),Math.max(12,wr.width-pw-12));
+      dropPanel.style.left=left+'px';
+      dropWrap.classList.add('open');
+      dropBtn.setAttribute('aria-expanded','true');
+    }else{closeDrop();}
+  });
+  document.addEventListener('click',function(e){
+    if(!dropWrap.contains(e.target)&&!dropPanel.contains(e.target))closeDrop();
+  });
+  dropPanel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrop);});
+  // 滚动高亮当前位置（顶栏胶囊、下拉面板、侧边栏三处联动）
+  var unitIds=['u1','u2','u3','u4','u5','u6','u7','u8'];
+  var allLinks=document.querySelectorAll('nav.toc a, .drop-panel a, .side-nav a');
+  var dropBtnEl=document.querySelector('.drop-btn');
+  function setActive(id){
+    allLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+    });
+    dropBtnEl.classList.toggle('active',unitIds.indexOf(id)>=0||id==='p1');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ['overview','p1','u1','u2','u3','u4','u5','u6','u7','u8','p2','p3','p4'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)io.observe(el);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>

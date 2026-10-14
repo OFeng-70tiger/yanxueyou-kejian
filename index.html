@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>苏州城市漫游研学 · 总目录｜吴地时光机</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:940px;margin:0 auto;padding:0 20px 90px}
+p{margin:8px 0;color:var(--ink-soft)}
+
+.cover{padding:64px 8px 26px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:14px}
+.cover .desc{max-width:680px;margin:0 auto;font-size:.95rem}
+
+.group-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:8px;margin:52px 0 4px}
+.group-head .no{font-family:var(--serif);font-size:.95rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.group-head h2{font-family:var(--serif);font-weight:900;font-size:1.35rem;letter-spacing:.08em}
+.group-head small{color:var(--ink-soft);font-size:.82rem;margin-left:auto}
+
+/* ===== 线路板块：一条线一个板块，固定「三件套」+ 现场两夹 ===== */
+.line{margin-top:16px;background:var(--card);border:1px solid var(--line);border-left:6px solid var(--lc);
+  border-radius:16px;padding:14px 16px 16px}
+.line-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.line-head .tag{flex:none;font-family:var(--serif);font-weight:900;font-size:.82rem;letter-spacing:.1em;color:#fff;
+  background:var(--lc);border-radius:8px;padding:4px 12px;white-space:nowrap}
+.line-head .line-desc{color:var(--ink-soft);font-size:.84rem;font-family:var(--serif);letter-spacing:.04em}
+.line-head .cnt{margin-left:auto;color:var(--lc);font-size:.78rem;font-family:var(--serif);letter-spacing:.12em;white-space:nowrap}
+
+.grid{display:grid;gap:10px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+a.sub{display:flex;flex-direction:column;background:var(--lc-bg);border:1px solid var(--line);border-radius:12px;
+  padding:12px 14px;text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
+a.sub:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(51,48,42,.1);border-color:var(--lc)}
+a.sub b{font-size:.97rem;color:var(--ink);font-family:var(--serif);letter-spacing:.02em}
+a.sub small{display:block;color:var(--ink-soft);font-size:.82rem;line-height:1.6;margin-top:3px}
+a.sub .go{color:var(--lc);font-family:var(--serif);font-weight:900;font-size:.82rem;margin-top:6px}
+a.sub.pending{background:#fbfbf9;border-style:dashed}
+a.sub.pending b{color:var(--ink-soft)}
+
+/* 现场两轨 / 其它小链接行 */
+.tracks{margin-top:11px;padding-top:9px;border-top:1px dashed var(--line);font-size:.82rem;color:var(--ink-soft);
+  display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline}
+.tracks b{font-family:var(--serif);font-weight:900;color:var(--ink);letter-spacing:.08em;font-size:.8rem}
+.tracks a{color:var(--lc);text-decoration:none;border-bottom:1px dotted var(--lc)}
+.tracks a:hover{border-bottom-style:solid}
+.tracks .dim{color:#9a938a}
+
+.line.wm{--lc:var(--gold);--lc-bg:var(--gold-bg)}
+.line.cm{--lc:var(--red);--lc-bg:#fbf1ef}
+.line.bs{--lc:var(--teal);--lc-bg:var(--teal-bg)}
+.line.xm{--lc:var(--blue);--lc-bg:var(--blue-bg)}
+.line.sz{--lc:#5e7a3a;--lc-bg:#f2f5ea}
+
+/* 贰 · 叁 两组沿用原卡片 */
+.card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:16px;
+  padding:16px 20px;margin-top:14px;text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(51,48,42,.12);border-color:var(--gold)}
+.card .badge{flex:none;font-family:var(--serif);font-weight:900;font-size:.82rem;letter-spacing:.1em;color:#fff;
+  background:var(--red);border-radius:8px;padding:5px 12px;white-space:nowrap}
+.card .badge.alt{background:var(--teal)}
+.card .badge.doc{background:var(--gold)}
+.card .t{flex:1;min-width:0}
+.card .t b{display:block;font-size:1.02rem;color:var(--ink)}
+.card .t small{display:block;color:var(--ink-soft);font-size:.84rem;line-height:1.6;margin-top:2px}
+.card .go{flex:none;color:var(--gold);font-family:var(--serif);font-weight:900}
+
+.note{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:24px 0 14px;font-size:.9rem}
+.note b{color:var(--blue)}
+
+footer{margin-top:70px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:22px}
+footer .big{font-family:var(--serif);font-size:1.1rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+@media(max-width:680px){.g2,.g3{grid-template-columns:1fr}}
+@media print{.card:hover,a.sub:hover{transform:none;box-shadow:none}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学</div>
+  <h1>苏州城市漫游研学 · 总目录</h1>
+  <div class="sub">一 站 式 入 口 ｜ 点 击 直 达</div>
+  <p class="desc">全部资料按线路成组：每组固定「三件套」——漫游篇 · 解说手册（备课版）／名人篇 · 教学大纲／图片资料库（课后发群回顾），外加「现场两夹」——上课发图·干净版（讲到点位即发）与课后图包·字幕版。四条线板块完全同构，色块统一，直接对照查看。</p>
+</header>
+
+<div class="group-head"><span class="no">壹</span><h2>讲师资料 · 一条线三件套</h2><small>四条线同构 ｜ 与 index 同目录，点击直达</small></div>
+
+<!-- ============ 文庙线 ============ -->
+<section class="line wm">
+  <div class="line-head">
+    <span class="tag">文庙线</span>
+    <span class="line-desc">府学文庙 · 一城三学宫 · 双脉汇流</span>
+    <span class="cnt">3 件套 ＋ 现场两夹</span>
+  </div>
+  <div class="grid g3">
+    <a class="sub" href="wenmiao_shouce.html">
+      <b>漫游篇 · 解说手册</b>
+      <small>八点逐站解说 ｜ 牌坊疑云等考据 · 附「一城三学宫」讲师对照图谱（此图不发学员）</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="wenmiao_mingren.html">
+      <b>名人篇 · 教学大纲</b>
+      <small>五组人物：孔子 · 言偃 · 范仲淹 · 钱棨 · 钱镠与钱氏家族</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="wenmiao_ziliao.html">
+      <b>图片资料库</b>
+      <small>六图：繁华图吴县县学段 · 长元县学大成殿 · 府学大成殿旧影 · 古今同机位 · 寿杏 · 文脉双脉汇流——课后发群回顾</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+  </div>
+  <div class="tracks">
+    <b>现场两夹</b>
+    <a href="研学图片包/文庙线_现场发图_干净版/">上课发图 · 干净版（6 张，讲到即发）</a>
+    <a href="文庙线_研学群发图包/">课后图包 · 字幕版（6 张）</a>
+    <span class="dim">｜学员版：<a href="fenxiang_wenmiao_shouce.html">分享版手册</a> · <a href="fenxiang_wenmiao_mingren.html">分享版大纲</a></span>
+  </div>
+</section>
+
+<!-- ============ 阊门线 ============ -->
+<section class="line cm">
+  <div class="line-head">
+    <span class="tag">阊门线</span>
+    <span class="line-desc">门 · 水 · 街 · 庙 · 园</span>
+    <span class="cnt">3 件套 ＋ 现场两夹</span>
+  </div>
+  <div class="grid g3">
+    <a class="sub" href="changmen_shouce.html">
+      <b>漫游篇 · 解说手册</b>
+      <small>六站：城楼 · 瓮城 · 北码头五龙汇阊 · 西中市金融街 · 泰伯庙 · 五峰园</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="changmen_mingren.html">
+      <b>名人篇 · 教学大纲</b>
+      <small>八组人物：唐寅 · 伍子胥 · 仇英 · 徐扬 · 张士诚 · 泰伯仲雍 · 季札与阖闾 · 梁鸿孟光</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="changmen_ziliao.html">
+      <b>图片资料库</b>
+      <small>十图全收：姑苏繁华图阊门段 · 民国老照片三连 · 五龙汇阊航拍（含视频）· 泰伯让位图谱 · 吴国王位传承线——课后发群回顾</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+  </div>
+  <div class="tracks">
+    <b>现场两夹</b>
+    <a href="研学图片包/阊门线_现场发图_干净版/">上课发图 · 干净版（10 张，讲到即发）</a>
+    <a href="阊门线_研学群发图包/">课后图包 · 字幕版（10 张）</a>
+    <span class="dim">｜另有：<a href="changmen_qinzi.html">亲子研学图志（家庭版）</a></span>
+  </div>
+</section>
+
+<!-- ============ 胥门线 ============ -->
+<section class="line xm">
+  <div class="line-head">
+    <span class="tag">胥门线</span>
+    <span class="line-desc">由图到桥到门，层层收拢</span>
+    <span class="cnt">3 件套 ＋ 现场两夹</span>
+  </div>
+  <div class="grid g3">
+    <a class="sub" href="xumen_shouce.html">
+      <b>漫游篇 · 解说手册</b>
+      <small>三站三问：平江图模型（图问来路）· 万年桥狮子山（桥问方位）· 胥门得名（门问名字）｜ 含 SVG 动线图</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="xumen_mingren.html">
+      <b>名人篇 · 教学大纲</b>
+      <small>伍子胥大单元（出奔 · 鱼肠剑 · 属镂剑）· 阖闾十九年年表 · 名人群像 · 夫差与勾践</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="xumen_ziliao.html">
+      <b>图片资料库</b>
+      <small>十图：万年桥年画 · 繁华图万年桥段 · 运河帆影 · 桥景旧影 · 狮子山直线 · 新胥门1938 · 胥门旧影 · 残墙80年代 · 整治90年代 · 伍子胥图谱——课后发群回顾</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+  </div>
+  <div class="tracks">
+    <b>现场两夹</b>
+    <a href="研学图片包/胥门线_现场发图_干净版/">上课发图 · 干净版（10 张，讲到即发）</a>
+    <a href="胥门线_研学群发图包/">课后图包 · 字幕版（10 张）</a>
+  </div>
+</section>
+
+<!-- ============ 北寺塔线 ============ -->
+<section class="line bs">
+  <div class="line-head">
+    <span class="tag">北寺塔线</span>
+    <span class="line-desc">未见苏城先见塔</span>
+    <span class="cnt">3 件套 ＋ 现场两夹</span>
+  </div>
+  <div class="grid g3">
+    <a class="sub" href="beisita_shouce.html">
+      <b>漫游篇 · 解说手册</b>
+      <small>八站：山门 · 石雕龙壁 · 繁华图漆雕 · 老照片展 · 张士诚记功碑 · 楠木观音殿 · 梅圃 · 鲜得楼</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="beisita_mingren.html">
+      <b>名人篇 · 教学大纲</b>
+      <small>六组人物：申时行 · 孙权 · 苏轼 · 张士诚与沈万三 · 徐扬 · 盛宣怀夫人</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="beisita_ziliao.html">
+      <b>图片资料库</b>
+      <small>九图：申祠牌楼原址 · 1900/1910/1959 三连拍 · 虎丘1869残柱 · 北寺塔1909 · 罗汉院石柱 · 繁华图全卷二维码 · 寺史长卷——课后发群回顾</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+  </div>
+  <div class="tracks">
+    <b>现场两夹</b>
+    <a href="研学图片包/北寺塔线_现场发图_干净版/">上课发图 · 干净版（8 张，讲到即发）</a>
+    <a href="北寺塔线_研学群发图包/">课后图包 · 字幕版（8 张）</a>
+    <span class="dim">｜备选：<a href="北寺塔名人录_候选表单.md">名人录候选表单（三梯队）</a> · <a href="文庙·北寺塔_选图方案.md">选图方案</a></span>
+  </div>
+</section>
+
+<!-- ============ 山塘街线 ============ -->
+<section class="line st">
+  <div class="line-head">
+    <span class="tag">山塘街线</span>
+    <span class="line-desc">七里山塘到虎丘</span>
+    <span class="cnt">筹备中 · 已上线 2 件</span>
+  </div>
+  <div class="grid g3">
+    <a class="sub" href="shantang_shouce.html">
+      <b>动线打卡点 · 解说手册</b>
+      <small>十三站：阊门 → 吊桥 → 白居易纪念馆 → 山塘桥头 → 繁华图唯一整条街 → 岭南会馆 → 通贵桥 → 新民桥 → 胜景图长卷 → 七狸 → 星桥收队</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="shantang_mingren.html">
+      <b>名人篇 · 教学大纲</b>
+      <small>八组人物：白居易（附苏州三贤）· 吴一鹏 · 五义士与张溥 · 贝氏 · 乾隆 · 康熙 · 南社 · 张士诚与刘伯温</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub" href="https://gusu-fanhua-scroll.app.workbuddy.host/xinggong/">
+      <b>南巡虎丘行宫图 · 全卷</b>
+      <small>清·焦秉贞 · 康熙南巡图第十一卷 · 拖动展卷双指放大——山塘线看图神器</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+  </div>
+  <div class="tracks">
+    <b>同站长卷</b>
+    <span class="dim">《姑苏繁华图》全卷同站：<a href="https://gusu-fanhua-scroll.app.workbuddy.host/">gusu-fanhua-scroll.app.workbuddy.host</a> · 发布与重发见《长卷深缩放网页备忘》</span>
+  </div>
+</section>
+
+<!-- ============ 狮子山线 ============ -->
+<section class="line sz">
+  <div class="line-head">
+    <span class="tag">狮子山线</span>
+    <span class="line-desc">重阳登高 · 狮子回头望虎丘 · 一山望五塔</span>
+    <span class="cnt">筹备中 · 已上线 1 件</span>
+  </div>
+  <div class="grid g3">
+    <a class="sub" href="shizishan_shouce.html">
+      <b>登高打卡点 · 解说手册</b>
+      <small>九站：狮山广场（苏州乐园记忆）→ 何山"四山不相连" → 摩崖石刻群 → 思益寺遗址 → 状元读书台 → 狮首望虎丘 → <b>山顶五塔方位表</b>（地图数据实算）→ 1903 招国魂 → 西晋墓收队</small>
+      <span class="go">进入 ⟶</span>
+    </a>
+    <a class="sub pending" href="index.html">
+      <b>名人篇 · 教学大纲</b>
+      <small>筹备中：申时行 · 朱梁任（招国魂↔深刻平江图）· 何求何点 · 张士诚 · 白居易（思益寺）</small>
+      <span class="go">待建 ⟶</span>
+    </a>
+    <a class="sub pending" href="index.html">
+      <b>图片资料库</b>
+      <small>筹备中：《平江图》岝崿山段 · 五塔认塔卡 · 苏州乐园旧影（待供图）</small>
+      <span class="go">待建 ⟶</span>
+    </a>
+  </div>
+  <div class="tracks">
+    <b>跨线联动</b>
+    <a href="pingjiangtu_xiangjie.html">《平江图》图文对照详解（第 11 讲 · 岝崿山）</a>
+    <span class="dim">｜重阳 2026-10-18（农历九月初九 · 星期日）· 登山需预约 · 南线只下不上</span>
+  </div>
+</section>
+
+<div class="group-head"><span class="no">贰</span><h2>家庭版 · 现场资料</h2><small>阊门亲子版与本页同目录，其余存于桌面临时文件夹</small></div>
+
+<a class="card" href="changmen_citywalk.html">
+  <span class="badge alt">阊门线</span>
+  <span class="t"><b>阊门 &amp; 北寺塔 · 家长宣传页</b><small>双线家庭版底稿（注：其中"泰伯庙主殿季简"之说已订正为"季札"，以讲师手册为准）</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+<a class="card" href="citywalk_kids.html">
+  <span class="badge alt">文庙线</span>
+  <span class="t"><b>亲子研学 Citywalk 双线图志（家庭版）</b><small>文庙·双线家长版图志</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+<a class="card" href="changmen_qinzi.html">
+  <span class="badge alt">阊门线</span>
+  <span class="t"><b>阊门线 · 亲子研学图志（家庭版）</b><small>面向亲子家庭的精华版：一线六站 · 科学小侦探 · 亲子任务卡 · 单文件可微信转发</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+<a class="card" href="xumen-xianchang.html">
+  <span class="badge alt">胥门专题</span>
+  <span class="t"><b>伍子胥筑城 · 现场讲解大纲（交互版 · 90′）</b><small>筑城主题现场课教案</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+<a class="card" href="yanxueliangdian3.html">
+  <span class="badge alt">胥门专题</span>
+  <span class="t"><b>胥门 · 胥江 · 规划展示馆 —— 研学三大亮点</b><small>胥门线亮点梳理</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+<a class="card" href="zixuchuangqi-3story.html">
+  <span class="badge alt">胥门专题</span>
+  <span class="t"><b>伍子胥筑城 · 三则故事（精简版 V2 · 古风画插图）</b><small>讲故事用配图材料</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+<a class="card" href="chengqiang.html">
+  <span class="badge alt">城墙专题</span>
+  <span class="t"><b>城墙上的春秋 · 趣味知识探讨</b><small>苏州城墙专题知识页</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+
+<div class="group-head"><span class="no">叁</span><h2>考据资料 · 原始素材</h2><small>专题探讨记录与对话存档</small></div>
+
+<a class="card" href="阖闾大城与伍子胥专题探讨记录.txt">
+  <span class="badge doc">记录</span>
+  <span class="t"><b>阖闾大城与伍子胥专题探讨记录</b><small>行人/太宰之辨 · 清华简《系年》等考据原稿（筑城线核心素材）</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+<a class="card" href="研学配图_讲解重点匹配对照表.md">
+  <span class="badge doc">对照</span>
+  <span class="t"><b>研学配图 · 讲解重点匹配对照表</b><small>三线逐站「讲解重点 ↔ 配图 ↔ 状态」，含现场原则与配图铁律</small></span>
+  <span class="go">打开 ⟶</span>
+</a>
+
+<div class="note"><b>使用提示：</b>本 index 为最底层总目录，建议总放在"苏州研学游"文件夹根部；讲师资料与它同目录存放即可互链。每条线固定三件套＋现场两夹：<b>上课进行中</b>用「干净版」夹讲到点位即发；<b>课后</b>发「字幕版」图包；<b>当天讲完</b>发「图片资料库」网页作今日回顾。桌面临时文件夹内的资料若日后移动，只需更新本页"贰/叁"两组链接即可，壹组不受影响。</div>
+
+<footer>
+  <div class="big">吴 地 时 光 机</div>
+  <p>苏州城市漫游研学 · 总目录 · 2026-09 v4 · 壹组四条线同构（漫游篇 / 名人篇 / 图片资料库 ＋ 现场两夹），色块统一；各手册体例统一：逐站讲解 + 现场看点 + 研学延伸 + 纠错彩蛋 + 信源标注</p>
+</footer>
+
+</div>
+</body>
+</html>

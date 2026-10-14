@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>《平江图》坊表核对表 · 六十五坊逐条点校</title>
+<style>
+  :root{
+    --paper:#f7f1e4; --paper2:#fbf7ee; --ink:#3a2a20; --ink2:#5c4a3c;
+    --red:#9e3b25; --gold:#b99a5b; --line:#d9c9a8; --green:#3f6b4a;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Songti SC","STSong","SimSun","Noto Serif SC",serif;
+    line-height:1.8; font-size:15px;
+  }
+  .sister{
+    display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between;
+    padding:10px 18px; background:#efe6d2; border-bottom:1px solid var(--line);
+    font-size:13.5px;
+  }
+  .sister a{color:var(--red); text-decoration:none}
+  .sister a:hover{text-decoration:underline}
+  .wrap{max-width:1000px; margin:0 auto; padding:26px 18px 60px}
+  .cover{text-align:center; padding:26px 10px 18px; border-bottom:3px double var(--line); margin-bottom:24px}
+  .cover h1{margin:0 0 10px; font-size:30px; letter-spacing:4px; color:var(--ink)}
+  .cover .sub{color:var(--ink2); font-size:14px; letter-spacing:1px}
+  .cover .meta{margin-top:12px; font-size:13px; color:#8a7660}
+  h2{
+    font-size:19px; color:var(--red); margin:34px 0 12px; letter-spacing:2px;
+    border-left:5px solid var(--gold); padding-left:10px;
+  }
+  p{margin:8px 0}
+  .card{
+    background:var(--paper2); border:1px solid var(--line); border-radius:8px;
+    padding:14px 16px; margin:12px 0; box-shadow:0 2px 8px rgba(58,42,32,.06);
+  }
+  .card.warn{border-left:5px solid var(--red)}
+  .num{font-family:Georgia,serif; color:var(--red); font-weight:700}
+  table{width:100%; border-collapse:collapse; margin:10px 0 22px; background:var(--paper2)}
+  caption{
+    caption-side:top; text-align:left; font-size:16px; color:var(--red);
+    letter-spacing:2px; padding:10px 4px 6px; font-weight:700;
+  }
+  th,td{border:1px solid var(--line); padding:6px 8px; font-size:14px; vertical-align:top}
+  th{background:#efe6d2; font-weight:600; color:var(--ink); white-space:nowrap}
+  td.c{text-align:center; white-space:nowrap}
+  td.n{width:40px; text-align:right; color:#9a8668; font-family:Georgia,serif}
+  td.f{width:110px; font-weight:600}
+  td.d{color:var(--ink2); width:230px}
+  td.k{width:150px; color:#7a6a58}
+  td.b{width:52px; text-align:center}
+  tr.dup td{background:#fdf3e0}
+  tr.dup td.f::after{content:" ★"; color:var(--red)}
+  .tag{display:inline-block; font-size:12px; padding:0 6px; border-radius:10px; border:1px solid var(--line); color:#7a6a58; background:#fff}
+  .tag.ok{color:var(--green); border-color:#bcd3c1; background:#f1f8f2}
+  .tag.dc{color:#a1701f; border-color:#e6d3a5; background:#fdf7e8}
+  .counter{
+    position:sticky; bottom:0; background:#efe6d2; border-top:2px solid var(--gold);
+    padding:8px 14px; font-size:14px; text-align:center; letter-spacing:1px;
+  }
+  .counter b{color:var(--red); font-size:17px}
+  ul{margin:8px 0 8px 22px; padding:0}
+  li{margin:4px 0}
+  .steps li{margin:8px 0}
+  footer{margin-top:40px; padding-top:16px; border-top:1px solid var(--line); font-size:12.5px; color:#8a7660; text-align:center}
+  @media (max-width:640px){
+    .cover h1{font-size:22px; letter-spacing:2px}
+    td.d,td.k{display:none}
+    th.dh,th.kh{display:none}
+    body{font-size:14px}
+  }
+</style>
+</head>
+<body>
+
+<div class="sister">
+  <a href="index.html">⟵ 研学总目录</a>
+  <a href="pingjiangtu_xiangjie.html">平江图 · 图文对照详解（十五讲）⟶</a>
+</div>
+
+<div class="wrap">
+  <div class="cover">
+    <h1>《平江图》坊表核对表</h1>
+    <div class="sub">六十五坊 · 逐条点校 —— 讲师备课 · 数坊专用</div>
+    <div class="meta">图碑：南宋绍定二年（1229）刻 ｜ 坊名单：《吴郡志》卷六“坊市” ｜ 底图：高清转正本 4139×6088</div>
+  </div>
+
+  <h2>一 · 为什么会有 64、65、61 三个数？</h2>
+
+  <div class="card warn">
+    <p><b>先说结论：你数到 64，很可能不是数错，而是数法不同。</b></p>
+    <p>《吴郡志》补注：“<b>右六十五坊，绍定二年春，郡守李寿朋并新作之</b>”——65 是<b>条目数</b>。
+    但这 65 条里，<b>“武状元坊”出现了两次</b>（补注明说“武状元坊二”）：</p>
+    <ul>
+      <li>乐桥南·纸廊巷 —— 淳熙十一年（1184）林㟽为廷魁，郡守谢师稷立</li>
+      <li>雍熙寺东 —— 庆元二年（1196）周虎为廷魁，亦以名坊</li>
+    </ul>
+    <p>两处同名，各立一坊。<b>65 − 1 = 64</b>——若按“不同的坊名”数，恰好是 64 个；
+    按“坊表座数／名单条目”数，才是 65。</p>
+  </div>
+
+  <div class="card">
+    <p><b>三个数字的来源，各是一回事：</b></p>
+    <ul>
+      <li><span class="num">65</span>　《吴郡志》卷六补注“右六十五坊”（乐桥东南 17＋东北 16＋西南 17＋西北 15）；
+      多数介绍文字、碑刻博物馆口径用这个数——它是<b>文献条目数</b>。</li>
+      <li><span class="num">64</span>　<b>不同坊名数</b>：65 条中“武状元坊”两见，去重得 64。
+      手数坊名的人，自然得到这个数——<b>没数错</b>。</li>
+      <li><span class="num">61</span>　另有“图上标出坊 61 个”一说（见维基百科《平江图》条目）。
+      这是<b>碑面实况</b>一类的统计——1917 年叶德辉、朱锡梁督工深刻时，原碑已“漫漶”、左下角残缺，
+      坊名不可能 65 条全部清晰复刻；可辨者自然少于 65。</li>
+    </ul>
+    <p>再加一层：原碑刻工为省地，部分小坊画得极简（两柱一梁加坊名），或被桥名、巷名压住——
+    目力逐座点数，误差个把座是常态。<b>所以 65、64、61 三个数可以同时成立，只是口径不同。</b></p>
+  </div>
+
+  <div class="card">
+    <p><b>另外三处容易“数岔”的地方（原文讹字／异写）：</b></p>
+    <ul>
+      <li><b>建盖口坊</b>（干将巷）、<b>迁盖口坊</b>（草桥）——四库本讹字，通读即 <b>建善坊</b>、<b>迁善坊</b>；</li>
+      <li><b>崇不义坊</b>（禅兴寺桥南）／一本作 <b>崇义坊</b>（“不”为衍字），同一坊；</li>
+      <li><b>文正范公之坊</b>（范家园）——唯一五字坊名，极易被当成注文略过。</li>
+    </ul>
+  </div>
+
+  <h2>二 · 逐条核对表（点一遍，差在哪就知道）</h2>
+  <p style="font-size:13.5px;color:#7a6a58">勾选框供逐坊点校；“图上状态”列为本页编者对高清底图的目检结果：
+  <span class="tag ok">已读名</span> 坊名清晰可读　<span class="tag dc">待复核</span> 见到坊形／名字漫漶。
+  “今地”栏按《吴郡志》原注“某某桥／某某巷”标出，即宋代定位。</p>
+
+  <table>
+    <caption>乐桥东南 · 十七坊</caption>
+    <thead><tr><th>序</th><th class="fh">坊名</th><th class="dh">注文位置（宋）</th><th class="kh">图上状态</th><th class="bh">勾</th></tr></thead>
+    <tbody>
+      <tr><td class="n">1</td><td class="f">孝义坊</td><td class="d">东憩桥巷</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">2</td><td class="f">通阛坊</td><td class="d">金母桥西</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">3</td><td class="f">绣锦坊</td><td class="d">大市</td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">4</td><td class="f">儒教坊</td><td class="d">饮马桥南</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">5</td><td class="f">旌义坊</td><td class="d">蔡汇头</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">6</td><td class="f">孝友坊</td><td class="d">南园东巷</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">7</td><td class="f">玉渊坊</td><td class="d">南星桥</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">8</td><td class="f">儒学坊</td><td class="d">乌鹊桥南</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">9</td><td class="f">衮绣坊</td><td class="d">乌鹊桥北</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">10</td><td class="f">状元坊</td><td class="d">醋库巷（黄由所居）</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">11</td><td class="f">吴会坊</td><td class="d">府治东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">12</td><td class="f">晋宁坊</td><td class="d">濠股口</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">13</td><td class="f">和令坊</td><td class="d">杨郡王府前</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">14</td><td class="f">绣衣坊</td><td class="d">南仓桥北</td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">15</td><td class="f">孔圣坊</td><td class="d">南仓桥南</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">16</td><td class="f">积善坊</td><td class="d">府治西</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">17</td><td class="f">阜通坊</td><td class="d">夏侯桥西</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>乐桥东北 · 十六坊</caption>
+    <thead><tr><th>序</th><th class="fh">坊名</th><th class="dh">注文位置（宋）</th><th class="kh">图上状态</th><th class="bh">勾</th></tr></thead>
+    <tbody>
+      <tr><td class="n">18</td><td class="f">干将坊</td><td class="d">东市门（今干将路之名源此）</td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">19</td><td class="f">建善坊</td><td class="d">干将巷〔原文讹作“建盖口坊”〕</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">20</td><td class="f">真庆坊</td><td class="d">天庆观巷</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">21</td><td class="f">迁善坊</td><td class="d">草桥〔原文讹作“迁盖口坊”〕</td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">22</td><td class="f">布德坊</td><td class="d">顾家桥</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">23</td><td class="f">豸冠坊</td><td class="d">仁王寺前（范师道所居）</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">24</td><td class="f">富仁坊</td><td class="d">鱼行桥东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">25</td><td class="f">闻德坊</td><td class="d">周太尉桥东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">26</td><td class="f">崇义坊</td><td class="d">禅兴寺桥南〔一本衍作“崇不义坊”〕</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">27</td><td class="f">乘鲤坊</td><td class="d">张马步桥南</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">28</td><td class="f">闾丘坊</td><td class="d">张马步桥北</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">29</td><td class="f">大云坊</td><td class="d">天庆观西（林虙自号大云翁）</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">30</td><td class="f">碧凤坊</td><td class="d">天庆观前（今观前商圈仍用此街名）</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">31</td><td class="f">庆源坊</td><td class="d">大郎桥东</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">32</td><td class="f">天宫坊</td><td class="d">迎春巷</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">33</td><td class="f">迎春坊</td><td class="d">百口桥</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>乐桥西南 · 十七坊</caption>
+    <thead><tr><th>序</th><th class="fh">坊名</th><th class="dh">注文位置（宋）</th><th class="kh">图上状态</th><th class="bh">勾</th></tr></thead>
+    <tbody>
+      <tr><td class="n">34</td><td class="f">武状元坊</td><td class="d">乐桥南·纸廊巷（淳熙十一年林㟽）</td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">35</td><td class="f">吴歈坊</td><td class="d">西憩桥巷</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">36</td><td class="f">平权坊</td><td class="d">跨街楼南</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">37</td><td class="f">馆娃坊</td><td class="d">果子行</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">38</td><td class="f">和丰坊</td><td class="d">米行</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">39</td><td class="f">丽泽坊</td><td class="d">吉利桥北</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">40</td><td class="f">通波坊</td><td class="d">吉利桥南</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">41</td><td class="f">孙君坊</td><td class="d">孙老桥</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">42</td><td class="f">宾兴坊</td><td class="d">贡院南</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">43</td><td class="f">好礼坊</td><td class="d">富郎中巷</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">44</td><td class="f">义和坊</td><td class="d">杉渎桥东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">45</td><td class="f">灵芝坊</td><td class="d">侍其巷（初名难老坊）</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">46</td><td class="f">昼锦坊</td><td class="d">南营西（程师孟所居）</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">47</td><td class="f">载耜坊</td><td class="d">开元寺东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">48</td><td class="f">坤维坊</td><td class="d">瑞光寺东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">49</td><td class="f">同仁坊</td><td class="d">金狮巷</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">50</td><td class="f">南宫坊</td><td class="d">南园巷</td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+    </tbody>
+  </table>
+
+  <table>
+    <caption>乐桥西北 · 十五坊</caption>
+    <thead><tr><th>序</th><th class="fh">坊名</th><th class="dh">注文位置（宋）</th><th class="kh">图上状态</th><th class="bh">勾</th></tr></thead>
+    <tbody>
+      <tr><td class="n">51</td><td class="f">西市坊</td><td class="d">铁瓶巷</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">52</td><td class="f">太平坊</td><td class="d">太平桥</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">53</td><td class="f">嘉鱼坊</td><td class="d">鱼行桥西</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">54</td><td class="f">流化坊</td><td class="d">吴县东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr class="dup"><td class="n">55</td><td class="f">武状元坊</td><td class="d">雍熙寺东（庆元二年周虎）——<b>与第 34 条同名二坊</b></td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">56</td><td class="f">文正范公之坊</td><td class="d">范家园（唯一五字坊名）</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">57</td><td class="f">盍簪坊</td><td class="d">张马步桥北</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">58</td><td class="f">德庆坊</td><td class="d">禅兴寺桥西（卢秉奉亲年八十余）</td><td class="k"><span class="tag dc">待复核</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">59</td><td class="f">甘节坊</td><td class="d">承天寺东</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">60</td><td class="f">乐圃坊</td><td class="d">三太尉桥北（朱长文乐圃）</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">61</td><td class="f">立义坊</td><td class="d">北寺西</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">62</td><td class="f">清嘉坊</td><td class="d">朱明寺桥北</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">63</td><td class="f">仁风坊</td><td class="d">十九胜巷</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">64</td><td class="f">至德坊</td><td class="d">泰伯庙前（坊、庙、庙桥同框）</td><td class="k"><span class="tag ok">已读名</span></td><td class="b"><input type="checkbox"></td></tr>
+      <tr><td class="n">65</td><td class="f">吴趋坊</td><td class="d">皋桥西（今吴趋坊街名沿用）</td><td class="k"><span class="tag">未定位</span></td><td class="b"><input type="checkbox"></td></tr>
+    </tbody>
+  </table>
+
+  <h2>三 · 数坊三步法（下次再数，照着来）</h2>
+  <div class="card">
+    <ol class="steps">
+      <li><b>先分区，后总数。</b>以乐桥为原点分四隅：东南 17、东北 16、西南 17、西北 15。
+      按区清点，比全图乱数可靠得多——总数出错时立刻知道是哪一区。</li>
+      <li><b>同名二坊要数两次。</b>“武状元坊”图上两处（乐桥南纸廊巷、雍熙寺东），
+      按座数计要算 65，按坊名计只有 64——<b>先定口径，再报数字</b>。</li>
+      <li><b>特殊条目别漏。</b>“文正范公之坊”五字（范家园）；“建盖口坊／迁盖口坊”是讹字（建善／迁善）；
+      “崇不义坊”衍一字。这三处最容易点漏或多点。</li>
+    </ol>
+    <p style="color:#7a6a58;font-size:13.5px">另：原碑 1917 年深刻前已漫漶、左下角残缺，部分坊名不可复原；
+    原刻小坊画法极简（两柱一梁＋坊名），与桥名、巷名易混。逐座点数的误差多出于此，非目力之误。</p>
+  </div>
+
+  <h2>四 · 图上另见、而《吴郡志》六十五坊名单未收的坊名（◐ 待复核）</h2>
+  <div class="card">
+    <p>本页编者逐块扫描放大时，除上表已读名者外，另见到几个题“××坊”的牌坊，不在这 65 条名单内：</p>
+    <ul>
+      <li><b>广兴坊</b>（阊门内一带）</li>
+      <li><b>均税坊</b>（子城西侧，疑此条另作“平权坊”或“同仁坊”之误读）</li>
+      <li><b>观音坊</b>（疑“馆娃坊”或某巷名之误读）</li>
+      <li><b>新罗坊</b>（乐桥西北，若确为“新罗坊”，关系唐宋苏州与朝鲜半岛的贸易往来，值得专考）</li>
+    </ul>
+    <p style="color:#7a6a58;font-size:13.5px">这几种读法均标 ◐ 待复核：竖排小字漫漶，须与《宋平江城坊考》（王謇）逐条对勘后方可定案。
+    不排除原刻另有坊名、或为巷名／桥名被误认作坊。</p>
+  </div>
+
+  <div class="counter">
+    已点坊表 <b id="cnt">0</b> / 65 条（其中“武状元坊”两见；<b>不同坊名 64</b>）
+  </div>
+</div>
+
+<script>
+(function(){
+  var boxes = document.querySelectorAll('input[type=checkbox]');
+  var cnt = document.getElementById('cnt');
+  function upd(){
+    var n = 0;
+    for (var i=0;i<boxes.length;i++) if (boxes[i].checked) n++;
+    cnt.textContent = n;
+  }
+  for (var i=0;i<boxes.length;i++) boxes[i].addEventListener('change', upd);
+  upd();
+})();
+</script>
+
+<footer>
+  平江图坊表核对表 · 讲师备课本 ｜ 坊名单据《吴郡志》卷六“坊市”（范成大撰）逐条录入 ｜ 图上状态据高清转正底图 4139×6088 目检 ｜ 存疑处一律标 ◐ 待复核
+</footer>
+
+</body>
+</html>

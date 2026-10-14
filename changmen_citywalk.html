@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="description" content="吴地时光机·城市行走：阊门线、北寺塔线两条 citywalk 行程，含文史看点、打卡清单、手机摄影贴士">
+<meta property="og:title" content="吴地时光机 · 城市行走 · 阊门 & 北寺塔">
+<meta property="og:description" content="两条古城 citywalk：登阊门望三塔、探泰伯庙五峰园、品苏式面；北寺塔研学七打卡、野菜馄饨。含文史看点与摄影贴士。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:site_name" content="吴地时光机">
+<title>吴地时光机 · 城市行走 · 阊门 & 北寺塔</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;700;900&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#efe9dc; --bg-card:#fdfaf3; --bg-card-2:#f7f1e4;
+  --ink:#2c2416; --ink-light:#5a5040; --ink-muted:#8a7e6a;
+  --vermillion:#9c2d2d; --vermillion-dark:#7a1f1f; --vermillion-soft:#c0554f;
+  --jade:#4a7c59; --gold:#b8956a; --gold-light:#d4b896; --gold-dark:#9a7a52;
+  --border:#d9cfbe; --border-light:#e8e0d0;
+  --shadow:0 2px 12px rgba(60,50,30,.08);
+  --shadow-hover:0 6px 24px rgba(60,50,30,.14);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+  background:var(--bg);
+  background-image:radial-gradient(ellipse at 20% 0%,rgba(184,149,106,.07) 0%,transparent 55%),radial-gradient(ellipse at 80% 100%,rgba(74,124,89,.04) 0%,transparent 55%);
+  color:var(--ink); line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px 96px}
+
+/* Hero */
+.hero{text-align:center;padding:64px 0 40px;position:relative}
+.hero::before,.hero::after{content:"";display:block;width:110px;height:1px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.hero::before{margin-bottom:30px}.hero::after{margin-top:30px}
+.hero h1{font-family:"Noto Serif SC","Songti SC",serif;font-size:44px;font-weight:900;letter-spacing:.14em;color:var(--ink);position:relative;display:inline-block}
+.hero h1 .seal{position:absolute;top:-6px;right:-30px;width:18px;height:54px;background:var(--vermillion);border-radius:2px;opacity:.72}
+.hero .sub{font-family:"Noto Serif SC",serif;font-size:17px;color:var(--vermillion);letter-spacing:.32em;margin-top:10px;font-weight:500}
+.hero .tag{margin-top:18px;font-size:14px;color:var(--ink-light);letter-spacing:.08em}
+.hero .tag em{font-style:normal;color:var(--gold-dark)}
+
+/* Tabs */
+.tabs{display:flex;gap:0;margin:36px 0 8px;border:1px solid var(--border);border-radius:14px;overflow:hidden;background:var(--bg-card);box-shadow:var(--shadow)}
+.tab{flex:1;padding:15px 8px;text-align:center;cursor:pointer;border:none;background:transparent;font-family:"Noto Serif SC",serif;font-size:16px;font-weight:700;color:var(--ink-muted);letter-spacing:.12em;transition:.25s;position:relative}
+.tab .tab-num{display:block;font-size:11px;color:var(--gold-dark);letter-spacing:.2em;margin-bottom:3px;font-family:"Noto Sans SC",sans-serif;font-weight:400}
+.tab.active{color:var(--vermillion);background:var(--bg-card-2)}
+.tab.active::after{content:"";position:absolute;left:50%;bottom:0;width:46%;height:2px;background:var(--vermillion);transform:translateX(-50%);border-radius:1px}
+.tab .progress-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--border);margin-left:6px;vertical-align:middle;transition:.3s}
+.tab .progress-dot.has{background:var(--gold)}
+.tab .progress-dot.full{background:var(--vermillion)}
+
+/* Route panel */
+.route{display:none;animation:fadein .4s ease}
+.route.show{display:block}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* Route overview */
+.overview{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:22px 22px 18px;margin-bottom:22px;box-shadow:var(--shadow)}
+.overview .ov-title{font-family:"Noto Serif SC",serif;font-size:20px;font-weight:700;color:var(--vermillion);letter-spacing:.06em;margin-bottom:4px}
+.overview .ov-line{font-size:13px;color:var(--gold-dark);letter-spacing:.1em;margin-bottom:16px}
+.overview .ov-line .arr{color:var(--border);margin:0 6px}
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}
+.ov-item{font-size:13px;color:var(--ink-light);display:flex;align-items:flex-start;gap:7px}
+.ov-item b{color:var(--ink);font-weight:500;min-width:3em}
+.ov-item .ico{color:var(--gold);font-size:14px;flex-shrink:0;margin-top:1px}
+.ov-item.free b{color:var(--jade)}
+
+/* SVG route map */
+.routemap{margin-bottom:24px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:20px 12px 14px;box-shadow:var(--shadow);overflow-x:auto}
+.routemap svg{display:block;margin:0 auto;min-width:560px}
+.routemap .rm-cap{text-align:center;font-size:12px;color:var(--ink-muted);letter-spacing:.1em;margin-top:8px}
+
+/* Progress bar */
+.prog{margin-bottom:20px}
+.prog-bar{height:8px;background:var(--border-light);border-radius:4px;overflow:hidden}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--vermillion));width:0;border-radius:4px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.prog-text{display:flex;justify-content:space-between;font-size:12px;color:var(--ink-muted);margin-top:7px;letter-spacing:.06em}
+.prog-text .done-count{color:var(--vermillion);font-weight:700}
+
+/* Stop cards */
+.stops{display:flex;flex-direction:column;gap:14px}
+.stop{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);overflow:hidden;transition:box-shadow .25s,border-color .25s}
+.stop:hover{box-shadow:var(--shadow-hover);border-color:var(--gold-light)}
+.stop.done{border-color:var(--jade);background:linear-gradient(180deg,#f4f8f4,var(--bg-card))}
+.stop.done .stop-seal{background:var(--jade);color:#fff}
+.stop-head{display:flex;align-items:center;gap:13px;padding:16px 16px 0;cursor:pointer}
+.stop-seal{flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--vermillion);color:#fff;font-family:"Noto Serif SC",serif;font-weight:700;font-size:17px;display:flex;align-items:center;justify-content:center;transition:.25s;box-shadow:0 2px 6px rgba(156,45,45,.3)}
+.stop.t1 .stop-seal{background:var(--vermillion)}
+.stop-title{flex:1;min-width:0}
+.stop-title h3{font-family:"Noto Serif SC",serif;font-size:18px;font-weight:700;color:var(--ink);letter-spacing:.04em}
+.stop-title .hook{font-size:12px;color:var(--gold-dark);letter-spacing:.08em;margin-top:1px}
+.stop-check{flex-shrink:0;width:28px;height:28px;border-radius:50%;border:2px solid var(--border);background:transparent;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.25s;color:transparent;font-size:14px}
+.stop-check:hover{border-color:var(--gold)}
+.stop.done .stop-check{background:var(--jade);border-color:var(--jade);color:#fff}
+.stop-body{padding:13px 16px 17px}
+.stop-body.collapsed{display:none}
+.stop-desc{font-size:14px;color:var(--ink-light);margin-bottom:11px}
+.stop-desc strong{color:var(--vermillion);font-weight:500}
+.stop-desc em{font-style:normal;color:var(--gold-dark)}
+.look{background:var(--bg-card-2);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:10px 13px;margin-bottom:11px}
+.look h4{font-size:12px;color:var(--gold-dark);letter-spacing:.16em;margin-bottom:6px;font-weight:500}
+.look ul{list-style:none;font-size:13px;color:var(--ink-light)}
+.look li{padding-left:14px;position:relative;margin-bottom:3px}
+.look li::before{content:"◆";position:absolute;left:0;color:var(--gold);font-size:9px;top:5px}
+.tip{font-size:13px;color:var(--gold-dark);background:linear-gradient(90deg,rgba(184,149,106,.1),transparent);padding:8px 12px;border-radius:8px;line-height:1.7}
+.tip .tip-label{font-family:"Noto Serif SC",serif;font-weight:700;color:var(--gold-dark);letter-spacing:.1em;margin-right:6px}
+.tip em{font-style:normal;color:var(--vermillion);font-weight:500}
+.stop-meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.stop-meta span{font-size:11px;color:var(--ink-muted);background:var(--bg-card-2);padding:3px 9px;border-radius:10px;border:1px solid var(--border-light);letter-spacing:.04em}
+.stop-meta span.free{color:var(--jade);border-color:rgba(74,124,89,.25)}
+
+/* Footer */
+.foot{margin-top:34px;padding:26px 22px;background:var(--bg-card);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow)}
+.foot h3{font-family:"Noto Serif SC",serif;font-size:16px;color:var(--vermillion);letter-spacing:.1em;margin-bottom:12px;text-align:center}
+.foot ul{list-style:none;font-size:13px;color:var(--ink-light);line-height:1.95}
+.foot li{padding-left:16px;position:relative}
+.foot li::before{content:"·";position:absolute;left:4px;color:var(--gold);font-weight:700}
+.foot .sign{text-align:center;margin-top:16px;font-family:"Noto Serif SC",serif;font-size:13px;color:var(--gold-dark);letter-spacing:.2em}
+.foot .sign::before,.foot .sign::after{content:"——";color:var(--border);margin:0 8px}
+
+@media(max-width:420px){
+  .hero h1{font-size:37px}
+  .hero .sub{font-size:15px;letter-spacing:.26em}
+  .stop-seal{width:34px;height:34px;font-size:15px}
+  .stop-title h3{font-size:17px}
+  .ov-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- Hero -->
+<header class="hero">
+  <h1>城市行走<span class="seal"></span></h1>
+  <p class="sub">吴 地 时 光 机 · 户 外 篇</p>
+  <p class="tag">阊门线 <em>·</em> 北寺塔线 &nbsp;两条古城 citywalk</p>
+</header>
+
+<!-- Tabs -->
+<nav class="tabs" role="tablist">
+  <button class="tab active" data-route="changmen" role="tab">
+    <span class="tab-num">壹</span>阊门线<span class="progress-dot" id="dot-cm"></span>
+  </button>
+  <button class="tab" data-route="beisi" role="tab">
+    <span class="tab-num">贰</span>北寺塔线<span class="progress-dot" id="dot-bs"></span>
+  </button>
+</nav>
+
+<!-- ============ 阊门线 ============ -->
+<section class="route show" id="route-changmen">
+
+  <div class="overview">
+    <div class="ov-title">壹 · 阊门线 · 寻根阊门下</div>
+    <div class="ov-line">阊门城楼 <span class="arr">→</span> 西中市 <span class="arr">→</span> 泰伯庙 <span class="arr">→</span> 五峰园 <span class="arr">→</span> 水巷 <span class="arr">→</span> 聚新春面馆</div>
+    <div class="ov-grid">
+      <div class="ov-item"><span class="ico">⏱</span><b>约3小时</b></div>
+      <div class="ov-item"><span class="ico">🚶</span><b>步行约2km</b></div>
+      <div class="ov-item"><span class="ico">📍</span><b>阊门起</b>·西中市终</div>
+      <div class="ov-item free"><span class="ico">🎫</span><b>全程免费</b></div>
+      <div class="ov-item"><span class="ico">🚇</span><b>地铁2号线石路站</b></div>
+      <div class="ov-item"><span class="ico">🍽</span><b>终点品苏式面</b></div>
+    </div>
+  </div>
+
+  <div class="routemap">
+    <svg viewBox="0 0 600 70" width="100%" height="70">
+      <line x1="40" y1="35" x2="560" y2="35" stroke="#d9cfbe" stroke-width="2" stroke-dasharray="3 4"/>
+      <g font-family="Noto Serif SC,serif" font-size="13" font-weight="700" fill="#9c2d2d" text-anchor="middle">
+        <circle cx="50" cy="35" r="15" fill="#9c2d2d"/><text x="50" y="40" fill="#fff" font-size="14">壹</text>
+        <circle cx="150" cy="35" r="15" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="150" y="40" font-size="14">贰</text>
+        <circle cx="250" cy="35" r="15" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="250" y="40" font-size="14">叁</text>
+        <circle cx="350" cy="35" r="15" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="350" y="40" font-size="14">肆</text>
+        <circle cx="450" cy="35" r="15" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="450" y="40" font-size="14">伍</text>
+        <circle cx="550" cy="35" r="15" fill="#b8956a"/><text x="550" y="40" fill="#fff" font-size="14">陆</text>
+      </g>
+      <g font-family="Noto Sans SC,sans-serif" font-size="10" fill="#8a7e6a" text-anchor="middle">
+        <text x="50" y="62">城楼远望</text>
+        <text x="150" y="62">逛西中市</text>
+        <text x="250" y="62">泰伯庙</text>
+        <text x="350" y="62">五峰园</text>
+        <text x="450" y="62">水巷打卡</text>
+        <text x="550" y="62">品苏式面</text>
+      </g>
+    </svg>
+    <div class="rm-cap">沿阊门内下塘街一路向内，半日读尽"红尘中一二等富贵风流"</div>
+  </div>
+
+  <div class="prog">
+    <div class="prog-bar"><div class="prog-fill" id="fill-cm"></div></div>
+    <div class="prog-text"><span>阊门线打卡进度</span><span><span class="done-count" id="cnt-cm">0</span> / 6</span></div>
+  </div>
+
+  <div class="stops">
+
+    <!-- CM1 -->
+    <article class="stop t1" data-route="cm" data-idx="1">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">壹</div>
+        <div class="stop-title"><h3>登城楼远望</h3><div class="hook">三塔同框·古今对望</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc"><strong>阊门</strong>，春秋苏州八门之一，<em>"阊"通天气之意</em>，又名<em>破楚门</em>——吴欲灭楚，门朝对楚国。八大城门中唯一<em>水陆并行</em>的双城门，曹雪芹在《红楼梦》开篇把天下最繁华之地定在了这里。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>登城墙远眺：<strong style="color:var(--vermillion)">北寺塔</strong>东北、<strong style="color:var(--vermillion)">虎丘塔</strong>西北、<strong style="color:var(--vermillion)">东方之门</strong>东望——古今同框</li>
+          <li>城门西侧瓮城：苏州现存最大瓮城</li>
+          <li>隐藏彩蛋：城墙砖上的<em>烧造铭文</em>，几百年前的"产地溯源"</li>
+          <li>五水汇阊：运河商船由此入城；白居易在此登船，山塘河由此流向虎丘</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">手机摄影</span>雉堞为框对准<em>虎丘塔</em>入画；<em>超广角</em>收北寺塔与东方之门千年同框；<em>延时摄影</em>录西中市的车水马龙。</div>
+        <div class="stop-meta"><span>阊门遗址公园</span><span class="free">免费登城</span></div>
+      </div>
+    </article>
+
+    <!-- CM2 -->
+    <article class="stop t1" data-route="cm" data-idx="2">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">贰</div>
+        <div class="stop-title"><h3>逛西中市</h3><div class="hook">民国金融街遗韵</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">自明代起，<strong>西中市</strong>就是阊门内主要商业街。沿街民居仍保留上世纪二三十年代<em>民国建筑</em>风格——这里曾是苏州的金融一条街，银行、钱庄云集，繁华延续六百年。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>抬眼看廊檐雕花与券窗，辨认民国西式装饰</li>
+          <li>老字号招牌：百年老店藏在不起眼的门面里</li>
+          <li>皋桥畔遥想"姑苏繁华地"</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">手机摄影</span>仰拍<em>骑楼廊柱</em>切割天光，黑白滤镜出民国质感；街角老招牌+行人虚化，烟火气十足。</div>
+        <div class="stop-meta"><span>西中市路</span><span class="free">全天开放</span></div>
+      </div>
+    </article>
+
+    <!-- CM3 -->
+    <article class="stop t1" data-route="cm" data-idx="3">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">叁</div>
+        <div class="stop-title"><h3>泰伯庙</h3><div class="hook">探吴文化始祖·三让至德</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">从西中市拐进阊门内下塘街，便是<strong>泰伯庙</strong>。<em>泰伯</em>乃吴国第一代君主、东吴文化始祖，<em>"泰伯三让"</em>被孔子誉为"至德"——三以天下让，民无得而称焉。这座庙被誉为<em>"三吴首祠"</em>。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>东汉永兴二年（154）始建，距今一千八百余年，最早在阊门外，五代后梁移建至此</li>
+          <li><em>至德坊</em>、<em>至德桥</em>、<em>至德殿</em>——一个"至德"贯穿全庙</li>
+          <li>殿前康熙、乾隆两座<em>御碑</em></li>
+          <li>主殿供奉泰伯、仲雍、季简三位勾吴先祖</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">研学</span>给孩子讲"泰伯三让"的故事：让王位、让中原、让繁华，换来江南一片吴地——这是苏州人谦让民风的源头。</div>
+        <div class="stop-meta"><span>阊门内下塘街252号</span><span>周二至日 9:00–16:30</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- CM4 -->
+    <article class="stop t1" data-route="cm" data-idx="4">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">肆</div>
+        <div class="stop-title"><h3>五峰园</h3><div class="hook">玲珑雅致·花石纲遗存</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">离泰伯庙仅几步之遥，藏于深巷中的<strong>五峰园</strong>。明代嘉靖年间所筑，传为画家<em>文伯仁</em>（号五峰老人）私家宅园。园虽小，却厅、舫、亭、廊、假山、石峰俱全——是<em>古城区唯一免费开放的省级文保</em>园林。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>五座太湖石峰：<em>丈人峰、观音峰、三老峰、庆云峰、擎云峰</em>，北宋<em>花石纲</em>遗存，形似五位老者"五老峰"</li>
+          <li>柱石舫（旱船）：矗立陆地的船形轩屋，设计精巧</li>
+          <li>五峰山房：四面厅，如今是老人茶室，"其乐泄泄"</li>
+          <li>园内还有一处柳毅墓古迹</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">手机摄影</span>低角度仰拍五峰"皱漏透瘦"，以天空为背景轮廓分明；池中倒影+石峰，<em>留白构图</em>出宋画意境。</div>
+        <div class="stop-meta"><span>五峰园弄15号</span><span>8:00–16:00</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- CM5 -->
+    <article class="stop t1" data-route="cm" data-idx="5">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">伍</div>
+        <div class="stop-title"><h3>古城水巷拍照</h3><div class="hook">水陆并行·河街相邻</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">阊门一带水网密织，是苏州"<em>水陆并行、河街相邻</em>"双棋盘格局的标本。外城河、内城河、阊门水关、上塘街水巷——白墙黛瓦倒映水中，橹声欸乃。</p>
+        <div class="look"><h4>拍照机位</h4><ul>
+          <li>阊门水关：城门下船只穿行，水陆城门同框</li>
+          <li>北码头：石阶入水，对岸民居鳞次</li>
+          <li>五水汇阊处：看水系交汇，体会"红尘富贵"的水路来由</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">手机摄影</span>水面倒影用<em>对称构图</em>；傍晚蓝调时刻拍灯笼映水；人像靠石栏侧身，让水巷做虚化背景。</div>
+        <div class="stop-meta"><span>阊门水关·北码头</span><span class="free">全天</span></div>
+      </div>
+    </article>
+
+    <!-- CM6 -->
+    <article class="stop t1" data-route="cm" data-idx="6">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">陆</div>
+        <div class="stop-title"><h3>聚新春面馆品苏式面</h3><div class="hook">非遗紧酵·老苏州味道</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">走完老街，到西中市44号的<strong>聚新春面馆</strong>歇脚吃面。这家老店新开，挨着阊门，是<em>非遗紧酵馒头</em>的传承者。一碗红汤面，浇头丰俭由人，吃出老苏州的早晨。</p>
+        <div class="look"><h4>点单指南</h4><ul>
+          <li>招牌：特色焖肉面、苏式爆鱼面、枫镇大肉面</li>
+          <li>必尝：非遗紧酵馒头——皮酥掉渣、肉馅汁水足</li>
+          <li>推荐：焖肉+大排双浇面</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">贴士</span>建议早来靠窗位；红汤面是老店才有的味道，浇头点虾仁或焖肉皆宜。人均约¥28。</div>
+        <div class="stop-meta"><span>西中市44号</span><span>6:00–20:00</span><span>人均¥28</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- ============ 北寺塔线 ============ -->
+<section class="route" id="route-beisi">
+
+  <div class="overview">
+    <div class="ov-title">贰 · 北寺塔线 · 报恩寺研学</div>
+    <div class="ov-line">山门 <span class="arr">→</span> 九龙碑 <span class="arr">→</span> 漆雕 <span class="arr">→</span> 老照片 <span class="arr">→</span> 纪功碑 <span class="arr">→</span> 观音殿 <span class="arr">→</span> 梅圃 <span class="arr">→</span> 鲜得楼</div>
+    <div class="ov-grid">
+      <div class="ov-item"><span class="ico">⏱</span><b>约2.5小时</b></div>
+      <div class="ov-item"><span class="ico">🚶</span><b>寺内+午餐</b></div>
+      <div class="ov-item"><span class="ico">📍</span><b>人民路1918号</b></div>
+      <div class="ov-item free"><span class="ico">🎫</span><b>报恩寺免费</b></div>
+      <div class="ov-item"><span class="ico">🚇</span><b>4号线北寺塔站</b></div>
+      <div class="ov-item"><span class="ico">🍽</span><b>皮市街鲜得楼</b></div>
+    </div>
+  </div>
+
+  <div class="routemap">
+    <svg viewBox="0 0 600 70" width="100%" height="70">
+      <line x1="30" y1="35" x2="570" y2="35" stroke="#d9cfbe" stroke-width="2" stroke-dasharray="3 4"/>
+      <g font-family="Noto Serif SC,serif" font-size="13" font-weight="700" fill="#9c2d2d" text-anchor="middle">
+        <circle cx="40" cy="35" r="14" fill="#9c2d2d"/><text x="40" y="40" fill="#fff" font-size="13">壹</text>
+        <circle cx="115" cy="35" r="14" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="115" y="40" font-size="13">贰</text>
+        <circle cx="190" cy="35" r="14" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="190" y="40" font-size="13">叁</text>
+        <circle cx="265" cy="35" r="14" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="265" y="40" font-size="13">肆</text>
+        <circle cx="340" cy="35" r="14" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="340" y="40" font-size="13">伍</text>
+        <circle cx="415" cy="35" r="14" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="415" y="40" font-size="13">陆</text>
+        <circle cx="490" cy="35" r="14" fill="#fdfaf3" stroke="#9c2d2d" stroke-width="2"/><text x="490" y="40" font-size="13">柒</text>
+        <circle cx="565" cy="35" r="14" fill="#b8956a"/><text x="565" y="40" fill="#fff" font-size="13">食</text>
+      </g>
+      <g font-family="Noto Sans SC,sans-serif" font-size="9" fill="#8a7e6a" text-anchor="middle">
+        <text x="40" y="62">哼哈二将</text>
+        <text x="115" y="62">九龙碑</text>
+        <text x="190" y="62">繁华图</text>
+        <text x="265" y="62">老照片</text>
+        <text x="340" y="62">纪功碑</text>
+        <text x="415" y="62">观音殿</text>
+        <text x="490" y="62">梅圃</text>
+        <text x="565" y="62">野菜馄饨</text>
+      </g>
+    </svg>
+    <div class="rm-cap">未见苏城先见塔——寺、塔、园、史一气走完</div>
+  </div>
+
+  <div class="prog">
+    <div class="prog-bar"><div class="prog-fill" id="fill-bs"></div></div>
+    <div class="prog-text"><span>北寺塔线打卡进度</span><span><span class="done-count" id="cnt-bs">0</span> / 8</span></div>
+  </div>
+
+  <div class="stops">
+
+    <!-- BS1 -->
+    <article class="stop t1" data-route="bs" data-idx="1">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">壹</div>
+        <div class="stop-title"><h3>山门哼哈二将</h3><div class="hook">密迹金刚·那罗延天</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">入寺先过<strong>山门</strong>。两旁立着两尊威武金刚——<em>密迹金刚</em>与<em>那罗延天</em>，民间俗称"<em>哼哈二将</em>"：一位怒颜张口发"哈"，一位忿颜闭唇出"哼"。面肌紧绷、怒目圆睁，手执金刚杵，护守佛国。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>辨认"哼将"与"哈将"：区别在开口闭口</li>
+          <li>门厅弥勒"皆大欢喜"，笑迎众生</li>
+          <li>四柱三门五楼木牌坊：苏州现存最大牌楼，悬"报恩寺"匾</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">研学</span>"哼哈二将"之名源于明代《封神演义》郑伦、陈奇，而佛教本源是护法神——给孩子讲文学与宗教的"撞名"。</div>
+        <div class="stop-meta"><span>报恩寺山门</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- BS2 -->
+    <article class="stop t1" data-route="bs" data-idx="2">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">贰</div>
+        <div class="stop-title"><h3>迷你九龙碑</h3><div class="hook">石雕九龙·迷你"九龙壁"</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">登塔之前，留意寺内的<em>九龙碑</em>——九条蟠龙腾跃于云浪之间，鳞爪飞扬、须目如生。与故宫、北海的九龙壁相比尺幅虽小，<em>气象却毫不逊色</em>，故有"迷你九龙壁"之称。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>数一数九条龙，姿态神情各不相同</li>
+          <li>细看石雕鳞爪须目的刀工细节</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">研学</span>龙为华夏图腾，九为极数。孙权以九五之尊建寺报母恩，碑上九龙既是祥瑞雕饰，也是这份"孝道心印"的千年见证。</div>
+        <div class="stop-meta"><span>报恩寺内（登塔沿途）</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- BS3 -->
+    <article class="stop t1" data-route="bs" data-idx="3">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">叁</div>
+        <div class="stop-title"><h3>苏州最大的姑苏繁华图</h3><div class="hook">32米漆雕·乾隆盛世</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">楠木观音殿南长廊，陈列着<strong>国内最大巨型漆雕</strong>《盛世滋生图》——即《<em>姑苏繁华图</em>》漆雕版。全长<em>32米、高2米</em>，再现清代乾隆盛世苏州的湖光山色、流水人家、市镇商肆。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>原画作者徐扬，苏州吴县人，奉旨历时两年余绘成</li>
+          <li>漆雕以刀代笔，人物楼宇纤毫毕现</li>
+          <li>找一找画中的阊门、山塘、北寺塔——与今日实景对照</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">研学</span>画中人物实为<em>四千余人</em>（辽博/苏博复核），旧说"一万二千人"系讹传——这是纠正一个流传甚广的误解。</div>
+        <div class="stop-meta"><span>观音殿南长廊</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- BS4 -->
+    <article class="stop t1" data-route="bs" data-idx="4">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">肆</div>
+        <div class="stop-title"><h3>老照片中的北寺塔</h3><div class="hook">未见苏城先见塔·1903–2025</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">「<strong>未见苏城先见塔</strong>」老照片微型展，以<em>17张珍贵老照片</em>串联1903年至2025年北寺塔作为古城天际线的独特魅力，历史影像与个人记忆相互映照。</p>
+        <div class="look"><h4>三个板块</h4><ul>
+          <li>北塔报恩寺：塔与寺的百年容颜</li>
+          <li>塔与路：火车上的塔影、街巷里的仰望</li>
+          <li>北寺塔的"保养记"：1965、2006、2025三次大修</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">研学</span>找一张与今天同角度的老照片，现场举手机比对着拍——今昔同框，最动人的"时光机"瞬间。</div>
+        <div class="stop-meta"><span>北寺塔广场/展厅</span><span>以展期公告为准</span></div>
+      </div>
+    </article>
+
+    <!-- BS5 -->
+    <article class="stop t1" data-route="bs" data-idx="5">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">伍</div>
+        <div class="stop-title"><h3>张士诚记功碑</h3><div class="hook">罕见元代石雕·118人物深浮雕</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">塔后碑亭内，藏着一块罕见的<strong>元代石雕艺术品</strong>。青石质，高3.06米、宽1.46米，记载元至正十八年（1358）<em>宴请元使伯颜</em>的盛况——传为江南首富<em>沈万三</em>出资所造。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>118个人物深浮雕，面目清晰、衣褶流畅</li>
+          <li>为兵败王者张士诚立"记功碑"——国内罕见</li>
+          <li>琢工精细、构图严谨，元代石雕上品</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">研学</span>张士诚在苏州建大周政权，深得民心，败于朱元璋后苏州人仍为他立碑——讲讲"成败"与"民心"的两本账。</div>
+        <div class="stop-meta"><span>塔后碑亭</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- BS6 -->
+    <article class="stop t1" data-route="bs" data-idx="6">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">陆</div>
+        <div class="stop-title"><h3>楠木观音殿</h3><div class="hook">不染尘·苏州最完整明代古建</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">塔东侧的<strong>不染尘观音殿</strong>，因以<em>楠木</em>为柱材得名。始建南宋绍兴二十三年，现存殿宇为<em>明万历四十年（1612）</em>重建，是苏州保存最完整的<em>明代古建筑</em>。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>楠木柱材历经四百年不朽不蛀</li>
+          <li>梁架、脊饰带徽州建筑风格</li>
+          <li>枋柱间保存明代彩绘数十幅</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">研学</span>"不染尘"三字取意清净——楠木自带香气驱虫，古人选材的智慧就在殿名里。</div>
+        <div class="stop-meta"><span>塔东侧</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- BS7 -->
+    <article class="stop t1" data-route="bs" data-idx="7">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">柒</div>
+        <div class="stop-title"><h3>梅圃 · 寺庙的园林</h3><div class="hook">寺中藏园·暗香疏影</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">塔东北隅的<strong>梅圃</strong>，5200余平方米的自然山水式园林。假山独立、草木繁茂、曲径通幽——<em>寺中藏园</em>，比拙政园、狮子林更添一份出尘气质，游客稀少，自成一格。</p>
+        <div class="look"><h4>现场看点</h4><ul>
+          <li>暗香水榭：凭栏俯瞰水中<em>巍峨塔影</em></li>
+          <li>碧漾廊桥：如虹横跨，四季花事</li>
+          <li>疏影亭：山顶六角古亭，赏梅佳处（"暗香疏影"指梅花）</li>
+          <li>飞英堂茶室：春赏牡丹、秋看金桂</li>
+          <li>铁石崖：池塘西侧暗红陡崖</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">手机摄影</span>在暗香水榭拍<em>水中塔影</em>，上下双塔；早春来拍梅，疏影亭是最佳机位。</div>
+        <div class="stop-meta"><span>塔东北隅</span><span class="free">免费</span></div>
+      </div>
+    </article>
+
+    <!-- BS8 lunch -->
+    <article class="stop t1" data-route="bs" data-idx="8">
+      <div class="stop-head" onclick="toggleBody(this)">
+        <div class="stop-seal">食</div>
+        <div class="stop-title"><h3>皮市街鲜得楼</h3><div class="hook">野菜砂锅馄饨·不时不食</div></div>
+        <button class="stop-check" onclick="event.stopPropagation();toggleCheck(this)" aria-label="打卡">✓</button>
+      </div>
+      <div class="stop-body">
+        <p class="stop-desc">出报恩寺，东行至皮市街276号的<strong>鲜得楼</strong>。一锅砂锅"咕嘟"作响，热气裹着野菜香——这是很多苏州人盼了一整年的春日滋味。</p>
+        <div class="look"><h4>点单指南</h4><ul>
+          <li>招牌：野菜砂锅馄饨——荠菜、马兰头、金花菜、枸杞头、香椿头、菊花脑六种野菜入馅</li>
+          <li>砂锅标配：豆苗、龙口粉丝、油面筋、虾皮、榨菜、紫菜，临出锅一勺猪油"滋啦"出香</li>
+          <li>配野葱蛋饼：金黄焦香，趁热吃</li>
+        </ul></div>
+        <div class="tip"><span class="tip-label">贴士</span>"不时不食"——野菜馅随季节变化，春日最鲜；人均约¥25–30，烟火气十足的小店。</div>
+        <div class="stop-meta"><span>皮市街276号</span><span>8:00–20:00</span><span>人均¥25</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="foot">
+  <h3>行 走 贴 士</h3>
+  <ul>
+    <li>两线均可半日完成；阊门线侧重街巷寻根，北寺塔线侧重寺塔研学，宜分两天</li>
+    <li>古城限高约25米（约北寺塔三层之高），登高远望时留意天际线的默契</li>
+    <li>手机摄影记得关HDR拍古塔轮廓；早晚光线柔和，正午塔檐阴影重宜拍剪影</li>
+    <li>泰伯庙周一闭馆；五峰园16:00关门；时间紧可优先泰伯庙+五峰园连看</li>
+    <li>点击每站右上角圆圈可打卡，进度条自动记录（本地保存，刷新不丢）</li>
+  </ul>
+  <div class="sign">吴 地 时 光 机 · 一 步 一 千 年</div>
+</footer>
+
+</div>
+
+<script>
+// Tab switch
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.querySelectorAll('.route').forEach(r=>r.classList.remove('show'));
+    document.getElementById('route-'+t.dataset.route).classList.add('show');
+    window.scrollTo({top:document.querySelector('.tabs').offsetTop-12,behavior:'smooth'});
+  });
+});
+
+// Toggle body
+function toggleBody(el){
+  el.nextElementSibling.classList.toggle('collapsed');
+}
+
+// Toggle check + progress
+function toggleCheck(btn){
+  const stop=btn.closest('.stop');
+  stop.classList.toggle('done');
+  saveState();
+  updateProgress();
+}
+
+function getRouteKey(stop){return stop.dataset.route}
+function updateProgress(){
+  ['cm','bs'].forEach(r=>{
+    const total=document.querySelectorAll('.stop[data-route="'+r+'"]').length;
+    const done=document.querySelectorAll('.stop[data-route="'+r+'"].done').length;
+    const fill=document.getElementById('fill-'+r);
+    const cnt=document.getElementById('cnt-'+r);
+    const dot=document.getElementById('dot-'+(r==='cm'?'cm':'bs'));
+    fill.style.width=(done/total*100)+'%';
+    cnt.textContent=done;
+    dot.classList.remove('has','full');
+    if(done>0&&done<total)dot.classList.add('has');
+    else if(done===total)dot.classList.add('full');
+  });
+}
+
+// localStorage
+function saveState(){
+  const state={};
+  document.querySelectorAll('.stop.done').forEach(s=>{
+    state[s.dataset.route+'-'+s.dataset.idx]=1;
+  });
+  try{localStorage.setItem('citywalk_done',JSON.stringify(state));}catch(e){}
+}
+function loadState(){
+  try{
+    const s=JSON.parse(localStorage.getItem('citywalk_done')||'{}');
+    Object.keys(s).forEach(k=>{
+      const[r,i]=k.split('-');
+      const el=document.querySelector('.stop[data-route="'+r+'"][data-idx="'+i+'"]');
+      if(el)el.classList.add('done');
+    });
+  }catch(e){}
+}
+loadState();
+updateProgress();
+</script>
+</body>
+</html>
