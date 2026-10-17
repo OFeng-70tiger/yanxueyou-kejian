@@ -25,6 +25,7 @@
 | shantang_shouce.html | 山塘街_研学解说手册 |
 | shantang_mingren.html | 山塘街名人篇_教学大纲 |
 | shizishan_shouce.html | 狮子山_重阳登高解说手册 |
+| shizishan_mingren.html | 狮子山名人篇_教学大纲 |
 | pingjiangtu_xiangjie.html | 平江图_图文对照详解 |
 | pingjiangtu_fangbiao.html | 平江图坊表核对表 |
 | chengqiang.html | 城墙（共享1） |
