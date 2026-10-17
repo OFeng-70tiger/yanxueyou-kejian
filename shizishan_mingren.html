@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>狮子山名人篇 · 苏州城市漫游研学｜教学大纲（讲师备课版 · 拼音版）</title>
+<style>
+:root{
+  --paper:#fbf7ef; --card:#ffffff; --ink:#33302a; --ink-soft:#6e675c;
+  --red:#a4423a; --red-deep:#7d2f28; --gold:#b58a2c; --gold-bg:#faf3e0;
+  --teal:#3d7a78; --teal-bg:#eef6f5; --blue:#3a6ea5; --blue-bg:#edf3fa;
+  --line:#e5dcc9;
+  --serif:"Noto Serif SC","Songti SC","SimSun",serif;
+  --sans:"Microsoft YaHei","PingFang SC",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.9;font-size:16px;
+  background-image:linear-gradient(var(--line) 1px,transparent 1px);background-size:100% 56px}
+.wrap{max-width:920px;margin:0 auto;padding:0 20px 100px}
+p{margin:8px 0;color:var(--ink-soft)}
+b,strong{color:var(--ink)}
+.hl{color:var(--red);font-weight:700}
+
+/* ===== 封面 ===== */
+.cover{padding:64px 8px 30px;text-align:center}
+.cover .kicker{display:inline-block;font-family:var(--serif);letter-spacing:.5em;text-indent:.5em;color:var(--gold);
+  border-top:1px solid var(--gold);border-bottom:1px solid var(--gold);padding:4px 18px;font-size:.9rem;margin-bottom:22px}
+.cover h1{font-family:var(--serif);font-weight:900;font-size:clamp(1.9rem,6vw,2.8rem);letter-spacing:.12em;margin-bottom:10px}
+.cover .sub{font-family:var(--serif);color:var(--ink-soft);font-size:clamp(1rem,3vw,1.2rem);letter-spacing:.25em;margin-bottom:18px}
+.cover .desc{max-width:640px;margin:0 auto;font-size:.95rem}
+.cover .seal{margin-top:26px;display:inline-block;font-family:var(--serif);color:#fff;background:var(--red);
+  border-radius:10px;padding:10px 26px;font-size:1.05rem;letter-spacing:.3em;text-indent:.3em;
+  box-shadow:0 4px 0 var(--red-deep)}
+
+/* ===== 课程信息卡 ===== */
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px;margin:28px 0 8px}
+.meta .m{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.meta .m b{display:block;font-size:.8rem;color:var(--gold);letter-spacing:.15em;margin-bottom:4px}
+.meta .m span{font-size:.95rem;color:var(--ink)}
+
+/* ===== 导航（顶栏） ===== */
+.toc-wrap{position:sticky;top:0;z-index:50;background:rgba(251,247,239,.97);backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);margin:20px -20px 0;padding:10px 20px 12px}
+.toc-wrap nav.toc{display:flex;gap:8px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+nav.toc::-webkit-scrollbar{display:none}
+nav.toc a,nav.toc .drop-btn{flex:none;display:inline-flex;align-items:center;justify-content:center;
+  text-decoration:none;color:var(--ink-soft);font-size:.86rem;font-weight:700;line-height:1.5;
+  background:var(--card);border:1px solid var(--line);border-radius:30px;padding:5px 15px;white-space:nowrap;
+  transition:background .2s,color .2s;font-family:var(--sans);cursor:pointer}
+nav.toc .drop-btn{-webkit-appearance:none;appearance:none;margin:0}
+nav.toc a:active{transform:scale(.96)}
+nav.toc a.active,nav.toc .drop-btn.active{background:var(--red);border-color:var(--red);color:#fff}
+/* 人物单元下拉子菜单（面板挂在吸顶容器上，避开滚动容器裁切） */
+.drop-wrap{flex:none}
+.drop-btn .caret{display:inline-block;font-size:.68em;transform:translateY(-1px);margin-left:3px;transition:transform .2s}
+.drop-wrap.open .drop-btn .caret{transform:translateY(-1px) rotate(180deg)}
+.drop-panel{display:none;position:absolute;top:calc(100% + 6px);left:20px;z-index:60;background:var(--card);
+  border:1px solid var(--line);border-radius:14px;box-shadow:0 10px 26px rgba(51,48,42,.16);
+  padding:8px;flex-direction:column;min-width:210px;max-height:calc(100dvh - 130px);overflow-y:auto}
+.drop-panel.open{display:flex}
+.drop-panel a{border:none;border-radius:9px;background:none;font-weight:400 !important;color:var(--ink-soft) !important;padding:8px 14px !important}
+.drop-panel a:hover{background:var(--gold-bg);color:var(--red) !important}
+.drop-panel a.active{background:var(--gold-bg) !important;color:var(--red) !important;font-weight:700 !important}
+.drop-panel .d-head{font-size:.72rem;color:var(--gold);letter-spacing:.2em;padding:4px 14px 6px;font-weight:700}
+.toc-hint{display:none}
+
+/* ===== 侧边栏目录 ===== */
+.side-tab{position:fixed;right:0;top:52%;transform:translateY(-50%);z-index:90;border:none;cursor:pointer;
+  background:var(--red);color:#fff;font-family:var(--serif);font-size:.92rem;letter-spacing:.3em;
+  writing-mode:vertical-rl;padding:18px 9px;border-radius:12px 0 0 12px;opacity:.92;
+  box-shadow:-3px 4px 12px rgba(0,0,0,.18)}
+.side-tab:hover{opacity:1}
+.sidebar{position:fixed;top:0;right:0;height:100dvh;width:min(320px,84vw);background:var(--card);z-index:100;
+  border-left:1px solid var(--line);box-shadow:-10px 0 34px rgba(0,0,0,.14);transform:translateX(105%);
+  transition:transform .28s ease;padding:16px 0 24px;overflow-y:auto}
+.sidebar.open{transform:translateX(0)}
+.side-mask{position:fixed;inset:0;background:rgba(51,48,42,.35);z-index:95;opacity:0;pointer-events:none;transition:opacity .28s}
+.side-mask.show{opacity:1;pointer-events:auto}
+.side-head{display:flex;align-items:center;gap:10px;padding:6px 16px 12px 20px;border-bottom:1px solid var(--line);margin-bottom:8px}
+.side-head .side-title{font-family:var(--serif);font-weight:900;letter-spacing:.25em;font-size:1rem;flex:1}
+.side-head .mode-switch{font-size:.76rem;color:var(--ink-soft);display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}
+.side-close{flex:none;border:none;background:none;color:var(--ink-soft);font-size:1.5rem;line-height:1;cursor:pointer;padding:2px 6px}
+.side-close:hover{color:var(--red)}
+.side-nav{display:flex;flex-direction:column}
+.side-nav a{padding:10px 20px;color:var(--ink-soft);text-decoration:none;font-size:.94rem;font-weight:700;
+  border-left:3px solid transparent;transition:background .15s,color .15s}
+.side-nav a.sub{padding-left:38px;font-weight:400;font-size:.89rem}
+.side-nav a:hover{background:var(--gold-bg);color:var(--ink)}
+.side-nav a.active{color:var(--red);border-left-color:var(--red);background:var(--gold-bg)}
+.side-nav .divider{margin:6px 20px;border-top:1px dashed var(--line)}
+
+/* ===== 章节头 ===== */
+.part{margin-top:70px}
+.part-head{display:flex;align-items:baseline;gap:14px;border-bottom:3px double var(--gold);padding-bottom:10px;margin-bottom:6px}
+.part-head .no{font-family:var(--serif);font-size:1rem;color:var(--gold);letter-spacing:.2em;white-space:nowrap}
+.part-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(1.3rem,4.5vw,1.7rem);letter-spacing:.08em}
+.part-sub{color:var(--ink-soft);font-size:.95rem;margin:8px 0 0}
+
+/* ===== 人物单元 ===== */
+.unit{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px 24px 22px;margin-top:34px;position:relative;overflow:hidden}
+.unit .tag-side{position:absolute;top:0;right:0;font-family:var(--serif);writing-mode:vertical-rl;letter-spacing:.3em;
+  background:var(--red);color:#fff;font-size:.8rem;padding:14px 8px;border-radius:0 0 0 12px;opacity:.92}
+.unit.teal .tag-side{background:var(--teal)}
+.unit.blue .tag-side{background:var(--blue)}
+.unit.gold .tag-side{background:var(--gold)}
+.unit h3{font-family:var(--serif);font-size:clamp(1.25rem,4.4vw,1.55rem);font-weight:900;letter-spacing:.06em;margin-bottom:2px}
+.unit .role{font-family:var(--serif);color:var(--gold);font-size:.95rem;letter-spacing:.2em;margin-bottom:12px}
+.unit h4{font-family:var(--serif);font-size:1.05rem;font-weight:900;color:var(--red);letter-spacing:.1em;
+  margin:22px 0 6px;display:flex;align-items:center;gap:8px}
+.unit h4::before{content:"§";color:var(--gold);font-size:.9rem}
+.unit.teal h4{color:var(--teal)} .unit.blue h4{color:var(--blue)} .unit.gold h4{color:var(--gold)}
+
+table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:var(--gold-bg);font-weight:700;color:var(--ink);white-space:nowrap}
+td{color:var(--ink-soft)}
+td b{color:var(--ink)}
+
+.quote{font-family:var(--serif);background:var(--gold-bg);border-left:4px solid var(--gold);
+  border-radius:0 12px 12px 0;padding:12px 18px;margin:12px 0;color:var(--ink);font-size:1.02rem;line-height:2}
+.quote small{display:block;color:var(--ink-soft);font-size:.82rem;margin-top:4px;letter-spacing:.05em}
+
+.story{background:var(--blue-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.story b.t{color:var(--blue)}
+.story p{margin:6px 0}
+
+.field{background:var(--teal-bg);border-radius:14px;padding:14px 18px;margin:10px 0}
+.field b.t{color:var(--teal)}
+
+.qa{border:2px dashed var(--gold);border-radius:14px;padding:12px 18px;margin:10px 0}
+.qa b.t{color:var(--gold)}
+.qa p{margin:5px 0}
+.qa .q{color:var(--ink);font-weight:700}
+.qa .a{color:var(--ink-soft)}
+
+.tip{background:#fff;border:1px solid var(--line);border-left:4px solid var(--red);border-radius:0 12px 12px 0;
+  padding:10px 16px;margin:10px 0;font-size:.92rem;color:var(--ink-soft)}
+.tip b{color:var(--red)}
+/* ===== 反向导航：去现场（跨页到打卡点手册 v2） ===== */
+.spot-row{display:flex;flex-wrap:wrap;gap:10px;margin:14px 0 4px;align-items:center}
+.spot-row .lbl{font-size:.8rem;color:var(--ink-soft);font-weight:700;letter-spacing:.1em}
+.spot-link{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.88rem;font-weight:700;
+  color:var(--blue);background:var(--blue-bg);border:1.5px solid var(--blue);border-radius:30px;padding:6px 14px;
+  transition:transform .15s,box-shadow .15s}
+.spot-link:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(58,110,165,.25)}
+.spot-link.hl{color:var(--red);background:#fdf1ef;border-color:var(--red)}
+
+/* ===== 信源标注 ===== */
+.src{font-size:.78rem;color:#9a9080;margin:6px 0 0;line-height:1.7;padding-top:4px;border-top:1px dashed var(--line)}
+.src b{color:var(--gold);font-weight:700;letter-spacing:.08em}
+.src code{font-family:var(--sans);font-size:.76rem;background:var(--gold-bg);border-radius:4px;padding:0 4px}
+
+/* ===== 打卡点 ===== */
+.spot{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;margin-top:24px}
+.spot .s-tag{display:inline-block;font-family:var(--serif);color:#fff;font-size:.82rem;letter-spacing:.15em;
+  border-radius:8px;padding:3px 12px;margin-bottom:8px}
+.spot h3{font-family:var(--serif);font-size:1.25rem;font-weight:900;letter-spacing:.05em}
+.spot .en{font-size:.78rem;color:var(--ink-soft);letter-spacing:.15em;margin-bottom:6px}
+
+.matrix td:first-child,.matrix th:first-child{white-space:nowrap}
+.matrix td{font-size:.88rem}
+
+.method{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;margin-top:24px}
+.layer{display:flex;gap:14px;align-items:flex-start;margin:12px 0}
+.layer .ln{flex:none;width:34px;height:34px;border-radius:50%;background:var(--red);color:#fff;display:flex;
+  align-items:center;justify-content:center;font-family:var(--serif);font-weight:900}
+.layer:nth-child(odd) .ln{background:var(--teal)}
+.layer p{margin:0}
+
+footer{margin-top:80px;text-align:center;color:var(--ink-soft);font-size:.85rem;border-top:1px solid var(--line);padding-top:24px}
+footer .big{font-family:var(--serif);font-size:1.15rem;font-weight:900;letter-spacing:.25em;color:var(--ink);margin-bottom:6px}
+
+@media print{nav.toc,.side-tab,.sidebar,.side-mask{display:none}body{background:none}}
+@media(max-width:640px){
+  .unit{padding:20px 16px}
+  th,td{padding:6px 7px;font-size:.86rem}
+  .unit .tag-side{display:none}
+}
+[data-anchor]{scroll-margin-top:70px}
+.sister-link{display:inline-block;margin-top:16px;font-size:.88rem;color:var(--blue);text-decoration:none;
+  border:1px dashed var(--blue);border-radius:30px;padding:4px 16px}
+.sister-link:hover{background:var(--blue-bg)}
+</style></head>
+<body>
+<div class="wrap">
+<header class="cover">
+  <div class="kicker">吴地时光机 · 苏州文史研学</div>
+  <h1>狮子山名人篇 · 苏州城市漫游研学</h1>
+  <div class="sub">教 学 大 纲 ｜ 讲 师 备 课 版</div>
+  <p class="desc">一座 114.5 米的小山，五组人物。本大纲照《北寺塔名人篇》《山塘街名人篇》体例，<b>按登山动线排人</b>：山腰石头上先遇见一位刻字的印坛宗师——<b>吴昌硕</b>；山顶寺遗址上站着一位唐朝的市长，他写过《自思益寺次楞伽寺》，从这座山走到那座山——<b>白居易</b>；再往上是状元读书台，背后是首辅<b>申时行</b>和一个讲了几百年的身世之谜；登上狮首，俯瞰虎丘的是一头"回头的狮子"，传说里那头狮子怒视的，是被刺杀的吴王<b>吴王僚</b>；最后在山顶，二十个年轻人 1903 年在这里招过一次国魂——<b>朱梁任</b>。<span class="hl">一座山，从"刻字"开始，到"喊醒中国"收尾。</span></p>
+  <p class="desc" style="margin-top:10px"><b>本篇的选人标准（三问）：</b>①<b>绕不开</b>——与本线打卡点高度相关，讲这个点就绕不过他；②<b>叫得响</b>——有大众知名度，<b>或者</b>本事够硬、成就说出来让人叹服；③<b>记得住</b>——讲完听众有印象。三问都不搭的（只在史料里出现的方志学者、记录者），<b>不入单元，人名不报</b>，但知识点留下、并入实物讲解——这也就是"备多讲少"。</p>
+  <div class="src" style="margin-top:18px;border-top:none;padding-top:0"><b>信源体例</b>：与文庙、北寺塔、山塘街名人篇同一口径——古籍注<b>原典书名与篇目</b>，考据结论注<b>史料</b>，近现代内容注<b>权威机构或媒体</b>；凡属<b>传说、民间说法、两说并存、待现场复核</b>的内容，均在行文中点明，不作定论。本篇与《狮子山 · 重阳登高解说手册》互为补充：手册管"现场怎么讲"，本篇管"人物备多讲少"。</div>
+  <a class="sister-link" href="index.html">⟵ 研学总目录（全系列入口）</a>
+  <a class="sister-link" href="shizishan_shouce.html" style="margin-left:8px">⟶ 配套：《狮子山 · 重阳登高解说手册》</a>
+  <div class="seal">备课备用 · 宁多勿缺</div>
+</header>
+
+<div class="meta">
+  <div class="m"><b>课程名称</b><span>吴地时光机 · 狮子山名人篇（重阳登高寻塔之旅）</span></div>
+  <div class="m"><b>授课对象</b><span>亲子家庭（小学二年级以上）/ 成人研学团</span></div>
+  <div class="m"><b>行程主线</b><span>狮山广场·天狮湖 → 何山望狮 → 北线登山口（摩崖石刻）→ 思益寺遗址 → 状元读书台 → 狮首 → 山顶五塔 → 招国魂 → 南线下山</span></div>
+  <div class="m"><b>建议时长</b><span>半日（登山＋讲解约 2.5 小时，全程约 3 公里台阶路）</span></div>
+  <div class="m"><b>集合地点</b><span>地铁 1 号线狮子山站 → 狮山广场·天狮湖边</span></div>
+  <div class="m"><b>资料版本</b><span>2026-10 v1 · 人物资料池持续补充中</span></div>
+</div>
+
+<!-- ================= 导航 ================= -->
+<div class="toc-wrap" id="topbar">
+  <nav class="toc">
+    <a href="#overview">总览</a>
+    <div class="drop-wrap" id="dropWrap">
+      <button class="drop-btn" id="dropBtn" aria-haspopup="true" aria-expanded="false">一·人物单元<span class="caret">▾</span></button>
+    </div>
+    <a href="#p2">二·打卡点手册</a>
+    <a href="#p3">三·点位矩阵</a>
+    <a href="#p4">四·方法题库</a>
+  </nav>
+  <div class="drop-panel" id="dropPanel">
+    <div class="d-head">五 组 人 物</div>
+          <a href="#u1">单元一 · 吴昌硕</a>
+          <a href="#u2">单元二 · 白居易</a>
+          <a href="#u3">单元三 · 申时行</a>
+          <a href="#u4">单元四 · 吴王僚</a>
+          <a href="#u5">单元五 · 朱梁任</a>
+  </div>
+</div>
+
+<button class="side-tab" id="sideTab" aria-label="打开课程目录">目 录</button>
+<div class="side-mask" id="sideMask"></div>
+<aside class="sidebar" id="sidebar" aria-label="侧边栏课程目录">
+  <div class="side-head">
+    <span class="side-title">课程目录</span>
+    <label class="mode-switch"><input type="checkbox" id="topbarSwitch" checked>顶部导航</label>
+    <button class="side-close" id="sideClose" aria-label="关闭目录">×</button>
+  </div>
+  <nav class="side-nav">
+    <a href="#overview">总览 · 课程总览与教学目标</a>
+    <div class="divider"></div>
+    <a href="#p1">第一部分 · 人物单元（五组）</a>
+    <a class="sub" href="#u1">单元一 · 吴昌硕</a>
+    <a class="sub" href="#u2">单元二 · 白居易</a>
+    <a class="sub" href="#u3">单元三 · 申时行</a>
+    <a class="sub" href="#u4">单元四 · 吴王僚</a>
+    <a class="sub" href="#u5">单元五 · 朱梁任</a>
+    <div class="divider"></div>
+    <a href="#p2">第二部分 · 打卡点手册（按动线）</a>
+    <div class="divider"></div>
+    <a href="#p3">第三部分 · 人物 × 点位矩阵</a>
+    <div class="divider"></div>
+    <a href="#p4">第四部分 · 讲述方法与题库</a>
+  </nav>
+</aside>
+
+<!-- ================= 总览 ================= -->
+<section class="part" id="overview" data-anchor>
+  <div class="part-head"><span class="no">总览</span><h2>课程总览与教学目标</h2></div>
+  <p class="part-sub">本课程回答一个核心问题：<b>一座不到 115 米、连树都长不住的小山，凭什么装得下两千五百年？</b>答案不在石头上，而在五个"人"身上——有人在它身上刻字，有人在它的寺里写诗，有人被传说按在它头上读书，有人被传说埋在它脚下，还有人在它头顶喊醒过一个国家。</p>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red);margin-bottom:10px">◆ 一座山的五层"翻牌" · 三层讲述</h4>
+    <p><b>主线叙事：</b>山腰的石头上，先撞见<b>吴昌硕</b>——光绪八年他给一块"天上掉下来的石头"题了名，苏州近郊最集中的一片摩崖，是这座山的"留言墙" → 再上去是山顶寺遗址，<b>白居易</b>做过苏州刺史，写过《自思益寺次楞伽寺》，从这座山走到那座山 → 状元读书台的石桌旁坐着<b>申时行</b>，《玉蜻蜓》"庵堂认母"的原型之争，苏州人讲了几百年 → 登上狮首，"狮子回头望虎丘"两版传说，最狠的一版说那是被刺杀的<b>吴王僚</b>在怒视篡位的阖闾 → 而 1903 年，二十个年轻人在这个山顶升旗招魂，领头的叫<b>朱梁任</b>，十四年后他又在文庙深刻了一遍《平江图》。<span class="hl">从刻字，到写诗，到读书，到埋骨，到喊醒中国——一座山把"人"的五种活法演了一遍。</span></p>
+    <div class="layer"><div class="ln">1</div><p><b>表象层（孩子都能看见）：</b>石头上的字、石桌石凳、山顶的塔尖、一面湖——先引导观察："你看到了什么？"小而浅，没关系，这是入口。</p></div>
+    <div class="layer"><div class="ln">2</div><p><b>故事层（背后的人）：</b>每一站背后都站着具体的人——吴昌硕、白居易、申时行、吴王僚、朱梁任。讲人的抉择与命运，不讲年表。</p></div>
+    <div class="layer"><div class="ln">3</div><p><b>精神层（带得走的东西）：</b>把名字刻在石头上会磨掉，把诗写进书里会传下去；传说可以讲，但要分得清它只是传说；一座城值得有人为它喊一嗓子——这些是孩子带回家的"种子"。</p></div>
+  </div>
+
+  <table>
+    <tr><th style="width:130px">教学目标</th><td>① 认识与狮子山相关的五组人物及其事迹；② 理解这座山"孤山—采石—建寺—读书—招魂"的五重身份；③ 学会"由山见人、由人见精神"，并初步分辨<b>传说 / 文献记载 / 考古实证</b>三类说法。</td></tr>
+    <tr><th>情感目标</th><td>对家门口这座"不起眼的小山"产生亲近感；从朱梁任 1903 年那一枪、吴昌硕一方石刻里，看到"普通人也能在石头上留一笔"。<b>"山不高，故事高。"</b></td></tr>
+    <tr><th>讲解原则</th><td>现场看到的东西大多"浅"——一块石头、一张石桌、一片空台地；备课却要"深"——<b>讲不一定都讲，备必须备足</b>。按体力、天气、孩子反应灵活取舍；传说与史实始终分开讲。</td></tr>
+    <tr><th>选人原则</th><td><b>三问</b>：绕不开、叫得响、记得住。不达标者不入单元、不报人名，知识点并入实物讲解（见第四部分"怎么选人不翻车"）。</td></tr>
+  </table>
+</section>
+
+<!-- ================= 第一部分 人物单元 ================= -->
+<section class="part" id="p1" data-anchor>
+  <div class="part-head"><span class="no">第一部分</span><h2>人物单元（五组）</h2></div>
+  <p class="part-sub">每个单元包含：档案速览 → 核心故事 → 现场结合点 → 互动问答 → 储备冷知识。五组按<b>登山动线</b>排列：吴昌硕在山腰石刻（第 ③ 站）先"露脸"；白居易在遗址（第 ④ 站）立主题；申时行在读书台（第 ⑤ 站）做身世悬念；吴王僚在狮首（第 ⑥ 站）接"回头望虎丘"；朱梁任在山顶（第 ⑧ 站）收官——<b>用"这座山被喊醒过"收尾，正好回扣开场"一座孤零零的小山"。</b></p>
+  <p class="part-sub"><b>与本篇的分工（重要）</b>：<b>五塔辨识</b>（斜、方、高、山、旧五字诀与方位表）、<b>摩崖石刻逐处认字</b>、<b>西晋墓与重阳糕</b>属于"实物与现场讲解"，已在《狮子山 · 重阳登高解说手册》里写全——<b>本篇不再重复设单元</b>，讲师现场直接用手册那一份。</p>
+
+  <!-- ============ 单元一 吴昌硕 ============ -->
+  <div class="unit gold" id="u1" data-anchor>
+    <div class="tag-side">单元一</div>
+    <h3>吴昌硕</h3>
+    <div class="role">诗书画印四绝 · 给一块「天上掉下来的石头」题了名</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>吴昌硕（1844—1927），初名俊，后改俊卿，字<b>昌硕</b>，号<b>缶庐</b>、<b>苦铁</b>；浙江安吉人，中年后长期寓居苏州、上海</td></tr>
+      <tr><th>身份</th><td>篆刻家、书法家、画家、诗人，人称<b>"诗书画印"四绝</b>；<b>西泠印社首任社长</b>（1913 年公推）</td></tr>
+      <tr><th>与本线关系</th><td>光绪八年（1882）为狮子山题<b>"坠星岩"</b>三字，刻在山上巨石上——<b>就在北线登山道旁</b></td></tr>
+      <tr><th>现场可指物</th><td>摩崖石刻"坠星岩"（第 ③ 站摩崖石刻群），篆隶笔意，落款可辨</td></tr>
+      <tr><th>为什么入单元</th><td>三问全中：<b>绕不开</b>（这一段石阶上就刻着他的字）；<b>叫得响</b>（印坛宗师、西泠首任社长）；<b>记得住</b>（"天上掉下来的石头"这个由头，孩子一听就记住）</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生卒与字号——《吴昌硕年谱》；西泠印社社长——西泠印社社史（1904 年创社于杭州孤山，1913 年吴昌硕任首任社长）；题刻年代——现场石刻落款"光绪八年"，另见景区石刻介绍。◐ 石刻是否原刻、抑或后世摹刻，带团前实地看石面风化与落款刀口再定。</div>
+
+    <h4>核心故事：一个安吉人，给苏州的一块石头签了名</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>先说这块石头。山南的巨石兀立，老辈人相传是<b>天外坠星</b>化成的，山的东西旧时还有一处地名就叫<b>"落星泾"</b>——一个地名，把"天上掉下来"这件事记了几百年。是不是陨石，今天没人去化验它；但苏州人愿意这么叫它。</p>
+    <p>再说题字的人。<b>吴昌硕是浙江安吉人</b>，三十几岁到苏州讨生活，一住多年。他在苏州干的事很"文"：跟大儒俞樾问学，和收藏家吴大澂、顾麟士来往，看碑、看印、看青铜器。苏州是他艺术的"发酵缸"——他后来在上海成名，可底子是苏州给的。</p>
+    <p>1882 年，他三十九岁，给这块陨石写了三个字：<b>坠星岩</b>。写的是篆隶之间的笔意，笔画方里带圆，像刀刻又像笔画。<span class="hl">一百四十多年过去，石头还在，字还在——这是一个艺术家能留下的最结实的东西。</span></p>
+    <div class="src"><b>信源</b>：寓苏经历与交游——《吴昌硕年谱》《吴昌硕传》相关章节；"落星泾"地名——明《姑苏志》等方志所记狮子山东地名（手册已录）。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 第 ③ 站 · 摩崖石刻群（登山道上）</b>
+    <p>让学员先自己找："这三块石头里有三个字，谁能看出来是什么字？"——认出来再讲人。<b>一定要让学员看落款</b>：落款是石刻的"身份证"，有年款、有名字，这块石头就活了。</p>
+    <p>顺带把"石头为什么能留字、为什么不长树"讲通：整座山是一块 1.5 亿年前拱出地面的大花岗岩，裸岩占六成以上，种不了几棵树，却正好<b>刻字</b>。</p></div>
+
+    <h4>互动问答</h4>
+    <div class="qa"><b class="t">◈ 现场可问</b>
+      <p class="q">问：这三个字，哪个最难写？</p>
+      <p class="a">答："坠"字。坠是"从上往下掉"，篆书里要写出"往下落"的势，又不能散——所以要写成一个整体。<i>（讲法：让孩子伸手比一个"往下掉"的动作，比讲笔法有用）</i></p>
+      <p class="q">问：吴昌硕是苏州人吗？</p>
+      <p class="a">答：不是，浙江安吉人。但他最好的年纪是在苏州过的——<b>苏州不是他的老家，是他的学校</b>。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip"><b>◆</b> 西泠印社在杭州孤山，1904 年创立，1913 年公推吴昌硕为<b>首任社长</b>，此后他坐了二十年；他一生刻印极多，晚年在上海卖画为生，八十多岁还临石鼓文。<br><b>◆</b> 狮子山摩崖石刻群现存约 <b>7 处</b>，近代还复刻过康有为、徐悲鸿、顾廷龙、沙孟海等名家题咏——所以现场看到"名家字"，先分清<b>原刻还是复刻</b>，这是个很好的考据小练习。<br><b>◆</b> 同一条登山道上的"洗心泉"三字，题者两说并存（景区多署康有为，李根源记作道光十七年僧人所书）——<b>这不是我们记错，是本来就有两说</b>，让学员看落款自己断案。</div>
+  </div>
+
+  <!-- ============ 单元二 白居易 ============ -->
+  <div class="unit teal" id="u2" data-anchor>
+    <div class="tag-side">单元二</div>
+    <h3>白居易</h3>
+    <div class="role">唐苏州刺史 · 从这座山，走到那座山</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>白居易（772—846），字<b>乐天</b>，号<b>香山居士</b>；祖籍太原，生于河南新郑</td></tr>
+      <tr><th>与苏州</th><td><b>唐敬宗宝历元年（825）出任苏州刺史</b>，次年秋离任——在苏州约一年半</td></tr>
+      <tr><th>苏州政绩</th><td>开<b>山塘河</b>、筑<b>白公堤</b>（今山塘街前身之一）；离任时"苏州十万户，尽作婴儿啼"（白居易《答刘禹锡》类诗句所写之情，见其苏州任后诗作）</td></tr>
+      <tr><th>与本线关系</th><td>写<b>《自思益寺次楞伽寺》</b>——从狮子山的思益寺，"次"到上方山的楞伽寺。思益寺遗址就在第 ④ 站</td></tr>
+      <tr><th>现场可指物</th><td>思益寺遗址（今仅存台地与岩洞）；从遗址西南望，<b>楞伽塔</b>就在视线尽头——他那天走的那条线，今天还看得见</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：任期——《旧唐书·白居易传》及白居易年谱（宝历元年至二年任苏州刺史）；诗题与"次"字义——《全唐诗》所收《自思益寺次楞伽寺》；思益寺沿革——唐陆广微《吴地记》"岞崿山……有寺号思益，梁天监二年置"。</div>
+
+    <h4>核心故事：一位市长的一次"串门"</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>公元九世纪，苏州来了一位市长，是当时全中国最有名的诗人之一。<b>他在苏州只干了一年半</b>，可干了一件影响一千年的事：开河。今天山塘街下面那条河，源头就是他——所以山塘街又叫<b>白公堤</b>，山塘街上至今有白居易纪念馆。</p>
+    <p>他公余爱爬山。城西的狮子山，那时候山顶有寺，叫<b>思益寺</b>（本名法音寺，唐开元年间改名思益寺）。他爬上去，写了一首诗，题目老实得像日记：<b>《自思益寺次楞伽寺》</b>——"自"是从，"次"是途中停留，意思就是"从思益寺到楞伽寺去"。</p>
+    <p>楞伽寺在哪？就是今天上方山下的治平寺。<span class="hl">所以这首诗不是写景，是一张路线图：他那天从狮子山，走到了上方山。</span>而今天你们站在山顶往西南望，那座塔（楞伽塔）还在原地——一条唐诗里的动线，一千二百年后还认得出来。</p>
+    <div class="src"><b>信源</b>：山塘河与白公堤——苏州市地方志办公室、山塘街相关志书；思益寺沿革——《吴地记》；治平寺即古楞伽寺——苏州地方志及上方山治平寺沿革资料。<b>存疑提示</b>："次"作"途中停留"解为通行说法，另有解作"次韵"者；现场按"从…到…"讲即可，不展开。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 第 ④ 站 · 思益寺遗址（山顶台地）</b>
+    <p>站在台地上讲三件事：<b>寺没了</b>（1500 年的寺，只剩台地和岩洞里的《心经》碑）；<b>诗还在</b>（《全唐诗》里就那一行题目）；<b>路还在</b>（往西南指，楞伽塔就在视线里）。</p>
+    <p>顺手接跨线：<b>山塘街</b>就是白居易开的河——带过山塘线的团，一句"我们脚下这条河的爸爸，就是写过这首诗的人"就接上了。</p></div>
+
+    <h4>互动问答</h4>
+    <div class="qa"><b class="t">◈ 现场可问</b>
+      <p class="q">问：诗题里这个"次"是什么意思？</p>
+      <p class="a">答：途中停留、路过。不是"第二次"。</p>
+      <p class="q">问：白居易在苏州当了几年官？</p>
+      <p class="a">答：一年半。可他开的一条河，苏州人用了一千二百年——<b>做官时间短，不等于做得少。</b></p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip"><b>◆</b> 白居易年轻时到长安，前辈<b>顾况</b>拿他名字开玩笑："长安米贵，居大不易。"等他读出"野火烧不尽，春风吹又生"，立刻改口："有这才华，居亦易矣。"——<b>顾况也是苏州人</b>，而且他写的"宏扬宗风"四字，清代还挂在狮子山的思益寺里。一座山，把两个唐代人又串到一起了。<br><b>◆</b> 白居易离任苏州时，苏州人送他到运河边；他后来写诗怀念苏州，把苏州列为"平生所历"最难忘的地方之一。<br><b>◆</b> 思益寺唐开元年间改名，"思益"二字取"思有益于人"之意（寺名释义为通行说法）。</div>
+  </div>
+
+  <!-- ============ 单元三 申时行 ============ -->
+  <div class="unit" id="u3" data-anchor>
+    <div class="tag-side">单元三</div>
+    <h3>申时行</h3>
+    <div class="role">状元首辅 · 一块石桌，一个身世之谜</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>申时行（1535—1614），字<b>汝默</b>，号<b>瑶泉</b>；苏州府<b>长洲县</b>人；谥<b>文定</b></td></tr>
+      <tr><th>功名</th><td>嘉靖四十一年（1562）<b>殿试第一（状元）</b></td></tr>
+      <tr><th>仕途顶点</th><td><b>万历十一年（1583）起任内阁首辅</b>，前后约八年</td></tr>
+      <tr><th>与本线关系</th><td>第 ⑤ 站<b>状元读书台</b>的主人——"幼年读书于狮山寺中"为<b>民间传说</b></td></tr>
+      <tr><th>跨线关系</th><td><b>北寺塔正门前那座牌楼</b>，原是他家祠堂（申文定公祠）前的"忠良柱石"坊，1979 年 9 月移建过去——两条线共用一个人</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：生平与仕历——《明史·申时行传》；祖宅与早年读书——《吴门表隐》（记祖宅在平江路混堂弄、早年读书于卫道观）；"狮山读书"——<b>民间传说，正史无载</b>；读书台石桌椅——原苏州乐园时期修建，非古物；墓在<b>石湖吴山</b>（今上方山石湖一带），<b>不在天平山</b>（网上游记多误）。</div>
+
+    <h4>核心故事：石头桌子、状元榜上那个"徐"字、和一出唱了几百年的戏</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p><b>第一层，讲那张石桌。</b>这块石桌石凳叫状元读书台。石桌不是明朝的——它是当年苏州乐园时期修的。所以讲的时候要老实：<b>桌椅是新的，"读书台"这个名字和背后的故事才是老的。</b></p>
+    <p><b>第二层，讲那个人。</b>申时行，苏州长洲人，嘉靖四十一年考了全国第一。后来做到万历朝的内阁首辅，相当于宰相。可苏州人津津乐道的不是他的官，是他的姓：<b>他本姓徐，中状元之后才归宗改姓申</b>——所以当年状元榜上写的，很可能是"徐时行"。</p>
+    <p><b>第三层，讲那出戏。</b>因为他改过姓，苏州人编出了一个故事：富家公子与尼姑生子，孩子送给无子的徐家收养，后来高中状元，拿着信物玉蜻蜓进庵认母——这就是弹词《玉蜻蜓》里最有名的一折<b>"庵堂认母"</b>。几百年来，很多人认为故事原型就是他。<span class="hl">讲到这里务必加一句：这是戏曲演绎，原型之争没有定论。</span></p>
+    <div class="src"><b>信源</b>：改姓归宗——《明史·申时行传》及明人笔记；《玉蜻蜓》——苏州弹词传统书目，"原型为申时行"系民间附会之说（学界无定论）。</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 第 ⑤ 站 · 状元读书台</b>
+    <p>先让学员坐下、摸一摸石桌——身体参与过的信息留存率最高。然后讲"这张桌子是新的，故事是老的"。</p>
+    <p>再往南指：<b>"你们看南边那座带塔的山（上方山楞伽塔），那边石湖的吴山，才是他真正长眠的地方。"</b>——传说他在这儿读书，人却葬在能望见这座山的地方，算是巧合，也算圆满。</p>
+    <p>跨线接法（带过北寺塔线的团）：<b>"还记得塔前那座牌坊吗？主人就是他。"</b></p></div>
+
+    <h4>互动问答</h4>
+    <div class="qa"><b class="t">◈ 现场可问</b>
+      <p class="q">问：状元是第几名？</p>
+      <p class="a">答：全国第一。殿试第一名才叫状元，第二名榜眼，第三名探花。</p>
+      <p class="q">问：他为什么改姓？</p>
+      <p class="a">答：他祖父小时候过继给了姓徐的舅家，所以家里一直姓徐；等他中了状元，才归宗改回姓申。</p>
+      <p class="q">问：那《玉蜻蜓》是真的吗？</p>
+      <p class="a">答：戏是真的，故事是编的。<b>苏州人愿意信，是因为这个故事里有一个读书人最好的结局——认回了自己的娘。</b></p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip"><b>◆</b> 他 57 岁因"立太子"之争被言官弹劾，辞官回乡，一住 <b>23 年</b>，活到 80 岁。最戏剧性的一幕在最后：神宗派使者来探望，<b>诏书刚送到申府大门口，他就咽了气</b>。<br><b>◆</b> 辨误两条：①"申时行墓在天平山"错，在<b>石湖吴山</b>；②"正史记他在狮山读书"错，<b>正史无载</b>，《吴门表隐》记的是卫道观。<br><b>◆</b> 苏州城里与他有关的地名还有混堂弄（祖宅所在，平江路一带）——北寺塔线、平江路线都能接。</div>
+  </div>
+
+  <!-- ============ 单元四 吴王僚 ============ -->
+  <div class="unit blue" id="u4" data-anchor>
+    <div class="tag-side">单元四</div>
+    <h3>吴王僚</h3>
+    <div class="role">被刺的吴王 · "狮子回头望虎丘"的另一半</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>吴王僚（？—前515），姬姓，名僚；吴王寿梦之孙、余眜（一作夷眜）之子</td></tr>
+      <tr><th>在位</th><td>前 526—前 515，共 <b>12 年</b>；<b>吴王僚十二年（前515）</b>被专诸刺杀</td></tr>
+      <tr><th>死因</th><td>堂弟公子光（即后来的<b>阖闾</b>）设宴，专诸藏剑于炙鱼腹中，当场刺死王僚——"<b>专诸刺王僚</b>"</td></tr>
+      <tr><th>与本线关系</th><td>① <b>"狮子回头望虎丘"传说第二版</b>的主角：僚葬狮子山，阖闾葬虎丘，一狮一虎、叔侄对望；② 唐《吴地记》记"吴王僚葬此山中"，李根源 1926 年记"<b>吴王僚墓旧在寺中</b>"</td></tr>
+      <tr><th>现场可指物</th><td><b>无。</b>墓的位置至今未经考古确认——这一条必须讲清楚，见下"辨析"</td></tr>
+    </table>
+    <div class="src"><b>信源</b>：被刺经过——《史记·刺客列传》《左传·昭公二十七年》；"葬此山中"——唐陆广微《吴地记》"岝崿山在吴县西十二里，吴王僚葬此山中"；"墓旧在寺中"——李根源《吴郡西山访古记》（民国十五年，1926 访狮子山实录）；阖闾葬虎丘——《越绝书》《吴越春秋》《吴地记》三书一致（《越绝书》："阖闾冢在吴县阊门外，名曰虎丘"）。</div>
+
+    <h4>核心故事（分两层讲，千万别混）</h4>
+    <div class="story"><span class="t">▲ 第一层 · 讲给学员的传说：</span>
+    <p>公元前 515 年，吴国发生了一件大事：公子光请堂兄吴王僚吃饭，席间让勇士专诸端上一盘炙鱼，鱼肚子里藏着一把短剑——<b>专诸当场刺死了王僚</b>，公子光随即登上王位，就是<b>阖闾</b>。</p>
+    <p>后来阖闾葬在虎丘（剑池下），王僚据传葬在狮子山。<b>一座是狮，一座是虎，隔五公里半对望。</b>所以有人说，"狮子回头望虎丘"那个回头的姿态，是王僚的冤魂不散，回头怒视篡了他位子的堂弟。<span class="hl">这个说法不是史实，但它是一个城市对一场政变最生动的记性。</span></p>
+    <div class="src"><b>信源</b>：《史记·刺客列传》；虎丘为阖闾墓——《越绝书》《吴越春秋》《吴地记》。</div></div>
+
+    <div class="qa"><b class="t">◈ 第二层 · 讲给讲师的辨析：为什么我不太信王僚葬在这里</b>
+      <p class="q">一、时间线对不上"厚葬"这件事。</p>
+      <p class="a">专诸刺王僚发生在<b>公子光还没当吴王的时候</b>。那时候吴国的政治中心大概率还不在今天苏州古城这个位置（阖闾后来才筑大城），更可能在无锡、常州一带的吴国旧地。一个被刺杀而死的王，属于<b>突发暴毙</b>；公子光夺位之后，对这个堂兄既没有感情、也没有政治需要——<b>草草下葬是常理，专程迁葬到几十里外的狮子山、还给他修寺守墓，没有必要。</b></p>
+      <p class="q">二、证据只有"文献转述"，没有考古实证。</p>
+      <p class="a">"王僚葬此山中"最早见于<b>唐代</b>《吴地记》——距事件已一千多年；李根源 1926 年写的"吴王僚墓旧在寺中"，是<b>转记前人之说</b>，不是他挖出来的。狮子山 1976 年出土的是<b>西晋墓</b>，不是春秋墓；至今没有任何考古证据能定位王僚墓。</p>
+      <p class="q">三、所以现场怎么说？</p>
+      <p class="a">统一口径：<b>"唐代的《吴地记》里记载，吴王僚葬在这座山里；李根源 1926 年来访古时，也记了一句'吴王僚墓旧在寺中'。至于墓到底在哪里，至今没有考古证实。"</b>——<b>讲"文献有这一说"，不讲"墓就在那儿"；不讲"坟头是某某处"。</b>讲师个人可以不信，但给学员的是两样东西：<b>传说好听，《吴地记》是信源。</b></p>
+    </div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 第 ⑥ 站 · 狮首"狮子回头望虎丘"（主战位）</b>
+    <p>先让学员低头看山形：东南探出去那一角像不像狮子头？再让他们朝虎丘方向看。然后给两版传说：<b>青狮斗白虎</b>（寒山寺神僧的坐骑，误了时辰化石）与<b>吴王僚冤魂</b>（叔侄对望）——两版可以都讲，讲完点一句：<b>"传说两版，方向一致：都指向虎丘。"</b></p>
+    <p><b>◆ 第 ④ 站 · 思益寺遗址（补一句）</b>：李根源 1926 年登上这里时写"吴王僚墓旧在寺中"——山顶寺里曾经有过一座王墓，这是他看到或听到的。这句话放在遗址上讲，比放在狮首更贴。</p></div>
+
+    <h4>互动问答</h4>
+    <div class="qa"><b class="t">◈ 现场可问</b>
+      <p class="q">问：专诸怎么把剑带进去的？</p>
+      <p class="a">答：藏在烤鱼的肚子里。所以那把剑叫<b>"鱼肠剑"</b>——又短又窄，能塞进鱼肚。这是中国最有名的一次"饭局"。<i>（"鱼肠"得名另有"花纹如鱼肠"之说，两说并存，现场说"传说叫鱼肠剑"即可）</i></p>
+      <p class="q">问：狮子回头的方向是哪儿？</p>
+      <p class="a">答：虎丘。五公里半，站在山顶往北偏东看，虎丘塔就是那个"歪"的小点。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip"><b>◆</b> 阖闾即位后干的第一件大事，是让<b>伍子胥</b>筑大城——就是今天苏州古城的前身。所以"苏州城"其实是王僚死后才有的：<b>先有刺杀，后有这座城。</b><br><b>◆</b> 明《姑苏志》记狮子山"南顶上有巨石二如楼，云是狮子两耳"，可惜"自元以来凿石且尽"——<b>狮子的两只耳朵，六百年前就被采石采掉了</b>。今天看到的是缺耳狮。<br><b>◆</b> 何山山顶有座<b>张王庙</b>，祭的是张士诚——从北寺塔到山塘街再到何山，苏州人对这位失败者的感念，走到哪儿都撞得见。</div>
+  </div>
+
+  <!-- ============ 单元五 朱梁任 ============ -->
+  <div class="unit" id="u5" data-anchor>
+    <div class="tag-side">单元五</div>
+    <h3>朱梁任</h3>
+    <div class="role">1903 年山顶招国魂 · 1917 年深刻《平江图》</div>
+
+    <h4>档案速览</h4>
+    <table>
+      <tr><th>姓名</th><td>朱梁任（1873—1932），名<b>锡梁</b>，字梁任；吴县人；<b>宋大儒朱长文第三十三世孙</b></td></tr>
+      <tr><th>身份</th><td>同盟会会员、<b>南社发起人之一</b>；甲骨文鉴别家（曾识罗振玉不能识之字四十余）</td></tr>
+      <tr><th>与本线关系</th><td><b>1903 年（光绪二十九年）十月朔</b>，与包天笑、祝心渊、苏曼殊等<b>十八人</b>登狮子山<b>招国魂</b>，在山顶升旗、诵诗、鸣枪</td></tr>
+      <tr><th>跨线关系</th><td><b>1917 年与叶德辉出资督工，将文庙《平江图》碑深刻一遍</b>，碑右缘题名"郡人叶德辉朱锡梁督工深刻"——<b>同一座山，同一块碑，一个人干的</b></td></tr>
+      <tr><th>结局</th><td>1932 年 11 月 12 日赴甪直处理<b>保圣寺唐塑</b>保护事务，归途轮船倾覆，与子朱世隆一同遇难——<b>为保护文物而捐躯</b></td></tr>
+    </table>
+    <div class="src"><b>信源</b>：招国魂——范烟桥《茶烟歇》所记（"其事甚密，而当时文人革命思想之活跃，此见其端"）；诗作《招魂幡》——同上书所录；生平——朱锡梁传记资料（同盟会、南社、甲骨文鉴别）；《平江图》深刻——碑右缘题名原文；卒年与保圣寺事——1932 年吴县相关记述及保圣寺唐塑保护史料。日期另有 1903 年 11 月 19 日一说。</div>
+
+    <h4>核心故事：二十个年轻人、两面幡、一枪</h4>
+    <div class="story"><span class="t">▲ 故事文本：</span>
+    <p>1903 年，光绪二十九年。《辛丑条约》签完第二年，庚子国变刚过去。<b>苏州一个二十岁的年轻人，叫朱梁任</b>，约了包天笑、苏曼殊等十八个人，雇小船出城，登上这座狮子山。</p>
+    <p>他们带了祭品，还带了两面幡。<b>一面黑幡</b>，狭长形，下面开两个尖角，中间四个草书大字——<b>"魂兮归来"</b>；<b>一面白幡</b>，上面画一头狰狞的雄狮，落款五个字——<b>"黄帝之曾孙小子"</b>。</p>
+    <p>摆祭品、诵诗文、放声痛哭。最后，朱梁任掏出一把前膛枪，<b>朝着北方——清政府所在的方向，开了一枪。</b></p>
+    <p>为什么选狮子山？因为他们喊的口号就是四个字：<b>"睡狮醒兮"</b>。中国是一头睡狮，要醒，就得有人先站到狮子头顶上去喊。<span class="hl">他回城以后，把自家门口一条小弄堂改名叫"醒狮路"——这条路今天还在石路那边。</span></p>
+    <div class="src"><b>信源</b>：范烟桥《茶烟歇》；朱梁任《招魂幡》诗："归去来兮我国魂，中原依旧属公孙。扫清膻雨腥风日，记取当时一片幡。"</div></div>
+
+    <h4>现场结合点</h4>
+    <div class="field"><b class="t">◆ 第 ⑧ 站 · 招国魂处（山顶开阔地）</b>
+    <p>先让人站定、环视一圈："<b>你们脚下这个位置，123 年前站过二十个年轻人。</b>"然后才讲故事——先给场景，再给情节，孩子的注意力才在。</p>
+    <p>讲完加一句现代的：<b>"这条路现在叫醒狮路，在石路。你们哪天路过，可以去看一眼路牌。"</b>——把一个 1903 年的故事，落到今天的门牌上。</p>
+    <p>跨线彩蛋（带过文庙线的团）：<b>"1917 年，这个人在文庙把《平江图》碑深刻了一遍。今天我们看的这座山，和文庙那块碑，是同一个人的两件作品。"</b></p></div>
+
+    <h4>互动问答</h4>
+    <div class="qa"><b class="t">◈ 现场可问</b>
+      <p class="q">问：白幡上为什么画一头狮子？</p>
+      <p class="a">答：因为当时中国人把自己比作"睡狮"。他们站在狮子山上，举着画狮子的幡，喊"睡狮醒兮"——<b>山、幡、口号，三样对上了。</b></p>
+      <p class="q">问："魂兮归来"是谁的话？</p>
+      <p class="a">答：屈原《楚辞·招魂》里的句子。两千年前的句子，1903 年被四个年轻人写在黑幡上，插在苏州的山顶。</p>
+    </div>
+
+    <h4>储备冷知识</h4>
+    <div class="tip"><b>◆</b> 朱梁任是<b>朱长文</b>的三十三世孙。朱长文写过《吴郡图经续记》——文庙线讲"范仲淹割南园建府学"时引的一手信源。<b>一家祖孙，隔九百年，都在为苏州写注脚。</b><br><b>◆</b> 他不只是"热血青年"：他是<b>甲骨文鉴别家</b>，曾认出罗振玉都认不出的四十多个字；1932 年他去甪直，是为<b>保圣寺唐代彩塑</b>的保护事务——中国最早一批"文物保护工作者"。<br><b>◆</b> 同行的<b>苏曼殊</b>后来成了名僧、诗人、翻译家；<b>包天笑</b>成了报人、小说家——1903 年那趟船上，坐着好几个后来写进中国近代文化史的人。（此二人只作故事背景提一句，不单独立单元）</div>
+  </div>
+
+  <h4 style="font-family:var(--serif);color:var(--red);margin:34px 0 6px">第二梯队 · 一句话档案（现场点到即止）</h4>
+  <table class="matrix">
+    <tr><th style="width:110px">人物</th><th>一句话</th><th style="width:130px">讲在哪站</th></tr>
+    <tr><td><b>阖闾</b></td><td>王僚的堂弟、刺杀的受益者；筑苏州古城，葬虎丘剑池下——与狮子山"一狮一虎"对望的另一半（《越绝书》《吴越春秋》《吴地记》）</td><td>⑥ 狮首</td></tr>
+    <tr><td><b>何求、何点</b></td><td>南朝齐梁间隐士兄弟，拒绝出仕、先后归隐，葬何山，山因此由"鹤阜山"改名"何山"；何点被时人称为"通隐"；何山公园今存李根源题刻"齐太子洗马何求何点葬此"</td><td>② 何山望狮</td></tr>
+    <tr><td><b>李根源</b></td><td>辛亥元老，1926 年专程登狮子山访古，《吴郡西山访古记》把山顶寺、石佛寺、吴王僚墓一条条记下来——景区介绍牌抄错四个字，抄的就是他这段原文</td><td>④ 思益寺遗址</td></tr>
+    <tr><td><b>顾况</b></td><td>唐诗人、苏州人；书"宏扬宗风"四字曾悬于思益寺（寺已无存，仅存文献）；也是当年调侃白居易"长安米贵，居大不易"的那位前辈</td><td>④／跨线山塘街</td></tr>
+    <tr><td><b>康有为</b></td><td>洗心泉题名一说（另一说为清道光十七年僧人所书，<b>两说并存，存疑</b>）——<b>一句话带过即可</b>，且现场未必走得到洗心泉</td><td>③ 摩崖石刻</td></tr>
+    <tr><td><b>郭沫若</b></td><td>洗心泉旁"物洗则洁，心洗则清"——<b>现代刻，不是古刻</b>，正好用来讲"古今对照"</td><td>③ 摩崖石刻</td></tr>
+    <tr><td><b>张士诚</b></td><td>元末吴王，苏州人感念其善政；何山山顶张王庙祭的就是他——北寺塔线（纪功碑）、山塘线之后的<b>第三面</b></td><td>② 何山（远望）</td></tr>
+  </table>
+  <div class="src"><b>不入名录（只作知识点，不报人名或只提一次）</b>：<b>王鏊</b>（《姑苏志》，"四山与诸山不相连"的出处）、<b>陆广微</b>（《吴地记》，"吴王僚葬此山中"的出处）、<b>范烟桥</b>（《茶烟歇》，1903 招国魂的记录者）——方志学者与记录者，按"三问"不占名人位；<b>包天笑、苏曼殊</b>——1903 同行者，随朱梁任故事带过，<b>不单独立单元</b>。</div>
+</section>
+
+<!-- ================= 第二部分 打卡点手册 ================= -->
+<section class="part" id="p2" data-anchor>
+  <div class="part-head"><span class="no">第二部分</span><h2>打卡点手册（按动线 · 只列人物挂点）</h2></div>
+  <p class="part-sub">逐站的现场讲法、互动、彩蛋已写在《狮子山 · 重阳登高解说手册》里，<b>本篇只标"这一站该挂哪位人物"</b>，便于现场一眼找到人。</p>
+
+  <table>
+    <tr><th style="width:60px">站</th><th style="width:170px">点位</th><th>现场一句破题</th><th style="width:120px">挂谁</th></tr>
+    <tr><td><b>①</b></td><td>狮山广场 · 天狮湖</td><td>"一座 114.5 米的小山，是城西最孤零零、也最热闹的一座山。"（苏州乐园 1997—2017；狮山公园 2023；2024 全面开放登山）</td><td>—（破题站）</td></tr>
+    <tr><td><b>②</b></td><td>何山望狮</td><td>"邻居，不是亲戚。"——明《姑苏志》"以上四山与诸山不相连"</td><td><b>何求／何点</b>（山名由来）<br><b>张士诚</b>（张王庙）</td></tr>
+    <tr><td><b>③</b></td><td>北线登山口 · 摩崖石刻群</td><td>"一座山的留言墙。"——整山一块 1.5 亿年前的花岗岩，裸岩六成以上</td><td><b>吴昌硕</b>（坠星岩）<br>康有为／郭沫若（各一句）</td></tr>
+    <tr><td><b>④</b></td><td>思益寺与石佛寺遗址</td><td>"寺早没了，石头还记得。"——梁天监二年（503）建寺</td><td><b>白居易</b>（主）<br><b>李根源</b>（1926 访古）<br>吴王僚（"墓旧在寺中"）</td></tr>
+    <tr><td><b>⑤</b></td><td>状元读书台</td><td>"桌椅是新的，故事是老的。"</td><td><b>申时行</b>（《玉蜻蜓》原型之争）</td></tr>
+    <tr><td><b>⑥</b></td><td>狮首 · 狮子回头望虎丘</td><td>"一句老话，两版传说，一对冤家。"</td><td><b>吴王僚</b>（主）<br><b>阖闾</b>（对望的另一半）</td></tr>
+    <tr><td><b>⑦</b></td><td>山顶五塔</td><td>"站在 114.5 米的小山上，一眼看一千四百年。"（斜／方／高／山／旧）</td><td>—（纯实物，见手册）</td></tr>
+    <tr><td><b>⑧</b></td><td>招国魂</td><td>"我们脚下这个位置，123 年前站过二十个年轻人。"</td><td><b>朱梁任</b>（主）</td></tr>
+    <tr><td><b>⑨</b></td><td>南线下山 · 西晋墓与重阳糕</td><td>"一座 114.5 米的山，从头到脚每一层都被历史翻过牌。"</td><td>—（收队，回扣总览）</td></tr>
+  </table>
+</section>
+
+<!-- ================= 第三部分 矩阵 ================= -->
+<section class="part" id="p3" data-anchor>
+  <div class="part-head"><span class="no">第三部分</span><h2>人物 × 点位结合矩阵</h2></div>
+  <p class="part-sub">●＝主战位（人在这里立单元）　○＝可带一句　—＝不挂</p>
+  <table class="matrix">
+    <tr><th>人物 ＼ 站点</th><th>①广场</th><th>②何山</th><th>③石刻</th><th>④遗址</th><th>⑤读书台</th><th>⑥狮首</th><th>⑦五塔</th><th>⑧招魂</th><th>⑨下山</th></tr>
+    <tr><td><b>吴昌硕</b></td><td>—</td><td>—</td><td><b>●</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>白居易</b></td><td>○</td><td>—</td><td>—</td><td><b>●</b></td><td>—</td><td>—</td><td>○</td><td>—</td><td>—</td></tr>
+    <tr><td><b>申时行</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td><b>●</b></td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>吴王僚</b></td><td>—</td><td>—</td><td>—</td><td>○</td><td>—</td><td><b>●</b></td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td><b>朱梁任</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td><b>●</b></td><td>—</td></tr>
+    <tr><td>阖闾</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>○</td><td>○</td><td>—</td><td>—</td></tr>
+    <tr><td>何求／何点</td><td>—</td><td><b>●</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>李根源</td><td>—</td><td>○</td><td>○</td><td><b>●</b></td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>顾况</td><td>—</td><td>—</td><td>—</td><td>○</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>康有为／郭沫若</td><td>—</td><td>—</td><td>○</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+    <tr><td>张士诚</td><td>—</td><td>○</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td></tr>
+  </table>
+  <div class="tip"><b>排布说明</b>：五个"●"落在 ③④⑤⑥⑧，正好是登山途中节奏最松的五处（石刻可停留、遗址有台地、读书台能坐、狮首是拍照点、山顶开阔）。<b>②何山不建议立主战位</b>——那是远望指认的过路点，站不住人。</div>
+</section>
+
+<!-- ================= 第四部分 方法与题库 ================= -->
+<section class="part" id="p4" data-anchor>
+  <div class="part-head"><span class="no">第四部分</span><h2>讲述方法 · 题库 · 三条红线</h2></div>
+
+  <div class="method">
+    <h4 style="font-family:var(--serif);color:var(--red);margin-bottom:10px">◆ 怎么选人不翻车</h4>
+    <div class="layer"><div class="ln">1</div><p><b>先问"现场有没有东西可指"。</b>有物可指（吴昌硕的石刻、白居易的遗址与视线、申时行的石桌）→ 放心讲；无物可指（吴王僚墓）→ <b>只讲文献，不指方位</b>。</p></div>
+    <div class="layer"><div class="ln">2</div><p><b>再问"这个人是不是绕不开"。</b>吴昌硕的字就刻在这一段路上，绕不开；包天笑、苏曼殊只是同行者，绕得开——<b>绕得开的，不报人名</b>。</p></div>
+    <div class="layer"><div class="ln">3</div><p><b>最后问"讲完记不记得住"。</b>记得住靠的是画面：一块石头上的三个字、一张石桌、一面黑幡。<b>没有画面的，压缩成一句。</b></p></div>
+  </div>
+
+  <h4 style="font-family:var(--serif);color:var(--red);margin:26px 0 6px">三条红线（讲师必背）</h4>
+  <table>
+    <tr><th style="width:130px">红线</th><th>错的说法</th><th>对的说法</th></tr>
+    <tr><td><b>吴王僚墓</b></td><td>"王僚就葬在这座山里，墓就在那边。"</td><td><b>"唐代《吴地记》记载，吴王僚葬在这座山中；李根源 1926 年来访古也记了一句。墓在哪里，至今没有考古证实。"</b></td></tr>
+    <tr><td><b>"一山望五塔"</b></td><td>"苏州唯一能看塔的山。"</td><td><b>"能一次望全这五座塔的山，苏州找不出第二座。"</b>（限定在这五塔的组合上，不说绝对化）</td></tr>
+    <tr><td><b>申时行读书台</b></td><td>"申时行小时候就在这张桌子上读书。"</td><td><b>"传说他小时候在狮山的寺里读书；这张石桌是后来修的，墓在石湖吴山。"</b></td></tr>
+  </table>
+
+  <h4 style="font-family:var(--serif);color:var(--red);margin:26px 0 6px">有奖题库（10 题 · 讲师用／可作互动）</h4>
+  <table>
+    <tr><th style="width:44px">#</th><th>题</th><th>答案</th></tr>
+    <tr><td>1</td><td>给"坠星岩"题字的是谁？</td><td>吴昌硕，光绪八年（1882）；他是西泠印社首任社长</td></tr>
+    <tr><td>2</td><td>这块石头为什么叫"坠星岩"？</td><td>相传是天外坠星所化；山东旧有"落星泾"地名</td></tr>
+    <tr><td>3</td><td>白居易在苏州当了多久的官？</td><td>约一年半（宝历元年到二年，825—826）</td></tr>
+    <tr><td>4</td><td>《自思益寺次楞伽寺》的"次"什么意思？</td><td>途中停留、路过（从思益寺到楞伽寺去）</td></tr>
+    <tr><td>5</td><td>思益寺最早叫什么？哪年建的？</td><td>法音寺，南朝梁天监二年（503）</td></tr>
+    <tr><td>6</td><td>申时行是苏州哪里人？哪一年的状元？</td><td>长洲县人；嘉靖四十一年（1562）</td></tr>
+    <tr><td>7</td><td>申时行的墓在哪里？</td><td><b>石湖吴山</b>（不在天平山）</td></tr>
+    <tr><td>8</td><td>吴王僚是怎么死的？凶手是谁派的？</td><td>被专诸以鱼腹藏剑刺杀；公子光（阖闾）主使，前 515 年</td></tr>
+    <tr><td>9</td><td>1903 年在山顶招国魂的是谁？同行还有谁？</td><td>朱梁任；包天笑、祝心渊、苏曼殊等共十八人</td></tr>
+    <tr><td>10</td><td>朱梁任除了这座山，还在苏州哪件国宝上留过名？</td><td>1917 年督工深刻文庙《平江图》碑，碑右缘有他的题名</td></tr>
+  </table>
+
+  <div class="quote">山不在高。一座 114.5 米的小山，装下了刻字的人、写诗的人、读书的人、被埋的人、喊醒中国的人。
+  <small>—— 本线讲述总纲（讲师可作结语）</small></div>
+
+  <div class="tip"><b>气候与体力备选</b>：小雨＝改走天狮湖环线＋苏博西馆（馆山联游，馆里能看狮子山西晋墓出土文物原件）；大雨改期。全程无售卖点，水在山下买好。<b>南线只下不上</b>，别把队带反。</div>
+</section>
+
+<footer>
+  <div class="big">吴地时光机 · 文史研学系列</div>
+  <p>讲师备课手册 · 内部资料 ｜ 资料来源：原典（唐《吴地记》、《史记》、《越绝书》、《吴越春秋》、明《姑苏志》、《明史》、《吴门表隐》、《吴郡西山访古记》、范烟桥《茶烟歇》等）+ 苏州市地方志办公室 · 苏州高新区管委会 · 苏州博物馆等机构资料；传说/推测/两说处均已在文中标明</p>
+  <p style="margin-top:4px">总目录：<a href="index.html">苏州城市漫游研学 · 总目录</a> ｜ 配套现场解说：<a href="shizishan_shouce.html">狮子山 · 重阳登高解说手册（讲师备课版）</a> ｜ 名人堂持续补充中</p>
+</footer>
+</div>
+<script>
+(function(){
+  var sb=document.getElementById('sidebar'),mask=document.getElementById('sideMask'),
+      tab=document.getElementById('sideTab'),closeBtn=document.getElementById('sideClose'),
+      topbar=document.getElementById('topbar'),topSwitch=document.getElementById('topbarSwitch');
+  function openSb(){sb.classList.add('open');mask.classList.add('show');}
+  function closeSb(){sb.classList.remove('open');mask.classList.remove('show');}
+  tab.addEventListener('click',openSb);
+  closeBtn.addEventListener('click',closeSb);
+  mask.addEventListener('click',closeSb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeSb();closeDrop();}});
+  sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSb);});
+  // 两种目录模式切换：勾选框控制顶部导航显隐
+  topSwitch.addEventListener('change',function(){
+    topbar.style.display=this.checked?'block':'none';
+    try{localStorage.setItem('toc-topbar',this.checked?'1':'0');}catch(e){}
+  });
+  try{if(localStorage.getItem('toc-topbar')==='0'){topbar.style.display='none';topSwitch.checked=false;}}catch(e){}
+  // 人物单元下拉子菜单（面板挂在吸顶容器 .toc-wrap 下，定位对齐按钮）
+  var dropWrap=document.getElementById('dropWrap'),dropBtn=document.getElementById('dropBtn'),
+      dropPanel=document.getElementById('dropPanel');
+  function closeDrop(){
+    dropWrap.classList.remove('open');dropPanel.classList.remove('open');
+    dropBtn.setAttribute('aria-expanded','false');
+  }
+  dropBtn.addEventListener('click',function(e){
+    e.stopPropagation();
+    var opening=!dropPanel.classList.contains('open');
+    if(opening){
+      dropPanel.classList.add('open');               // 先显示才能量宽
+      var br=dropBtn.getBoundingClientRect(),
+          wr=topbar.getBoundingClientRect(),
+          pw=dropPanel.offsetWidth||220;
+      var left=br.left-wr.left;                      // 相对吸顶容器对齐按钮
+      left=Math.min(Math.max(12,left),Math.max(12,wr.width-pw-12));
+      dropPanel.style.left=left+'px';
+      dropWrap.classList.add('open');
+      dropBtn.setAttribute('aria-expanded','true');
+    }else{closeDrop();}
+  });
+  document.addEventListener('click',function(e){
+    if(!dropWrap.contains(e.target)&&!dropPanel.contains(e.target))closeDrop();
+  });
+  dropPanel.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeDrop);});
+  // 滚动高亮当前位置（顶栏胶囊、下拉面板、侧边栏三处联动）
+  var unitIds=['u1','u2','u3','u4','u5','u6','u7'];
+  var allLinks=document.querySelectorAll('nav.toc a, .drop-panel a, .side-nav a');
+  var dropBtnEl=document.querySelector('.drop-btn');
+  function setActive(id){
+    allLinks.forEach(function(a){
+      a.classList.toggle('active',a.getAttribute('href')==='#'+id);
+    });
+    dropBtnEl.classList.toggle('active',unitIds.indexOf(id)>=0||id==='p1');
+  }
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting)setActive(e.target.id);});
+    },{rootMargin:'-70px 0px -55% 0px',threshold:0});
+    ['overview','p1','u1','u2','u3','u4','u5','u6','u7','p2','p3','p4'].forEach(function(id){
+      var el=document.getElementById(id);
+      if(el)io.observe(el);
+    });
+  }
+})();
+
+</script>
+</body>
+</html>
